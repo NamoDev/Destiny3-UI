@@ -9,29 +9,35 @@ use Illuminate\Http\Response;
 
 class MustNotBeIE{
 
-  /**
-   * Agent instance
-   *
-   * @var Jenssegers\Agent\Agent
-   */
-  private $agent;
+    /**
+     * Agent instance
+     *
+     * @var Jenssegers\Agent\Agent
+      */
+    private $agent;
 
-  public function __construct(){
-    $this->agent = new Agent;
-  }
-
-  /**
-   * Handle an incoming request.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \Closure  $next
-   * @return mixed
-   */
-  public function handle($request, Closure $next){
-    if($this->agent->browser() == 'IE'){
-      return new Response(view('errors.unsupported_browser'));
+    /**
+     * Construct class
+     *
+     * @param
+     * @return void
+     */
+    public function __construct(Agent $agent){
+        $this->agent = $agent;
     }
 
-    return $next($request);
-  }
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next){
+        if($this->agent->browser() == 'IE'){
+            return new Response(view('errors.unsupported_browser'));
+        }
+
+        return $next($request);
+    }
 }
