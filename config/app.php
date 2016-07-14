@@ -157,6 +157,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         'Jenssegers\Agent\AgentServiceProvider',
+
+	/*
+	* MongoDB
+	*/
+	Jenssegers\Mongodb\MongodbServiceProvider::class,
     ],
 
     /*
