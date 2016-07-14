@@ -27,6 +27,7 @@ return array(
     'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Jenssegers\\Agent\\' => array($vendorDir . '/jenssegers/agent/src'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
