@@ -24,4 +24,17 @@ return [
 
     'core_api_key' => 'debug',
 
+    /*
+    |--------------------------------------------------------------------------
+    | DestinyCore Base API URL
+    |--------------------------------------------------------------------------
+    |
+    | This option specifies the base API URL of the core server.
+    | Be it IP addresses or DNS names, this accepts it all. Just make sure
+    | that this URL is accessible from the server itself!
+    |
+    */
+
+    'core_base_api_url' => 'https://core3.destiny.triamudom.ac.th',
+
 ];
