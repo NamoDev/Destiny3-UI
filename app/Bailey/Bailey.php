@@ -11,6 +11,8 @@ namespace App\Bailey;
 |
 */
 
+use Config;
+
 class Bailey{
 
 
