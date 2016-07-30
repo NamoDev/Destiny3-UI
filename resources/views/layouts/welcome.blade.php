@@ -7,6 +7,12 @@
     </head>
     <body>
 
+        @include('components.navbar')
+
+        <div class="container mainContainer">
+            @yield('content');
+        </div>
+
         <script src="/assets/js/jquery.js"></script>
         <script src="/assets/js/bootstrap.js"></script>
     </body>
