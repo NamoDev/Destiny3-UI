@@ -15,7 +15,7 @@ use Config;
 
 class Bailey{
 
-
+    
 
     /**
      * doAPIrequest
@@ -27,7 +27,7 @@ class Bailey{
      *
      * note: this is not a public function!
      */
-    function doAPIrequest(string $endpoint, string $method, array $variables = [], string $baseURL = Config::get("uiconfig.core_base_api_url")){
+    protected function doAPIrequest(string $endpoint, string $method, array $variables = [], string $baseURL = Config::get("uiconfig.core_base_api_url")){
 
         // Get API Key
         $apiKey = Config::get("uiconfig.core_api_key");
