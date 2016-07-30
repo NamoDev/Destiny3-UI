@@ -10,7 +10,36 @@
         @include('components.navbar')
 
         <div class="container mainContainer">
-            @yield('content');
+            <div class="row">
+                <div class="col-md-3">
+                    
+                  <a class="btn btn-primary btn-block"><span class="fa fa-check-circle"></span> ข้อมูลพื้นฐาน</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  <a class="btn btn-primary btn-block"><span class="fa fa-check-circle"></span> ข้อมูลผู้ปกครอง</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  <a class="btn btn-primary btn-block"><span class="fa fa-check-circle"></span> ที่อยู่ / ภูมิลำเนา</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  <a class="btn btn-primary btn-block"><span class="fa fa-check-circle"></span> ประวัติการศึกษา</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  <a class="btn btn-primary btn-block"><span class="fa fa-check-circle"></span> เลือกแผนการเรียน</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  <a class="btn btn-primary btn-block"><span class="fa fa-check-circle"></span> เลือกวันสมัครที่โรงเรียน</a>
+                  <br />
+
+                  <!-- TODO: Add the real thing. -->
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                         <small><i class="fa fa-exclamation-triangle"></i> นักเรียนยังไม่ได้พิมพ์ใบสมัคร</small>
+                         <a class="btn btn-success btn-block btn-lg">บันทึกข้อมูลและพิมพ์ใบสมัคร</a>
+                      </div>
+                  </div>
+
+                </div>
+                <div class="col-md-9">
+                    @yield('content');
+                </div>
+            </div>
+
         </div>
 
         <script src="/assets/js/jquery.js"></script>
