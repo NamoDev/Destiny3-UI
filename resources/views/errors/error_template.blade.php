@@ -1,5 +1,5 @@
 @extends('layouts.welcome')
-@section('title', '503')
+@section('title', 'error')
 
 @section('content')
 
@@ -10,7 +10,8 @@
                 <img src="/assets/images/woah.png" alt="O NOES" width="200px" />
             </div>
             <div class="col-sm-8">
-                <h3 style="margin-top:80px;">ระบบปิดชั่วคราว กรุณากลับมาใหม่อีกครั้งภายหลัง</h3>
+                <h5 style="margin-bottom:0;margin-top:80px;">ดูเหมือนจะมีบางสิ่งผิดปกติ</h5>
+                <h3 style="margin-top:5px;"> {% error_message %} </h3>
                 <br />
                 <a href="/" class="btn btn-warning" target="_self">&nbsp;&nbsp;&nbsp;&nbsp;กลับไปหน้าหลัก&nbsp;&nbsp;&nbsp;&nbsp;</a>
             </div>
