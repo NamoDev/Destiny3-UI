@@ -12,7 +12,16 @@
 */
 
 Route::group(['middleware' => ['web']], function(){
+
+    // TODO: A lot of route cleanups!
+
     Route::get('/', function () {
         return view('welcome');
     });
+
+});
+
+
+Route::group(['prefix' => 'apply', 'middleware' => ['web']], function () {
+    Route::get('home', 'UIPages@applicantHomePage');
 });
