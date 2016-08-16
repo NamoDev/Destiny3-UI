@@ -13,4 +13,8 @@ namespace App\Http\Controllers;
 
 class UIPages extends controller{
 
+    public function homepage(){
+        return response()->view('welcome');
+    }
+
 }
