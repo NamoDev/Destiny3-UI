@@ -11,8 +11,17 @@
 |
 */
 
+
+/*
+| Front-end routes
+*/
 Route::group(['middleware' => ['web']], function(){
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'UIPages@homepage');
+});
+
+/*
+| API Routes (V1.0)
+*/
+Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
+
 });
