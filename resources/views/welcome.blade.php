@@ -10,7 +10,7 @@
         TODO: Again, add the real thing. Also need to complete the event countdown code first.
         Unfortunately, I forgot to bring PHP documentations onboard. Coding is hard at 35,000 feet!
         -->
-        <h4>เหลือเวลาอีก <b>17</b> วัน <b>เปิดรับสมัครนักเรียนโควตาจังหวัด</b></h4>
+        <h4><b>Development Version!</b> Not for production use</h4>
         <hr />
         <br />
     </div>
