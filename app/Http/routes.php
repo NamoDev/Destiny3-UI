@@ -31,7 +31,12 @@ Route::group(['middleware' => ['web']], function(){
 | TODO: Add login verification middleware
 */
 Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
-    // Handle steps here
+
+    // First step application page (account creation)
+    Route::get('begin', 'UIPages@startApplicationPage');
+
+    
+
 });
 
 /*
