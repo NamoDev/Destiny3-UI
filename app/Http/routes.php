@@ -33,9 +33,9 @@ Route::group(['middleware' => ['web']], function(){
 Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
 
     // First step application page (account creation)
-    Route::get('begin', 'UIPages@startApplicationPage');
+    Route::get('begin', 'UIPages@newUserRegistrationPage');
 
-    
+
 
 });
 

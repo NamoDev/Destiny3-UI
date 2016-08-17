@@ -18,6 +18,11 @@ class UIPages extends Controller{
         return response()->view('welcome');
     }
 
+    // Registration homepage
+    public function newUserRegistrationPage(){
+      return response()->view('steps.00_new_user_registration');
+    }
+
     // Applicant home page (a.k.a. the "Dashboard")
     public function applicantHomePage(){
         return response()->view('applicant_home');
