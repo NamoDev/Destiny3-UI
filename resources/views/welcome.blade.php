@@ -20,7 +20,7 @@
 <div class="row">
               <!-- ===== -->
               <div class="col-md-4">
-                  <a href="/apply" target="_self">
+                  <a href="/application/begin" target="_self">
                   <div class="well btnWell btnWellWithBgColor">
                       <h2><i class="fa fa-edit text-muted"></i> สมัครใหม่</h2>
                       <h5>สำหรับนักเรียนที่ยังไม่เคยใช้งานระบบมาก่อน</h5>
