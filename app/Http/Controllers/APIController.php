@@ -84,7 +84,7 @@ class APIController extends Controller{
           $genderToUse,
           $request->email,
           $request->phone,
-          $request->birthday,
+          $request->birthdate,
           $request->birthmonth,
           $request->birthyear,
           $request->password
