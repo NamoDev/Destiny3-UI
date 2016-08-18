@@ -21,8 +21,8 @@
                   <option value="4">อื่นๆ</option>
                 </optgroup>
               </select>
-              <div id="customtitleGroup" style="display:none;">
-                <span class="help-block">โปรดระบุ:</span>
+              <div id="customtitleGroup" style="display:none;margin-top:-18px;">
+                <span class="help-block">โปรดระบุคำนำหน้าชื่อ:</span>
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
                 <br />
               </div>
