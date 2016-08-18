@@ -159,10 +159,15 @@
 
 $(function(){
   $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+  checkCustomTitleSelection();
 })
 
 /* Custom Titles */
 $("#title").change(function(){
+  checkCustomTitleSelection();
+})
+
+function checkCustomTitleSelection(){
   if($("#title").val() == 4){
     // Custom title
     $("#title").removeClass("select-block");
@@ -176,7 +181,7 @@ $("#title").change(function(){
     $("#customTitle_enGroup").hide();
     $("#customGenderGroup").hide();
   }
-})
+}
 
 /* Submit application form */
 $("#create_account").click(function(e){
