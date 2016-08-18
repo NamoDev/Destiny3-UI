@@ -155,6 +155,7 @@
 @endsection
 
 @section('additional_scripts')
+<script src="/assets/js/bootbox.min.js"></script>
 <script>
 
 var usingCustomTitle = 0;
@@ -285,6 +286,13 @@ $("#create_account").click(function(e){
   }
 
   console.log("Total errors: " + hasErrors);
+
+  // If there are no errors, we're ready to continue:
+  if(hasErrors == 0){
+
+  }else{
+
+  }
 
 })
 
