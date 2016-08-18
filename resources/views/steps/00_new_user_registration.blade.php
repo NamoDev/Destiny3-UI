@@ -34,9 +34,11 @@
           </div>
           <!-- == -->
           <div class="row">
-            <div class="col-md-2 col-xs-4" id="customTitle_enGroup">
-              <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
-              <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" style="display:none;" />
+            <div class="col-md-2 col-xs-4">
+              <div id="customTitle_enGroup" style="display:none;">
+                <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
+                <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" />
+              </div>
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fname_enGroup">
               <span class="help-block">ชื่อ (ภาษาอังกฤษ)</span>
