@@ -48,7 +48,7 @@
           <!-- == -->
           <div class="row">
             <div class="col-md-2 col-xs-4">
-              <div id="customTitle_enGroup" style="display:none;">
+              <div id="customtitle_enGroup" style="display:none;">
                 <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
                 <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" />
               </div>
