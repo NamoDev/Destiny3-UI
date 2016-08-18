@@ -154,6 +154,7 @@ $("#create_account").click(function(e){
   // First, check email:
   if(checkEmail($("#email").val())){
     $("#emailGroup").removeClass("has-error");
+    hasErrors -= 1;
   }else{
     $("#emailGroup").addClass("has-error");
     hasErrors += 1;
@@ -162,15 +163,19 @@ $("#create_account").click(function(e){
   // Check citizen ID:
   if(checkCitizenID($("#citizenid").val())){
     $("#citizenidGroup").removeClass("has-error");
+    hasErrors -= 1;
   }else{
     $("#citizenidGroup").addClass("has-error");
     hasErrors += 1;
   }
 
   // Check password:
-  if($("#password").val() == $("password_confirm").val()){
+  var pswdInput = $("#password").val();
+  var pswdConfirmInput = $("#password_confirm").val();
+  if(pswdInput == pswdConfirmInput){
     $("#passwordGroup").removeClass("has-error");
     $("#password_confirmGroup").removeClass("has-error");
+    hasErrors -= 1;
   }else{
     $("#passwordGroup").addClass("has-error");
     $("#password_confirmGroup").addClass("has-error");
