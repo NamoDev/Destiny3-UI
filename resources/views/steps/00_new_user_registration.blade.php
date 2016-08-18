@@ -175,14 +175,14 @@ function checkCustomTitleSelection(){
     // Custom title
     $("#title").removeClass("select-block");
     $("#customtitleGroup").show();
-    $("#customTitle_enGroup").show();
+    $("#customtitle_enGroup").show();
     $("#customGenderGroup").show();
     usingCustomTitle = 1;
   }else{
     // Normal
     $("#title").addClass("select-block");
     $("#customtitleGroup").hide();
-    $("#customTitle_enGroup").hide();
+    $("#customtitle_enGroup").hide();
     $("#customGenderGroup").hide();
     usingCustomTitle = 0;
   }
