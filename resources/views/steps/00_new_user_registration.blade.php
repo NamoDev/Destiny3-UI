@@ -22,6 +22,7 @@
                 </optgroup>
               </select>
               <div id="customtitleGroup" style="display:none;">
+                <span class="help-block">โปรดระบุ:</span>
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
                 <br />
               </div>
