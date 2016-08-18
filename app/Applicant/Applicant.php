@@ -76,6 +76,10 @@ class Applicant{
       if(DB::collection("applicants")->where("citizenid", $citizenid)->count() == 1){
         // OK. Password correct?
         $loginUserData = DB::collection("applicants")->where("citizenid", $citizenid)->first();
+
+        var_dump($loginUserData);
+        die();
+
         if(Hash::check($password, $loginUserData->password)){
           // Login OK
           Session::put("applicant_logged_in", "1");
