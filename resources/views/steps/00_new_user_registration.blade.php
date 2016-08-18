@@ -33,5 +33,9 @@
 @endsection
 
 @section('additional_scripts')
-
+<script>
+$(function(){
+  $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+})
+</script>
 @endsection
