@@ -129,7 +129,7 @@
           </div>
         </div>
         <br />
-        <button id="create_account" class="btn btn-primary btn-block btn-lg">สร้างบัญชีผู้สมัคร</button>
+        <a id="create_account" href="#" class="btn btn-primary btn-block btn-lg">สร้างบัญชีผู้สมัคร</a>
         <br />
         <a href="/" class="btn btn-default btn-block btn-lg">กลับไปหน้าหลัก</a>
         <br />
@@ -144,7 +144,10 @@ $(function(){
   $("select").select2({dropdownCssClass: 'dropdown-inverse'});
 })
 
-$("#create_account").click(function(){
+$("#create_account").click(function(e){
+
+  e.preventDefault();
+
   // We're submitting. Check sanity of data.
   var hasErrors = 0;
 
