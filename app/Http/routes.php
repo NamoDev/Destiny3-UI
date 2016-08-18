@@ -30,6 +30,9 @@ Route::group(['middleware' => ['web']], function(){
     // About page
     Route::get('about', 'UIPages@aboutPage');
 
+    /* DEBUG ROUTES - DELETE AFTER TESTING */
+    Route::get('pinf', 'DebugController@show_phpinfo');
+
 });
 
 /*
