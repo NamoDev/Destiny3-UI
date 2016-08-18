@@ -62,7 +62,7 @@ class Applicant{
               'birthyear' => $birthyear,
               'password' => Hash::make($password)
             ]);
-            return string($insertID);
+            return (string) $insertID;
         }
     }
 
