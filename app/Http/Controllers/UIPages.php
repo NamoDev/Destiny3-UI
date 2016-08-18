@@ -15,7 +15,7 @@ class UIPages extends Controller{
 
     // Public homepage
     public function homePage(){
-        return response()->view('welcome');
+        return response()->view('login_home');
     }
 
     // Registration homepage
@@ -28,6 +28,10 @@ class UIPages extends Controller{
         return response()->view('applicant_home');
     }
 
+    // Application about page
+    public function aboutPage(){
+        return response()->view('about');
+    }
 
 
 }

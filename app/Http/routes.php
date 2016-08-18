@@ -24,6 +24,9 @@ Route::group(['middleware' => ['web']], function(){
     // Login page
     Route::get('login', 'UIPages@loginPage');
 
+    // About page
+    Route::get('about', 'UIPages@aboutPage');
+
 });
 
 /*
