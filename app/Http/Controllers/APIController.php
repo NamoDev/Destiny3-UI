@@ -12,6 +12,7 @@
 namespace App\Http\Controllers;
 
 use Applicant;
+use Request;
 
 class APIController extends Controller{
 
@@ -46,6 +47,51 @@ class APIController extends Controller{
 
       // TODO: Send back data on which field triggers an error
 
+      if($request->customTitle == "1"){
+        // Custom gender
+        $genderToUse = $request->custom_gender;
+      }else{
+        // Figure out gender
+        switch($request->title){
+          // 0,2 is male - 1,3 is female - 4 is undefined
+          case 0:
+            $genderToUse = 0;
+          break;
+          case 1:
+            $genderToUse = 1;
+          break;
+          case 2:
+            $genderToUse = 0;
+          break;
+          case 3:
+            $genderToUse = 1;
+          break;
+          default:
+            throw new \Exception("Unknown gender");
+        }
+      }
+
+      // Create user and login!
+      $applicantObject = new Applicant();
+      $applicantObject->create(
+          $request->citizenid,
+          $request->title,
+          $request->fname,
+          $request->lname,
+          $request->title_en,
+          $request->fname_en,
+          $request->lname_en,
+          $genderToUse,
+          $request->email,
+          $request->phone,
+          $request->birthday,
+          $request->birthmonth,
+          $request->birthyear,
+          $request->password
+      );
+
+      // Log the user in
+      $applicantObject->login($request->citizenid, $request->password);
 
 
     }
