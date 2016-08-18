@@ -32,7 +32,7 @@
               <div id="customGenderGroup" style="display:none;">
                 <span class="help-block">เพศ</span>
                 <select id="customGender" name="customGender" class="form-control select select-primary select-block mbl">
-                  <optgroup label="คำนำหน้าชื่อ">
+                  <optgroup label="เลือกเพศ">
                     <option value="0">ชาย</option>
                     <option value="1">หญิง</option>
                   </optgroup>
