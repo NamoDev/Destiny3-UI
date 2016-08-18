@@ -77,8 +77,8 @@ class Applicant{
         // OK. Password correct?
         $loginUserData = DB::collection("applicants")->where("citizenid", $citizenid)->first();
 
-        var_dump($loginUserData);
-        die();
+        // Double conversion to convert Array to Object (which is easier to work with IMO)
+        $loginUserData = json_decode(json_encode($loginUserData));
 
         if(Hash::check($password, $loginUserData->password)){
           // Login OK
