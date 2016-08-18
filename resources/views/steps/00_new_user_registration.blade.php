@@ -27,7 +27,7 @@
               <input id="lname" name="lname" type="text" placeholder="นามสกุล" class="form-control" />
             </div>
           </div>
-          <!-- == --><br />
+          <!-- == -->
           <div class="row">
             <div class="col-md-2 col-xs-4">
               <!-- Hidden: english title text. Box here will appear only if the title is selected as "other" -->
