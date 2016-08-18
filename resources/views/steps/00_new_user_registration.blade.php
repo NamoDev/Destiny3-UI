@@ -173,9 +173,15 @@ $("#create_account").click(function(e){
   var pswdInput = $("#password").val();
   var pswdConfirmInput = $("#password_confirm").val();
   if(pswdInput == pswdConfirmInput){
-    $("#passwordGroup").removeClass("has-error");
-    $("#password_confirmGroup").removeClass("has-error");
-    hasErrors -= 1;
+    if(pswdInput != "" && pswdConfirmInput != ""){
+      $("#passwordGroup").removeClass("has-error");
+      $("#password_confirmGroup").removeClass("has-error");
+      hasErrors -= 1;
+    }else{
+      $("#passwordGroup").addClass("has-error");
+      $("#password_confirmGroup").addClass("has-error");
+      hasErrors += 1;
+    }
   }else{
     $("#passwordGroup").addClass("has-error");
     $("#password_confirmGroup").addClass("has-error");
