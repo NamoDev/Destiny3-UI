@@ -301,6 +301,7 @@ $("#create_account").click(function(e){
     $.ajax({
       url: '/api/v1/account/create',
       data: {
+         _token: csrfToken,
          customtitle: usingCustomTitle,
          title: titleToSend,
          fname: $("#fname").val(),
