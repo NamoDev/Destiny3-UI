@@ -34,6 +34,8 @@
                 <label class="login-field-icon fui-lock" for="login_pass"></label>
             </div>
 
+            {{ csrf_field() }}
+
             <button class="btn btn-primary btn-lg btn-block" type="submit">เข้าสู่ระบบ</button>
             <a class="login-link" href="/iforgot">ลืมรหัสผ่าน?</a>
         </form>
