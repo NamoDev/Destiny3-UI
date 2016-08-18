@@ -6,7 +6,6 @@
 <div class="row" style="margin-top:80px;">
     <div class="col-md-12">
         <h2>สมัครใหม่</h2>
-        <h3>{{ csrf_token() }}</h3>
         <br />
         <div class="flat-well">
           <legend>ข้อมูลส่วนตัว</legend>
