@@ -87,7 +87,7 @@
                 <div class="col-xs-4">
                   <select id="birthyear" name="birthyear" class="form-control select select-primary select-block mbl">
                     <?php
-                    $year = date("Y");
+                    $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
                     $threshold = 30;
                     while($threshold >= 0){
                       echo("<option value=\"$year\">$year</option>");
