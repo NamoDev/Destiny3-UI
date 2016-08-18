@@ -24,6 +24,9 @@ Route::group(['middleware' => ['web']], function(){
     // Login page
     Route::get('login', 'UIPages@loginPage');
 
+    // Logout Route
+    Route::get('logout', 'APIController@logout');
+
     // About page
     Route::get('about', 'UIPages@aboutPage');
 

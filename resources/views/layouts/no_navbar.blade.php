@@ -25,7 +25,7 @@
         <script src="/assets/js/bootstrap.js"></script>
         <script src="/assets/js/destinyui3.js"></script>
         <script>
-          var csrfToken = "<?php echo csrf_token(); ?>";
+          var csrfToken = "{{ csrf_token() }}";
         </script>
         @yield('additional_scripts')
     </body>
