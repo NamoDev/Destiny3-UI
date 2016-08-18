@@ -299,6 +299,8 @@ $("#create_account").click(function(e){
     }
   }
 
+  console.log("Total errors: " + hasErrors);
+
 })
 
 function checkEmail(email) {
