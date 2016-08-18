@@ -34,7 +34,8 @@
           </div>
           <!-- == -->
           <div class="row">
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-2 col-xs-4" id="customTitle_enGroup">
+              <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
               <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" style="display:none;" />
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fname_enGroup">
@@ -151,12 +152,12 @@ $("#title").change(function(){
     // Custom title
     $("#title").removeClass("select-block");
     $("#customtitle").show();
-    $("#customtitle_en").show();
+    $("#customTitle_enGroup").show();
   }else{
     // Normal
     $("#title").addClass("select-block");
     $("#customtitle").hide();
-    $("#customtitle_en").hide();
+    $("#customTitle_enGroup").hide();
   }
 })
 
