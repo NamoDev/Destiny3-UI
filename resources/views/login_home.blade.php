@@ -22,7 +22,7 @@
 
 <div class="row" style="margin-top:15px;">
     <div class="col-md-6">
-        <div class="login-form">
+        <form class="login-form" method="POST" action="/actions/login">
             <legend>เข้าสู่ระบบ</legend>
             <div class="form-group">
                 <input type="text" class="form-control login-field" value="" placeholder="รหัสประจำตัวประชาชน" id="login-id" />
@@ -36,7 +36,7 @@
 
             <button class="btn btn-primary btn-lg btn-block" type="submit">เข้าสู่ระบบ</button>
             <a class="login-link" href="#">ลืมรหัสผ่าน?</a>
-        </div>
+        </form>
     </div>
     <div class="col-md-6">
         <div class="login-form">
