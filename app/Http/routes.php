@@ -21,10 +21,8 @@ Route::group(['middleware' => ['web']], function(){
     // Homepage
     Route::get('/', 'UIPages@homePage');
 
-    // Login page
-    Route::get('login', 'UIPages@loginPage');
-
-    // Logout Route
+    // Login & logout
+    Route::get('login', 'APIController@login');
     Route::get('logout', 'APIController@logout');
 
     // About page
