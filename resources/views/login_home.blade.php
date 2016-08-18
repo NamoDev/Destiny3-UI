@@ -25,10 +25,9 @@
         <form class="login-form" method="POST" action="/login">
             <legend>เข้าสู่ระบบ</legend>
 
-            @if(Session::has('error'))
-              <div class="alert alert-warning"><b>{{ Session::get('error') }}</b></div>
+            @if(Session::has('message'))
+              <div class="alert {{ Session::get('alert-class', 'alert-info') }}"><b>{{ Session::get('message') }}</b></div>
             @endif
-
 
             <div class="form-group">
                 <input type="text" class="form-control login-field" value="" placeholder="รหัสประจำตัวประชาชน" id="login_id" name="login_name" />

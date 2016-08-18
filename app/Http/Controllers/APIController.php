@@ -103,12 +103,12 @@ class APIController extends Controller{
       $applicantInterface = new Applicant();
       try{
         if($applicantInterface->login($request->login_name, $request->login_password)){
-          return redirect("application/home");
+          return redirect('application/home');
         }else{
-          return redirect("/")->with("error", "INVALID_USERNAME_OR_PASSWORD");
+          return redirect('admin/login')->with('message', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')->with('alert-class', 'alert-warning');
         }
       }catch(\Throwable $whatever){
-        return redirect("/")->with("error", "THROWABLE_STUFF_THROWN");
+        return redirect('admin/login')->with('message', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')->with('alert-class', 'alert-warning');
       }
 
     }
