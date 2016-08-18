@@ -16,22 +16,14 @@
 | Public accessible routes
 | TODO: Modify IE middleware to also disallow old Chromes and Firefoxes as well - they can also cause issues.
 */
-Route::group(['middleware' => ['web']], function(){
+Route::get('/', 'UIPages@homePage');
 
-    // Homepage
-    Route::get('/', 'UIPages@homePage');
+// Login & logout
+Route::post('login', 'APIController@login');
+Route::get('logout', 'APIController@logout');
 
-    // Login & logout
-    Route::post('login', 'APIController@login');
-    Route::get('logout', 'APIController@logout');
-
-    // About page
-    Route::get('about', 'UIPages@aboutPage');
-
-    /* DEBUG ROUTES - DELETE AFTER TESTING */
-    Route::get('pinf', 'DebugController@show_phpinfo');
-
-});
+// About page
+Route::get('about', 'UIPages@aboutPage');
 
 /*
 | Front-end pages for the applicant. All of these requires login.
