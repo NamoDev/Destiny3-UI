@@ -5859,6 +5859,36 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   -webkit-transition: all .25s;
           transition: all .25s;
 }
+.flat-well {
+  background-color: #edeff1;
+  padding: 24px 23px 20px;
+  position: relative;
+  border-radius: 6px;
+}
+.flat-well .control-group {
+  margin-bottom: 6px;
+  position: relative;
+}
+.flat-well .login-field {
+  border-color: transparent;
+  font-size: 17px;
+  text-indent: 3px;
+}
+.flat-well .login-field:focus {
+  border-color: #ff73ce;
+}
+.flat-well .login-field:focus + .login-field-icon {
+  color: #ff73ce;
+}
+.flat-well .login-field-icon {
+  color: #bfc9ca;
+  font-size: 16px;
+  position: absolute;
+  right: 15px;
+  top: 3px;
+  -webkit-transition: all .25s;
+          transition: all .25s;
+}
 .login-link {
   color: #bfc9ca;
   display: block;
