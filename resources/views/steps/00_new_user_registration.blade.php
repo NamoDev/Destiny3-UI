@@ -287,11 +287,12 @@ $("#create_account").click(function(e){
 
   console.log("Total errors: " + hasErrors);
 
-  // If there are no errors, we're ready to continue:
   if(hasErrors == 0){
+    // Ready to go. Init AJAX!
 
   }else{
-
+    // NOPE.
+    bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
   }
 
 })
