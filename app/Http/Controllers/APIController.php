@@ -12,5 +12,17 @@
 namespace App\Http\Controllers;
 
 class APIController extends Controller{
+<<<<<<< Updated upstream
   
+=======
+
+    /*
+    | Account creation API endpoint
+    */
+    public function createAccount(Request $request){
+        
+    }
+
+
+>>>>>>> Stashed changes
 }
