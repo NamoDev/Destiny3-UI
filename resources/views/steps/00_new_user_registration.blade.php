@@ -21,6 +21,7 @@
                   <option value="4">อื่นๆ</option>
                 </optgroup>
               </select>
+              <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" style="display:none;" />
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fnameGroup">
               <span class="help-block">ชื่อ</span>
@@ -34,7 +35,7 @@
           <!-- == -->
           <div class="row">
             <div class="col-md-2 col-xs-4">
-              <!-- Hidden: english title text. Box here will appear only if the title is selected as "other" -->
+              <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" style="display:none;" />
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fname_enGroup">
               <span class="help-block">ชื่อ (ภาษาอังกฤษ)</span>
@@ -144,11 +145,25 @@ $(function(){
   $("select").select2({dropdownCssClass: 'dropdown-inverse'});
 })
 
+/* Custom Titles */
+$("#title").change(function(){
+  if(this.val() == 4){
+    // Custom title
+    $("#title").removeClass("select-block");
+    $("#customtitle").show();
+    $("#customtitle_en").show();
+  }else{
+    // Normal
+    $("#title").addClass("select-block");
+    $("#customtitle").hide();
+    $("#customtitle_en").hide();
+  }
+})
+
+/* Submit application form */
 $("#create_account").click(function(e){
 
   e.preventDefault();
-
-  // We're submitting. Check sanity of data.
   var hasErrors = 0;
 
   // First, check email:
