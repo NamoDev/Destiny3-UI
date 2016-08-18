@@ -157,6 +157,9 @@
 @section('additional_scripts')
 <script>
 
+var usingCustomTitle = 0;
+var customTitleErrors = 0;
+
 $(function(){
   $("select").select2({dropdownCssClass: 'dropdown-inverse'});
   checkCustomTitleSelection();
@@ -174,12 +177,14 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").show();
     $("#customTitle_enGroup").show();
     $("#customGenderGroup").show();
+    usingCustomTitle = 1;
   }else{
     // Normal
     $("#title").addClass("select-block");
     $("#customtitleGroup").hide();
     $("#customTitle_enGroup").hide();
     $("#customGenderGroup").hide();
+    usingCustomTitle = 0;
   }
 }
 
@@ -265,6 +270,33 @@ $("#create_account").click(function(e){
   }else{
     $("#phoneGroup").addClass("has-error");
     hasErrors += 1;
+  }
+
+  // If using custom titles, also check the custom title fields:
+  if(usingCustomTitle == 1){
+    if($("#customtitle").val() != ""){
+      $("#customtitleGroup").removeClass("has-error");
+      hasErrors -= 1;
+      customTitleErrors -= 1;
+    }else{
+      $("#customtitleGroup").addClass("has-error");
+      hasErrors += 1;
+      customTitleErrors += 1;
+    }
+    if($("#customtitle_en").val() != ""){
+      $("#customtitle_enGroup").removeClass("has-error");
+      hasErrors -= 1;
+      customTitleErrors -= 1;
+    }else{
+      $("#customtitle_enGroup").addClass("has-error");
+      hasErrors += 1;
+      customTitleErrors += 1;
+    }
+  }else{
+    // Clear custom title errors, if applicable:
+    if(customTitleErrors > 0){
+      $hasErrors -= customTitleErrors;
+    }
   }
 
 })
