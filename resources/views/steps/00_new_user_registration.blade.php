@@ -20,11 +20,23 @@
                 </optgroup>
               </select>
             </div>
-            <div class="col-md-5 col-xs-8">
+            <div class="col-md-4 col-md-offset-1 col-xs-8">
               <input id="fname" name="fname" type="text" placeholder="ชื่อ" class="form-control" />
             </div>
             <div class="col-md-5 col-xs-12">
-              <input id="fname" name="fname" type="text" placeholder="นามสกุล" class="form-control" />
+              <input id="lname" name="lname" type="text" placeholder="นามสกุล" class="form-control" />
+            </div>
+          </div>
+          <!-- == --><br />
+          <div class="row">
+            <div class="col-md-2 col-xs-4">
+              <!-- Hidden: english title text. Box here will appear only if the title is selected as "other" -->
+            </div>
+            <div class="col-md-4 col-md-offset-1 col-xs-8">
+              <input id="fname_en" name="fname_en" type="text" placeholder="First name" class="form-control" />
+            </div>
+            <div class="col-md-5 col-xs-12">
+              <input id="lname_en" name="lname_en" type="text" placeholder="Last name" class="form-control" />
             </div>
           </div>
         </div>
