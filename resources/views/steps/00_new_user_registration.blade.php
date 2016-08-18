@@ -288,11 +288,34 @@ $("#create_account").click(function(e){
   console.log("Total errors: " + hasErrors);
 
   if(hasErrors == 0){
-    // Ready to go. Init AJAX!
+    // Ready to go. Do preps:
+    if(usingCustomTitle == 1){
+      var titleToSend = $("#customtitle").val();
+      var titleToSend_en = $("#customtitle_en").val();
+    }else{
+      var titleToSend = $("#title").val();
+      var titleToSend_en =  $("#title").val();
+    }
+
+    //Init AJAX!
     $.ajax({
       url: '/api/v1/account/create',
       data: {
-         format: 'json'
+         customtitle: usingCustomTitle,
+         title: titleToSend,
+         fname: $("#fname").val(),
+         lname: $("#lname").val(),
+         title_en: titleToSend_en,
+         fname_en: $("#fname_en").val(),
+         lname_en: $("#lname_en").val(),
+         citizenid: $("#citizenid").val(),
+         birthdate: $("#birthdate").val(),
+         birthmonth: $("#birthmonth").val(),
+         birthyear: $("#birthyear").val(),
+         email: $("#email").val(),
+         phone: $("#phone").val(),
+         password: $("#password").val(),
+         password_confirm: $("#password_confirm").val()
       },
       error: function() {
         bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
