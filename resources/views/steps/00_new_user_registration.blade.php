@@ -22,11 +22,11 @@
                 </optgroup>
               </select>
             </div>
-            <div class="col-md-4 col-md-offset-1 col-xs-8">
+            <div class="col-md-4 col-md-offset-1 col-xs-8" id="fnameGroup">
               <span class="help-block">ชื่อ</span>
               <input id="fname" name="fname" type="text" placeholder="ชื่อ" class="form-control" />
             </div>
-            <div class="col-md-5 col-xs-12">
+            <div class="col-md-5 col-xs-12" id="lnameGroup">
               <span class="help-block">นามสกุล</span>
               <input id="lname" name="lname" type="text" placeholder="นามสกุล" class="form-control" />
             </div>
@@ -36,18 +36,18 @@
             <div class="col-md-2 col-xs-4">
               <!-- Hidden: english title text. Box here will appear only if the title is selected as "other" -->
             </div>
-            <div class="col-md-4 col-md-offset-1 col-xs-8">
+            <div class="col-md-4 col-md-offset-1 col-xs-8" id="fname_enGroup">
               <span class="help-block">ชื่อ (ภาษาอังกฤษ)</span>
               <input id="fname_en" name="fname_en" type="text" placeholder="First name" class="form-control" />
             </div>
-            <div class="col-md-5 col-xs-12">
+            <div class="col-md-5 col-xs-12" id="lname_enGroup">
               <span class="help-block">นามสกุล (ภาษาอังกฤษ)</span>
               <input id="lname_en" name="lname_en" type="text" placeholder="Last name" class="form-control" />
             </div>
           </div>
           <!-- == -->
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="citizenidGroup">
               <span class="help-block">รหัสประจำตัวประชาชน</span>
               <input id="citizenid" name="citizenid" type="text" placeholder="รหัสประจำตัวประชาชน 13 หลัก" class="form-control" />
             </div>
@@ -106,23 +106,23 @@
         <div class="flat-well">
           <legend>ข้อมูลผู้ใช้</legend>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="emailGroup">
               <span class="help-block">E-mail address</span>
               <input id="email" name="email" type="email" placeholder="ที่อยู่อีเมล์ของนักเรียน" class="form-control" />
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="phoneGroup">
               <span class="help-block">หมายเลขโทรศัพท์</span>
               <input id="phone" name="phone" type="text" placeholder="หมายเลขโทรศัพท์ของนักเรียน" class="form-control" />
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" id="passwordGroup">
               <span class="help-block">รหัสผ่าน</span>
               <input id="password" name="password" type="password" placeholder="กำหนดรหัสผ่าน" class="form-control" />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id="password_confirmGroup">
               <span class="help-block">ยืนยันรหัสผ่าน</span>
               <input id="password_confirm" name="password_confirm" type="password" placeholder="กำหนดรหัสผ่านอีกครั้ง" class="form-control" />
             </div>
@@ -153,27 +153,27 @@ $("#create_account").click(function(e){
 
   // First, check email:
   if(checkEmail($("#email").val())){
-    $("#email").removeClass("has-error");
+    $("#emailGroup").removeClass("has-error");
   }else{
-    $("#email").addClass("has-error");
+    $("#emailGroup").addClass("has-error");
     hasErrors += 1;
   }
 
   // Check citizen ID:
   if(checkCitizenID($("#citizenid").val())){
-    $("#citizenid").removeClass("has-error");
+    $("#citizenidGroup").removeClass("has-error");
   }else{
-    $("#citizenid").addClass("has-error");
+    $("#citizenidGroup").addClass("has-error");
     hasErrors += 1;
   }
 
   // Check password:
   if($("#password").val() == $("password_confirm").val()){
-    $("#password").removeClass("has-error");
-    $("#password_confirm").removeClass("has-error");
+    $("#passwordGroup").removeClass("has-error");
+    $("#password_confirmGroup").removeClass("has-error");
   }else{
-    $("#password").addClass("has-error");
-    $("#password_confirm").addClass("has-error");
+    $("#passwordGroup").addClass("has-error");
+    $("#password_confirmGroup").addClass("has-error");
     hasErrors += 1;
   }
 
