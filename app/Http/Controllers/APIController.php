@@ -12,7 +12,7 @@
 namespace App\Http\Controllers;
 
 use Applicant;
-use Request;
+use Illuminate\Http\Request;
 
 class APIController extends Controller{
 
