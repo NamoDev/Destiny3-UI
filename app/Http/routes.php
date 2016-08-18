@@ -53,7 +53,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     */
 
     // Account creation
-    Route::post('account/create', 'Blah@Blah');
+    Route::post('account/create', 'APIController@createAccount');
 
     // Login
     Route::post('account/login', 'Blah@Blah');
