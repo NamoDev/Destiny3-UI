@@ -108,16 +108,31 @@
           <div class="row">
             <div class="col-md-12">
               <span class="help-block">E-mail address</span>
-              <input id="citizenid" name="citizenid" type="email" placeholder="ที่อยู่อีเมล์ของนักเรียน" class="form-control" />
+              <input id="email" name="email" type="email" placeholder="ที่อยู่อีเมล์ของนักเรียน" class="form-control" />
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <span class="help-block">หมายเลขโทรศัพท์</span>
-              <input id="citizenid" name="citizenid" type="email" placeholder="หมายเลขโทรศัพท์ของนักเรียน" class="form-control" />
+              <input id="phone" name="phone" type="text" placeholder="หมายเลขโทรศัพท์ของนักเรียน" class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <span class="help-block">รหัสผ่าน</span>
+              <input id="password" name="password" type="password" placeholder="กำหนดรหัสผ่าน" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <span class="help-block">ยืนยันรหัสผ่าน</span>
+              <input id="password_confirm" name="password_confirm" type="password" placeholder="กำหนดรหัสผ่านอีกครั้ง" class="form-control" />
             </div>
           </div>
         </div>
+        <br />
+        <button id="create_account" class="btn btn-primary btn-block btn-lg">สร้างบัญชีผู้สมัคร</button>
+        <br />
+        <a href="/" class="btn btn-default btn-block btn-lg">กลับไปหน้าหลัก</a>
+        <br />
     </div>
 </div>
 @endsection
