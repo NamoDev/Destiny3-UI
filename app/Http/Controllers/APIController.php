@@ -101,11 +101,16 @@ class APIController extends Controller{
     */
     public function login(Request $request){
       $applicantInterface = new Applicant();
-      if($applicantInterface->login($request->login_name, $request->login_pass)){
-        return redirect("application/home");
-      }else{
-        return redirect("/")->with("error", "INVALID_USERNAME_OR_PASSWORD");
+      try{
+        if($applicantInterface->login($request->login_name, $request->login_password)){
+          return redirect("application/home");
+        }else{
+          return redirect("/")->with("error", "INVALID_USERNAME_OR_PASSWORD");
+        }
+      }catch(\Throwable $whatever){
+        return redirect("/")->with("error", "THROWABLE_STUFF_THROWN");
       }
+
     }
 
     /*
