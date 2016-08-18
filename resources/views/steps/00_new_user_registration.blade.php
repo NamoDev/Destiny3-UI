@@ -309,7 +309,7 @@ $("#create_account").click(function(e){
          title_en: titleToSend_en,
          fname_en: $("#fname_en").val(),
          lname_en: $("#lname_en").val(),
-         custom_gender: $("#customGender").val();
+         custom_gender: $("#customGender").val(),
          citizenid: $("#citizenid").val(),
          birthdate: $("#birthdate").val(),
          birthmonth: $("#birthmonth").val(),
