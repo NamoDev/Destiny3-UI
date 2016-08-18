@@ -289,7 +289,20 @@ $("#create_account").click(function(e){
 
   if(hasErrors == 0){
     // Ready to go. Init AJAX!
-
+    $.ajax({
+      url: '/api/v1/account/create',
+      data: {
+         format: 'json'
+      },
+      error: function() {
+        bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+      },
+      dataType: 'json',
+      success: function(data) {
+        console.log("AJAX complete");
+      },
+      type: 'POST'
+   });
   }else{
     // NOPE.
     bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
