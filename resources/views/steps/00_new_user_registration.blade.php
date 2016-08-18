@@ -37,7 +37,7 @@
               <!-- Hidden: english title text. Box here will appear only if the title is selected as "other" -->
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8">
-              <span class="help-block">นามสกุล (ภาษาอังกฤษ)</span>
+              <span class="help-block">ชื่อ (ภาษาอังกฤษ)</span>
               <input id="fname_en" name="fname_en" type="text" placeholder="First name" class="form-control" />
             </div>
             <div class="col-md-5 col-xs-12">
@@ -101,6 +101,22 @@
             </div>
           </div>
 
+        </div>
+        <br />
+        <div class="flat-well">
+          <legend>ข้อมูลผู้ใช้</legend>
+          <div class="row">
+            <div class="col-md-12">
+              <span class="help-block">E-mail address</span>
+              <input id="citizenid" name="citizenid" type="email" placeholder="ที่อยู่อีเมล์ของนักเรียน" class="form-control" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <span class="help-block">หมายเลขโทรศัพท์</span>
+              <input id="citizenid" name="citizenid" type="email" placeholder="หมายเลขโทรศัพท์ของนักเรียน" class="form-control" />
+            </div>
+          </div>
         </div>
     </div>
 </div>
