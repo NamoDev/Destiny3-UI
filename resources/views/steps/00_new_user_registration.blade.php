@@ -188,6 +188,47 @@ $("#create_account").click(function(e){
     hasErrors += 1;
   }
 
+  // Check for empty fields:
+  if($("#fname").val() != ""){
+    $("#fnameGroup").removeClass("has-error");
+    hasErrors -= 1;
+  }else{
+    $("#fnameGroup").addClass("has-error");
+    hasErrors += 1;
+  }
+
+  if($("#lname").val() != ""){
+    $("#lnameGroup").removeClass("has-error");
+    hasErrors -= 1;
+  }else{
+    $("#lnameGroup").addClass("has-error");
+    hasErrors += 1;
+  }
+
+  if($("#fname_en").val() != ""){
+    $("#fname_enGroup").removeClass("has-error");
+    hasErrors -= 1;
+  }else{
+    $("#fname_enGroup").addClass("has-error");
+    hasErrors += 1;
+  }
+
+  if($("#lname_en").val() != ""){
+    $("#lname_enGroup").removeClass("has-error");
+    hasErrors -= 1;
+  }else{
+    $("#lname_enGroup").addClass("has-error");
+    hasErrors += 1;
+  }
+
+  if($("#phone").val() != ""){
+    $("#phoneGroup").removeClass("has-error");
+    hasErrors -= 1;
+  }else{
+    $("#phoneGroup").addClass("has-error");
+    hasErrors += 1;
+  }
+
 })
 
 function checkEmail(email) {
