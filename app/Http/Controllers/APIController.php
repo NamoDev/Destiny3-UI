@@ -96,4 +96,13 @@ class APIController extends Controller{
 
     }
 
+    /*
+    | Logout. Simple!
+    */
+    public function logout(){
+      $applicantInterface = new Applicant();
+      $applicantInterface->logout();
+      return redirect("/");
+    }
+
 }
