@@ -197,7 +197,6 @@ $("#create_account").click(function(e){
   // First, check email:
   if(checkEmail($("#email").val())){
     $("#emailGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#emailGroup").addClass("has-error");
     hasErrors += 1;
@@ -206,7 +205,6 @@ $("#create_account").click(function(e){
   // Check citizen ID:
   if(checkCitizenID($("#citizenid").val())){
     $("#citizenidGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#citizenidGroup").addClass("has-error");
     hasErrors += 1;
@@ -219,7 +217,6 @@ $("#create_account").click(function(e){
     if(pswdInput != "" && pswdConfirmInput != ""){
       $("#passwordGroup").removeClass("has-error");
       $("#password_confirmGroup").removeClass("has-error");
-      hasErrors -= 1;
     }else{
       $("#passwordGroup").addClass("has-error");
       $("#password_confirmGroup").addClass("has-error");
@@ -234,7 +231,6 @@ $("#create_account").click(function(e){
   // Check for empty fields:
   if($("#fname").val() != ""){
     $("#fnameGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#fnameGroup").addClass("has-error");
     hasErrors += 1;
@@ -242,7 +238,6 @@ $("#create_account").click(function(e){
 
   if($("#lname").val() != ""){
     $("#lnameGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#lnameGroup").addClass("has-error");
     hasErrors += 1;
@@ -250,7 +245,6 @@ $("#create_account").click(function(e){
 
   if($("#fname_en").val() != ""){
     $("#fname_enGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#fname_enGroup").addClass("has-error");
     hasErrors += 1;
@@ -258,7 +252,6 @@ $("#create_account").click(function(e){
 
   if($("#lname_en").val() != ""){
     $("#lname_enGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#lname_enGroup").addClass("has-error");
     hasErrors += 1;
@@ -266,7 +259,6 @@ $("#create_account").click(function(e){
 
   if($("#phone").val() != ""){
     $("#phoneGroup").removeClass("has-error");
-    hasErrors -= 1;
   }else{
     $("#phoneGroup").addClass("has-error");
     hasErrors += 1;
@@ -276,7 +268,6 @@ $("#create_account").click(function(e){
   if(usingCustomTitle == 1){
     if($("#customtitle").val() != ""){
       $("#customtitleGroup").removeClass("has-error");
-      hasErrors -= 1;
       customTitleErrors -= 1;
     }else{
       $("#customtitleGroup").addClass("has-error");
@@ -285,17 +276,11 @@ $("#create_account").click(function(e){
     }
     if($("#customtitle_en").val() != ""){
       $("#customtitle_enGroup").removeClass("has-error");
-      hasErrors -= 1;
       customTitleErrors -= 1;
     }else{
       $("#customtitle_enGroup").addClass("has-error");
       hasErrors += 1;
       customTitleErrors += 1;
-    }
-  }else{
-    // Clear custom title errors, if applicable:
-    if(customTitleErrors > 0){
-      $hasErrors -= customTitleErrors;
     }
   }
 
