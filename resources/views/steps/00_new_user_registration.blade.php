@@ -139,8 +139,61 @@
 
 @section('additional_scripts')
 <script>
+
 $(function(){
   $("select").select2({dropdownCssClass: 'dropdown-inverse'});
 })
+
+$("#create_account").click(function(){
+  // We're submitting. Check sanity of data.
+  var hasErrors = 0;
+
+  // First, check email:
+  if(checkEmail($("#email").val())){
+    $("#email").removeClass("has-error");
+  }else{
+    $("#email").addClass("has-error");
+    hasErrors += 1;
+  }
+
+  // Check citizen ID:
+  if(checkCitizenID($("#citizenid").val())){
+    $("#citizenid").removeClass("has-error");
+  }else{
+    $("#citizenid").addClass("has-error");
+    hasErrors += 1;
+  }
+
+  // Check password:
+  if($("#password").val() == $("password_confirm").val()){
+    $("#password").removeClass("has-error");
+    $("#password_confirm").removeClass("has-error");
+  }else{
+    $("#password").addClass("has-error");
+    $("#password_confirm").addClass("has-error");
+    hasErrors += 1;
+  }
+
+})
+
+function checkEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function checkCitizenID(id){
+  if(id.length != 13){
+    return false;
+  }else{
+    for(i=0, sum=0; i < 12; i++)
+    sum += parseFloat(id.charAt(i))*(13-i);
+    if((11-sum%11)%10!=parseFloat(id.charAt(12))){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+}
 </script>
 @endsection
