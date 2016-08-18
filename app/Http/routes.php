@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('/', 'UIPages@homePage');
 
     // Login & logout
-    Route::get('login', 'APIController@login');
+    Route::post('login', 'APIController@login');
     Route::get('logout', 'APIController@logout');
 
     // About page
