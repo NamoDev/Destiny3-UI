@@ -147,7 +147,7 @@ $(function(){
 
 /* Custom Titles */
 $("#title").change(function(){
-  if(this.val() == 4){
+  if($("#title").val() == 4){
     // Custom title
     $("#title").removeClass("select-block");
     $("#customtitle").show();
