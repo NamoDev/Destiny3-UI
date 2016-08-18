@@ -62,7 +62,7 @@
                     <?php
                     $date = 1;
                     while($date <= 31){
-                      echo('<option value="' + $date + '">' + $date + '</option>');
+                      echo("<option value=\"$date\">$date</option>");
                       $date++;
                     }
                      ?>
@@ -90,7 +90,7 @@
                     $year = date("Y");
                     $threshold = 30;
                     while($threshold >= 0){
-                      echo('<option value="' + $year + '">' + $year + '</option>');
+                      echo("<option value=\"$year\">$year</option>");
                       $year -= 1;
                       $threshold -= 1;
                     }
