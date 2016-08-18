@@ -21,11 +21,23 @@
                   <option value="4">อื่นๆ</option>
                 </optgroup>
               </select>
-              <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" style="display:none;" />
+              <div id="customtitleGroup" style="display:none;">
+                <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
+                <br />
+              </div>
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fnameGroup">
               <span class="help-block">ชื่อ</span>
               <input id="fname" name="fname" type="text" placeholder="ชื่อ" class="form-control" />
+              <div id="customGenderGroup" style="display:none;">
+                <span class="help-block">เพศ</span>
+                <select id="customGender" name="customGender" class="form-control select select-primary select-block mbl">
+                  <optgroup label="คำนำหน้าชื่อ">
+                    <option value="0">ชาย</option>
+                    <option value="1">หญิง</option>
+                  </optgroup>
+                </select>
+              </div>
             </div>
             <div class="col-md-5 col-xs-12" id="lnameGroup">
               <span class="help-block">นามสกุล</span>
@@ -153,13 +165,15 @@ $("#title").change(function(){
   if($("#title").val() == 4){
     // Custom title
     $("#title").removeClass("select-block");
-    $("#customtitle").show();
+    $("#customtitleGroup").show();
     $("#customTitle_enGroup").show();
+    $("#customGenderGroup").show();
   }else{
     // Normal
     $("#title").addClass("select-block");
-    $("#customtitle").hide();
+    $("#customtitleGroup").hide();
     $("#customTitle_enGroup").hide();
+    $("#customGenderGroup").hide();
   }
 })
 
