@@ -13,6 +13,7 @@ namespace App\Http\Controllers;
 
 use Applicant;
 use Illuminate\Http\Request;
+use Log;
 
 class APIController extends Controller{
 
@@ -108,6 +109,7 @@ class APIController extends Controller{
           return redirect('/')->with('message', 'INVALID_USERNAME_OR_PASSWORD')->with('alert-class', 'alert-warning');
         }
       }catch(\Throwable $whatever){
+        Log::error("Login exception\n" . $whatever);
         return redirect('/')->with('message', 'LOGIN_EXCEPTION_THROWN')->with('alert-class', 'alert-warning');
       }
 
