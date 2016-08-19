@@ -6,7 +6,7 @@
 <div class="row" style="margin-top:80px;">
     <div class="col-md-12">
         <h1>ระบบรับสมัครนักเรียน<br />โรงเรียนเตรียมอุดมศึกษา</h1>
-        <h4>// ปีการศึกษา 2560</h4>
+        <h4>// Alpha Build</h4>
     </div>
 </div>
 
