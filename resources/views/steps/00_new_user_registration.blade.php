@@ -152,6 +152,25 @@
         <br />
     </div>
 </div>
+
+<!-- Loading modal -->
+<div id="plsWaitModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">กรุณารอสักครู่</h4>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('additional_scripts')
@@ -164,6 +183,12 @@ var customTitleErrors = 0;
 $(function(){
   $("select").select2({dropdownCssClass: 'dropdown-inverse'});
   checkCustomTitleSelection();
+
+  $('#plsWaitModal').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+
 })
 
 /* Custom Titles */
@@ -191,6 +216,8 @@ function checkCustomTitleSelection(){
 
 /* Submit application form */
 $("#create_account").click(function(e){
+
+  $('#plsWaitModal').modal('show');
 
   e.preventDefault();
   var hasErrors = 0;
@@ -320,6 +347,7 @@ $("#create_account").click(function(e){
          password_confirm: $("#password_confirm").val()
       },
       error: function(data) {
+        $('#plsWaitModal').modal('hide'); 
         bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
       },
       dataType: 'json',
@@ -331,6 +359,7 @@ $("#create_account").click(function(e){
    });
   }else{
     // NOPE.
+    $('#plsWaitModal').modal('hide');
     bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
   }
 
