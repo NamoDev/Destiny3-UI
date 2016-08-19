@@ -65,57 +65,66 @@ class APIController extends Controller{
       // Validate emails
 
       // See if the user has already registered?
-
-
-      // TODO: Send back data on which field triggers an error
-
-      if($request->customTitle == "1"){
-        // Custom gender
-        $genderToUse = $request->custom_gender;
-      }else{
-        // Figure out gender
-        switch($request->title){
-          // 0,2 is male - 1,3 is female - 4 is undefined
-          case 0:
-            $genderToUse = 0;
-          break;
-          case 1:
-            $genderToUse = 1;
-          break;
-          case 2:
-            $genderToUse = 0;
-          break;
-          case 3:
-            $genderToUse = 1;
-          break;
-          default:
-            throw new \Exception("Unknown gender");
-        }
+      if($applicantObject->alreadyRegistered($request->input("citizenid"))){
+          // Already registered
+          $errors[] = "already_registered";
       }
 
-      // Create user and login!
-      $applicantObject->create(
-          $request->citizenid,
-          $request->title,
-          $request->fname,
-          $request->lname,
-          $request->title_en,
-          $request->fname_en,
-          $request->lname_en,
-          $genderToUse,
-          $request->email,
-          $request->phone,
-          $request->birthdate,
-          $request->birthmonth,
-          $request->birthyear,
-          $request->password
-      );
+      // If there are errors, notify the frontend and stop right there.
+      if(count($errors) != 0){
+          // O NOES, THERE ARE ERRORS!
+          return new Response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
+      }else{
+          // A-OK. We can continue.
+          if($request->customTitle == "1"){
+            // Custom gender
+            $genderToUse = $request->custom_gender;
+          }else{
+            // Figure out gender
+            switch($request->title){
+              // 0,2 is male - 1,3 is female - 4 is undefined
+              case 0:
+                $genderToUse = 0;
+              break;
+              case 1:
+                $genderToUse = 1;
+              break;
+              case 2:
+                $genderToUse = 0;
+              break;
+              case 3:
+                $genderToUse = 1;
+              break;
+              default:
+                throw new \Exception("Unknown gender");
+            }
+          }
 
-      // Log the user in
-      $applicantObject->login($request->citizenid, $request->password);
+          // Create user and login!
+          $applicantObject->create(
+              $request->citizenid,
+              $request->title,
+              $request->fname,
+              $request->lname,
+              $request->title_en,
+              $request->fname_en,
+              $request->lname_en,
+              $genderToUse,
+              $request->email,
+              $request->phone,
+              $request->birthdate,
+              $request->birthmonth,
+              $request->birthyear,
+              $request->password
+          );
 
-      // return success
-      echo(json_encode(['result' => 'success'], JSON_UNESCAPED_UNICODE));
+          // Log the user in
+          $applicantObject->login($request->citizenid, $request->password);
+
+          // return success
+          echo(json_encode(['result' => 'success'], JSON_UNESCAPED_UNICODE));
+
+      }
 
     }
 
