@@ -1,4 +1,4 @@
-@extends('layouts.welcome')
+@extends('layouts.no_navbar')
 @section('title', '503')
 
 @section('content')
