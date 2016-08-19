@@ -157,15 +157,8 @@
 <div id="plsWaitModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">กรุณารอสักครู่</h4>
-      </div>
       <div class="modal-body">
-        <div class="progress">
-         <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-         </div>
-        </div>
+        <i class="fa fa-spinner fa-spin"></i> กรุณารอสักครู่
       </div>
     </div>
   </div>
@@ -188,6 +181,7 @@ $(function(){
     backdrop: 'static',
     keyboard: false
   });
+  $('#plsWaitModal').modal('hide');
 
 })
 
@@ -347,7 +341,7 @@ $("#create_account").click(function(e){
          password_confirm: $("#password_confirm").val()
       },
       error: function(data) {
-        $('#plsWaitModal').modal('hide'); 
+        $('#plsWaitModal').modal('hide');
         bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
       },
       dataType: 'json',
