@@ -14,18 +14,26 @@
             <div class="row">
                 <div class="col-md-3">
 
+                  <?php /* We'll use btn-inverse for uncompleted steps and btn-primary for completed steps */ ?>
+
                   <a class="btn btn-primary btn-block" href="/application/info"><span class="fa fa-check-circle"></span> ข้อมูลพื้นฐาน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+
                   <a class="btn btn-primary btn-block" href="/application/parent"><span class="fa fa-check-circle"></span> ข้อมูลผู้ปกครอง</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+
                   <a class="btn btn-primary btn-block" href="/application/address"><span class="fa fa-check-circle"></span> ที่อยู่ / ภูมิลำเนา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+
                   <a class="btn btn-primary btn-block" href="/application/education"><span class="fa fa-check-circle"></span> ประวัติการศึกษา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+
                   <a class="btn btn-primary btn-block" href="/application/plan"><span class="fa fa-check-circle"></span> เลือกแผนการเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+
                   <a class="btn btn-primary btn-block" href="/application/day"><span class="fa fa-check-circle"></span> เลือกวันสมัครที่โรงเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+
                   <a class="btn btn-primary btn-block" href="/application/documents"><span class="fa fa-check-circle"></span> อัพโหลดเอกสาร</a>
                   <br />
 

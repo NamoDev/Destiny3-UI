@@ -60,7 +60,8 @@ class Applicant{
               'birthday' => $birthday,
               'birthmonth' => $birthmonth,
               'birthyear' => $birthyear,
-              'password' => Hash::make($password)
+              'password' => Hash::make($password),
+              'steps_completed' => [],
             ]);
             return (string) $insertID;
         }
