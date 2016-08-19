@@ -57,7 +57,7 @@ http://tucc.triamudom.ac.th
               </div>
             </div>
             <hr>
-            <h5>ทีมงานพัฒนาโปรแกรม</h5>
+            <h5>ทีมพัฒนาโปรแกรม</h5>
             <div class="row">
               <div class="col-sm-3">จักรพงศ์ นาคเดช</div>
               <div class="col-sm-3">ศรัณญ์ อินทรลาวัณย์</div>
