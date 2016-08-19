@@ -179,9 +179,9 @@ $(function(){
 
   $('#plsWaitModal').modal({
     backdrop: 'static',
-    keyboard: false
+    keyboard: false,
+    show: false
   });
-  $('#plsWaitModal').modal('hide');
 
 })
 
