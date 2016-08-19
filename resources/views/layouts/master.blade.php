@@ -14,17 +14,17 @@
             <div class="row">
                 <div class="col-md-3">
 
-                  <a class="btn btn-primary btn-block" href="/apply/info"><span class="fa fa-check-circle"></span> ข้อมูลพื้นฐาน</a>
+                  <a class="btn btn-primary btn-block" href="/application/info"><span class="fa fa-check-circle"></span> ข้อมูลพื้นฐาน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  <a class="btn btn-primary btn-block" href="/apply/parent"><span class="fa fa-check-circle"></span> ข้อมูลผู้ปกครอง</a>
+                  <a class="btn btn-primary btn-block" href="/application/parent"><span class="fa fa-check-circle"></span> ข้อมูลผู้ปกครอง</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  <a class="btn btn-primary btn-block" href="/apply/address"><span class="fa fa-check-circle"></span> ที่อยู่ / ภูมิลำเนา</a>
+                  <a class="btn btn-primary btn-block" href="/application/address"><span class="fa fa-check-circle"></span> ที่อยู่ / ภูมิลำเนา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  <a class="btn btn-primary btn-block" href="/apply/education"><span class="fa fa-check-circle"></span> ประวัติการศึกษา</a>
+                  <a class="btn btn-primary btn-block" href="/application/education"><span class="fa fa-check-circle"></span> ประวัติการศึกษา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  <a class="btn btn-primary btn-block" href="/apply/plan"><span class="fa fa-check-circle"></span> เลือกแผนการเรียน</a>
+                  <a class="btn btn-primary btn-block" href="/application/plan"><span class="fa fa-check-circle"></span> เลือกแผนการเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  <a class="btn btn-primary btn-block" href="/apply/day"><span class="fa fa-check-circle"></span> เลือกวันสมัครที่โรงเรียน</a>
+                  <a class="btn btn-primary btn-block" href="/application/day"><span class="fa fa-check-circle"></span> เลือกวันสมัครที่โรงเรียน</a>
                   <br />
 
                   <!-- TODO: Add the real thing. -->
