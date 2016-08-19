@@ -94,6 +94,8 @@ class APIController extends Controller{
       // Log the user in
       $applicantObject->login($request->citizenid, $request->password);
 
+      // return success
+      echo(json_encode(['result' => 'success'], JSON_UNESCAPED_UNICODE));
 
     }
 
