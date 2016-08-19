@@ -37,6 +37,10 @@ Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
     // First step application page (account creation)
     Route::get('begin', 'UIPages@newUserRegistrationPage');
 
+    /* TODO: Add login checker middleware for the routes below */
+
+    // Dashboard
+    Route::get('home', 'UIPages@applicantDashboard');
 
 });
 
