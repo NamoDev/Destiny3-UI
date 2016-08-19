@@ -68,6 +68,7 @@ http://tucc.triamudom.ac.th
               <div class="col-sm-3">ศิวัช เตชวรนันท์</div>
               <div class="col-sm-3">ปรรพากร ศิริพาณิช</div>
               <div class="col-sm-3">พัสกร ชุญยราศรี</div>
+              <div class="col-sm-3">ณิชา โรจน์ศรีกุล</div>
             </div>
             <hr>
             <h5>ฝ่ายศิลป์</h5>
