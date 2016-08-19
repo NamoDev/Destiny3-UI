@@ -38,7 +38,6 @@ Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
     Route::get('begin', 'UIPages@newUserRegistrationPage');
 
 
-
 });
 
 /*
