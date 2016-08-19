@@ -11,11 +11,18 @@
 
 namespace App\Http\Controllers;
 
+use Applicant;
+
 class UIPages extends Controller{
 
     // Public homepage
     public function homePage(){
+      $visitingApplicant = new Applicant();
+      if($visitingApplicant->isLoggedIn()){
+        return redirect('application/home');
+      }else{
         return response()->view('login_home');
+      }
     }
 
     // Registration homepage
