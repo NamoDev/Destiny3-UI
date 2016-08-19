@@ -25,6 +25,8 @@
                   <a class="btn btn-primary btn-block" href="/application/plan"><span class="fa fa-check-circle"></span> เลือกแผนการเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
                   <a class="btn btn-primary btn-block" href="/application/day"><span class="fa fa-check-circle"></span> เลือกวันสมัครที่โรงเรียน</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  <a class="btn btn-primary btn-block" href="/application/documents"><span class="fa fa-check-circle"></span> อัพโหลดเอกสาร</a>
                   <br />
 
                   <!-- TODO: Add the real thing. -->
