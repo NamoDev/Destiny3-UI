@@ -25,9 +25,6 @@ Route::get('logout', 'APIController@logout');
 // About page
 Route::get('about', 'UIPages@aboutPage');
 
-/* Debug stuff */
-Route::get('deletecomputrasia', 'DebugController@deleteTestingUser');
-
 /*
 | Front-end pages for the applicant. All of these requires login.
 | TODO: Add login verification middleware

@@ -122,5 +122,17 @@ class Applicant{
       }
     }
 
+    /*
+    | alreadyRegistered
+    | Is the applicant already registered?
+    */
+    public function alreadyRegistered(string $citizenid){
+        if(DB::collection("applicants")->where("citizenid", $citizenid)->count() != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }
