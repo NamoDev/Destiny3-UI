@@ -37,7 +37,7 @@
 
                 </div>
                 <div class="col-md-9">
-                  <div class="well">
+                  <div class="flat-well">
                     @yield('content')
                   </div>
                 </div>

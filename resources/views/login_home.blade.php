@@ -46,12 +46,12 @@
         </form>
     </div>
     <div class="col-md-6">
-        <div class="login-form">
-            <legend>ยังไม่เคยลงทะเบียน?</legend>
+        <div class="flat-well">
+            <legend>ยังไม่เคยลงทะเบียนใช่หรือไม่?</legend>
             <a class="btn btn-primary btn-lg btn-block" href="/application/begin">สมัครใหม่</a>
         </div>
-        <div class="login-form" style="margin-top:10px;">
-            <legend>ปัญหาในการสมัคร?</legend>
+        <div class="flat-well" style="margin-top:10px;">
+            <legend>เกิดปัญหาในการสมัคร?</legend>
             <div class="row">
                 <div class="col-xs-6">
                     <a class="btn btn-primary btn-lg btn-block" href="/faq">คำถามที่พบบ่อย</a>
