@@ -31,8 +31,8 @@ class UIPages extends Controller{
     }
 
     // Applicant home page (a.k.a. the "Dashboard")
-    public function applicantHomePage(){
-        return response()->view('applicant_home');
+    public function applicantDashboard(){
+        return response()->view('dashboard');
     }
 
     // Application about page
