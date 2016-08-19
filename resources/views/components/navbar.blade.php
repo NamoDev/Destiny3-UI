@@ -18,7 +18,7 @@
       @if(Session::has('applicant_logged_in'))
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user text-muted"></i> {{ Session::get('applicant_full_name') }} <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user text-muted"></i> {{ Session::get('applicant_full_name') }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/application/help">ขอความช่วยเหลือ</a></li>
             <li><a href="/application/change_password">เปลี่ยนรหัสผ่าน</a></li>
