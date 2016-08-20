@@ -24,7 +24,14 @@
 <div class="row" style="margin-top:15px;">
     <div class="col-md-6">
         <form class="login-form" method="POST" action="/login">
-            <legend>เข้าสู่ระบบ</legend>
+            <legend>
+                เข้าสู่ระบบ
+                @if(Session::has('message'))
+                  @if(Session::get('message') == 'INVALID_USERNAME_OR_PASSWORD')
+                    <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="รหัสประจำตัวประชาชนหรือรหัสผ่านไม่ถูกต้อง" class="fa fa-exclamation-triangle text-warning"></i></span>
+                  @endif
+                @endif
+            </legend>
 
             @if(Session::has('message'))
               @if(Session::get('message') != 'INVALID_USERNAME_OR_PASSWORD')
@@ -73,4 +80,12 @@
     </div>
 </div>
 
+@endsection
+
+@section('additional_scripts')
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
 @endsection
