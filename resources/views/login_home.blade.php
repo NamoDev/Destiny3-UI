@@ -32,12 +32,12 @@
               @endif
             @endif
 
-            <div class="form-group" class="{{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
+            <div class="form-group {{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
                 <input type="text" class="form-control login-field" value="" placeholder="รหัสประจำตัวประชาชน" id="login_id" name="login_name" />
                 <label class="login-field-icon fui-user" for="login_name"></label>
             </div>
 
-            <div class="form-group" class="{{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
+            <div class="form-group {{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
                 <input type="password" class="form-control login-field" value="" placeholder="รหัสผ่าน" id="login_password" name="login_password" />
                 <label class="login-field-icon fui-lock" for="login_pass"></label>
             </div>
