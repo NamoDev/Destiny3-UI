@@ -6205,3 +6205,9 @@ footer p {
 .footer_line{
     font-size:0.95em;
 }
+.login_alert_icon{
+    cursor:pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
