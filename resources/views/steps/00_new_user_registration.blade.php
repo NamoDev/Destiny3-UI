@@ -74,7 +74,7 @@
             <div class="col-md-12">
               <span class="help-block">วัน เดือน ปีเกิด</span>
               <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-12">
                   <select id="birthdate" name="birthdate" class="form-control select select-primary select-block mbl">
                     <?php
                     $date = 1;
@@ -84,8 +84,7 @@
                     }
                      ?>
                   </select>
-                </div>
-                <div class="col-xs-4">
+                  <!-- == --> &nbsp;&nbsp;&nbsp; <!-- == -->
                   <select id="birthmonth" name="birthmonth" class="form-control select select-primary select-block mbl">
                     <option value="1">มกราคม</option>
                     <option value="2">กุมภาพันธ์</option>
@@ -100,8 +99,7 @@
                     <option value="11">พฤศจิกายน</option>
                     <option value="12">ธันวาคม</option>
                   </select>
-                </div>
-                <div class="col-xs-4">
+                  <!-- == --> &nbsp;&nbsp;&nbsp; <!-- == -->
                   <select id="birthyear" name="birthyear" class="form-control select select-primary select-block mbl">
                     <?php
                     $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
