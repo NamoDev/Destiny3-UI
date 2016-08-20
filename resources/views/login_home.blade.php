@@ -27,15 +27,17 @@
             <legend>เข้าสู่ระบบ</legend>
 
             @if(Session::has('message'))
-              <div class="alert {{ Session::get('alert-class', 'alert-info') }}"><b>{{ Session::get('message') }}</b></div>
+              @if(Session::get('message') != 'INVALID_USERNAME_OR_PASSWORD')
+                <div class="alert {{ Session::get('alert-class', 'alert-info') }}"><b>{{ Session::get('message') }}</b></div>
+              @endif
             @endif
 
-            <div class="form-group">
+            <div class="form-group" class="{{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
                 <input type="text" class="form-control login-field" value="" placeholder="รหัสประจำตัวประชาชน" id="login_id" name="login_name" />
                 <label class="login-field-icon fui-user" for="login_name"></label>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" class="{{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
                 <input type="password" class="form-control login-field" value="" placeholder="รหัสผ่าน" id="login_password" name="login_password" />
                 <label class="login-field-icon fui-lock" for="login_pass"></label>
             </div>
