@@ -28,7 +28,7 @@
                 เข้าสู่ระบบ
                 @if(Session::has('message'))
                   @if(Session::get('message') == 'INVALID_USERNAME_OR_PASSWORD')
-                    <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="รหัสประจำตัวประชาชนหรือรหัสผ่านไม่ถูกต้อง" class="fa fa-exclamation-triangle text-warning"></i></span>
+                    <span class="pull-right"><i class="login_alert_icon" data-toggle="tooltip" data-placement="top" title="รหัสประจำตัวประชาชน หรือรหัสผ่านไม่ถูกต้อง" class="fa fa-exclamation-triangle text-warning"></i></span>
                   @endif
                 @endif
             </legend>
