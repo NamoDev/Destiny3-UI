@@ -197,6 +197,20 @@ $("#email").keyup(function() {
   }
 });
 
+/* Live password validation */
+$("#password_confirm").keyup(function() {
+  var pswdInput = $("#password").val();
+  var pswdConfirmInput = $("#password_confirm").val();
+  if(pswdInput == pswdConfirmInput){
+    $("#password_Group").removeClass("has-warning");
+    $("#password_confirmGroup").removeClass("has-warning");
+  }else{
+    $("#password_Group").addClass("has-warning");
+    $("#password_confirmGroup").addClass("has-warning");
+  }
+});
+
+
 function checkCustomTitleSelection(){
   if($("#title").val() == 4){
     // Custom title
