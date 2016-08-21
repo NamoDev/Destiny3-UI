@@ -21,7 +21,7 @@
                   <option value="4">อื่นๆ</option>
                 </optgroup>
               </select>
-              <div id="customtitleGroup" style="display:none;margin-top:-18px;">
+              <div id="customtitleGroup" style="display:none;">
                 <span class="help-block">โปรดระบุคำนำหน้าชื่อ:</span>
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
                 <br />
@@ -224,6 +224,7 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").show();
     $("#customtitle_enGroup").show();
     $("#customGenderGroup").show();
+    $("#title").hide();
     usingCustomTitle = 1;
   }else{
     // Normal
@@ -231,6 +232,7 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").hide();
     $("#customtitle_enGroup").hide();
     $("#customGenderGroup").hide();
+    $("#title").show();
     usingCustomTitle = 0;
   }
 }
