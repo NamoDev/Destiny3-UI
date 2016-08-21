@@ -25,7 +25,6 @@
               </div>
               <div id="customtitleGroup" style="display:none;">
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
-                <br />
                 <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> ใช้คำนำหน้าชื่อปกติ</a></span>
               </div>
             </div>
