@@ -26,6 +26,7 @@
               <div id="customtitleGroup" style="display:none;">
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
                 <br />
+                <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> ใช้คำนำหน้าชื่อปกติ</a></span>
               </div>
             </div>
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fnameGroup">
@@ -217,6 +218,13 @@ function checkPasswordFields(){
     $("#password_confirmGroup").addClass("has-warning");
   }
 }
+
+/* Cancellation of custom title */
+$("#cancelCustomTitleSelection").click(function(e){
+  e.preventDefault();
+  $("#title").val("0");
+  $("#title").change();
+});
 
 function checkCustomTitleSelection(){
   if($("#title").val() == 4){
