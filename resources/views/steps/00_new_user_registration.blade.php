@@ -198,7 +198,14 @@ $("#email").keyup(function() {
 });
 
 /* Live password validation */
+$("#password").keyup(function() {
+  checkPasswordFields();
+});
 $("#password_confirm").keyup(function() {
+  checkPasswordFields();
+});
+
+function checkPasswordFields(){
   var pswdInput = $("#password").val();
   var pswdConfirmInput = $("#password_confirm").val();
   if(pswdInput == pswdConfirmInput){
@@ -208,8 +215,7 @@ $("#password_confirm").keyup(function() {
     $("#passwordGroup").addClass("has-warning");
     $("#password_confirmGroup").addClass("has-warning");
   }
-});
-
+}
 
 function checkCustomTitleSelection(){
   if($("#title").val() == 4){
