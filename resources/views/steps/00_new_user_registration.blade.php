@@ -188,6 +188,15 @@ $("#title").change(function(){
   checkCustomTitleSelection();
 })
 
+/* Live email validation */
+$("#email").keyup(function() {
+  if(checkEmail($("#email").val())){
+    $("#emailGroup").removeClass("has-warning");
+  }else{
+    $("#emailGroup").addClass("has-warning");
+  }
+});
+
 function checkCustomTitleSelection(){
   if($("#title").val() == 4){
     // Custom title
