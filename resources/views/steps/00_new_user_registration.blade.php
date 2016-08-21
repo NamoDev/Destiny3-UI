@@ -202,10 +202,10 @@ $("#password_confirm").keyup(function() {
   var pswdInput = $("#password").val();
   var pswdConfirmInput = $("#password_confirm").val();
   if(pswdInput == pswdConfirmInput){
-    $("#password_Group").removeClass("has-warning");
+    $("#passwordGroup").removeClass("has-warning");
     $("#password_confirmGroup").removeClass("has-warning");
   }else{
-    $("#password_Group").addClass("has-warning");
+    $("#passwordGroup").addClass("has-warning");
     $("#password_confirmGroup").addClass("has-warning");
   }
 });
