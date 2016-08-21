@@ -12,17 +12,18 @@
           <div class="row">
             <div class="col-md-2 col-xs-4">
               <span class="help-block">คำนำหน้าชื่อ</span>
-              <select id="title" name="title" class="form-control select select-primary select-block mbl">
-                <optgroup label="คำนำหน้าชื่อ">
-                  <option value="0">ด.ช.</option>
-                  <option value="1">ด.ญ.</option>
-                  <option value="2">นาย</option>
-                  <option value="3">นางสาว</option>
-                  <option value="4">อื่นๆ</option>
-                </optgroup>
-              </select>
+              <div id="titleGroup">
+                <select id="title" name="title" class="form-control select select-primary select-block mbl">
+                  <optgroup label="คำนำหน้าชื่อ">
+                    <option value="0">ด.ช.</option>
+                    <option value="1">ด.ญ.</option>
+                    <option value="2">นาย</option>
+                    <option value="3">นางสาว</option>
+                    <option value="4">อื่นๆ</option>
+                  </optgroup>
+                </select>
+              </div>
               <div id="customtitleGroup" style="display:none;">
-                <span class="help-block">โปรดระบุคำนำหน้าชื่อ:</span>
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
                 <br />
               </div>
@@ -224,7 +225,7 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").show();
     $("#customtitle_enGroup").show();
     $("#customGenderGroup").show();
-    $("#title").hide();
+    $("#titleGroup").hide();
     usingCustomTitle = 1;
   }else{
     // Normal
@@ -232,7 +233,7 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").hide();
     $("#customtitle_enGroup").hide();
     $("#customGenderGroup").hide();
-    $("#title").show();
+    $("#titleGroup").show();
     usingCustomTitle = 0;
   }
 }
