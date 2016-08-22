@@ -472,7 +472,7 @@ function checkCitizenID(id){
 
 /* Alphanumeric validity checker */
 function checkAlphanumeric(string){
-    if(/[^a-zA-Z0-9]/.test(string)){
+    if(/^[A-Za-z][A-Za-z0-9]*$/.test(string)){
        return false;
     }else{
       return true;
