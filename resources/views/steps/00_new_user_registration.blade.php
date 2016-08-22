@@ -215,9 +215,15 @@ function checkPasswordFields(){
   if(pswdInput == pswdConfirmInput){
     $("#passwordGroup").removeClass("has-warning");
     $("#password_confirmGroup").removeClass("has-warning");
+    $("#passwordGroup > .help-block > .fa").remove();
+    $("#password_confirmGroup > .help-block > .fa").remove();
   }else{
     $("#passwordGroup").addClass("has-warning");
     $("#password_confirmGroup").addClass("has-warning");
+    $("#passwordGroup > .help-block > .fa").remove();
+    $("#password_confirmGroup > .help-block > .fa").remove();
+    $("#passwordGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+    $("#password_confirmGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 }
 
@@ -225,8 +231,12 @@ function checkPasswordFields(){
 $("#citizenid").keyup(function() {
   if(checkCitizenID($("#citizenid").val())){
     $("#citizenidGroup").removeClass("has-warning");
+    $("#citizenidGroup > .help-block > .fa").remove();
+    $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }else{
     $("#citizenidGroup").addClass("has-warning");
+    $("#citizenidGroup > .help-block > .fa").remove();
+    $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 
