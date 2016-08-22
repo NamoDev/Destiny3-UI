@@ -190,7 +190,7 @@ $("#title").change(function(){
 })
 
 /* Live email validation */
-$("#email").keyup(function() {
+$("#email").keyup(function(){
   if(checkEmail($("#email").val())){
     $("#emailGroup").removeClass("has-warning");
     $("#emailGroup > .help-block > .fa").remove();
@@ -201,11 +201,40 @@ $("#email").keyup(function() {
   }
 });
 
+/* Validate english language name fields */
+$("#customtitle_en").keyup(function(){
+  if(checkAlphanumeric($("#customtitle_en").val())){
+    $("#customtitle_enGroup").removeClass("has-warning");
+    $("#customtitle_enGroup > .help-block > .fa").remove();
+  }else{
+    $("#customtitle_enGroup").removeClass("has-warning");
+    $("#customtitle_enGroup > .help-block > .fa").remove();
+  }
+});
+$("#fname_en").keyup(function(){
+  if(checkAlphanumeric($("#fname_en").val())){
+    $("#fname_enGroup").removeClass("has-warning");
+    $("#fname_enGroup > .help-block > .fa").remove();
+  }else{
+    $("#fname_enGroup").removeClass("has-warning");
+    $("#fname_enGroup > .help-block > .fa").remove();
+  }
+});
+$("#lname_en").keyup(function(){
+  if(checkAlphanumeric($("#lname_en").val())){
+    $("#lname_enGroup").removeClass("has-warning");
+    $("#lname_enGroup > .help-block > .fa").remove();
+  }else{
+    $("#lname_enGroup").removeClass("has-warning");
+    $("#lname_enGroup > .help-block > .fa").remove();
+  }
+});
+
 /* Live password validation */
-$("#password").keyup(function() {
+$("#password").keyup(function(){
   checkPasswordFields();
 });
-$("#password_confirm").keyup(function() {
+$("#password_confirm").keyup(function(){
   checkPasswordFields();
 });
 
@@ -228,7 +257,7 @@ function checkPasswordFields(){
 }
 
 /* Live citizenID validation */
-$("#citizenid").keyup(function() {
+$("#citizenid").keyup(function(){
   if(checkCitizenID($("#citizenid").val())){
     $("#citizenidGroup").removeClass("has-warning");
     $("#citizenidGroup > .help-block > .fa").remove();
@@ -420,11 +449,13 @@ $("#create_account").click(function(e){
 
 })
 
+/* Email validity checker */
 function checkEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
+/* Citizen ID Validity checker */
 function checkCitizenID(id){
   if(id.length != 13){
     return false;
@@ -437,7 +468,16 @@ function checkCitizenID(id){
       return true;
     }
   }
-
 }
+
+/* Alphanumeric validity checker */
+function checkAlphanumeric(string){
+    if(/[^a-zA-Z0-9]/.test(string)){
+       return false;
+    }else{
+      return true;
+    }
+ }
+
 </script>
 @endsection
