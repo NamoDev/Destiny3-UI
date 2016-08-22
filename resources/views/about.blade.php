@@ -15,9 +15,7 @@
 
 
 The world could always use more heroes. Join us!
-http://tucc.triamudom.ac.th
-
-(HTTP Link, we know. We're working on it!)
+https://tucc.triamudom.ac.th
 
 -->
 
