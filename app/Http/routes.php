@@ -39,6 +39,9 @@ Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
     // Dashboard
     Route::get('home', 'UIPages@applicantDashboard');
 
+    // Change password
+    Route::get('change_password', 'UIPages@changePasswordPage');
+
 });
 
 /*
