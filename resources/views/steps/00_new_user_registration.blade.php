@@ -196,6 +196,7 @@ $("#email").keyup(function() {
     $("#emailGroup > .help-block > .fa").remove();
   }else{
     $("#emailGroup").addClass("has-warning");
+    $("#emailGroup > .help-block > .fa").remove();
     $("#emailGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
