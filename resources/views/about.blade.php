@@ -28,11 +28,11 @@ https://tucc.triamudom.ac.th
 
 <div class="row" style="margin-top:18px;">
     <div class="col-md-12">
-        <div class="login-form">
+        <div class="flat-well">
             <h5 style="margin:0px;font-weight:normal;">TUEnt "Destiny" <b>3.0.1</b></h5>
         </div>
         <br />
-        <div class="login-form">
+        <div class="flat-well">
             <!-- start team -->
             <h5>ครูที่ปรึกษาโครงการ</h5>
             <div class="row">
