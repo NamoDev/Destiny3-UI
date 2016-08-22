@@ -193,8 +193,10 @@ $("#title").change(function(){
 $("#email").keyup(function() {
   if(checkEmail($("#email").val())){
     $("#emailGroup").removeClass("has-warning");
+    $("#emailGroup > help-block > .fa").remove();
   }else{
     $("#emailGroup").addClass("has-warning");
+    $("#emailGroup > help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 
