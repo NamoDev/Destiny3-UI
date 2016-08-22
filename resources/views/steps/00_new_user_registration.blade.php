@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div class="row" style="margin-top:40px;">
+<div class="row" style="margin-top:30px;">
     <div class="col-md-12">
         <h2>สมัครใหม่</h2>
         <br />
