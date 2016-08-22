@@ -10,7 +10,7 @@
         <div class="flat-well">
           <legend>ข้อมูลส่วนตัว</legend>
           <div class="row">
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-3 col-xs-4">
               <span class="help-block">คำนำหน้าชื่อ</span>
               <div id="titleGroup">
                 <select id="title" name="title" class="form-control select select-primary select-block mbl">
@@ -28,7 +28,7 @@
                 <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> ใช้คำนำหน้าชื่อปกติ</a></span>
               </div>
             </div>
-            <div class="col-md-4 col-md-offset-1 col-xs-8" id="fnameGroup">
+            <div class="col-md-4 col-xs-8" id="fnameGroup">
               <span class="help-block">ชื่อ</span>
               <input id="fname" name="fname" type="text" placeholder="ชื่อ" class="form-control" />
             </div>
@@ -39,13 +39,13 @@
           </div>
           <!-- == -->
           <div class="row">
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-3 col-xs-4">
               <div id="customtitle_enGroup" style="display:none;">
                 <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
                 <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" />
               </div>
             </div>
-            <div class="col-md-4 col-md-offset-1 col-xs-8" id="fname_enGroup">
+            <div class="col-md-4 col-xs-8" id="fname_enGroup">
               <span class="help-block">ชื่อ (ภาษาอังกฤษ)</span>
               <input id="fname_en" name="fname_en" type="text" placeholder="First name" class="form-control" />
             </div>
