@@ -5,9 +5,9 @@
 
 <legend><i class="fa fa-key"></i> เปลี่ยนรหัสผ่าน</legend>
 <div class="row">
-  <div class="col-md-12" id="oldPasswordGroup">
+  <div class="col-md-12" id="old_passwordGroup">
     <span class="help-block">รหัสผ่านปัจจุบัน</span>
-    <input id="oldPassword" name="oldPassword" type="password" placeholder="ใส่รหัสผ่านปัจจุบันของนักเรียน" class="form-control" required />
+    <input id="old_password" name="old_password" type="password" placeholder="ใส่รหัสผ่านปัจจุบันของนักเรียน" class="form-control" required />
   </div>
 </div>
 <div class="row">
@@ -34,7 +34,55 @@
 
   $("#submitButton").click(function(e){
     e.preventDefault();
-    /* TODO: Add submission code */
+
+    var hasErrors = 0;
+    var pswdInput = $("#password").val();
+    var pswdConfirmInput = $("#password_confirm").val();
+
+    if(pswdInput == pswdConfirmInput){
+      $("#passwordGroup").removeClass("has-error");
+      $("#password_confirmGroup").removeClass("has-error");
+    }else{
+      $("#passwordGroup").addClass("has-error");
+      $("#password_confirmGroup").addClass("has-error");
+      hasErrors += 1;
+    }
+
+    if(hasErrors == 0){
+      // Ready to go. Do preps:
+      if(usingCustomTitle == 1){
+        var titleToSend = $("#customtitle").val();
+        var titleToSend_en = $("#customtitle_en").val();
+      }else{
+        var titleToSend = $("#title").val();
+        var titleToSend_en =  $("#title").val();
+      }
+
+      //Init AJAX!
+      $.ajax({
+        url: '/api/v1/account/change_password',
+        data: {
+           _token: csrfToken,
+           old_password: $("#old_password").val(),
+           password: $("#password").val(),
+           password_confirm: $("#password_confirm").val()
+        },
+        error: function(data) {
+          $('#plsWaitModal').modal('hide');
+          bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+        },
+        dataType: 'json',
+        success: function(data) {
+          console.log("AJAX complete");
+        },
+        type: 'POST'
+     });
+    }else{
+      // NOPE.
+      $('#plsWaitModal').modal('hide');
+      bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+    }
+
   });
 
   /* Live password validation */
