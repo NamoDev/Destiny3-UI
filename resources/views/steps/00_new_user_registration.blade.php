@@ -207,18 +207,19 @@ $("#customtitle_en").keyup(function(){
     $("#customtitle_enGroup").removeClass("has-warning");
     $("#customtitle_enGroup > .help-block > .fa").remove();
   }else{
-    $("#customtitle_enGroup").removeClass("has-warning");
+    $("#customtitle_enGroup").addClass("has-warning");
     $("#customtitle_enGroup > .help-block > .fa").remove();
+    $("#customtitle_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 $("#fname_en").keyup(function(){
-  console.log("KeyUp1!");
   if(checkAlphanumeric($("#fname_en").val())){
     $("#fname_enGroup").removeClass("has-warning");
     $("#fname_enGroup > .help-block > .fa").remove();
   }else{
-    $("#fname_enGroup").removeClass("has-warning");
+    $("#fname_enGroup").addClass("has-warning");
     $("#fname_enGroup > .help-block > .fa").remove();
+    $("#fname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 $("#lname_en").keyup(function(){
@@ -226,8 +227,9 @@ $("#lname_en").keyup(function(){
     $("#lname_enGroup").removeClass("has-warning");
     $("#lname_enGroup > .help-block > .fa").remove();
   }else{
-    $("#lname_enGroup").removeClass("has-warning");
+    $("#lname_enGroup").addClass("has-warning");
     $("#lname_enGroup > .help-block > .fa").remove();
+    $("#lname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 
