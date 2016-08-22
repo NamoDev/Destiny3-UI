@@ -212,6 +212,7 @@ $("#customtitle_en").keyup(function(){
   }
 });
 $("#fname_en").keyup(function(){
+  console.log("KeyUp1!");
   if(checkAlphanumeric($("#fname_en").val())){
     $("#fname_enGroup").removeClass("has-warning");
     $("#fname_enGroup > .help-block > .fa").remove();
