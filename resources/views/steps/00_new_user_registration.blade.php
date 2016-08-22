@@ -218,6 +218,15 @@ function checkPasswordFields(){
   }
 }
 
+/* Live citizenID validation */
+$("#citizenid").keyup(function() {
+  if(checkCitizenID($("#citizenid").val())){
+    $("#citizenidGroup").removeClass("has-warning");
+  }else{
+    $("#citizenidGroup").addClass("has-warning");
+  }
+});
+
 /* Cancellation of custom title */
 $("#cancelCustomTitleSelection").click(function(e){
   e.preventDefault();
