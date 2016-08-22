@@ -56,10 +56,6 @@
           </div>
           <!-- == -->
           <div class="row">
-            <div class="col-md-12" id="citizenidGroup">
-              <span class="help-block">รหัสประจำตัวประชาชน</span>
-              <input id="citizenid" name="citizenid" type="text" placeholder="รหัสประจำตัวประชาชน 13 หลัก" class="form-control" />
-            </div>
             <div class="col-md-3" id="customGenderGroup" style="display:none;">
               <span class="help-block">เพศ</span>
               <select id="customGender" name="customGender" class="form-control select select-primary select-block mbl">
@@ -68,6 +64,10 @@
                   <option value="1">หญิง</option>
                 </optgroup>
               </select>
+            </div>
+            <div class="col-md-12" id="citizenidGroup">
+              <span class="help-block">รหัสประจำตัวประชาชน</span>
+              <input id="citizenid" name="citizenid" type="text" placeholder="รหัสประจำตัวประชาชน 13 หลัก" class="form-control" />
             </div>
           </div>
           <!-- == -->
