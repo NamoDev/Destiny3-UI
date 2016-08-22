@@ -31,15 +31,6 @@
             <div class="col-md-4 col-md-offset-1 col-xs-8" id="fnameGroup">
               <span class="help-block">ชื่อ</span>
               <input id="fname" name="fname" type="text" placeholder="ชื่อ" class="form-control" />
-              <div id="customGenderGroup" style="display:none;">
-                <span class="help-block">เพศ</span>
-                <select id="customGender" name="customGender" class="form-control select select-primary select-block mbl">
-                  <optgroup label="เลือกเพศ">
-                    <option value="0">ชาย</option>
-                    <option value="1">หญิง</option>
-                  </optgroup>
-                </select>
-              </div>
             </div>
             <div class="col-md-5 col-xs-12" id="lnameGroup">
               <span class="help-block">นามสกุล</span>
@@ -68,6 +59,15 @@
             <div class="col-md-12" id="citizenidGroup">
               <span class="help-block">รหัสประจำตัวประชาชน</span>
               <input id="citizenid" name="citizenid" type="text" placeholder="รหัสประจำตัวประชาชน 13 หลัก" class="form-control" />
+            </div>
+            <div class="col-md-3" id="customGenderGroup" style="display:none;">
+              <span class="help-block">เพศ</span>
+              <select id="customGender" name="customGender" class="form-control select select-primary select-block mbl">
+                <optgroup label="เลือกเพศ">
+                  <option value="0">ชาย</option>
+                  <option value="1">หญิง</option>
+                </optgroup>
+              </select>
             </div>
           </div>
           <!-- == -->
@@ -232,6 +232,7 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").show();
     $("#customtitle_enGroup").show();
     $("#customGenderGroup").show();
+    $("#citizenidGroup").removeClass("col-md-12").addClass("col-md-9");
     $("#titleGroup").hide();
     usingCustomTitle = 1;
   }else{
@@ -240,6 +241,7 @@ function checkCustomTitleSelection(){
     $("#customtitleGroup").hide();
     $("#customtitle_enGroup").hide();
     $("#customGenderGroup").hide();
+    $("#citizenidGroup").removeClass("col-md-9").addClass("col-md-12");
     $("#titleGroup").show();
     usingCustomTitle = 0;
   }
