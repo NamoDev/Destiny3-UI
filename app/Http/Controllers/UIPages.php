@@ -35,6 +35,11 @@ class UIPages extends Controller{
         return response()->view('dashboard');
     }
 
+    // "Change Password" page for logged in users
+    public function changePasswordPage(){
+        return response()->view('change_password');
+    }
+
     // Application about page
     public function aboutPage(){
         return response()->view('about');
