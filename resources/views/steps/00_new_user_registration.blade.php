@@ -482,5 +482,22 @@ function checkAlphanumeric(string){
     }
  }
 
+/* Thai language checker */
+function checkThai(string){
+    var thai_characters="ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ";
+    var isThai = true;
+    for(i=0; i<string.length; i++){
+        var charAt = string.charAt(i);
+        if(thai_characters.indexOf(charAt) == -1){
+            isThai = false;
+        }
+    }
+    if(isThai){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 </script>
 @endsection
