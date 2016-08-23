@@ -203,7 +203,7 @@ $("#email").keyup(function(){
 
 /* Validate Thai language name fields */
 $("#customtitle").keyup(function(){
-    if(checkThai($("$customtitle").val())){
+    if(checkThai($("#customtitle").val())){
         $("#customtitleGroup").removeClass("has-warning");
         $("#customtitleGroup > .help-block > .fa").remove();
     }else{
@@ -213,7 +213,7 @@ $("#customtitle").keyup(function(){
     }
 });
 $("#fname").keyup(function(){
-    if(checkThai($("fname").val())){
+    if(checkThai($("#fname").val())){
         $("#fnameGroup").removeClass("has-warning");
         $("#fnameGroup > .help-block > .fa").remove();
     }else{
@@ -223,7 +223,7 @@ $("#fname").keyup(function(){
     }
 });
 $("#lname").keyup(function(){
-    if(checkThai($("lname").val())){
+    if(checkThai($("#lname").val())){
         $("#lnameGroup").removeClass("has-warning");
         $("#lnameGroup > .help-block > .fa").remove();
     }else{
