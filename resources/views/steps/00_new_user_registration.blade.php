@@ -424,7 +424,8 @@ function checkCitizenID(id){
       return true;
     }
   }
-
 }
+
+
 </script>
 @endsection
