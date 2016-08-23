@@ -473,8 +473,6 @@ function checkCitizenID(id){
   }
 }
 
-<<<<<<< HEAD
-=======
 /* Alphanumeric validity checker */
 function checkAlphanumeric(string){
     if(/^[A-Za-z][A-Za-z0-9]*$/.test(string)){
@@ -483,7 +481,6 @@ function checkAlphanumeric(string){
       return false;
     }
  }
->>>>>>> master
 
 </script>
 @endsection
