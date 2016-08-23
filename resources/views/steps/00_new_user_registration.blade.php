@@ -201,7 +201,39 @@ $("#email").keyup(function(){
   }
 });
 
-/* Validate english language name fields */
+/* Validate Thai language name fields */
+$("#customtitle").keyup(function(){
+    if(checkThai($("$customtitle").val())){
+        $("#customtitleGroup").removeClass("has-warning");
+        $("#customtitleGroup > .help-block > .fa").remove();
+    }else{
+        $("#customtitleGroup").addClass("has-warning");
+        $("#customtitleGroup > .help-block > .fa").remove();
+        $("#customtitleGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+    }
+});
+$("#fname").keyup(function(){
+    if(checkThai($("fname").val())){
+        $("#fnameGroup").removeClass("has-warning");
+        $("#fnameGroup > .help-block > .fa").remove();
+    }else{
+        $("#fnameGroup").addClass("has-warning");
+        $("#fnameGroup > .help-block > .fa").remove();
+        $("#fnameGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+    }
+});
+$("#lname").keyup(function(){
+    if(checkThai($("lname").val())){
+        $("#lnameGroup").removeClass("has-warning");
+        $("#lnameGroup > .help-block > .fa").remove();
+    }else{
+        $("#lnameGroup").addClass("has-warning");
+        $("#lnameGroup > .help-block > .fa").remove();
+        $("#lnameGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+    }
+});
+
+/* Validate English language name fields */
 $("#customtitle_en").keyup(function(){
   if(checkAlphanumeric($("#customtitle_en").val())){
     $("#customtitle_enGroup").removeClass("has-warning");
