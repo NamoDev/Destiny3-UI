@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div class="row" style="margin-top:40px;">
+<div class="row" style="margin-top:30px;">
     <div class="col-md-12">
         <h2>สมัครใหม่</h2>
         <br />
@@ -25,7 +25,7 @@
               </div>
               <div id="customtitleGroup" style="display:none;">
                 <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
-                <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> ใช้คำนำหน้าชื่อปกติ</a></span>
+                <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> กลับไปเลือกคำนำหน้าชื่อปกติ</a></span>
               </div>
             </div>
             <div class="col-md-4 col-xs-8" id="fnameGroup">
@@ -190,19 +190,54 @@ $("#title").change(function(){
 })
 
 /* Live email validation */
-$("#email").keyup(function() {
+$("#email").keyup(function(){
   if(checkEmail($("#email").val())){
     $("#emailGroup").removeClass("has-warning");
+    $("#emailGroup > .help-block > .fa").remove();
   }else{
     $("#emailGroup").addClass("has-warning");
+    $("#emailGroup > .help-block > .fa").remove();
+    $("#emailGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+  }
+});
+
+/* Validate english language name fields */
+$("#customtitle_en").keyup(function(){
+  if(checkAlphanumeric($("#customtitle_en").val())){
+    $("#customtitle_enGroup").removeClass("has-warning");
+    $("#customtitle_enGroup > .help-block > .fa").remove();
+  }else{
+    $("#customtitle_enGroup").addClass("has-warning");
+    $("#customtitle_enGroup > .help-block > .fa").remove();
+    $("#customtitle_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+  }
+});
+$("#fname_en").keyup(function(){
+  if(checkAlphanumeric($("#fname_en").val())){
+    $("#fname_enGroup").removeClass("has-warning");
+    $("#fname_enGroup > .help-block > .fa").remove();
+  }else{
+    $("#fname_enGroup").addClass("has-warning");
+    $("#fname_enGroup > .help-block > .fa").remove();
+    $("#fname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+  }
+});
+$("#lname_en").keyup(function(){
+  if(checkAlphanumeric($("#lname_en").val())){
+    $("#lname_enGroup").removeClass("has-warning");
+    $("#lname_enGroup > .help-block > .fa").remove();
+  }else{
+    $("#lname_enGroup").addClass("has-warning");
+    $("#lname_enGroup > .help-block > .fa").remove();
+    $("#lname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 
 /* Live password validation */
-$("#password").keyup(function() {
+$("#password").keyup(function(){
   checkPasswordFields();
 });
-$("#password_confirm").keyup(function() {
+$("#password_confirm").keyup(function(){
   checkPasswordFields();
 });
 
@@ -212,18 +247,28 @@ function checkPasswordFields(){
   if(pswdInput == pswdConfirmInput){
     $("#passwordGroup").removeClass("has-warning");
     $("#password_confirmGroup").removeClass("has-warning");
+    $("#passwordGroup > .help-block > .fa").remove();
+    $("#password_confirmGroup > .help-block > .fa").remove();
   }else{
     $("#passwordGroup").addClass("has-warning");
     $("#password_confirmGroup").addClass("has-warning");
+    $("#passwordGroup > .help-block > .fa").remove();
+    $("#password_confirmGroup > .help-block > .fa").remove();
+    $("#passwordGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+    $("#password_confirmGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 }
 
 /* Live citizenID validation */
-$("#citizenid").keyup(function() {
+$("#citizenid").keyup(function(){
   if(checkCitizenID($("#citizenid").val())){
     $("#citizenidGroup").removeClass("has-warning");
+    $("#citizenidGroup > .help-block > .fa").remove();
+    $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }else{
     $("#citizenidGroup").addClass("has-warning");
+    $("#citizenidGroup > .help-block > .fa").remove();
+    $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
   }
 });
 
@@ -407,11 +452,13 @@ $("#create_account").click(function(e){
 
 })
 
+/* Email validity checker */
 function checkEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
+/* Citizen ID Validity checker */
 function checkCitizenID(id){
   if(id.length != 13){
     return false;
@@ -426,6 +473,17 @@ function checkCitizenID(id){
   }
 }
 
+<<<<<<< HEAD
+=======
+/* Alphanumeric validity checker */
+function checkAlphanumeric(string){
+    if(/^[A-Za-z][A-Za-z0-9]*$/.test(string)){
+       return true;
+    }else{
+      return false;
+    }
+ }
+>>>>>>> master
 
 </script>
 @endsection

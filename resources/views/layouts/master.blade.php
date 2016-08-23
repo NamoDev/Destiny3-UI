@@ -61,6 +61,16 @@
                 </div>
             </div>
 
+            <div id="plsWaitModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <i class="fa fa-spinner fa-spin"></i> กรุณารอสักครู่
+                  </div>
+                </div>
+              </div>
+            </div>
+
         </div>
 
         <script src="/assets/js/jquery.js"></script>
