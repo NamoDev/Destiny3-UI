@@ -176,7 +176,7 @@ class APIController extends Controller{
 
         // Check the old password
         $applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
-        if(Hash::check($request->input("old_password"), $loginUserData['password'])){
+        if(Hash::check($request->input("old_password"), $applicantData['password'])){
 
             // OK
             DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->update([
