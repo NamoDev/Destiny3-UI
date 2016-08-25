@@ -131,6 +131,7 @@
   function raiseAlert(message){
       $("#alertNotificationText").html(message);
       $("#alertNotification").fadeIn(300);
+      $("#passwordChangeSuccessNotification").fadeOut(300);
   }
 
   function checkPasswordFields(){
