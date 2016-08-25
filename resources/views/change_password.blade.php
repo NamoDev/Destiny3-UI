@@ -12,7 +12,7 @@
   <i class="fa fa-exclamation-circle"></i> <span id="alertNotificationText">Uh Oh!</span>
 </div>
 
-<legend><i class="fa fa-key"></i> เปลี่ยนรหัสผ่าน</legend>
+<legend><i class="fa fa-key"></i> เปลี่ยนรหัสผ่าน <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
 <div class="row">
   <div class="col-md-12" id="old_passwordGroup">
     <span class="help-block">รหัสผ่านปัจจุบัน</span>
@@ -42,6 +42,7 @@
 <script>
 
   $("#submitButton").click(function(e){
+    $("#loadingSpinner").show();
     e.preventDefault();
 
     var hasErrors = 0;
@@ -73,7 +74,6 @@
     }
 
     if(hasErrors == 0){
-
       //Init AJAX!
       $.ajax({
         url: '/api/v1/account/change_password',
@@ -84,7 +84,7 @@
            password_confirm: $("#password_confirm").val()
         },
         error: function (request, status, error) {
-            $('#plsWaitModal').modal('hide');
+            $("#loadingSpinner").hide();
             var response = JSON.parse(request.responseText);
             switch(request.status){
                 case 401:
@@ -105,6 +105,7 @@
         },
         dataType: 'json',
         success: function(data) {
+            $("#loadingSpinner").hide();
             $("#passwordChangeSuccessNotification").fadeIn(300);
             $("#alertNotification").fadeOut(300);
             $("#old_password").val("");
@@ -115,7 +116,7 @@
      });
     }else{
       // NOPE.
-      $('#plsWaitModal').modal('hide');
+      $("#loadingSpinner").hide();
       raiseAlert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
     }
 
