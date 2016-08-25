@@ -3,12 +3,10 @@
 
 @section('content')
 
-<div id="passwordChangeSuccessNotification" class="alert alert-dismissible alert-success" style="display:none;">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
+<div id="passwordChangeSuccessNotification" class="alert alert-success" style="display:none;">
   <i class="fa fa-check-circle"></i> เปลี่ยนรหัสผ่านเรียบร้อยแล้ว
 </div>
-<div id="alertNotification" class="alert alert-dismissible alert-warning" style="display:none;">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
+<div id="alertNotification" class="alert alert-warning" style="display:none;">
   <i class="fa fa-exclamation-circle"></i> <span id="alertNotificationText">Uh Oh!</span>
 </div>
 
