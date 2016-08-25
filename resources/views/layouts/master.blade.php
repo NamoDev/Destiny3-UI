@@ -16,25 +16,30 @@
 
                   <?php /* We'll use btn-inverse for uncompleted steps and btn-primary for completed steps */ ?>
 
-                  <a class="btn btn-primary btn-block" href="/application/info"><span class="fa fa-check-circle"></span> ข้อมูลพื้นฐาน</a>
+
+
+
+
+
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(1)) btn-primary @else btn-default @endif btn-block" href="/application/info">@if(App\Http\Controllers\Helper::checkStepCompletion(1)) <span class="fa fa-check-circle"></span> @endif ข้อมูลพื้นฐาน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn btn-primary btn-block" href="/application/parent"><span class="fa fa-check-circle"></span> ข้อมูลผู้ปกครอง</a>
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(2)) btn-primary @else btn-default @endif btn-block" href="/application/parent">@if(App\Http\Controllers\Helper::checkStepCompletion(2)) <span class="fa fa-check-circle"></span> @endif ข้อมูลผู้ปกครอง</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn btn-primary btn-block" href="/application/address"><span class="fa fa-check-circle"></span> ที่อยู่ / ภูมิลำเนา</a>
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(3)) btn-primary @else btn-default @endif btn-block" href="/application/address">@if(App\Http\Controllers\Helper::checkStepCompletion(3)) <span class="fa fa-check-circle"></span> @endif ที่อยู่ / ภูมิลำเนา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn btn-primary btn-block" href="/application/education"><span class="fa fa-check-circle"></span> ประวัติการศึกษา</a>
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(4)) btn-primary @else btn-default @endif btn-block" href="/application/education">@if(App\Http\Controllers\Helper::checkStepCompletion(4)) <span class="fa fa-check-circle"></span> @endif ประวัติการศึกษา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn btn-primary btn-block" href="/application/plan"><span class="fa fa-check-circle"></span> เลือกแผนการเรียน</a>
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(5)) btn-primary @else btn-default @endif btn-block" href="/application/plan">@if(App\Http\Controllers\Helper::checkStepCompletion(5)) <span class="fa fa-check-circle"></span> @endif เลือกแผนการเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn btn-primary btn-block" href="/application/day"><span class="fa fa-check-circle"></span> เลือกวันสมัครที่โรงเรียน</a>
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(6)) btn-primary @else btn-default @endif btn-block" href="/application/day">@if(App\Http\Controllers\Helper::checkStepCompletion(6)) <span class="fa fa-check-circle"></span> @endif เลือกวันสมัครที่โรงเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn btn-primary btn-block" href="/application/documents"><span class="fa fa-check-circle"></span> อัพโหลดเอกสาร</a>
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(7)) btn-primary @else btn-default @endif btn-block" href="/application/documents">@if(App\Http\Controllers\Helper::checkStepCompletion(7)) <span class="fa fa-check-circle"></span> @endif อัพโหลดเอกสาร</a>
                   <br />
 
                   <!-- TODO: Add the real thing. -->

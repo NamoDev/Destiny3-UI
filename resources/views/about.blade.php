@@ -1,5 +1,5 @@
 @extends('layouts.no_navbar')
-@section('title', 'หน้าหลัก')
+@section('title', 'เกี่ยวกับโปรแกรม')
 
 @section('content')
 

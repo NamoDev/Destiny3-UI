@@ -25,6 +25,9 @@ Route::get('logout', 'APIController@logout');
 // About page
 Route::get('about', 'UIPages@aboutPage');
 
+// Frequently asked questions page
+Route::get('faq', 'UIPages@faqPage');
+
 /*
 | Front-end pages for the applicant. All of these requires login.
 | TODO: Add login verification middleware
