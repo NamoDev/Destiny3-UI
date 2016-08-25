@@ -45,5 +45,12 @@ class UIPages extends Controller{
         return response()->view('about');
     }
 
+    // Frequently asked questions
+    public function faqPage(){
+        return response()->view('faq');
+    }
+
+
+
 
 }
