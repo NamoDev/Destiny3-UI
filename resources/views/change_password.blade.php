@@ -106,6 +106,7 @@
         dataType: 'json',
         success: function(data) {
             $("#passwordChangeSuccessNotification").fadeIn(300);
+            $("#alertNotification").fadeOut(300);
             $("#old_password").val("");
             $("#password").val("");
             $("#password_confirm").val("");
