@@ -40,8 +40,14 @@
     var pswdConfirmInput = $("#password_confirm").val();
 
     if(pswdInput == pswdConfirmInput){
-      $("#passwordGroup").removeClass("has-error");
-      $("#password_confirmGroup").removeClass("has-error");
+        if(pswdInput != '' && pswdConfirmInput != ''){
+            $("#passwordGroup").removeClass("has-error");
+            $("#password_confirmGroup").removeClass("has-error");
+        }else{
+            $("#passwordGroup").addClass("has-error");
+            $("#password_confirmGroup").addClass("has-error");
+            hasErrors += 1;
+        }
     }else{
       $("#passwordGroup").addClass("has-error");
       $("#password_confirmGroup").addClass("has-error");
