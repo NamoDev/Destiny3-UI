@@ -67,7 +67,9 @@
         },
         error: function (request, status, error) {
             $('#plsWaitModal').modal('hide');
-            console.log(request.responseText);
+            console.log(request);
+            console.log(status);
+            console.log(error);
             switch(status){
                 case 401:
                     bootbox.alert("คุณไม่มีสิทธิ์ในการดำเนินการนี้");
