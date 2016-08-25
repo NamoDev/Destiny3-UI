@@ -14,13 +14,6 @@
             <div class="row">
                 <div class="col-md-3">
 
-                  <?php /* We'll use btn-inverse for uncompleted steps and btn-primary for completed steps */ ?>
-
-
-
-
-
-
                   <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(1)) btn-primary @else btn-default @endif btn-block" href="/application/info">@if(App\Http\Controllers\Helper::checkStepCompletion(1)) <span class="fa fa-check-circle"></span> @endif ข้อมูลพื้นฐาน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
@@ -52,9 +45,29 @@
 
                 </div>
                 <div class="col-md-9">
+
+
+
                   <div class="flat-well">
                     @yield('content')
                   </div>
+
+                  <br />
+                  <div class="flat-well">
+                      <h5><i class="fa fa-cubes"></i> Applicant Data Dump<i class="text-muted pull-right">Debug Mode</i></h5>
+                      <div>
+                          <pre>
+                              <?php
+                              try{
+                                  print_r($applicantData);
+                              }catch(\Throwable $stuff){
+                                  echo("User data cannot be dumped right now");
+                              }
+                               ?>
+                          </pre>
+                      </div>
+                  </div>
+
                 </div>
             </div>
 
