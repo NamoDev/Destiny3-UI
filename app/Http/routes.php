@@ -57,8 +57,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     // Account creation
     Route::post('account/create', 'APIController@createAccount');
 
-    // Login
-    Route::post('account/login', 'Blah@Blah');
+    // TODO: Add auth middlewares for API routes below:
 
     // Get applicant data. Simple!
     Route::get('applicant/data', 'Blah@Blah');
@@ -68,5 +67,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah');
+
+    // Password change handler
+    Route::post('account/change_password', 'APIController@changePassword');
 
 });

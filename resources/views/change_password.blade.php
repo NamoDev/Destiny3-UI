@@ -49,14 +49,6 @@
     }
 
     if(hasErrors == 0){
-      // Ready to go. Do preps:
-      if(usingCustomTitle == 1){
-        var titleToSend = $("#customtitle").val();
-        var titleToSend_en = $("#customtitle_en").val();
-      }else{
-        var titleToSend = $("#title").val();
-        var titleToSend_en =  $("#title").val();
-      }
 
       //Init AJAX!
       $.ajax({
