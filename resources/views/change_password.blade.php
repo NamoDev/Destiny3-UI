@@ -67,10 +67,16 @@
         },
         error: function (request, status, error) {
             $('#plsWaitModal').modal('hide');
-            console.log(request.responseText);
+            var response = JSON.parse(request.responseText);
             switch(request.status){
                 case 401:
-                    bootbox.alert("Unauthorized");
+                    if(response.result == "old_password_incorrect"){
+                        $("#old_passwordGroup").addClass("has-error");
+                        $("#old_password_confirmGroup").addClass("has-error");
+                        bootbox.alert("รหัสผ่านเก่าไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
+                    }else{
+                        bootbox.alert("คุณไม่มีสิทธิ์ในดำเนินการนี้");
+                    }
                 break;
                 case 422:
                     bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
