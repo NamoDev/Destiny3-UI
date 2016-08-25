@@ -12,6 +12,8 @@
 namespace App\Http\Controllers;
 
 use Applicant;
+use DB;
+use Session;
 
 class UIPages extends Controller{
 
@@ -48,6 +50,12 @@ class UIPages extends Controller{
     // Frequently asked questions
     public function faqPage(){
         return response()->view('faq');
+    }
+
+    // Step 01: Applicant's basic information
+    public function step1_basicInfo(){
+        $applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
+        return response()->view('steps.01_basic_information', ['applicantData' => $applicantData]);
     }
 
 

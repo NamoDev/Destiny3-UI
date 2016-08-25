@@ -30,4 +30,14 @@ class Helper extends Controller{
         }
     }
 
+    public static function formatCitizenIDforDisplay(string $citizenID){
+        try{
+            $splitted = str_split($citizenID);
+            return $splitted[0] . " - " . $splitted[1] . $splitted[2] . $splitted[3] . $splitted[4] . " - " . $splitted[5] . $splitted[6] . $splitted[7] . $splitted[8] . $splitted[9] . " - " . $splitted[10] . $splitted[11]. " - " . $splitted[12];
+        }catch(\Throwable $wtf){
+            return $citizenID;
+        }
+
+    }
+
 }
