@@ -15,6 +15,7 @@ use Applicant;
 use Illuminate\Http\Request;
 use Log;
 use DB;
+use Session;
 
 class APIController extends Controller{
 
@@ -153,6 +154,42 @@ class APIController extends Controller{
       $applicantInterface = new Applicant();
       $applicantInterface->logout();
       return redirect("/");
+    }
+
+    /*
+    | Change password
+    */
+    public function changePassword(Request $request){
+        /*
+        old_password
+        password
+        password_confirm
+        */
+
+        // First, let's validate the incoming data:
+        $this->validate($request, [
+          'old_password' => 'required',
+          'password' => 'required',
+          'password_confirm' => 'required|same:password'
+        ]);
+
+        // Check the old password
+        $applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
+        if(Hash::check($request->input("old_password"), $loginUserData['password'])){
+
+            // OK
+            DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->update([
+                'password' => Hash::make($request->input("password")),
+            ]);
+
+            return response(json_encode(["result" => "ok"]));
+
+        }else{
+            // Old password incorrect
+            return response(json_encode(["result" => "old_password_incorrect"]), 401);
+        }
+
+
     }
 
     /*

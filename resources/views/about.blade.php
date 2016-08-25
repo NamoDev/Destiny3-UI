@@ -12,7 +12,7 @@
 
 TUEnt "Destiny", (C) {{ date("Y") }} TUDT.
 
-The world could always use more heroes. Join us!
+The world could always use more heroes. Are you with us?
 https://tucc.triamudom.ac.th
 
 -->
