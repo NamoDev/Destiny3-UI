@@ -67,12 +67,10 @@
         },
         error: function (request, status, error) {
             $('#plsWaitModal').modal('hide');
-            console.log(request);
-            console.log(status);
-            console.log(error);
-            switch(status){
+            console.log(request.responseText);
+            switch(request.status){
                 case 401:
-                    bootbox.alert("คุณไม่มีสิทธิ์ในการดำเนินการนี้");
+                    bootbox.alert("Unauthorized");
                 break;
                 case 422:
                     bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
