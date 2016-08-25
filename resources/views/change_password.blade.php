@@ -7,7 +7,7 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <i class="fa fa-check-circle"></i> เปลี่ยนรหัสผ่านเรียบร้อยแล้ว
 </div>
-<div id="alertNotification" class="alert alert-dismissible alert-success" style="display:none;">
+<div id="alertNotification" class="alert alert-dismissible alert-warning" style="display:none;">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <i class="fa fa-exclamation-circle"></i> <span id="alertNotificationText">Uh Oh!</span>
 </div>
