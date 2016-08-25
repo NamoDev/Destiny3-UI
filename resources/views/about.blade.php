@@ -73,3 +73,9 @@ https://tucc.triamudom.ac.th
 </div>
 
 @endsection
+@section('additional_scripts')
+<script src="/assets/js/k.js"></script>
+<script>
+    var easter_egg = new Konami(function() { alert('Konami Code!')});
+</script>
+@endsection
