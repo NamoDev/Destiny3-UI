@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Log;
 use DB;
 use Session;
+use Hash;
 
 class APIController extends Controller{
 
