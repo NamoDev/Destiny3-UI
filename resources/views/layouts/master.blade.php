@@ -75,6 +75,7 @@
 
         <script src="/assets/js/jquery.js"></script>
         <script src="/assets/js/bootstrap.js"></script>
+        <script src="/assets/js/bootbox.min.js"></script>
         <script>
           var csrfToken = "<?php echo csrf_token(); ?>";
         </script>
