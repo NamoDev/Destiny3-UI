@@ -7,6 +7,10 @@
   <button type="button" class="close" data-dismiss="alert">&times;</button>
   <i class="fa fa-check-circle"></i> เปลี่ยนรหัสผ่านเรียบร้อยแล้ว
 </div>
+<div id="alertNotification" class="alert alert-dismissible alert-success" style="display:none;">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <i class="fa fa-exclamation-circle"></i> <span id="alertNotificationText">Uh Oh!</span>
+</div>
 
 <legend><i class="fa fa-key"></i> เปลี่ยนรหัสผ่าน</legend>
 <div class="row">
@@ -78,16 +82,16 @@
                     if(response.result == "old_password_incorrect"){
                         $("#old_passwordGroup").addClass("has-error");
                         $("#old_password_confirmGroup").addClass("has-error");
-                        bootbox.alert("รหัสผ่านเก่าไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
+                        raiseAlert("รหัสผ่านเก่าไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
                     }else{
-                        bootbox.alert("คุณไม่มีสิทธิ์ในดำเนินการนี้");
+                        raiseAlert("คุณไม่มีสิทธิ์ในดำเนินการนี้");
                     }
                 break;
                 case 422:
-                    bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+                    raiseAlert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
                 break;
                 default:
-                    bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+                    raiseAlert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
             }
         },
         dataType: 'json',
@@ -102,7 +106,7 @@
     }else{
       // NOPE.
       $('#plsWaitModal').modal('hide');
-      bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+      raiseAlert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
     }
 
   });
@@ -114,6 +118,11 @@
   $("#password_confirm").keyup(function() {
     checkPasswordFields();
   });
+
+  function raiseAlert(message){
+      $("#alertNotificationText").html(message);
+      $("#alertNotification").fadeIn(300);
+  }
 
   function checkPasswordFields(){
     var pswdInput = $("#password").val();
