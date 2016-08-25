@@ -4,7 +4,6 @@
 
 @section('content')
 
-
 <legend><i class="fa fa-user"></i> ข้อมูลพื้นฐาน <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
 
 <div class="row">
@@ -41,7 +40,7 @@
       </select>
     </div>
     <div id="customtitleGroup" style="display:none;">
-      <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" class="form-control" />
+      <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" value="{{ $applicantData['title'] }}" class="form-control" />
       <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> กลับไปเลือกคำนำหน้าชื่อปกติ</a></span>
     </div>
   </div>
@@ -59,7 +58,7 @@
   <div class="col-md-3 col-xs-4">
     <div id="customtitle_enGroup" style="display:none;">
       <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
-      <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" class="form-control" />
+      <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" value="{{ $applicantData['title_en'] }}" class="form-control" />
     </div>
   </div>
   <div class="col-md-4 col-xs-8" id="fname_enGroup">
@@ -77,14 +76,23 @@
     <span class="help-block">เพศ</span>
     <select id="customGender" name="customGender" class="form-control select select-primary select-block mbl">
       <optgroup label="เลือกเพศ">
-        <option value="0">ชาย</option>
-        <option value="1">หญิง</option>
+          <?php
+          $genders = ['ชาย', 'หญิง'];
+          foreach($genders as $key => $gender){
+              if($key == $applicantData['gender']){
+                  echo("<option value=\"$key\" selected>$gender</option>");
+              }else{
+                  echo("<option value=\"$key\">$gender</option>");
+              }
+          }
+           ?>
       </optgroup>
     </select>
   </div>
   <div class="col-md-12" id="citizenidGroup">
     <span class="help-block">รหัสประจำตัวประชาชน</span>
-    {{ App\Http\Controllers\Helper::formatCitizenIDforDisplay(Session::get("applicant_citizen_id")) }}
+    <input type="text" class="form-control" id="cidDisplay" value="{{ App\Http\Controllers\Helper::formatCitizenIDforDisplay(Session::get("applicant_citizen_id")) }}" />
+
   </div>
 </div>
 <!-- == -->
@@ -152,6 +160,7 @@
 <script>
     $(function(){
         $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+        $("#title").change();
     });
     /* Custom Titles */
     $("#title").change(function(){
@@ -262,6 +271,10 @@
         usingCustomTitle = 0;
       }
     }
+
+    $('#cidDisplay').keydown(function(e){
+        e.preventDefault();
+    });
 
     /* Email validity checker */
     function checkEmail(email) {

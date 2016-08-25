@@ -6211,3 +6211,9 @@ footer p {
     -moz-user-select: none;
     -webkit-user-select: none;
 }
+#cidDisplay{
+    cursor:default;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
