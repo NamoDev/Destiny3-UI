@@ -465,9 +465,17 @@ $("#create_account").click(function(e){
          password: $("#password").val(),
          password_confirm: $("#password_confirm").val()
       },
-      error: function(data) {
-        $('#plsWaitModal').modal('hide');
-        bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+      error: function (request, status, error) {
+          $('#plsWaitModal').modal('hide');
+          var response = JSON.parse(request.responseText);
+          switch(request.status){
+              case 422:
+                  bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+              break;
+              default:
+                  bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+
+          }
       },
       dataType: 'json',
       success: function(data) {
