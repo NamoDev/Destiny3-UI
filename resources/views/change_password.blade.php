@@ -63,6 +63,15 @@
       hasErrors += 1;
     }
 
+    if($("#old_password").val() != ''){
+        $("#old_passwordGroup").removeClass("has-error");
+        $("#old_password_confirmGroup").removeClass("has-error");
+    }else{
+        $("#old_passwordGroup").addClass("has-error");
+        $("#old_password_confirmGroup").addClass("has-error");
+        hasErrors += 1;
+    }
+
     if(hasErrors == 0){
 
       //Init AJAX!
