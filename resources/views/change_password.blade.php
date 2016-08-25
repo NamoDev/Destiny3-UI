@@ -3,6 +3,11 @@
 
 @section('content')
 
+<div id="passwordChangeSuccessNotification" class="alert alert-dismissible alert-success" style="display:none;">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <i class="fa fa-check-circle"></i> เปลี่ยนรหัสผ่านเรียบร้อยแล้ว
+</div>
+
 <legend><i class="fa fa-key"></i> เปลี่ยนรหัสผ่าน</legend>
 <div class="row">
   <div class="col-md-12" id="old_passwordGroup">
@@ -87,7 +92,10 @@
         },
         dataType: 'json',
         success: function(data) {
-          console.log("AJAX complete");
+            $("#passwordChangeSuccessNotification").fadeIn(300);
+            $("#old_password").val("");
+            $("#password").val("");
+            $("#password_confirm").val("");
         },
         type: 'POST'
      });
