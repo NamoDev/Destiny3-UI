@@ -37,16 +37,14 @@ Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
     // First step application page (account creation)
     Route::get('begin', 'UIPages@newUserRegistrationPage');
 
-    /* TODO: Add login checker middleware for the routes below */
-
     // Dashboard
-    Route::get('home', 'UIPages@applicantDashboard');
+    Route::get('home', 'UIPages@applicantDashboard')->middleware('auth');
 
     // Basic information page
-    Route::get('info', 'UIPages@step1_basicInfo');
+    Route::get('info', 'UIPages@step1_basicInfo')->middleware('auth');
 
     // Change password
-    Route::get('change_password', 'UIPages@changePasswordPage');
+    Route::get('change_password', 'UIPages@changePasswordPage')->middleware('auth');
 
 });
 
@@ -63,7 +61,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     // Account creation
     Route::post('account/create', 'APIController@createAccount');
 
-    // TODO: Add auth middlewares for API routes below:
+    // TODO: Add API authentication middlewares for API routes below:
 
     // Get applicant data. Simple!
     Route::get('applicant/data', 'Blah@Blah');

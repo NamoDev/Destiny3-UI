@@ -29,12 +29,14 @@
                 @if(Session::has('message'))
                   @if(Session::get('message') == 'INVALID_USERNAME_OR_PASSWORD')
                     <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="รหัสประจำตัวประชาชน หรือรหัสผ่านไม่ถูกต้อง" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
+                  @elseif(Session::get('message') == 'NOT_LOGGED_IN')
+                    <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="คุณยังไม่ได้เข้าสู่ระบบ หรือการเข้าสู่ระบบหมดอายุ" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
                   @endif
                 @endif
             </legend>
 
             @if(Session::has('message'))
-              @if(Session::get('message') != 'INVALID_USERNAME_OR_PASSWORD')
+              @if(Session::get('message') != 'INVALID_USERNAME_OR_PASSWORD' and Session::get('message') != 'NOT_LOGGED_IN')
                 <div class="alert {{ Session::get('alert-class', 'alert-info') }}"><b>{{ Session::get('message') }}</b></div>
               @endif
             @endif
