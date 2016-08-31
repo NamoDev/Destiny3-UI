@@ -461,7 +461,7 @@ $("#create_account").click(function(e){
   console.log("[DBG/LOG] Total errors: " + hasErrors);
 
   if(hasErrors == 0){
-    //Init AJAX!
+    // Green across the board, and ready for action!
     $.ajax({
       url: '/api/v1/account/create',
       data: {
@@ -488,10 +488,13 @@ $("#create_account").click(function(e){
           var response = JSON.parse(request.responseText);
           switch(request.status){
               case 422:
-                  bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+                  bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+              break;
+              case 409:
+                bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> นักเรียนเคยทำการลงทะเบียนไปแล้ว โปรดเข้าสู่ระบบเพื่อแก้ไขข้อมูล");
               break;
               default:
-                  bootbox.alert("เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+                  bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
 
           }
       },
@@ -505,7 +508,7 @@ $("#create_account").click(function(e){
   }else{
     // NOPE.
     $('#plsWaitModal').modal('hide');
-    bootbox.alert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+    bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
   }
 
 })
