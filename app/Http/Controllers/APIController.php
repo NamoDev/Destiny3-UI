@@ -70,15 +70,15 @@ class APIController extends Controller{
 
       // See if the user has already registered?
       if($applicantObject->alreadyRegistered($request->input("citizenid"))){
-          // Already registered
+          // Already registered. Return conflict (409)!
           $errors[] = "already_registered";
+          return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "409");
       }
 
       // If there are errors, notify the frontend and stop right there.
       if(count($errors) != 0){
           // O NOES, THERE ARE ERRORS!
-          // TODO: This bugs out when we're returning things. Surely needs to be fixed.
-          return new Response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
+          return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
       }else{
           // A-OK. We can continue.
           if($request->customtitle == "1"){
@@ -193,6 +193,13 @@ class APIController extends Controller{
             return response(json_encode(["result" => "old_password_incorrect"]), 401);
         }
 
+
+    }
+
+    /*
+    | Modify basic applicant info (steps 0/1)
+    */
+    public function modifyBasicApplicantInfo(Request $request){
 
     }
 

@@ -194,7 +194,139 @@
     /* Form submit */
     $("#sendTheFormButton").click(function(e){
         e.preventDefault();
-        // TODO: Add submission mechanism!
+
+        // Wait for it...
+        $('#plsWaitModal').modal('show');
+
+        // We need to verify the data first, and then give the user error hints if necessary:
+        // But first, we'll need a variable to store error counts:
+        var hasErrors = 0;
+
+        // Check email
+        if(checkEmail($("#email").val())){
+          $("#emailGroup").removeClass("has-error");
+        }else{
+          $("#emailGroup").addClass("has-error");
+          hasErrors += 1;
+        }
+
+        // These fields CANNOT be left blank:
+        if($("#fname").val() != ""){
+          $("#fnameGroup").removeClass("has-error");
+        }else{
+          $("#fnameGroup").addClass("has-error");
+          hasErrors += 1;
+        }
+
+        if($("#lname").val() != ""){
+          $("#lnameGroup").removeClass("has-error");
+        }else{
+          $("#lnameGroup").addClass("has-error");
+          hasErrors += 1;
+        }
+
+        if($("#fname_en").val() != ""){
+          $("#fname_enGroup").removeClass("has-error");
+        }else{
+          $("#fname_enGroup").addClass("has-error");
+          hasErrors += 1;
+        }
+
+        if($("#lname_en").val() != ""){
+          $("#lname_enGroup").removeClass("has-error");
+        }else{
+          $("#lname_enGroup").addClass("has-error");
+          hasErrors += 1;
+        }
+
+        if($("#phone").val() != ""){
+          $("#phoneGroup").removeClass("has-error");
+        }else{
+          $("#phoneGroup").addClass("has-error");
+          hasErrors += 1;
+        }
+
+        // IF we're using custom titles:
+        if(usingCustomTitle == 1){
+          if($("#customtitle").val() != ""){
+            $("#customtitleGroup").removeClass("has-error");
+          }else{
+            $("#customtitleGroup").addClass("has-error");
+            hasErrors += 1;
+          }
+          if($("#customtitle_en").val() != ""){
+            $("#customtitle_enGroup").removeClass("has-error");
+          }else{
+            $("#customtitle_enGroup").addClass("has-error");
+            hasErrors += 1;
+          }
+
+          // Prep gender data
+          var titleToSend = $("#customtitle").val();
+          var titleToSend_en = $("#customtitle_en").val();
+          var genderToSend = $("#customGender").val();
+
+      }else{
+          // Prep gender data
+          var genderToSend;
+          var titleToSend = $("#title").val();
+          var titleToSend_en =  $("#title").val();
+          switch(parseInt($("#title").val())){
+              case 0:
+                genderToSend = 0;
+              break;
+              case 1:
+                genderToSend = 1;
+              break;
+              case 2:
+                genderToSend = 0;
+              break;
+              case 3:
+                genderToSend = 1;
+              break;
+              default:
+                genderToSend = 0;
+          }
+      }
+
+      // Ah, finally we've completed all checks. Now, are there any errors?
+
+      console.log("[DBG/LOG] Total errors: " + hasErrors);
+
+      if(hasErrors == 0){
+        // Green across the board, and ready for action!
+        $.ajax({
+          url: '/api/v1/applicant/data',
+          data: {
+             _token: csrfToken
+          },
+          error: function (request, status, error) {
+              $('#plsWaitModal').modal('hide');
+              var response = JSON.parse(request.responseText);
+              switch(request.status){
+                  case 422:
+                      bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+                  break;
+                  default:
+                      bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+
+              }
+          },
+          dataType: 'json',
+          success: function(data) {
+            console.log("AJAX complete");
+            window.location.replace("/");
+          },
+          type: 'POST'
+       });
+      }else{
+        // NOPE.
+        $('#plsWaitModal').modal('hide');
+        bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+      }
+
+
+
     });
 
     /* Custom Titles */
