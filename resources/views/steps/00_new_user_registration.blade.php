@@ -431,18 +431,36 @@ $("#create_account").click(function(e){
     }
   }
 
-  console.log("Total errors: " + hasErrors);
+  // Prepare gender data
+  if(usingCustomTitle == 1){
+    var titleToSend = $("#customtitle").val();
+    var titleToSend_en = $("#customtitle_en").val();
+    var genderToSend = $("#customGender").val();
+  }else{
+    var genderToSend;
+    var titleToSend = $("#title").val();
+    var titleToSend_en =  $("#title").val();
+    switch(parseInt($("#title").val())){
+        case 0:
+          genderToSend = 0;
+        break;
+        case 1:
+          genderToSend = 1;
+        break;
+        case 2:
+          genderToSend = 0;
+        break;
+        case 3:
+          genderToSend = 1;
+        break;
+        default:
+          genderToSend = 0;
+    }
+  }
+
+  console.log("[DBG/LOG] Total errors: " + hasErrors);
 
   if(hasErrors == 0){
-    // Ready to go. Do preps:
-    if(usingCustomTitle == 1){
-      var titleToSend = $("#customtitle").val();
-      var titleToSend_en = $("#customtitle_en").val();
-    }else{
-      var titleToSend = $("#title").val();
-      var titleToSend_en =  $("#title").val();
-    }
-
     //Init AJAX!
     $.ajax({
       url: '/api/v1/account/create',
@@ -455,7 +473,7 @@ $("#create_account").click(function(e){
          title_en: titleToSend_en,
          fname_en: $("#fname_en").val(),
          lname_en: $("#lname_en").val(),
-         custom_gender: $("#customGender").val(),
+         gender: genderToSend,
          citizenid: $("#citizenid").val(),
          birthdate: $("#birthdate").val(),
          birthmonth: $("#birthmonth").val(),
