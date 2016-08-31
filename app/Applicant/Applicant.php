@@ -57,9 +57,11 @@ class Applicant{
               'gender' => $gender,
               'email' => $email,
               'phone' => $phone,
-              'birthday' => $birthday,
-              'birthmonth' => $birthmonth,
-              'birthyear' => $birthyear,
+              'birthdate' => [
+                  "day" => $birthday,
+                  "month" => $birthmonth,
+                  "year" => $birthyear
+              ],
               'password' => Hash::make($password),
               'steps_completed' => [1],
             ]);
