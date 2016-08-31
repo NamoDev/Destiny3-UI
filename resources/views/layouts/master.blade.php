@@ -61,7 +61,7 @@
                               try{
                                   print_r($applicantData);
                               }catch(\Throwable $stuff){
-                                  echo("User data cannot be dumped right now");
+                                  echo("User data not loaded on this page");
                               }
                                ?>
                           </pre>

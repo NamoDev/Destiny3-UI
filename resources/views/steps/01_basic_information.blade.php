@@ -105,25 +105,42 @@
           <?php
           $date = 1;
           while($date <= 31){
-            echo("<option value=\"$date\">$date</option>");
+              if($date == $applicantData['birthdate']['day']){
+                  echo("<option value=\"$date\" selected>$date</option>");
+              }else{
+                  echo("<option value=\"$date\">$date</option>");
+              }
             $date++;
           }
            ?>
         </select>
         <!-- == --> &nbsp;&nbsp;&nbsp; <!-- == -->
         <select id="birthmonth" name="birthmonth" class="form-control select select-primary select-block mbl">
-          <option value="1">มกราคม</option>
-          <option value="2">กุมภาพันธ์</option>
-          <option value="3">มีนาคม</option>
-          <option value="4">เมษายน</option>
-          <option value="5">พฤษภาคม</option>
-          <option value="6">มิถุนายน</option>
-          <option value="7">กรกฎาคม</option>
-          <option value="8">สิงหาคม</option>
-          <option value="9">กันยายน</option>
-          <option value="10">ตุลาคม</option>
-          <option value="11">พฤศจิกายน</option>
-          <option value="12">ธันวาคม</option>
+        <?php
+        $months = [
+            1 => "มกราคม",
+            2 => "กุมภาพันธ์",
+            3 => "มีนาคม",
+            4 => "เมษายน",
+            5 => "พฤษภาคม",
+            6 => "มิถุนายน",
+            7 => "กรกฎาคม",
+            8 => "สิงหาคม",
+            9 => "กันยายน",
+            10 => "ตุลาคม",
+            11 => "พฤศจิกายน",
+            12 => "ธันวาคม"
+        ];
+
+        foreach($months as $month_id => $month_name){
+            if($month_id == $applicantData['birthdate']['month']){
+                echo("<option value=\"$month_id\" selected>$month_name</option>");
+            }else{
+                echo("<option value=\"$month_id\">$month_name</option>");
+            }
+        }
+
+         ?>
         </select>
         <!-- == --> &nbsp;&nbsp;&nbsp; <!-- == -->
         <select id="birthyear" name="birthyear" class="form-control select select-primary select-block mbl">
@@ -131,7 +148,11 @@
           $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
           $threshold = 30;
           while($threshold >= 0){
-            echo("<option value=\"$year\">$year</option>");
+             if($year == $applicantData['birthdate']['year']){
+                 echo("<option value=\"$year\" selected>$year</option>");
+             }else{
+                echo("<option value=\"$year\">$year</option>");
+             }
             $year -= 1;
             $threshold -= 1;
           }
@@ -155,6 +176,13 @@
   </div>
 </div>
 <!-- == -->
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-6 col-md-4 col-md-offset-8">
+        <br />
+        <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
+    </div>
+</div>
+<!-- == -->
 @endsection
 @section('additional_scripts')
 <script>
@@ -162,10 +190,17 @@
         $("select").select2({dropdownCssClass: 'dropdown-inverse'});
         $("#title").change();
     });
+
+    /* Form submit */
+    $("#sendTheFormButton").click(function(e){
+        e.preventDefault();
+        // TODO: Add submission mechanism!
+    });
+
     /* Custom Titles */
     $("#title").change(function(){
       checkCustomTitleSelection();
-    })
+    });
 
     /* Live email validation */
     $("#email").keyup(function(){
