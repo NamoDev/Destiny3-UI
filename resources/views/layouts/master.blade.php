@@ -52,9 +52,11 @@
                     @yield('content')
                   </div>
 
+                  @if(Config::get('app.debug') === true)
+                  {{-- Debug box (a.k.a. "Angela") that only appears if debug mode is enabled --}}
                   <br />
                   <div class="flat-well">
-                      <h5><i class="fa fa-cubes"></i> Applicant Data Dump<i class="text-muted pull-right">Debug Mode</i></h5>
+                      <h5><i class="fa fa-cubes"></i> Debug Mode<i class="text-muted pull-right">Applicant data dump</i></h5>
                       <div>
                           <pre>
                               <?php
@@ -67,6 +69,7 @@
                           </pre>
                       </div>
                   </div>
+                  @endif
 
                 </div>
             </div>
