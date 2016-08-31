@@ -17,6 +17,7 @@ use Log;
 use DB;
 use Session;
 use Hash;
+use Response;
 
 class APIController extends Controller{
 
@@ -33,36 +34,37 @@ class APIController extends Controller{
         // Store errors, we'll send the client these:
         $errors = [];
 
-      // Validate incoming data:
-      $this->validate($request, [
-        'customtitle' => 'required',
-        'title' => 'required',
-        'fname' => 'required',
-        'lname' => 'required',
-        'title_en' => 'required',
-        'fname_en' => 'required',
-        'lname_en' => 'required',
-        'citizenid' => 'required',
-        'birthdate' => 'required',
-        'birthmonth' => 'required',
-        'birthyear' => 'required',
-        'email' => 'required',
-        'phone' => 'required',
-        'password' => 'required',
-        'password_confirm' => 'required',
-      ]);
+        // Validate incoming data:
+        $this->validate($request, [
+            'customtitle' => 'required',
+            'title' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
+            'title_en' => 'required',
+            'fname_en' => 'required',
+            'lname_en' => 'required',
+            'gender' => 'required',
+            'citizenid' => 'required',
+            'birthdate' => 'required',
+            'birthmonth' => 'required',
+            'birthyear' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+            'password_confirm' => 'required',
+         ]);
 
-      // Double check password
-      if($request->input("password") != $request->input("password_confirm")){
-        // Password doesn't match
-        $errors[] = "password";
-      }
+         // Double check password
+         if($request->input("password") != $request->input("password_confirm")){
+             // Password doesn't match
+             $errors[] = "password";
+         }
 
-      // Validate citizen ID
-      if(!$this->verifyNationalID($request->input("citizenid"))){
-          // Citizen ID error
-          $errors[] = "citizenid";
-      }
+         // Validate citizen ID
+         if(!$this->verifyNationalID($request->input("citizenid"))){
+             // Citizen ID error
+             $errors[] = "citizenid";
+         }
 
       // Validate emails
 
@@ -75,12 +77,13 @@ class APIController extends Controller{
       // If there are errors, notify the frontend and stop right there.
       if(count($errors) != 0){
           // O NOES, THERE ARE ERRORS!
+          // TODO: This bugs out when we're returning things. Surely needs to be fixed.
           return new Response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
       }else{
           // A-OK. We can continue.
-          if($request->customTitle == "1"){
+          if($request->customtitle == "1"){
             // Custom gender
-            $genderToUse = $request->custom_gender;
+            $genderToUse = $request->gender;
           }else{
             // Figure out gender
             switch($request->title){
@@ -98,7 +101,7 @@ class APIController extends Controller{
                 $genderToUse = 1;
               break;
               default:
-                throw new \Exception("Unknown gender");
+                throw new \Exception("What the gender?");
             }
           }
 
