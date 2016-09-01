@@ -40,7 +40,7 @@
       </select>
     </div>
     <div id="customtitleGroup" style="display:none;">
-      <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" value="{{ $applicantData['title'] }}" class="form-control" />
+      <input id="customtitle" name="customtitle" type="text" placeholder="คำนำหน้าชื่อ" value="@if(!is_numeric($applicantData['title'])){{ $applicantData['title'] }}@endif" class="form-control" />
       <span class="small text-muted"><a href="#" id="cancelCustomTitleSelection"><i class="fa fa-times"></i> กลับไปเลือกคำนำหน้าชื่อปกติ</a></span>
     </div>
   </div>
@@ -58,7 +58,7 @@
   <div class="col-md-3 col-xs-4">
     <div id="customtitle_enGroup" style="display:none;">
       <span class="help-block">คำนำหน้าชื่อ (ภาษาอังกฤษ)</span>
-      <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" value="{{ $applicantData['title_en'] }}" class="form-control" />
+      <input id="customtitle_en" name="customtitle_en" type="text" placeholder="Title" value="@if(!is_numeric($applicantData['title'])){{ $applicantData['title_en'] }}@endif" class="form-control" />
     </div>
   </div>
   <div class="col-md-4 col-xs-8" id="fname_enGroup">
