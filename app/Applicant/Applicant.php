@@ -131,6 +131,20 @@ class Applicant{
     }
 
     /*
+    | reloadSessionData
+    | refreshes all session data (except Citizen ID).
+    */
+    public function reloadSessionData(){
+
+        // Reload data from DB:
+        $userData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
+        Session::put("applicant_full_name", $userData['fname'] . " " . $userData['lname']);
+
+        return true;
+
+    }
+
+    /*
     | isLoggedIn
     | Is the user logged in or not?
     | No variables required.
