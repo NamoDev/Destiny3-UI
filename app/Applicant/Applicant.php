@@ -70,6 +70,26 @@ class Applicant{
     }
 
     /*
+    | modify
+    | Applicant data updater (a.k.a. 'The Modifier')
+    | takes Citizen ID & array of 'things' to be modified.
+    */
+    public function modify(string $citizenid, array $things){
+        if($this->exists($citizenid)){
+
+            // Yep, our applicant exists. Do update:
+            DB::collection("applicants")->where("citizenid", $citizenid)->update($things);
+
+            // And we're done.
+            return true;
+
+        }else{
+            // NOPE. 404 NOT FOUND.
+            return false;
+        }
+    }
+
+    /*
     | login
     | Applicant login processor
     | Requires citizenid and password. It's that simple!
@@ -126,15 +146,25 @@ class Applicant{
     }
 
     /*
-    | alreadyRegistered
-    | Is the applicant already registered?
+    | exists
+    | Does the applicant exist?
     */
-    public function alreadyRegistered(string $citizenid){
+    public function exists(string $citizenid){
         if(DB::collection("applicants")->where("citizenid", $citizenid)->count() != 0){
             return true;
         }else{
             return false;
         }
+    }
+
+    /*
+    | alreadyRegistered
+    | Is the applicant already registered?
+    |
+    | Note: It's just a wrapper for 'exists', as we're migrating to the new function. This is in place for compatibility purposes.
+    */
+    public function alreadyRegistered(string $citizenid){
+        return $this->exists($citizenid);
     }
 
 
