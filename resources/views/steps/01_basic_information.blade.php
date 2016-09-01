@@ -176,9 +176,13 @@
   </div>
 </div>
 <!-- == -->
+<br />
+<!-- == -->
 <div class="row">
-    <div class="col-xs-6 col-xs-offset-6 col-md-4 col-md-offset-8">
-        <br />
+    <div class="col-xs-6 col-md-8">
+        <span id="formAlertMessage" style="display:none;"></span>
+    </div>
+    <div class="col-xs-6 col-md-4">
         <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
     </div>
 </div>
@@ -194,6 +198,9 @@
     /* Form submit */
     $("#sendTheFormButton").click(function(e){
         e.preventDefault();
+
+        // Clear any notifications if applicable;
+        clearNotifications();
 
         // Wait for it...
         $('#plsWaitModal').modal('show');
@@ -302,27 +309,26 @@
           },
           error: function (request, status, error) {
               $('#plsWaitModal').modal('hide');
-              var response = JSON.parse(request.responseText);
               switch(request.status){
                   case 422:
-                      bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+                      notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
                   break;
                   default:
-                      bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+                      console.log("Exception:" + request.responseText);
+                      notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
 
               }
           },
           dataType: 'json',
           success: function(data) {
-            console.log("AJAX complete");
-            window.location.replace("/");
+              notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
           },
           type: 'POST'
        });
       }else{
         // NOPE.
         $('#plsWaitModal').modal('hide');
-        bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
       }
 
 

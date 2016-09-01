@@ -46,8 +46,6 @@
                 </div>
                 <div class="col-md-9">
 
-
-
                   <div class="flat-well">
                     @yield('content')
                   </div>
@@ -104,6 +102,17 @@
             keyboard: false,
             show: false
           });
+
+          function notify(message, severity){
+              $("#formAlertMessage").html(message);
+              $("#formAlertMessage").addClass('text-' + severity);
+              $("#formAlertMessage").fadeIn(300);
+          }
+
+          function clearNotifications(){
+              $("#formAlertMessage").fadeOut(300);
+          }
+
         </script>
         @yield('additional_scripts')
     </body>
