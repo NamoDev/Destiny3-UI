@@ -45,20 +45,16 @@ class APIController extends Controller{
             'lname_en' => 'required',
             'gender' => 'required',
             'citizenid' => 'required',
-            'birthdate' => 'required',
-            'birthmonth' => 'required',
-            'birthyear' => 'required',
-            'email' => 'required',
+            'birthdate' => 'required|integer',
+            'birthmonth' => 'required|integer',
+            'birthyear' => 'required|integer',
+            'email' => 'required|email',
             'phone' => 'required',
-            'password' => 'required',
-            'password_confirm' => 'required',
+            'password' => 'required|same:password_confirm',
+            'password_confirm' => 'required|same:password',
          ]);
 
-         // Double check password
-         if($request->input("password") != $request->input("password_confirm")){
-             // Password doesn't match
-             $errors[] = "password";
-         }
+         // TODO: Make Citizen ID verification a part of the validator itself
 
          // Validate citizen ID
          if(!$this->verifyNationalID($request->input("citizenid"))){
@@ -66,7 +62,6 @@ class APIController extends Controller{
              $errors[] = "citizenid";
          }
 
-      // Validate emails
 
       // See if the user has already registered?
       if($applicantObject->alreadyRegistered($request->input("citizenid"))){
@@ -80,30 +75,10 @@ class APIController extends Controller{
           // O NOES, THERE ARE ERRORS!
           return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
       }else{
+
           // A-OK. We can continue.
-          if($request->customtitle == "1"){
-            // Custom gender
-            $genderToUse = $request->gender;
-          }else{
-            // Figure out gender
-            switch($request->title){
-              // 0,2 is male - 1,3 is female - 4 is undefined
-              case 0:
-                $genderToUse = 0;
-              break;
-              case 1:
-                $genderToUse = 1;
-              break;
-              case 2:
-                $genderToUse = 0;
-              break;
-              case 3:
-                $genderToUse = 1;
-              break;
-              default:
-                throw new \Exception("What the gender?");
-            }
-          }
+          // Format gender data
+          $genderToUse = $this->formatGender($request->customtitle, $request->title, $request->gender);
 
           // Create user and login!
           $applicantObject->create(
@@ -199,8 +174,92 @@ class APIController extends Controller{
     /*
     | Modify basic applicant info (steps 0/1)
     */
-    public function modifyBasicApplicantInfo(Request $request){
+    public function updateApplicantData(Request $request){
 
+        // Get applicant object & current applicant's Citizen ID:
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
+
+        // Validate incoming data
+        $this->validate($request, [
+            'customtitle' => 'required',
+            'title' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
+            'title_en' => 'required',
+            'fname_en' => 'required',
+            'lname_en' => 'required',
+            'gender' => 'required',
+            'birthdate' => 'required|integer',
+            'birthmonth' => 'required|integer',
+            'birthyear' => 'required|integer',
+            'email' => 'required|email',
+            'phone' => 'required'
+         ]);
+
+         // Format gender data
+         $genderToUse = $this->formatGender($request->customtitle, $request->title, $request->gender);
+
+         // Prepare our 'to-be-modified' array:
+         $modifyThis = [
+             'title' => $request->input("title"),
+             'fname' => $request->input("fname"),
+             'lname' => $request->input("lname"),
+             'title_en' => $request->input("title_en"),
+             'fname_en' => $request->input("fname_en"),
+             'lname_en' => $request->input("lname_en"),
+             'gender' => $request->input("gender"),
+             'email' => $request->input("email"),
+             'phone' => $request->input("phone"),
+             'birthdate' => [
+                 "day" => $request->input("birthdate"),
+                 "month" => $request->input("birthmonth"),
+                 "year" => $request->input("birthyear")
+             ]
+         ];
+
+        // Modify the applicant
+        if($applicant->modify($applicantCitizenID, $modifyThis)){
+
+            // Modification went well. Let's reload the session data in case the applicant changes his/her name:
+            $applicant->reloadSessionData();
+
+            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+        }else{
+            // error!
+            // TODO: return RESTResponse maybe?
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+        }
+
+    }
+
+    /*
+    | Gender formatter
+    */
+    public function formatGender(int $usingCustomTitle, string $title, string $gender){
+        if($usingCustomTitle === 1){
+          // Custom gender
+          return $gender;
+        }else{
+          // Figure out gender
+          switch($title){
+            // 0,2 is male - 1,3 is female - 4 shouldn't really be defined:
+            case 0:
+              return 0;
+            break;
+            case 1:
+              return 1;
+            break;
+            case 2:
+              return 0;
+            break;
+            case 3:
+              return 1;
+            break;
+            default:
+              throw new \Exception("What the gender?");
+          }
+        }
     }
 
     /*

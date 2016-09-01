@@ -64,10 +64,10 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     // TODO: Add API authentication middlewares for API routes below:
 
     // Get applicant data. Simple!
-    Route::get('applicant/data', 'Blah@Blah')->middleware('apiauth');
+    Route::get('applicant/data', 'APIController@getApplicantData')->middleware('apiauth');
 
     // Partial data submission. Probably would get JSON of everything and process accordingly.
-    Route::post('applicant/data', 'Blah@Blah')->middleware('apiauth');
+    Route::post('applicant/data', 'APIController@updateApplicantData')->middleware('apiauth');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');

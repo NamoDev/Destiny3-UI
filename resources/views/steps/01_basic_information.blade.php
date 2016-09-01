@@ -305,7 +305,20 @@
         $.ajax({
           url: '/api/v1/applicant/data',
           data: {
-             _token: csrfToken
+             _token: csrfToken,
+             customtitle: usingCustomTitle,
+             title: titleToSend,
+             fname: $("#fname").val(),
+             lname: $("#lname").val(),
+             title_en: titleToSend_en,
+             fname_en: $("#fname_en").val(),
+             lname_en: $("#lname_en").val(),
+             gender: genderToSend,
+             birthdate: $("#birthdate").val(),
+             birthmonth: $("#birthmonth").val(),
+             birthyear: $("#birthyear").val(),
+             email: $("#email").val(),
+             phone: $("#phone").val(),
           },
           error: function (request, status, error) {
               $('#plsWaitModal').modal('hide');
@@ -314,13 +327,13 @@
                       notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
                   break;
                   default:
-                      console.log("Exception:" + request.responseText);
+                      console.log("(" + request.status + ") Exception:" + request.responseText);
                       notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
-
               }
           },
           dataType: 'json',
           success: function(data) {
+              $('#plsWaitModal').modal('hide');
               notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
           },
           type: 'POST'
