@@ -94,6 +94,7 @@
 
         <script src="/assets/js/jquery.js"></script>
         <script src="/assets/js/destinyui3.js"></script>
+        <script src="/assets/js/jsCheckers.js"></script>
         <script src="/assets/js/bootbox.min.js"></script>
         <script>
           var csrfToken = "<?php echo csrf_token(); ?>";
