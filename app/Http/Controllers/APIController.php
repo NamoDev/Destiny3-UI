@@ -64,7 +64,7 @@ class APIController extends Controller{
 
 
       // See if the user has already registered?
-      if($applicantObject->alreadyRegistered($request->input("citizenid"))){
+      if($applicantObject->exists($request->input("citizenid"))){
           // Already registered. Return conflict (409)!
           $errors[] = "already_registered";
           return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "409");
@@ -167,7 +167,6 @@ class APIController extends Controller{
             // Old password incorrect
             return response(json_encode(["result" => "old_password_incorrect"]), 401);
         }
-
 
     }
 
@@ -301,6 +300,13 @@ class APIController extends Controller{
             return false;
         }
 
+    }
+
+    /*
+    | This is nothing. IT DOES NOT EXIST.
+    */
+    public static function ganymede(){
+        return response()->view("errors.e54", [], 418);
     }
 
 }
