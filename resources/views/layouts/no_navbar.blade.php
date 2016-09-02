@@ -23,6 +23,7 @@
 
         <script src="/assets/js/jquery.js"></script>
         <script src="/assets/js/bootstrap.js"></script>
+        <script src="/assets/js/jsCheckers.js"></script>
         <script src="/assets/js/destinyui3.js"></script>
         <script>
           var csrfToken = "{{ csrf_token() }}";
