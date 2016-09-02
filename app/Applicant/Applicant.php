@@ -171,15 +171,5 @@ class Applicant{
         }
     }
 
-    /*
-    | alreadyRegistered
-    | Is the applicant already registered?
-    |
-    | Note: It's just a wrapper for 'exists', as we're migrating to the new function. This is in place for compatibility purposes.
-    */
-    public function alreadyRegistered(string $citizenid){
-        return $this->exists($citizenid);
-    }
-
 
 }
