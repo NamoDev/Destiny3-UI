@@ -46,6 +46,9 @@ Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
     // Change password
     Route::get('change_password', 'UIPages@changePasswordPage')->middleware('auth');
 
+    // Easter egg route. *DO NOT* ADD AUTH MIDDLEWARE!
+    Route::any('sst/VFVEVF84MA==', 'APIController@ganymede');
+
 });
 
 /*
@@ -74,5 +77,6 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
 
     // Password change handler
     Route::post('account/change_password', 'APIController@changePassword')->middleware('apiauth');
+
 
 });

@@ -40,4 +40,21 @@ class Helper extends Controller{
 
     }
 
+    public static function voiceLines(){
+        $index = rand(0,4);
+        $lines = [
+            "*Beep boop*",
+            "Houston, we have a problem.",
+            "Oh, let's break it down!",
+            "Just in time.",
+            "Aw, rubbish!"
+        ];
+
+        try{
+            return $lines[$index];
+        }catch(\Throwable $wait_what){
+            return $lines[0];
+        }
+    }
+
 }
