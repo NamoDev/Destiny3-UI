@@ -15,7 +15,7 @@ use Config;
 
 class Bailey{
 
-    
+
 
     /**
      * doAPIrequest
@@ -49,11 +49,11 @@ class Bailey{
         $result = curl_exec($ch);
         $returnHttpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 
-        // Is result forbiden or unauthorized?
-        if($returnHttpCode == 401 || $returnHttpCode == 403){
-            return false;
-        }else{
+        // Is result ok or created?
+        if($returnHttpCode == 200 || $returnHttpCode == 201){
             return $result;
+        }else{
+            return false;
         }
 
     }
