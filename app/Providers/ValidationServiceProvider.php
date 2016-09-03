@@ -94,7 +94,7 @@ class ValidationServiceProvider extends ServiceProvider
             return true;
         });
 
-        Validator::extends('citizen_id', function($attribute, $value, $parameters, $validator){
+        Validator::extend('citizen_id', function($attribute, $value, $parameters, $validator){
             if(strlen($citizen_id) == 13){ // First check the length
 
                 $natid = str_split($citizen_id); // And split that into array
