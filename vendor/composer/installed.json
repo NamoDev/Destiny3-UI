@@ -3334,5 +3334,48 @@
             "mongo",
             "mongodb"
         ]
+    },
+    {
+        "name": "namodev/larann",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/NamoDev/LaraNN.git",
+            "reference": "7887bf67d15d918ea03184681022a57302aed577"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/NamoDev/LaraNN/zipball/7887bf67d15d918ea03184681022a57302aed577",
+            "reference": "7887bf67d15d918ea03184681022a57302aed577",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "^5.0",
+            "php": ">=5.5.0"
+        },
+        "time": "2016-09-12 06:47:39",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "NamoDev\\LaraNN\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Namo",
+                "email": "namo@namodev.com"
+            }
+        ],
+        "description": "Use neural networks in your Laravel application!",
+        "homepage": "https://github.com/NamoDev/LaraNN",
+        "keywords": [
+            "Neural network"
+        ]
     }
 ]
