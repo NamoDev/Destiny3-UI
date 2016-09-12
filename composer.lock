@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d2ada15ce5b05ee908d33997bdf910bc",
-    "content-hash": "dc8eebe6bf664e6cb66c04a39feacdf5",
+    "hash": "04b7f24bc6b8596c9e294dcbef619fbe",
+    "content-hash": "e9ac647c8ba2610c61f29fcd8cf122a3",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -865,6 +865,47 @@
                 "schedule"
             ],
             "time": "2016-01-26 21:23:30"
+        },
+        {
+            "name": "namodev/larann",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NamoDev/LaraNN.git",
+                "reference": "7887bf67d15d918ea03184681022a57302aed577"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NamoDev/LaraNN/zipball/7887bf67d15d918ea03184681022a57302aed577",
+                "reference": "7887bf67d15d918ea03184681022a57302aed577",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.0",
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NamoDev\\LaraNN\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Namo",
+                    "email": "namo@namodev.com"
+                }
+            ],
+            "description": "Use neural networks in your Laravel application!",
+            "homepage": "https://github.com/NamoDev/LaraNN",
+            "keywords": [
+                "Neural network"
+            ],
+            "time": "2016-09-12 06:47:39"
         },
         {
             "name": "nesbot/carbon",
@@ -3233,8 +3274,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "namodev/larann": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

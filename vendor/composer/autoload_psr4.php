@@ -26,6 +26,7 @@ return array(
     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Psy\\' => array($vendorDir . '/psy/psysh/src/Psy'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'NamoDev\\LaraNN\\' => array($vendorDir . '/namodev/larann/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'MongoDB\\' => array($vendorDir . '/mongodb/mongodb/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
