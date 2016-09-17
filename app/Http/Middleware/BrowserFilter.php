@@ -7,7 +7,7 @@ use Redirect;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Response;
 
-class MustNotBeIE{
+class BrowserFilter{
 
     /**
      * Agent instance
@@ -36,6 +36,20 @@ class MustNotBeIE{
     public function handle($request, Closure $next){
         if($this->agent->browser() == 'IE'){
             return new Response(view('errors.unsupported_browser'));
+        }else{
+            $browser = $this->agent->browser();
+            $version = $this->agent->version($browser);
+            $version = explode('.', $version);
+
+            if($browser == 'Chrome'){
+                if($version[0] < 38){
+                    return response()->view('unsupported_browser');
+                }
+            }else if($browser == 'Firefox'){
+                if($version[0] < 33){
+                    return response()->view('unsupported_browser');
+                }
+            }
         }
 
         return $next($request);

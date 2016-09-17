@@ -52,6 +52,10 @@ class UIPages extends Controller{
         return response()->view('faq');
     }
 
+    public function unsupportedBrowser(){
+        return response()->view('unsupported_browser');
+    }
+
     // Step 01: Applicant's basic information
     public function step1_basicInfo(){
         $applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
