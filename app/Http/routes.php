@@ -13,41 +13,31 @@
 
 
 /*
-| Public accessible routes
-| TODO: Modify IE middleware to also disallow old Chromes and Firefoxes as well - they can also cause issues.
+Publicly accessible routes (a.k.a. Root Routes)
+NOTE: For some weird reason, putting these routes in a group results in session flash not working. Further experimentation required.
 */
-Route::get('/', 'UIPages@homePage');
-
-// Login & logout
-Route::post('login', 'UserController@login');
-Route::get('logout', 'UserController@logout');
-
-// About page
-Route::get('about', 'UIPages@aboutPage');
-
-// Frequently asked questions page
-Route::get('faq', 'UIPages@faqPage');
+Route::get('/', 'UIPages@homePage'); // DAT HOMEPAGE
+Route::post('login', 'UserController@login'); // Login request handler
+Route::get('logout', 'UserController@logout'); // Logout request handler
+Route::get('about', 'UIPages@aboutPage'); // About application
+Route::get('faq', 'UIPages@faqPage'); // FAQ
+Route::get('application/begin', 'UIPages@newUserRegistrationPage'); // New account creation
+Route::any('application/sst/VFVEVF84MA==', 'UserController@ganymede'); // Easter egg route. DON'T TOUCH!
 
 /*
-| Front-end pages for the applicant. All of these requires login.
-| TODO: Add login verification middleware
+Front-end pages for logged in applicants
 */
-Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
+Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth']], function(){
 
-    // First step application page (account creation)
-    Route::get('begin', 'UIPages@newUserRegistrationPage');
-
-    // Dashboard
-    Route::get('home', 'UIPages@applicantDashboard')->middleware('auth');
-
-    // Basic information page
-    Route::get('info', 'UIPages@step1_basicInfo')->middleware('auth');
-
-    // Change password
-    Route::get('change_password', 'UIPages@changePasswordPage')->middleware('auth');
-
-    // Easter egg route. *DO NOT* ADD AUTH MIDDLEWARE!
-    Route::any('sst/VFVEVF84MA==', 'UserController@ganymede');
+    Route::get('home', 'UIPages@applicantDashboard'); // Dashboard
+    Route::get('info', 'UIPages@step1_basicInfo'); // Step 1 : basic information
+    Route::get('parent', 'UIPages@step2_parentInfo'); // Step 2 : parent information
+    Route::get('address', 'UIPages@step3_address'); // Step 3 : address
+    Route::get('education', 'UIPages@step4_educationHistory'); // Step 4 : education history
+    Route::get('plan', 'UIPages@step5_planSelection'); // Step 5 : basic information
+    Route::get('day', 'UIPages@step6_applicationDaySelection'); // Step 6 : basic information
+    Route::get('documents', 'UIPages@step7_uploadDocuments'); // Step 7 : upload documents
+    Route::get('change_password', 'UIPages@changePasswordPage'); // Change password
 
 });
 
