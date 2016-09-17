@@ -106,6 +106,7 @@
 
           function notify(message, severity){
               $("#formAlertMessage").html(message);
+              $("#formAlertMessage").removeClass();
               $("#formAlertMessage").addClass('text-' + severity);
               $("#formAlertMessage").fadeIn(300);
           }
