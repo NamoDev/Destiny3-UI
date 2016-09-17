@@ -72,7 +72,7 @@
         </div>
     </div>
 </div>
-<hr />
+<br />
 <div class="row">
     <div class="col-xs-12">
         <span class="help-block">นักเรียนอาศัยอยู่กับ</span>
@@ -119,6 +119,15 @@
         <br />
     </div>
 </div>
+<br />
+<div class="row">
+    <div class="col-xs-6 col-md-8">
+        <span id="formAlertMessage" style="display:none;"></span>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
+    </div>
+</div>
 
 @endsection
 
@@ -133,6 +142,8 @@ $(function(){
         if($("#father_dead").is(":checked")){
             $("#father_occupation").prop("disabled", true);
             $("#father_phone").prop("disabled", true);
+            $("#father_occupation").val('');
+            $("#father_phone").val('');
         }else{
             $("#father_occupation").prop("disabled", false);
             $("#father_phone").prop("disabled", false);
@@ -142,6 +153,8 @@ $(function(){
         if($("#mother_dead").is(":checked")){
             $("#mother_occupation").prop("disabled", true);
             $("#mother_phone").prop("disabled", true);
+            $("#mother_occupation").val('');
+            $("#mother_phone").val('');
         }else{
             $("#mother_occupation").prop("disabled", false);
             $("#mother_phone").prop("disabled", false);
