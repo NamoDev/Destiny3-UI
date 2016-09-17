@@ -7,7 +7,7 @@ use Redirect;
 use Jenssegers\Agent\Agent;
 use Illuminate\Http\Response;
 
-class MustNotBeIE{
+class BrowserFilter{
 
     /**
      * Agent instance
