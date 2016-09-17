@@ -191,7 +191,6 @@
 @section('additional_scripts')
 <script>
     $(function(){
-        $("select").select2({dropdownCssClass: 'dropdown-inverse'});
         $("#title").change();
     });
 

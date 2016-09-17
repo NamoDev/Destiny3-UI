@@ -104,6 +104,11 @@
             show: false
           });
 
+          $(function(){
+              $(':checkbox').radiocheck();
+              $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+          })
+
           function notify(message, severity){
               $("#formAlertMessage").html(message);
               $("#formAlertMessage").removeClass();
