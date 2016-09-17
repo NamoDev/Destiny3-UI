@@ -19,7 +19,7 @@ use Session;
 use Hash;
 use Response;
 
-class APIController extends Controller{
+class UserController extends Controller{
 
     // TODO: Better comments & standardized method commenting!
 

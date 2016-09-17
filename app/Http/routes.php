@@ -19,8 +19,8 @@
 Route::get('/', 'UIPages@homePage');
 
 // Login & logout
-Route::post('login', 'APIController@login');
-Route::get('logout', 'APIController@logout');
+Route::post('login', 'UserController@login');
+Route::get('logout', 'UserController@logout');
 
 // About page
 Route::get('about', 'UIPages@aboutPage');
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'application', 'middleware' => ['web']], function(){
     Route::get('change_password', 'UIPages@changePasswordPage')->middleware('auth');
 
     // Easter egg route. *DO NOT* ADD AUTH MIDDLEWARE!
-    Route::any('sst/VFVEVF84MA==', 'APIController@ganymede');
+    Route::any('sst/VFVEVF84MA==', 'UserController@ganymede');
 
 });
 
@@ -62,21 +62,21 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     */
 
     // Account creation
-    Route::post('account/create', 'APIController@createAccount');
+    Route::post('account/create', 'UserController@createAccount');
 
     // TODO: Add API authentication middlewares for API routes below:
 
     // Get applicant data. Simple!
-    Route::get('applicant/data', 'APIController@getApplicantData')->middleware('apiauth');
+    Route::get('applicant/data', 'UserController@getApplicantData')->middleware('apiauth');
 
     // Partial data submission. Probably would get JSON of everything and process accordingly.
-    Route::post('applicant/data', 'APIController@updateApplicantData')->middleware('apiauth');
+    Route::post('applicant/data', 'UserController@updateApplicantData')->middleware('apiauth');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
 
     // Password change handler
-    Route::post('account/change_password', 'APIController@changePassword')->middleware('apiauth');
+    Route::post('account/change_password', 'UserController@changePassword')->middleware('apiauth');
 
 
 });
