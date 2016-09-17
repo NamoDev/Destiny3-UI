@@ -75,10 +75,11 @@
 <br />
 <div class="row">
     <div class="col-xs-12">
-        <span class="help-block">นักเรียนอาศัยอยู่กับ</span>
+        <span class="help-block">ผู้ปกครองของนักเรียน</span>
         <select id="stayingWith" name="stayingWith" class="form-control select select-primary select-block mbl">
-            <option value="1">บิดา / มารดา</option>
-            <option value="2">ผู้ปกครอง</option>
+            <option value="1">บิดา</option>
+            <option value="2">มารดา</option>
+            <option value="3">อื่นๆ</option>
         </select>
     </div>
 </div>
@@ -161,7 +162,7 @@ $(function(){
         }
     });
     $("#stayingWith").on('change',function(){
-        if($("#stayingWith").val() == 1){
+        if($("#stayingWith").val() == 1 || $("#stayingWith").val() == 2){
             $("#guardianInfoGroup").fadeOut(200);
         }else{
             $("#guardianInfoGroup").fadeIn(200);
