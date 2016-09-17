@@ -83,7 +83,6 @@
         </select>
     </div>
 </div>
-<br />
 <div class="row" id="guardianInfoGroup" style="display:none;">
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ผู้ปกครอง &nbsp;&nbsp;</p>
@@ -120,7 +119,6 @@
         <br />
     </div>
 </div>
-<br />
 <div class="row">
     <div class="col-xs-6 col-md-8">
         <span id="formAlertMessage" style="display:none;"></span>
