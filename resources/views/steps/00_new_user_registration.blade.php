@@ -464,7 +464,9 @@
             }
         }
 
-        console.log("[DBG/LOG] Total errors: " + hasErrors);
+        @if(Config::get('app.debug') === true)
+            console.log("[DBG/LOG] Total errors: " + hasErrors);
+        @endif
 
         if(hasErrors == 0){
             // Green across the board, and ready for action!
