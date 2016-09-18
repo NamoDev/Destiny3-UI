@@ -132,10 +132,14 @@
 
 @section('additional_scripts')
 <script>
+var fatherIsDead = 0;
+var motherIsDead = 0;
+
 $(function(){
     $("#father_dead").change();
     $("#mother_dead").change();
     $("#stayingWith").change();
+    checkDeadParents();
 
     $('#father_dead').on('change',function(){
         if($("#father_dead").is(":checked")){
@@ -143,10 +147,13 @@ $(function(){
             $("#father_phone").prop("disabled", true);
             $("#father_occupation").val('');
             $("#father_phone").val('');
+            fatherIsDead = 1;
         }else{
             $("#father_occupation").prop("disabled", false);
             $("#father_phone").prop("disabled", false);
+            fatherIsDead = 0;
         }
+        checkDeadParents();
     });
     $('#mother_dead').on('change',function(){
         if($("#mother_dead").is(":checked")){
@@ -154,10 +161,13 @@ $(function(){
             $("#mother_phone").prop("disabled", true);
             $("#mother_occupation").val('');
             $("#mother_phone").val('');
+            motherIsDead = 1;
         }else{
             $("#mother_occupation").prop("disabled", false);
             $("#mother_phone").prop("disabled", false);
+            motherIsDead = 0;
         }
+        checkDeadParents();
     });
     $("#stayingWith").on('change',function(){
         if($("#stayingWith").val() == 1 || $("#stayingWith").val() == 2){
@@ -166,6 +176,17 @@ $(function(){
             $("#guardianInfoGroup").fadeIn(200);
         }
     });
+
+
+    function checkDeadParents(){
+        if(motherIsDead == 1 && fatherIsDead == 1){
+            $("#stayingWith").val("3").trigger("change");
+            $("#stayingWith").prop("disabled", true);
+        }else{
+            $("#stayingWith").prop("disabled", false);
+        }
+    }
+
 });
 </script>
 @endsection
