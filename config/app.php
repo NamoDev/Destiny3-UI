@@ -148,6 +148,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
