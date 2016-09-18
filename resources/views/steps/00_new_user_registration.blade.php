@@ -174,349 +174,349 @@
 <script src="/assets/js/bootbox.min.js"></script>
 <script>
 
-var usingCustomTitle = 0;
-var customTitleErrors = 0;
+    var usingCustomTitle = 0;
+    var customTitleErrors = 0;
 
-$(function(){
-    $("select").select2({dropdownCssClass: 'dropdown-inverse'});
-    checkCustomTitleSelection();
+    $(function(){
+        $("select").select2({dropdownCssClass: 'dropdown-inverse'});
+        checkCustomTitleSelection();
 
-    $('#plsWaitModal').modal({
-        backdrop: 'static',
-        keyboard: false,
-        show: false
+        $('#plsWaitModal').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: false
+        });
+
+    })
+
+    /* Custom Titles */
+    $("#title").change(function(){
+        checkCustomTitleSelection();
+    })
+
+    /* Live email validation */
+    $("#email").keyup(function(){
+        if(checkEmail($("#email").val())){
+            $("#emailGroup").removeClass("has-warning");
+            $("#emailGroup > .help-block > .fa").remove();
+        }else{
+            $("#emailGroup").addClass("has-warning");
+            $("#emailGroup > .help-block > .fa").remove();
+            $("#emailGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
     });
 
-})
+    /* Validate Thai language name fields */
+    $("#customtitle").keyup(function(){
+        if(checkThai($("#customtitle").val())){
+            $("#customtitleGroup").removeClass("has-warning");
+            $("#customtitleGroup > .help-block > .fa").remove();
+        }else{
+            $("#customtitleGroup").addClass("has-warning");
+            $("#customtitleGroup > .help-block > .fa").remove();
+            $("#customtitleGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
+    $("#fname").keyup(function(){
+        if(checkThai($("#fname").val())){
+            $("#fnameGroup").removeClass("has-warning");
+            $("#fnameGroup > .help-block > .fa").remove();
+        }else{
+            $("#fnameGroup").addClass("has-warning");
+            $("#fnameGroup > .help-block > .fa").remove();
+            $("#fnameGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
+    $("#lname").keyup(function(){
+        if(checkThai($("#lname").val())){
+            $("#lnameGroup").removeClass("has-warning");
+            $("#lnameGroup > .help-block > .fa").remove();
+        }else{
+            $("#lnameGroup").addClass("has-warning");
+            $("#lnameGroup > .help-block > .fa").remove();
+            $("#lnameGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
 
-/* Custom Titles */
-$("#title").change(function(){
-    checkCustomTitleSelection();
-})
+    /* Validate English language name fields */
+    $("#customtitle_en").keyup(function(){
+        if(checkAlphanumeric($("#customtitle_en").val())){
+            $("#customtitle_enGroup").removeClass("has-warning");
+            $("#customtitle_enGroup > .help-block > .fa").remove();
+        }else{
+            $("#customtitle_enGroup").addClass("has-warning");
+            $("#customtitle_enGroup > .help-block > .fa").remove();
+            $("#customtitle_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
+    $("#fname_en").keyup(function(){
+        if(checkAlphanumeric($("#fname_en").val())){
+            $("#fname_enGroup").removeClass("has-warning");
+            $("#fname_enGroup > .help-block > .fa").remove();
+        }else{
+            $("#fname_enGroup").addClass("has-warning");
+            $("#fname_enGroup > .help-block > .fa").remove();
+            $("#fname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
+    $("#lname_en").keyup(function(){
+        if(checkAlphanumeric($("#lname_en").val())){
+            $("#lname_enGroup").removeClass("has-warning");
+            $("#lname_enGroup > .help-block > .fa").remove();
+        }else{
+            $("#lname_enGroup").addClass("has-warning");
+            $("#lname_enGroup > .help-block > .fa").remove();
+            $("#lname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
 
-/* Live email validation */
-$("#email").keyup(function(){
-    if(checkEmail($("#email").val())){
-        $("#emailGroup").removeClass("has-warning");
-        $("#emailGroup > .help-block > .fa").remove();
-    }else{
-        $("#emailGroup").addClass("has-warning");
-        $("#emailGroup > .help-block > .fa").remove();
-        $("#emailGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
+    /* Live password validation */
+    $("#password").keyup(function(){
+        checkPasswordFields();
+    });
+    $("#password_confirm").keyup(function(){
+        checkPasswordFields();
+    });
 
-/* Validate Thai language name fields */
-$("#customtitle").keyup(function(){
-    if(checkThai($("#customtitle").val())){
-        $("#customtitleGroup").removeClass("has-warning");
-        $("#customtitleGroup > .help-block > .fa").remove();
-    }else{
-        $("#customtitleGroup").addClass("has-warning");
-        $("#customtitleGroup > .help-block > .fa").remove();
-        $("#customtitleGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-$("#fname").keyup(function(){
-    if(checkThai($("#fname").val())){
-        $("#fnameGroup").removeClass("has-warning");
-        $("#fnameGroup > .help-block > .fa").remove();
-    }else{
-        $("#fnameGroup").addClass("has-warning");
-        $("#fnameGroup > .help-block > .fa").remove();
-        $("#fnameGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-$("#lname").keyup(function(){
-    if(checkThai($("#lname").val())){
-        $("#lnameGroup").removeClass("has-warning");
-        $("#lnameGroup > .help-block > .fa").remove();
-    }else{
-        $("#lnameGroup").addClass("has-warning");
-        $("#lnameGroup > .help-block > .fa").remove();
-        $("#lnameGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-
-/* Validate English language name fields */
-$("#customtitle_en").keyup(function(){
-    if(checkAlphanumeric($("#customtitle_en").val())){
-        $("#customtitle_enGroup").removeClass("has-warning");
-        $("#customtitle_enGroup > .help-block > .fa").remove();
-    }else{
-        $("#customtitle_enGroup").addClass("has-warning");
-        $("#customtitle_enGroup > .help-block > .fa").remove();
-        $("#customtitle_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-$("#fname_en").keyup(function(){
-    if(checkAlphanumeric($("#fname_en").val())){
-        $("#fname_enGroup").removeClass("has-warning");
-        $("#fname_enGroup > .help-block > .fa").remove();
-    }else{
-        $("#fname_enGroup").addClass("has-warning");
-        $("#fname_enGroup > .help-block > .fa").remove();
-        $("#fname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-$("#lname_en").keyup(function(){
-    if(checkAlphanumeric($("#lname_en").val())){
-        $("#lname_enGroup").removeClass("has-warning");
-        $("#lname_enGroup > .help-block > .fa").remove();
-    }else{
-        $("#lname_enGroup").addClass("has-warning");
-        $("#lname_enGroup > .help-block > .fa").remove();
-        $("#lname_enGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-
-/* Live password validation */
-$("#password").keyup(function(){
-    checkPasswordFields();
-});
-$("#password_confirm").keyup(function(){
-    checkPasswordFields();
-});
-
-function checkPasswordFields(){
-    var pswdInput = $("#password").val();
-    var pswdConfirmInput = $("#password_confirm").val();
-    if(pswdInput == pswdConfirmInput){
-        $("#passwordGroup").removeClass("has-warning");
-        $("#password_confirmGroup").removeClass("has-warning");
-        $("#passwordGroup > .help-block > .fa").remove();
-        $("#password_confirmGroup > .help-block > .fa").remove();
-    }else{
-        $("#passwordGroup").addClass("has-warning");
-        $("#password_confirmGroup").addClass("has-warning");
-        $("#passwordGroup > .help-block > .fa").remove();
-        $("#password_confirmGroup > .help-block > .fa").remove();
-        $("#passwordGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-        $("#password_confirmGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-}
-
-/* Live citizenID validation */
-$("#citizenid").keyup(function(){
-    if(checkCitizenID($("#citizenid").val())){
-        $("#citizenidGroup").removeClass("has-warning");
-        $("#citizenidGroup > .help-block > .fa").remove();
-        $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }else{
-        $("#citizenidGroup").addClass("has-warning");
-        $("#citizenidGroup > .help-block > .fa").remove();
-        $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
-    }
-});
-
-/* Cancellation of custom title */
-$("#cancelCustomTitleSelection").click(function(e){
-    e.preventDefault();
-    $("#title").val("0");
-    $("#title").change();
-});
-
-function checkCustomTitleSelection(){
-    if($("#title").val() == 4){
-        // Custom title
-        $("#title").removeClass("select-block");
-        $("#customtitleGroup").show();
-        $("#customtitle_enGroup").show();
-        $("#customGenderGroup").show();
-        $("#citizenidGroup").removeClass("col-md-12").addClass("col-md-9");
-        $("#titleGroup").hide();
-        usingCustomTitle = 1;
-    }else{
-        // Normal
-        $("#title").addClass("select-block");
-        $("#customtitleGroup").hide();
-        $("#customtitle_enGroup").hide();
-        $("#customGenderGroup").hide();
-        $("#citizenidGroup").removeClass("col-md-9").addClass("col-md-12");
-        $("#titleGroup").show();
-        usingCustomTitle = 0;
-    }
-}
-
-/* Submit application form */
-$("#create_account").click(function(e){
-
-    $('#plsWaitModal').modal('show');
-
-    e.preventDefault();
-    var hasErrors = 0;
-
-    // First, check email:
-    if(checkEmail($("#email").val())){
-        $("#emailGroup").removeClass("has-error");
-    }else{
-        $("#emailGroup").addClass("has-error");
-        hasErrors += 1;
+    function checkPasswordFields(){
+        var pswdInput = $("#password").val();
+        var pswdConfirmInput = $("#password_confirm").val();
+        if(pswdInput == pswdConfirmInput){
+            $("#passwordGroup").removeClass("has-warning");
+            $("#password_confirmGroup").removeClass("has-warning");
+            $("#passwordGroup > .help-block > .fa").remove();
+            $("#password_confirmGroup > .help-block > .fa").remove();
+        }else{
+            $("#passwordGroup").addClass("has-warning");
+            $("#password_confirmGroup").addClass("has-warning");
+            $("#passwordGroup > .help-block > .fa").remove();
+            $("#password_confirmGroup > .help-block > .fa").remove();
+            $("#passwordGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+            $("#password_confirmGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
     }
 
-  // Check citizen ID:
-    if(checkCitizenID($("#citizenid").val())){
-        $("#citizenidGroup").removeClass("has-error");
-    }else{
-        $("#citizenidGroup").addClass("has-error");
-        hasErrors += 1;
+    /* Live citizenID validation */
+    $("#citizenid").keyup(function(){
+        if(checkCitizenID($("#citizenid").val())){
+            $("#citizenidGroup").removeClass("has-warning");
+            $("#citizenidGroup > .help-block > .fa").remove();
+            $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }else{
+            $("#citizenidGroup").addClass("has-warning");
+            $("#citizenidGroup > .help-block > .fa").remove();
+            $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
+        }
+    });
+
+    /* Cancellation of custom title */
+    $("#cancelCustomTitleSelection").click(function(e){
+        e.preventDefault();
+        $("#title").val("0");
+        $("#title").change();
+    });
+
+    function checkCustomTitleSelection(){
+        if($("#title").val() == 4){
+            // Custom title
+            $("#title").removeClass("select-block");
+            $("#customtitleGroup").show();
+            $("#customtitle_enGroup").show();
+            $("#customGenderGroup").show();
+            $("#citizenidGroup").removeClass("col-md-12").addClass("col-md-9");
+            $("#titleGroup").hide();
+            usingCustomTitle = 1;
+        }else{
+            // Normal
+            $("#title").addClass("select-block");
+            $("#customtitleGroup").hide();
+            $("#customtitle_enGroup").hide();
+            $("#customGenderGroup").hide();
+            $("#citizenidGroup").removeClass("col-md-9").addClass("col-md-12");
+            $("#titleGroup").show();
+            usingCustomTitle = 0;
+        }
     }
 
-    // Check password:
-    var pswdInput = $("#password").val();
-    var pswdConfirmInput = $("#password_confirm").val();
-    if(pswdInput == pswdConfirmInput){
-        if(pswdInput != "" && pswdConfirmInput != ""){
-            $("#passwordGroup").removeClass("has-error");
-            $("#password_confirmGroup").removeClass("has-error");
+    /* Submit application form */
+    $("#create_account").click(function(e){
+
+        $('#plsWaitModal').modal('show');
+
+        e.preventDefault();
+        var hasErrors = 0;
+
+        // First, check email:
+        if(checkEmail($("#email").val())){
+            $("#emailGroup").removeClass("has-error");
+        }else{
+            $("#emailGroup").addClass("has-error");
+            hasErrors += 1;
+        }
+
+      // Check citizen ID:
+        if(checkCitizenID($("#citizenid").val())){
+            $("#citizenidGroup").removeClass("has-error");
+        }else{
+            $("#citizenidGroup").addClass("has-error");
+            hasErrors += 1;
+        }
+
+        // Check password:
+        var pswdInput = $("#password").val();
+        var pswdConfirmInput = $("#password_confirm").val();
+        if(pswdInput == pswdConfirmInput){
+            if(pswdInput != "" && pswdConfirmInput != ""){
+                $("#passwordGroup").removeClass("has-error");
+                $("#password_confirmGroup").removeClass("has-error");
+            }else{
+                $("#passwordGroup").addClass("has-error");
+                $("#password_confirmGroup").addClass("has-error");
+                hasErrors += 1;
+            }
         }else{
             $("#passwordGroup").addClass("has-error");
             $("#password_confirmGroup").addClass("has-error");
             hasErrors += 1;
         }
-    }else{
-        $("#passwordGroup").addClass("has-error");
-        $("#password_confirmGroup").addClass("has-error");
-        hasErrors += 1;
-    }
 
-    // Check for empty fields:
-    if($("#fname").val() != ""){
-        $("#fnameGroup").removeClass("has-error");
-    }else{
-        $("#fnameGroup").addClass("has-error");
-        hasErrors += 1;
-    }
-
-    if($("#lname").val() != ""){
-        $("#lnameGroup").removeClass("has-error");
-    }else{
-        $("#lnameGroup").addClass("has-error");
-        hasErrors += 1;
-    }
-
-    if($("#fname_en").val() != ""){
-        $("#fname_enGroup").removeClass("has-error");
-    }else{
-        $("#fname_enGroup").addClass("has-error");
-        hasErrors += 1;
-    }
-
-    if($("#lname_en").val() != ""){
-        $("#lname_enGroup").removeClass("has-error");
-    }else{
-        $("#lname_enGroup").addClass("has-error");
-        hasErrors += 1;
-    }
-
-    if($("#phone").val() != ""){
-        $("#phoneGroup").removeClass("has-error");
-    }else{
-        $("#phoneGroup").addClass("has-error");
-        hasErrors += 1;
-    }
-
-    // If using custom titles, also check the custom title fields:
-    if(usingCustomTitle == 1){
-        if($("#customtitle").val() != ""){
-            $("#customtitleGroup").removeClass("has-error");
-            customTitleErrors -= 1;
+        // Check for empty fields:
+        if($("#fname").val() != ""){
+            $("#fnameGroup").removeClass("has-error");
         }else{
-            $("#customtitleGroup").addClass("has-error");
+            $("#fnameGroup").addClass("has-error");
             hasErrors += 1;
-            customTitleErrors += 1;
         }
 
-        if($("#customtitle_en").val() != ""){
-            $("#customtitle_enGroup").removeClass("has-error");
-            customTitleErrors -= 1;
+        if($("#lname").val() != ""){
+            $("#lnameGroup").removeClass("has-error");
         }else{
-            $("#customtitle_enGroup").addClass("has-error");
+            $("#lnameGroup").addClass("has-error");
             hasErrors += 1;
-            customTitleErrors += 1;
         }
-    }
 
-    // Prepare gender data
-    if(usingCustomTitle == 1){
-        var titleToSend = $("#customtitle").val();
-        var titleToSend_en = $("#customtitle_en").val();
-        var genderToSend = $("#customGender").val();
-    }else{
-        var genderToSend;
-        var titleToSend = $("#title").val();
-        var titleToSend_en =  $("#title").val();
-        switch(parseInt($("#title").val())){
-            case 0:
-                genderToSend = 0;
-            break;
-            case 1:
-                genderToSend = 1;
-            break;
-            case 2:
-                genderToSend = 0;
-            break;
-            case 3:
-                genderToSend = 1;
-            break;
-            default:
-                genderToSend = 0;
+        if($("#fname_en").val() != ""){
+            $("#fname_enGroup").removeClass("has-error");
+        }else{
+            $("#fname_enGroup").addClass("has-error");
+            hasErrors += 1;
         }
-    }
 
-    console.log("[DBG/LOG] Total errors: " + hasErrors);
+        if($("#lname_en").val() != ""){
+            $("#lname_enGroup").removeClass("has-error");
+        }else{
+            $("#lname_enGroup").addClass("has-error");
+            hasErrors += 1;
+        }
 
-    if(hasErrors == 0){
-        // Green across the board, and ready for action!
-        $.ajax({
-            url: '/api/v1/account/create',
-            data: {
-                 _token: csrfToken,
-                 customtitle: usingCustomTitle,
-                 title: titleToSend,
-                 fname: $("#fname").val(),
-                 lname: $("#lname").val(),
-                 title_en: titleToSend_en,
-                 fname_en: $("#fname_en").val(),
-                 lname_en: $("#lname_en").val(),
-                 gender: genderToSend,
-                 citizenid: $("#citizenid").val(),
-                 birthdate: $("#birthdate").val(),
-                 birthmonth: $("#birthmonth").val(),
-                 birthyear: $("#birthyear").val(),
-                 email: $("#email").val(),
-                 phone: $("#phone").val(),
-                 password: $("#password").val(),
-                 password_confirm: $("#password_confirm").val()
-            },
-            error: function (request, status, error) {
-                $('#plsWaitModal').modal('hide');
-                var response = JSON.parse(request.responseText);
-                switch(request.status){
-                    case 422:
-                        bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
-                    break;
-                    case 409:
-                        bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> นักเรียนเคยทำการลงทะเบียนไปแล้ว โปรดเข้าสู่ระบบเพื่อแก้ไขข้อมูล");
-                    break;
-                    default:
-                        bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
-                }
-            },
-            dataType: 'json',
-            success: function(data) {
-                console.log("AJAX complete");
-                window.location.replace("/");
-            },
-            type: 'POST'
-        });
-    }else{
-        // NOPE.
-        $('#plsWaitModal').modal('hide');
-        bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
-    }
+        if($("#phone").val() != ""){
+            $("#phoneGroup").removeClass("has-error");
+        }else{
+            $("#phoneGroup").addClass("has-error");
+            hasErrors += 1;
+        }
 
-})
+        // If using custom titles, also check the custom title fields:
+        if(usingCustomTitle == 1){
+            if($("#customtitle").val() != ""){
+                $("#customtitleGroup").removeClass("has-error");
+                customTitleErrors -= 1;
+            }else{
+                $("#customtitleGroup").addClass("has-error");
+                hasErrors += 1;
+                customTitleErrors += 1;
+            }
+
+            if($("#customtitle_en").val() != ""){
+                $("#customtitle_enGroup").removeClass("has-error");
+                customTitleErrors -= 1;
+            }else{
+                $("#customtitle_enGroup").addClass("has-error");
+                hasErrors += 1;
+                customTitleErrors += 1;
+            }
+        }
+
+        // Prepare gender data
+        if(usingCustomTitle == 1){
+            var titleToSend = $("#customtitle").val();
+            var titleToSend_en = $("#customtitle_en").val();
+            var genderToSend = $("#customGender").val();
+        }else{
+            var genderToSend;
+            var titleToSend = $("#title").val();
+            var titleToSend_en =  $("#title").val();
+            switch(parseInt($("#title").val())){
+                case 0:
+                    genderToSend = 0;
+                break;
+                case 1:
+                    genderToSend = 1;
+                break;
+                case 2:
+                    genderToSend = 0;
+                break;
+                case 3:
+                    genderToSend = 1;
+                break;
+                default:
+                    genderToSend = 0;
+            }
+        }
+
+        console.log("[DBG/LOG] Total errors: " + hasErrors);
+
+        if(hasErrors == 0){
+            // Green across the board, and ready for action!
+            $.ajax({
+                url: '/api/v1/account/create',
+                data: {
+                     _token: csrfToken,
+                     customtitle: usingCustomTitle,
+                     title: titleToSend,
+                     fname: $("#fname").val(),
+                     lname: $("#lname").val(),
+                     title_en: titleToSend_en,
+                     fname_en: $("#fname_en").val(),
+                     lname_en: $("#lname_en").val(),
+                     gender: genderToSend,
+                     citizenid: $("#citizenid").val(),
+                     birthdate: $("#birthdate").val(),
+                     birthmonth: $("#birthmonth").val(),
+                     birthyear: $("#birthyear").val(),
+                     email: $("#email").val(),
+                     phone: $("#phone").val(),
+                     password: $("#password").val(),
+                     password_confirm: $("#password_confirm").val()
+                },
+                error: function (request, status, error) {
+                    $('#plsWaitModal').modal('hide');
+                    var response = JSON.parse(request.responseText);
+                    switch(request.status){
+                        case 422:
+                            bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+                        break;
+                        case 409:
+                            bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> นักเรียนเคยทำการลงทะเบียนไปแล้ว โปรดเข้าสู่ระบบเพื่อแก้ไขข้อมูล");
+                        break;
+                        default:
+                            bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง");
+                    }
+                },
+                dataType: 'json',
+                success: function(data) {
+                    console.log("AJAX complete");
+                    window.location.replace("/");
+                },
+                type: 'POST'
+            });
+        }else{
+            // NOPE.
+            $('#plsWaitModal').modal('hide');
+            bootbox.alert("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
+        }
+
+    })
 
 </script>
 @endsection
