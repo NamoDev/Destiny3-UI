@@ -37,4 +37,19 @@ return [
 
     'core_base_api_url' => 'https://core3.destiny.triamudom.ac.th',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Destiny Operation Mode
+    |--------------------------------------------------------------------------
+    |
+    | Operation mode for destinyui
+    |
+    | province_quota => for province quota
+    | noraml => for normal operation
+    | print_only => for print only period in normal operation
+    | close => close
+    |
+    */
+
+    'mode' => ENV('DESTINY_OPERATION_MODE'),
 ];
