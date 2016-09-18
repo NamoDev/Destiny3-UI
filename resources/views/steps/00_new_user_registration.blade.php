@@ -143,6 +143,11 @@
               <input id="password_confirm" name="password_confirm" type="password" placeholder="กำหนดรหัสผ่านอีกครั้ง" class="form-control" />
             </div>
           </div>
+          <div class="row">
+              <div class="col-md-6">
+                  {!! app('captcha')->display(); !!}
+              </div>
+          </div>
         </div>
         <br />
         <a id="create_account" href="#" class="btn btn-primary btn-block btn-lg">สร้างบัญชีผู้สมัคร</a>
