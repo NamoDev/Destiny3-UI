@@ -99,8 +99,8 @@
     <div class="col-md-12">
         <span class="help-block">วัน เดือน ปีเกิด</span>
         <div class="row">
-            <div class="col-xs-12">
-                <select id="birthdate" name="birthdate" class="form-control select select-primary select-block mbl">
+            <div class="col-xs-4">
+                <select id="birthdate" name="birthdate" style="width:100%;" class="form-control select select-primary select-block mbl">
                     <?php
                         $date = 1;
                         while($date <= 31){
@@ -113,8 +113,9 @@
                         }
                     ?>
                 </select>
-                <!-- == --> &nbsp;&nbsp;&nbsp; <!-- == -->
-                <select id="birthmonth" name="birthmonth" class="form-control select select-primary select-block mbl">
+            </div>
+            <div class="col-xs-4">
+                <select id="birthmonth" name="birthmonth" style="width:100%;" class="form-control select select-primary select-block mbl">
                     <?php
                         $months = [
                             1 => "มกราคม",
@@ -141,8 +142,9 @@
 
                      ?>
                 </select>
-                <!-- == --> &nbsp;&nbsp;&nbsp; <!-- == -->
-                <select id="birthyear" name="birthyear" class="form-control select select-primary select-block mbl">
+            </div>
+            <div class="col-xs-4">
+                <select id="birthyear" name="birthyear" style="width:100%;" class="form-control select select-primary select-block mbl">
                     <?php
                         $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
                         $threshold = 30;
