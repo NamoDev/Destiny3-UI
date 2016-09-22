@@ -1,7 +1,6 @@
 @extends('layouts.no_navbar')
 @section('title', 'สมัครใหม่')
 
-
 @section('content')
 <div class="row" style="margin-top:30px;">
     <div class="col-md-12">
@@ -145,10 +144,13 @@
                     <input id="password_confirm" name="password_confirm" type="password" placeholder="กำหนดรหัสผ่านอีกครั้ง" class="form-control" />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    {!! app('captcha')->display(); !!}
-                </div>
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br />
+                <span class="help-block">ทำเครื่องหมายถูกในช่องด้านล่าง</span>
+                {!! app('captcha')->display(); !!}
             </div>
         </div>
         <br />
@@ -521,6 +523,7 @@
         }
 
     })
+
 
 </script>
 @endsection
