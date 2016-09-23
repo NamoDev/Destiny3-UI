@@ -8,35 +8,36 @@
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ที่อยู่ตามทะเบียนบ้าน &nbsp;&nbsp;</p>
         <div class="row">
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-4 col-xs-12">
                 <span class="help-block">บ้านเลขที่</span>
                 <input name="home_address" type="text" placeholder="บ้านเลขที่" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-4 col-xs-12">
                 <span class="help-block">หมู่</span>
                 <input name="home_moo" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-4 col-xs-12">
                 <span class="help-block">ซอย</span>
                 <input name="home_soi" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-4 col-xs-12">
                 <span class="help-block">ถนน</span>
                 <input name="home_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-4 col-xs-12">
                 <span class="help-block">แขวง / ตำบล</span>
                 <input name="home_subdistrict" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-4 col-xs-12">
                 <span class="help-block">เขต / อำเภอ</span>
                 <input name="home_district" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
         </div>
     </div>
 </div>
+<br />
 <div class="row">
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ที่อยู่ปัจจุบัน &nbsp;&nbsp;</p>
