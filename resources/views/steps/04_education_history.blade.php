@@ -26,7 +26,7 @@
         </select>
     </div>
     <div class="col-md-3 col-xs-12" id="gpaGroup">
-        <span class="help-block">คะแนนเฉลี่ยสะสม</span>
+        <span class="help-block">เกรดเฉลี่ยสะสม</span>
         <input id="gpa" name="gpa" type="text" placeholder="GPA ในรูปแบบ 0.00" class="form-control" />
     </div>
 </div>
