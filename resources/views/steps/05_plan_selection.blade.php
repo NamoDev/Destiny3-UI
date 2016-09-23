@@ -51,12 +51,17 @@
 
 @section('additional_scripts')
 <script>
+
+var lang_chinese_in_list = 1;
+
 $(function(){
     $("#application_type").change();
     $("#quota_type").change();
     $("#plan").change();
 });
 $("#application_type").change(function(){
+
+    /* Ability quota? */
     if($("#application_type").val() == 1){
         $("#quotaTypeCol").fadeIn(200);
         $("#applicationTypeCol").removeClass("col-md-12").addClass("col-md-5");
@@ -65,6 +70,32 @@ $("#application_type").change(function(){
             $("#applicationTypeCol").removeClass("col-md-5").addClass("col-md-12");
         });
     }
+
+    /* District quota? */
+    if($("#application_type").val() == 2){
+        $("#plan option[value='8']").remove();
+        lang_chinese_in_list = 0;
+    }else{
+        if(lang_chinese_in_list != 1){
+            $("#plan").append("<option value=\"8\">ภาษา-จีน</option>");
+            lang_chinese_in_list = 1;
+        }
+    }
+
+    /* Re-sort the select box by option value */
+    sortSelectBox();
+
 });
+
+function sortSelectBox(){
+    var selectList = $('#plan option');
+    selectList.sort(function(a,b){
+        a = a.value;
+        b = b.value;
+        return a-b;
+    });
+    $('#plan').html(selectList);
+}
+
 </script>
 @endsection
