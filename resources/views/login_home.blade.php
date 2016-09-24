@@ -27,18 +27,22 @@
             <legend>
                 เข้าสู่ระบบ
                 @if(Session::has('message'))
-                  @if(Session::get('message') == 'INVALID_USERNAME_OR_PASSWORD')
-                    <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="รหัสประจำตัวประชาชน หรือรหัสผ่านไม่ถูกต้อง" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
-                  @elseif(Session::get('message') == 'NOT_LOGGED_IN')
-                    <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="คุณยังไม่ได้เข้าสู่ระบบ หรือการเข้าสู่ระบบหมดอายุ" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
+                    @if(Session::get('message') == 'INVALID_USERNAME_OR_PASSWORD')
+                        <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="รหัสประจำตัวประชาชน หรือรหัสผ่านไม่ถูกต้อง" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
+                    @elseif(Session::get('message') == 'NOT_LOGGED_IN')
+                        <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="คุณยังไม่ได้เข้าสู่ระบบ หรือการเข้าสู่ระบบหมดอายุ" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
+                    @else
+                        <span class="pull-right"><i data-toggle="tooltip" data-placement="top" title="เกิดข้อผิดพลาดในการเข้าสู่ระบบ กรุณาลองใหม่อีกครั้งภายหลัง" class="fa fa-exclamation-triangle text-warning login_alert_icon"></i></span>
                   @endif
                 @endif
             </legend>
 
             @if(Session::has('message'))
-              @if(Session::get('message') != 'INVALID_USERNAME_OR_PASSWORD' and Session::get('message') != 'NOT_LOGGED_IN')
-                <div class="alert {{ Session::get('alert-class', 'alert-info') }}"><b>{{ Session::get('message') }}</b></div>
-              @endif
+                @if(Session::get('message') != 'INVALID_USERNAME_OR_PASSWORD' and Session::get('message') != 'NOT_LOGGED_IN')
+                    @if(Session::get('message') != 'LOGIN_EXCEPTION_THROWN'){
+                        <div class="alert {{ Session::get('alert-class', 'alert-info') }}"><b>{{ Session::get('message') }}</b></div>
+                    }
+                @endif
             @endif
 
             <div class="form-group {{ session('message') == 'INVALID_USERNAME_OR_PASSWORD' ? ' has-warning' : '' }}">
