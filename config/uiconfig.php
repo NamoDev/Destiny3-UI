@@ -52,4 +52,18 @@ return [
     */
 
     'mode' => ENV('DESTINY_OPERATION_MODE'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Public Test Run?
+    |--------------------------------------------------------------------------
+    |
+    | Indicates whether the system will display a notice saying that
+    | this is a test/beta run and not the final version.
+    |
+    | true/false
+    |
+    */
+
+    'isPTR' => ENV('IS_PTR'),
 ];
