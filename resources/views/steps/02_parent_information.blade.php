@@ -134,6 +134,8 @@
 <script>
 var fatherIsDead = 0;
 var motherIsDead = 0;
+var fatherOptionInGuardianList = 1;
+var motherOptionInGuardianList = 1;
 
 $(function(){
     $("#father_dead").change();
@@ -178,15 +180,56 @@ $(function(){
     });
 
 
+});
+
+
     function checkDeadParents(){
+
+        // Disable selection of dead parent as a guardian
+        if(fatherIsDead == 1){
+            $("#stayingWith option[value='1']").remove();
+            $("#stayingWith").val(2).trigger("change");
+            fatherOptionInGuardianList = 0;
+        }else{
+            if(fatherOptionInGuardianList != 1){
+                $("#stayingWith").append("<option value=\"1\">บิดา</option>");
+                fatherOptionInGuardianList = 1;
+            }
+        }
+        if(motherIsDead == 1){
+            $("#stayingWith option[value='2']").remove();
+            $("#stayingWith").val(1).trigger("change");
+            motherOptionInGuardianList = 0;
+        }else{
+            if(motherOptionInGuardianList != 1){
+                $("#stayingWith").append("<option value=\"2\">มารดา</option>");
+                motherOptionInGuardianList = 1;
+            }
+        }
+
+        // Force a 3rd guardian if both parents are dead
         if(motherIsDead == 1 && fatherIsDead == 1){
             $("#stayingWith").val("3").trigger("change");
             $("#stayingWith").prop("disabled", true);
         }else{
             $("#stayingWith").prop("disabled", false);
         }
+
+        // Re-sort select box
+        sortSelect('stayingWith');
+
+
     }
 
-});
+    function sortSelect(box){
+        var selectList = $('#' + box + ' option');
+        selectList.sort(function(a,b){
+            a = a.value;
+            b = b.value;
+            return a-b;
+        });
+        $('#' + box).html(selectList);
+        return true;
+    }
 </script>
 @endsection
