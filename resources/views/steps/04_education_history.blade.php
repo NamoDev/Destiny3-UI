@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-3 col-xs-12">
         <span class="help-block">ปีที่จบหรือคาดว่าจะจบการศึกษา</span>
-        <select id="graduation_year" name="graduation_year" style="width:100%;" class="form-control select select-primary select-block mbl">
+        <select id="graduation_year" name="graduation_year" class="form-control select select-primary select-block mbl">
           <?php
           $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
           $threshold = 30;
@@ -38,17 +38,17 @@
         <span class="help-block">วันที่เริ่มเข้าศึกษา</span>
         <div class="row">
             <div class="col-xs-4">
-                <select id="moveinDay" name="moveinDay" style="width:100%;" class="form-control select select-primary select-block Wmbl">
+                <select id="moveinDay" name="moveinDay" class="form-control select select-primary select-block Wmbl">
 
                 </select>
             </div>
             <div class="col-xs-4">
-                <select id="moveinMonth" name="moveinMonth" style="width:100%;" class="form-control select select-primary select-block mbl">
+                <select id="moveinMonth" name="moveinMonth" class="form-control select select-primary select-block mbl">
 
                 </select>
             </div>
             <div class="col-xs-4">
-                <select id="moveinYear" name="moveinYear" style="width:100%;" class="form-control select select-primary select-block mbl">
+                <select id="moveinYear" name="moveinYear" class="form-control select select-primary select-block mbl">
 
                 </select>
             </div>
