@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12" id="applicationTypeCol">
         <span class="help-block">ประเภทการสมัคร</span>
-        <select id="application_type" name="application_type" style="width:100%;" class="form-control select select-primary select-block mbl">
+        <select id="application_type" name="application_type" class="form-control select select-primary select-block mbl">
             <option value="0">นักเรียนปกติ</option>
             <option value="1">นักเรียนความสามารถพิเศษ (โควตา)</option>
             <option value="2">นักเรียนในโครงการโควตาจังหวัด สพม.</option>
@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-7" style="display:none;" id="quotaTypeCol">
         <span class="help-block">ประเภทโควตา</span>
-        <select id="quota_type" name="quota_type" style="width:100%;" class="form-control select select-primary select-block mbl">
+        <select id="quota_type" name="quota_type" class="form-control select select-primary select-block mbl">
             {{ App\Http\Controllers\Helper::printQuotaSelectBox() }}
         </select>
     </div>
@@ -23,7 +23,7 @@
 <div class="row">
     <div class="col-xs-12">
         <span class="help-block">แผนการเรียนที่นักเรียนต้องการสมัคร</span>
-        <select id="plan" name="plan" style="width:100%;" class="form-control select select-primary select-block mbl">
+        <select id="plan" name="plan" class="form-control select select-primary select-block mbl">
             <?php
                 $currentPlanSelected = 5; // TODO: Dynamically load this!
                 $plansAvailable = [
