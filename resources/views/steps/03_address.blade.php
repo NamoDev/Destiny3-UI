@@ -46,6 +46,55 @@
                 <input name="home_postcode" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
         </div>
+        @if(Config::get('uiconfig.mode') == 'province_quota')
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="help-block">วันที่ย้ายเข้า</span>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <select id="address_move_in_date" name="address_move_in_date" style="width:100%;" class="form-control select select-primary select-block mbl">
+                                <?php
+                                    $date = 1;
+                                    while($date <= 31){
+                                        echo("<option value=\"$date\">$date</option>");
+                                        $date++;
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-xs-4">
+                            <select id="address_move_in_month" name="address_move_in_month" style="width:100%;" class="form-control select select-primary select-block mbl">
+                                <option value="1">มกราคม</option>
+                                <option value="2">กุมภาพันธ์</option>
+                                <option value="3">มีนาคม</option>
+                                <option value="4">เมษายน</option>
+                                <option value="5">พฤษภาคม</option>
+                                <option value="6">มิถุนายน</option>
+                                <option value="7">กรกฎาคม</option>
+                                <option value="8">สิงหาคม</option>
+                                <option value="9">กันยายน</option>
+                                <option value="10">ตุลาคม</option>
+                                <option value="11">พฤศจิกายน</option>
+                                <option value="12">ธันวาคม</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4">
+                            <select id="address_move_in_year" name="address_move_in_year" style="width:100%;" class="form-control select select-primary select-block mbl">
+                                <?php
+                                    $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
+                                    $threshold = 30;
+                                    while($threshold >= 0){
+                                        echo("<option value=\"$year\">$year</option>");
+                                        $year -= 1;
+                                        $threshold -= 1;
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 <br />
