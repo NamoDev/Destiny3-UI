@@ -52,8 +52,10 @@ class UserController extends Controller{
             'phone' => 'required',
             'password' => 'required|same:password_confirm',
             'password_confirm' => 'required|same:password',
-            'g-recaptcha-response' => 'required|captcha',
          ]);
+
+         // TODO: fix CAPTCHA
+         //'g-recaptcha-response' => 'required|captcha',
 
          // TODO: Make Citizen ID verification a part of the validator itself
 
