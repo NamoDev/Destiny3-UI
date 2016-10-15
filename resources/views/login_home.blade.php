@@ -100,6 +100,13 @@
 
 @section('additional_scripts')
 <script>
+    if (!(typeof Promise !== "undefined" && Promise.toString().indexOf("[native code]") !== -1)) {
+        // Check for old browser by checking Promises support, which is not present in old browsers.
+        // Visit http://caniuse.com/#feat=promises for more information
+        window.location.href = "/bad_browser";
+    }
+</script>
+<script>
 $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 })
