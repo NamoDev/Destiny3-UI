@@ -24,7 +24,7 @@
     <div class="col-md-12">
         <a href="#">
         <div class="alert alert-success">
-            <?php // TODO: Add the real thing ?>
+            {{-- TODO: Add the real thing --}}
             <i class="fa fa-calendar"></i> <b>เหลืออีก 17 วัน</b> เปิดรับสมัครนักเรียนในระบบโควตาจังหวัด
         </div>
         </a>
@@ -105,6 +105,7 @@
         // Visit http://caniuse.com/#feat=promises for more information
         window.location.href = "/bad_browser";
     }
+    // Separate script tag, minimizing errors in case of script mulfunction
 </script>
 <script>
 $(function () {
