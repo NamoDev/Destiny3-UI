@@ -5,7 +5,7 @@
     "license": "Internal",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.0.0",
         "laravel/framework": "5.2.*",
         "jenssegers/agent": "^2.3",
         "jenssegers/mongodb": "^3.0",
