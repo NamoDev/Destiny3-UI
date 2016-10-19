@@ -18,10 +18,10 @@ use Session;
 
 class Applicant{
 
-    /*
-    | create
-    | A method for creating an applicant.
-    | Requires a lot of variables. Hopefully, they should be self-explanatory:
+    /**
+    * A method for creating an applicant. Requires a lot of variables.
+    * 
+    * @return string Applicant's ID
     */
     public function create(
         string $citizenID,
