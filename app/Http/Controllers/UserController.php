@@ -236,6 +236,81 @@ class UserController extends Controller{
     }
 
     /*
+    | Update parent information
+    */
+    public function updateParentInformation(Request $request){
+        // Get applicant object & current applicant's Citizen ID:
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
+
+        // Validate incoming data. (TODO: Come up with a better way to detect whether we need to verify guardian info as well)
+        $this->validate($request, [
+            'father_title' => 'required',
+            'father_fname' => 'required',
+            'father_lname' => 'required',
+            'father_phone' => 'required_unless:father_dead,1',
+            'father_occupation' => 'required_unless:father_dead,1',
+            'father_dead' => 'required|integer',
+            'mother_title' => 'required',
+            'mother_fname' => 'required',
+            'mother_lname' => 'required',
+            'mother_phone' => 'required_unless:mother_dead,1',
+            'mother_occupation' => 'required_unless:mother_dead,1',
+            'mother_dead' => 'required|integer',
+            'has_guardian' => 'required',
+            'guardian_title' => 'required_if:has_guardian,1',
+            'guardian_fname' => 'required_if:has_guardian,1',
+            'guardian_lname' => 'required_if:has_guardian,1',
+            'guardian_phone' => 'required_if:has_guardian,1',
+            'guardian_occupation' => 'required_if:has_guardian,1',
+            'guardian_relation' => 'required_if:has_guardian,1'
+         ]);
+
+         // Prepare our 'to-be-modified' array:
+         $modifyThis = [
+            'father' => [
+                "title" => $request->input("father_title"),
+                "fname" => $request->input("father_fname"),
+                "lname" => $request->input("father_lname"),
+                "phone" => $request->input("father_phone"),
+                "occupation" => $request->input("father_occupation"),
+                "dead" => $request->input("father_dead")
+            ],
+            'mother' => [
+                "title" => $request->input("mother_title"),
+                "fname" => $request->input("mother_fname"),
+                "lname" => $request->input("mother_lname"),
+                "phone" => $request->input("mother_phone"),
+                "occupation" => $request->input("mother_occupation"),
+                "dead" => $request->input("mother_dead")
+            ]
+         ];
+
+         // Only add guardian information if the applicant has a guardian:
+         // TODO: Delete guardian tree if applicant has no active guardian on profile.
+         if($request->input("has_guardian") == 1){
+            $modifyThis['guardian'] = [
+                "title" => $request->input("guardian_title"),
+                "fname" => $request->input("guardian_fname"),
+                "lname" => $request->input("guardian_lname"),
+                "phone" => $request->input("guardian_phone"),
+                "occupation" => $request->input("guardian_occupation"),
+                "relation" => $request->input("guardian_relation")
+            ];
+         }
+
+        // Modify the applicant
+        if($applicant->modify($applicantCitizenID, $modifyThis)){
+            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+        }else{
+            // error!
+            // TODO: return RESTResponse maybe?
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+        }
+
+    }
+
+    /*
     | Gender formatter
     */
     public function formatGender(int $usingCustomTitle, string $title, string $gender){

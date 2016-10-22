@@ -44,3 +44,14 @@ function checkThai(string){
         return false;
     }
 }
+
+/* Field blankness validator */
+function isFieldBlank(fieldName){
+    if($("#" + fieldName).val() != ""){
+        $("#" + fieldName + "Group").removeClass("has-error");
+        return 0;
+    }else{
+        $("#" + fieldName + "Group").addClass("has-error");
+        return 1;
+    }
+}
