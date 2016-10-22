@@ -132,16 +132,22 @@
 
 @section('additional_scripts')
 <script>
+
+/* Checker variables */
 var fatherIsDead = 0;
 var motherIsDead = 0;
 var fatherOptionInGuardianList = 1;
 var motherOptionInGuardianList = 1;
+var hasGuardian = 0;
 
 $(function(){
+
+    // On load, toggle checkbox checking & look out for dead parents
     $("#father_dead").change();
     $("#mother_dead").change();
     $("#stayingWith").change();
     checkDeadParents();
+
 
     $('#father_dead').on('change',function(){
         if($("#father_dead").is(":checked")){
@@ -174,8 +180,10 @@ $(function(){
     $("#stayingWith").on('change',function(){
         if($("#stayingWith").val() == 1 || $("#stayingWith").val() == 2){
             $("#guardianInfoGroup").fadeOut(200);
+            hasGuardian = 0;
         }else{
             $("#guardianInfoGroup").fadeIn(200);
+            hasGuardian = 1;
         }
     });
 
@@ -231,5 +239,96 @@ $(function(){
         $('#' + box).html(selectList);
         return true;
     }
+
+    /* Form submission */
+    $("#sendTheFormButton").click(function(){
+
+        // Error checking variable
+        var hasErrors = 0;
+
+        // Check father information inputs
+        hasErrors += isFieldBlank("father_title");
+        hasErrors += isFieldBlank("father_fname");
+        hasErrors += isFieldBlank("father_lname");
+        if(fatherIsDead != 1){
+            hasErrors += isFieldBlank("father_phone");
+            hasErrors += isFieldBlank("father_occupation");
+        }
+
+        // Check mother information inputs
+        hasErrors += isFieldBlank("mother_title");
+        hasErrors += isFieldBlank("mother_fname");
+        hasErrors += isFieldBlank("mother_lname");
+        if(motherIsDead != 1){
+            hasErrors += isFieldBlank("mother_phone");
+            hasErrors += isFieldBlank("mother_occupation");
+        }
+
+        // Check guardian information inputs if applicable:
+        if(hasGuardian == 1){
+            hasErrors += isFieldBlank("guardian_title");
+            hasErrors += isFieldBlank("guardian_fname");
+            hasErrors += isFieldBlank("guardian_lname");
+            hasErrors += isFieldBlank("guardian_phone");
+            hasErrors += isFieldBlank("guardian_occupation");
+            hasErrors += isFieldBlank("guardian_relation");
+        }
+
+        @if(Config::get('app.debug') === true)
+            console.log("[DBG/LOG] Total errors: " + hasErrors);
+        @endif
+
+        if(hasErrors == 0){
+            // Green across the board, and ready for action!
+            $.ajax({
+                url: '/api/v1/applicant/parent_info',
+                data: {
+                    _token: csrfToken,
+                    father_title: $("#father_title").val(),
+                    father_fname: $("#father_fname").val(),
+                    father_lname: $("#father_lname").val(),
+                    father_phone: $("#father_phone").val(),
+                    father_occupation: $("#father_occupation").val(),
+                    father_dead: fatherIsDead,
+                    mother_title: $("#mother_title").val(),
+                    mother_fname: $("#mother_fname").val(),
+                    mother_lname: $("#mother_lname").val(),
+                    mother_phone: $("#mother_phone").val(),
+                    mother_occupation: $("#mother_occupation").val(),
+                    mother_dead: motherIsDead,
+                    has_guardian: hasGuardian,
+                    guardian_title: $("#guardian_title").val(),
+                    guardian_fname: $("#guardian_fname").val(),
+                    guardian_lname: $("#guardian_lname").val(),
+                    guardian_phone: $("#guardian_phone").val(),
+                    guardian_occupation: $("#guardian_occupation").val(),
+                    guardian_relation: $("#guardian_relation").val()
+                },
+                error: function (request, status, error) {
+                    $('#plsWaitModal').modal('hide');
+                    switch(request.status){
+                        case 422:
+                            notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+                        break;
+                        default:
+                            console.log("(" + request.status + ") Exception:" + request.responseText);
+                            notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
+                    }
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#plsWaitModal').modal('hide');
+                    notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+                },
+                type: 'POST'
+            });
+        }else{
+            // NOPE.
+            $('#plsWaitModal').modal('hide');
+            notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+        }
+
+    });
+
 </script>
 @endsection

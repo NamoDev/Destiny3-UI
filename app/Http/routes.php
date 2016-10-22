@@ -59,8 +59,12 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     // Get applicant data. Simple!
     Route::get('applicant/data', 'UserController@getApplicantData')->middleware('apiauth');
 
-    // Partial data submission. Probably would get JSON of everything and process accordingly.
+    // Applicant's basic data submission
     Route::post('applicant/data', 'UserController@updateApplicantData')->middleware('apiauth');
+
+    // Parent/guardian information submission
+    Route::post('applicant/parent_info', 'UserController@updateParentInformation')->middleware('apiauth');
+
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
