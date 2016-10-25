@@ -299,6 +299,7 @@ $(function(){
                     mother_occupation: $("#mother_occupation").val(),
                     mother_dead: motherIsDead,
                     has_guardian: hasGuardian,
+                    staying_with: $("#stayingWith").val(),
                     guardian_title: $("#guardian_title").val(),
                     guardian_fname: $("#guardian_fname").val(),
                     guardian_lname: $("#guardian_lname").val(),
