@@ -258,6 +258,7 @@ class UserController extends Controller{
             'mother_occupation' => 'required_unless:mother_dead,1',
             'mother_dead' => 'required|integer',
             'has_guardian' => 'required',
+            'staying_with' => 'required|integer',
             'guardian_title' => 'required_if:has_guardian,1',
             'guardian_fname' => 'required_if:has_guardian,1',
             'guardian_lname' => 'required_if:has_guardian,1',
@@ -268,6 +269,7 @@ class UserController extends Controller{
 
          // Prepare our 'to-be-modified' array:
          $modifyThis = [
+            'staying_with_parent' => $request->input("staying_with"),
             'father' => [
                 "title" => $request->input("father_title"),
                 "fname" => $request->input("father_fname"),
@@ -297,7 +299,9 @@ class UserController extends Controller{
                 "occupation" => $request->input("guardian_occupation"),
                 "relation" => $request->input("guardian_relation")
             ];
-         }
+        }else{
+            $modifyThis['guardian'] = [];
+        }
 
         // Modify the applicant
         if($applicant->modify($applicantCitizenID, $modifyThis)){
