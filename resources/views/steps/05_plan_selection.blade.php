@@ -28,7 +28,7 @@
                 if(isset($appliantData['plan_id'])){
                     $currentPlanSelected = $applicantData['plan_id'];
                 }else{
-                    $currentPlanSelected = "na"; // No prior data here.
+                    $currentPlanSelected = 5; // (The power of) Science by default!
                 }
                 $plansAvailable = [
                     1 => "ภาษา-ฝรั่งเศส",
@@ -56,7 +56,7 @@
         <div class="well">
             <div class="row">
                 <div class="col-xs-12">
-                    <h6 style="font-size:1.1em;">วิทย์-คณิต: เลือกลำดับกลุ่มสาระการเรียนรู้ที่เน้น <button class="btn btn-warning pull-right" id="clearMajorSelection"> <i class="fa fa-undo"></i> เลือกใหม่ </button></h6>
+                    <h6 style="font-size:1.1em;"><b>วิทย์-คณิต:</b> เลือกลำดับกลุ่มสาระการเรียนรู้ที่เน้น <button class="btn btn-warning pull-right" id="clearMajorSelection"> <i class="fa fa-undo"></i> เลือกใหม่ </button></h6>
                 </div>
             </div>
             <div class="row">
@@ -142,6 +142,13 @@ var activeMajorSelectBox = 1;
 $(function(){
     $("#application_type").change();
     $("#quota_type").change();
+
+    @if(isset($applicantData['plan_id']))
+        $("#plan").val("{{ $applicantData['plan_id'] }}").trigger("change");
+    @else
+        $("#plan").val("5").trigger("change");
+    @endif
+
     $("#plan").change();
 });
 $("#application_type").change(function(){
