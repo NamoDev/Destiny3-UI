@@ -6217,3 +6217,26 @@ footer p {
 .select-block{
     width:100%;
 }
+.tt-menu {
+  width: 100%;
+  margin-top: 5px;
+  border: 2px solid #ff73ce;
+  padding: 5px 0;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+.tt-suggestion{
+  padding: 6px 14px;
+  font-size: 14px;
+  line-height: 1.429;
+  margin: 0;
+}
+.tt-suggestion:first-child,
+.tt-suggestion:last-child{
+  padding: 6px 14px;
+}
+.tt-suggestion:hover{
+    cursor: pointer;
+    color: #fff;
+    background-color: #ff73ce;
+}
