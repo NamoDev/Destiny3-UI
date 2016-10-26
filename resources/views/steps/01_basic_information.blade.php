@@ -218,56 +218,18 @@
         }
 
         // These fields CANNOT be left blank:
-        if($("#fname").val() != ""){
-            $("#fnameGroup").removeClass("has-error");
-        }else{
-            $("#fnameGroup").addClass("has-error");
-            hasErrors += 1;
-        }
-
-        if($("#lname").val() != ""){
-            $("#lnameGroup").removeClass("has-error");
-        }else{
-            $("#lnameGroup").addClass("has-error");
-            hasErrors += 1;
-        }
-
-        if($("#fname_en").val() != ""){
-            $("#fname_enGroup").removeClass("has-error");
-        }else{
-            $("#fname_enGroup").addClass("has-error");
-            hasErrors += 1;
-        }
-
-        if($("#lname_en").val() != ""){
-            $("#lname_enGroup").removeClass("has-error");
-        }else{
-            $("#lname_enGroup").addClass("has-error");
-            hasErrors += 1;
-        }
-
-        if($("#phone").val() != ""){
-            $("#phoneGroup").removeClass("has-error");
-        }else{
-            $("#phoneGroup").addClass("has-error");
-            hasErrors += 1;
-        }
+        hasErrors += isFieldBlank("fname");
+        hasErrors += isFieldBlank("lname");
+        hasErrors += isFieldBlank("fname_en");
+        hasErrors += isFieldBlank("lname_en");
+        hasErrors += isFieldBlank("phone");
 
         // IF we're using custom titles:
         if(usingCustomTitle == 1){
-            if($("#customtitle").val() != ""){
-                $("#customtitleGroup").removeClass("has-error");
-            }else{
-                $("#customtitleGroup").addClass("has-error");
-                hasErrors += 1;
-            }
 
-            if($("#customtitle_en").val() != ""){
-                $("#customtitle_enGroup").removeClass("has-error");
-            }else{
-                $("#customtitle_enGroup").addClass("has-error");
-                hasErrors += 1;
-            }
+            // If so, the title fields can't be left blank:
+            hasErrors += isFieldBlank("customtitle");
+            hasErrors += isFieldBlank("customtitle_en");
 
             // Prep gender data
             var titleToSend = $("#customtitle").val();
