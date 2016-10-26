@@ -79,9 +79,28 @@
     <div class="col-xs-12">
         <span class="help-block">ผู้ปกครองของนักเรียน</span>
         <select id="stayingWith" name="stayingWith" class="form-control select select-primary select-block mbl">
-            <option value="1">บิดา</option>
-            <option value="2">มารดา</option>
-            <option value="3">อื่นๆ</option>
+            <?php
+                $options = [
+                    "1" => "บิดา",
+                    "2" => "มารดา",
+                    "3" => "อื่นๆ"
+                ];
+                if(isset($applicantData['staying_with_parent'])){
+                    foreach($options as $key => $option){
+                        if($key == $applicantData['staying_with_parent']){
+                            echo("<option value=\"$key\" selected>$option</option>");
+                        }else{
+                            echo("<option value=\"$key\">$option</option>");
+                        }
+                    }
+                }else{
+                    echo("
+                    <option value=\"1\">บิดา</option>
+                    <option value=\"2\">มารดา</option>
+                    <option value=\"3\">อื่นๆ</option>
+                    ");
+                }
+            ?>
         </select>
     </div>
 </div>
@@ -320,8 +339,11 @@ $(function(){
                 },
                 dataType: 'json',
                 success: function(data) {
+
+                    // Tell the user that everything went well
                     $('#plsWaitModal').modal('hide');
                     notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+
                 },
                 type: 'POST'
             });
