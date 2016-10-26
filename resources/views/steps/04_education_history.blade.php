@@ -8,7 +8,6 @@
 
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
-        {{-- TODO: CSS fixes. For some weird reason, text suggestion dropdowns doesn't currently have a background. --}}
         <span class="help-block">จบการศึกษาระดับชั้นมัธยมศึกษาปีที่ 3 จากโรงเรียน</span>
         <input id="school" name="school" placeholder="ชื่อโรงเรียน" class="form-control twitter-typeahead" />
     </div>
