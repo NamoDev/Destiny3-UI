@@ -45,29 +45,33 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth']], funct
 /*
 | API Routes (v1)
 */
-Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function () {
-	
-	/*
-	NOTE: These routes won't work yet - there's no backend handler for it!
-	This is just for planning purposes.
-	*/
-	
-	// Account creation
-	Route::post('account/create', 'UserController@createAccount');
-	
-	// TODO: Add API authentication middlewares for API routes below:
-	
-	// Get applicant data. Simple!
-	Route::get('applicant/data', 'UserController@getApplicantData')->middleware('apiauth');
-	
-	// Partial data submission. Probably would get JSON of everything and process accordingly.
-	Route::post('applicant/data', 'UserController@updateApplicantData')->middleware('apiauth');
-	
-	// Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
-	Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
-	
-	// Password change handler
-	Route::post('account/change_password', 'UserController@changePassword')->middleware('apiauth');
-	
-	
+Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
+
+    /*
+    NOTE: These routes won't work yet - there's no backend handler for it!
+    This is just for planning purposes.
+    */
+
+    // Account creation
+    Route::post('account/create', 'UserController@createAccount');
+
+    // TODO: Add API authentication middlewares for API routes below:
+
+    // Get applicant data. Simple!
+    Route::get('applicant/data', 'UserController@getApplicantData')->middleware('apiauth');
+
+    // Applicant's basic data submission
+    Route::post('applicant/data', 'UserController@updateApplicantData')->middleware('apiauth');
+
+    // Parent/guardian information submission
+    Route::post('applicant/parent_info', 'UserController@updateParentInformation')->middleware('apiauth');
+
+
+    // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
+    Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
+
+    // Password change handler
+    Route::post('account/change_password', 'UserController@changePassword')->middleware('apiauth');
+
+
 });

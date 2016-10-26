@@ -8,8 +8,9 @@
 
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
+        {{-- TODO: CSS fixes. For some weird reason, text suggestion dropdowns doesn't currently have a background. --}}
         <span class="help-block">จบการศึกษาระดับชั้นมัธยมศึกษาปีที่ 3 จากโรงเรียน</span>
-        <input id="school" name="school" type="text" placeholder="ชื่อโรงเรียน" class="form-control" />
+        <input id="school" name="school" placeholder="ชื่อโรงเรียน" class="form-control twitter-typeahead" />
     </div>
     <div class="col-md-3 col-xs-12">
         <span class="help-block">ปีที่จบหรือคาดว่าจะจบการศึกษา</span>
@@ -112,6 +113,7 @@
 @endsection
 
 @section('additional_scripts')
+<script src="/assets/js/typeahead.min.js"></script>
 <script>
 $("#gpa").change(function(){
     if(!isNaN(parseFloat($("#gpa").val()))){
@@ -128,7 +130,50 @@ $("#gpa").change(function(){
         $("#gpaGroup > .help-block > .fa").remove();
         $("#gpaGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
     }
-
 });
+
+var states = new Bloodhound({
+  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.word); },
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  limit: 4,
+  local: [
+      { word: "เตรียมอุดมศึกษา" },
+      { word: "เตรียมอุดมศึกษา ภาคเหนือ" },
+      { word: "เตรียมอุดมศึกษา ภาคตะวันออกเฉียงเหนือ" },
+      { word: "เตรียมอุดมศึกษา ภาคใต้" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า กบินทร์บุรี" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า นนทบุรี" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า นครราชสีมา" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า ปทุมธานี" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า สมุทรปราการ" },
+      { word: "เตรียมอุดมศึกษาน้อมเกล้า อุตรดิตถ์" },
+      { word: "เตรียมอุดมศึกษาเปร็งวิสุทธาธิบดี" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ ขอนแก่น" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ ฉะเชิงเทรา" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ เชียงราย" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ ดอนคลัง" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ นนทบุรี" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ สระบุรี" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ ปราณบุรี" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ ปทุมธานี" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ สุวรรณภูมิ" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ รัชดา" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ อุดรธานี" },
+      { word: "เตรียมอุดมศึกษาพัฒนาการ อุบลราชธานี" },
+      { word: "เตรียมอุดมศึกษาสุวินทวงศ์" }
+  ]
+});
+
+states.initialize();
+
+$('#school').typeahead(null, {
+  name: 'states',
+  displayKey: 'word',
+  highlight: true,
+  source: states.ttAdapter()
+});
+
 </script>
 @endsection
