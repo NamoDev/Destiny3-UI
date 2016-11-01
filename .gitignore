@@ -1,12 +1,2 @@
 .git/
-storage/framework/*
-storage/logs/*
-storage/uploaded_documents/*
-storage/app/public/*
-storage/app/*
-!storage/framework
-!storage/logs
-!storage/uploaded_documents
-!storage/app/public
-!storage/app
 .idea
