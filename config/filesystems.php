@@ -62,6 +62,11 @@ return [
             'bucket' => 'your-bucket',
         ],
 
+        'document' => [
+            'driver' => 'local',
+            'root' => storage_path('uploaded_documents'),
+        ],
+
     ],
 
 ];
