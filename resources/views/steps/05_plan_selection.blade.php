@@ -209,16 +209,16 @@ $("#clearMajorSelection").click(function(){
         message: "<b>ยืนยันการเลือกกลุ่มสาระการเรียนรู้ที่เน้นใหม่</b><br />ตัวเลือกปัจจุบันของนักเรียนจะถูกล้างค่าทั้งหมด โปรดยืนยันการดำเนินการต่อ",
         buttons: {
             cancel: {
-                label: '<i class="fa fa-times"></i> ยกเลิก'
+                label: "<i class=\"fa fa-times\"></i> ยกเลิก"
             },
             confirm: {
-                label: '<i class="fa fa-check"></i> ยืนยัน'
+                label: "<i class=\"fa fa-check\"></i> ยืนยัน"
             }
         },
         callback: function (result) {
             if(result === true){
                 // Reset selections:
-                $("[id^=sm_]").val("-1").trigger('change.select2');
+                $("[id^=sm_]").val("-1").trigger("change.select2");
 
                 // Clear the old 'selected' array & reset index
                 scienceMajorsSelected.length = 0;
