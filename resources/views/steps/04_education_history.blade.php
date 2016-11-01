@@ -104,7 +104,9 @@
     </div>
     <div class="col-md-6">
         <span class="help-block">จังหวัด (โรงเรียน)</span>
-
+        <select id="moveinYear" name="moveinYear" class="form-control select select-primary select-block mbl">
+            {{ App\Http\Controllers\Helper::printProvinceOptions() }}
+        </select>
     </div>
 </div>
 @endif
