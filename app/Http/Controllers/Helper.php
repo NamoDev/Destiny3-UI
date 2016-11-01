@@ -16,7 +16,12 @@ use DB;
 use Session;
 
 class Helper extends Controller {
-	
+
+	// TODO: Format comments
+
+	/*
+	| Check if the applicant has already completed a step.
+	*/
 	public static function checkStepCompletion(int $step) {
 		try {
 			$applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
@@ -29,18 +34,24 @@ class Helper extends Controller {
 			return false;
 		}
 	}
-	
+
+	/*
+	| Formats a 13-character Citizen ID for display purposes. A.k.a. "The Prettifier"
+	*/
 	public static function formatCitizenIDforDisplay(string $citizenID) {
 		try {
 			$splitted = str_split($citizenID);
-			
+
 			return $splitted[0] . " - " . $splitted[1] . $splitted[2] . $splitted[3] . $splitted[4] . " - " . $splitted[5] . $splitted[6] . $splitted[7] . $splitted[8] . $splitted[9] . " - " . $splitted[10] . $splitted[11] . " - " . $splitted[12];
 		} catch (\Throwable $wtf) {
 			return $citizenID;
 		}
-		
+
 	}
-	
+
+	/*
+	| Quota select box printer
+	*/
 	public static function printQuotaSelectBox($id = NULL) {
 		$A = array(
 			'ความสามารถพิเศษด้านวิชาการ',
@@ -212,7 +223,30 @@ class Helper extends Controller {
 			}
 		}
 	}
-	
+
+	/*
+	| Province select options printer
+	*/
+	public static function printProvinceOptions($current = NULL, $enableInt = 0){
+		$provinces = array("กระบี่","กรุงเทพมหานคร","กาญจนบุรี","กาฬสินธุ์","กำแพงเพชร","ขอนแก่น","จันทบุรี","ฉะเชิงเทรา","ชลบุรี","ชัยนาท","ชัยภูมิ","ชุมพร","เชียงราย","เชียงใหม่","ตรัง","ตราด","ตาก","นครนายก","นครปฐม","นครพนม","นครราชสีมา","นครศรีธรรมราช","นครสวรรค์","นนทบุรี","นราธิวาส","น่าน","บึงกาฬ","บุรีรัมย์","ปทุมธานี","ประจวบคีรีขันธ์","ปราจีนบุรี","ปัตตานี","พระนครศรีอยุธยา","พะเยา","พังงา","พัทลุง","พิจิตร","พิษณุโลก","เพชรบุรี","เพชรบูรณ์","แพร่","ภูเก็ต","มหาสารคาม","มุกดาหาร","แม่ฮ่องสอน","ยโสธร","ยะลา","ร้อยเอ็ด","ระนอง","ระยอง","ราชบุรี","ลพบุรี","ลำปาง","ลำพูน","เลย","ศรีสะเกษ","สกลนคร","สงขลา","สตูล","สมุทรปราการ","สมุทรสงคราม","สมุทรสาคร","สระแก้ว","สระบุรี","สิงห์บุรี","สุโขทัย","สุพรรณบุรี","สุราษฎร์ธานี","สุรินทร์","หนองคาย","หนองบัวลำภู","อ่างทอง","อำนาจเจริญ","อุดรธานี","อุตรดิตถ์","อุทัยธานี","อุบลราชธานี");
+
+		// If we want to allow international students to apply:
+		if($enableInt === 1){
+			$provinces[] = "ต่างประเทศ";
+		}
+
+		foreach($provinces as $province){
+			if($province == $current){
+				echo("<option value=\"$province\" selected>$province</option>");
+			}else{
+				echo("<option value=\"$province\">$province</option>");
+			}
+		}
+	}
+
+	/*
+	| Not related in any way to the app's core functions
+	*/
 	public static function voiceLines() {
 		$index = rand(0, 4);
 		$lines = [
@@ -222,12 +256,12 @@ class Helper extends Controller {
 			"Just in time.",
 			"Aw, rubbish!"
 		];
-		
+
 		try {
 			return $lines[$index];
 		} catch (\Throwable $wait_what) {
 			return $lines[0];
 		}
 	}
-	
+
 }
