@@ -157,6 +157,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\RESTResponseServiceProvider::class,
         App\Providers\ValidationServiceProvider::class,
 
         'Jenssegers\Agent\AgentServiceProvider',
@@ -214,6 +215,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Agent' => 'Jenssegers\Agent\Facades\Agent',
+        'RESTResponse' => App\Facades\RESTResponse::class,
     ],
 
 ];
