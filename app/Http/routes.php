@@ -29,7 +29,7 @@ Route::any('application/sst/VFVEVF84MA==', 'UserController@ganymede'); // Easter
 Front-end pages for logged in applicants
 */
 Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth']], function () {
-	
+
 	Route::get('home', 'UIPages@applicantDashboard'); // Dashboard
 	Route::get('info', 'UIPages@step1_basicInfo'); // Step 1 : basic information
 	Route::get('parent', 'UIPages@step2_parentInfo'); // Step 2 : parent information
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth']], funct
 	Route::get('day', 'UIPages@step6_applicationDaySelection'); // Step 6 : basic information
 	Route::get('documents', 'UIPages@step7_uploadDocuments'); // Step 7 : upload documents
 	Route::get('change_password', 'UIPages@changePasswordPage'); // Change password
-	
+
 });
 
 /*
@@ -66,6 +66,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     // Parent/guardian information submission
     Route::post('applicant/parent_info', 'UserController@updateParentInformation')->middleware('apiauth');
 
+	// Education history (profile) submission
+	Route::post('applicant/education_history', 'UserController@updateEducationInformation')->middleware('apiauth');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
