@@ -21,6 +21,7 @@ use Response;
 use Storage;
 use RESTResponse;
 use Config;
+use Base64Exception;
 
 class UserController extends Controller{
 
@@ -353,13 +354,27 @@ class UserController extends Controller{
             return RESTResponse::notFound('No data for citizen_id : ' . $citizen_id);
         }
 
-        $keys = array_keys($data);
-        $i = 0;
-        foreach($data as $doc){
-            $documents[$keys[$i]] = base64_encode(Storage::disk('document')->get($doc['file_id']));
-            $i++;
+        if(is_null($filename)){
+            $keys = array_keys($data);
+            $i = 0;
+            foreach($data as $doc){
+                $encoded = base64_encode(Storage::disk('document')->get($doc['file_id']));
+                if($encoded === false){
+                    throw new Base64Exception('Cannot encode image file');
+                }else{
+                    $documents[$keys[$i]] = $encoded;
+                }
+                $i++;
+            }
+            unset($i);
+        }else{
+            $encoded = base64_encode(Storage::disk('document')->get($data['file_id']));
+            if($encoded === false){
+                throw new Base64Exception('Cannot encode image file');
+            }else{
+                $documents[$filename] = $encoded;
+            }
         }
-        unset($i);
 
         return RESTResponse::makeDataResponse(200, $documents);
     }
