@@ -66,6 +66,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     // Parent/guardian information submission
     Route::post('applicant/parent_info', 'UserController@updateParentInformation')->middleware('apiauth');
 
+	// Education history (profile) submission
+	Route::post('applicant/education_history', 'UserController@updateEducationInformation')->middleware('apiauth');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
@@ -74,4 +76,5 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
     Route::post('account/change_password', 'UserController@changePassword')->middleware('apiauth');
 
 	Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
+
 });

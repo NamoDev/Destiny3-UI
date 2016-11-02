@@ -20,6 +20,7 @@ use Hash;
 use Response;
 use Storage;
 use RESTResponse;
+use Config;
 
 class UserController extends Controller{
 
@@ -364,6 +365,67 @@ class UserController extends Controller{
     }
 
     /*
+    | Update education history information
+    */
+    public function updateEducationInformation(Request $request){
+        // Get applicant object & current applicant's Citizen ID:
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
+        $isESAQuotaMode = 0;
+
+        // See if we're in ESA quota, and choose validation rules as necessary:
+        if(Config::get("uiconfig.mode") == "province_quota"){
+            // ESA district quota operation mode
+            $isESAQuotaMode = 1;
+
+            // TODO: Do we need to specify minimum GPA?
+            $this->validate($request, [
+                'school' => 'required',
+                'graduation_year' => 'required|integer',
+                'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/',
+                'school_move_in_day' => 'required|integer',
+                'school_move_in_month' => 'required|integer',
+                'school_move_in_year' => 'required|integer',
+                'school_province' => 'required',
+             ]);
+        }else{
+            // Normal operation mode
+            $this->validate($request, [
+                'school' => 'required',
+                'graduation_year' => 'required|integer',
+                'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/',
+             ]);
+        }
+
+        // Prepare data for modification:
+        $modifyThis = [
+            "school" => $request->input("school"),
+            "graduation_year" => $request->input("graduation_year"),
+            "gpa" => $request->input("gpa")
+        ];
+
+        // Quota mode. Additional information needed:
+        if($isESAQuotaMode === 1){
+            $modifyThis["school_move_in"] = [
+                "day" => $request->input("school_move_in_day"),
+                "month" => $request->input("school_move_in_month"),
+                "year" => $request->input("school_move_in_year"),
+            ];
+            $modifyThis["school_province"] = $request->input("school_province");
+        }
+
+        // Modify, save and return done!
+        if($applicant->modify($applicantCitizenID, $modifyThis)){
+            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+        }else{
+            // error!
+            // TODO: return RESTResponse maybe?
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+        }
+
+    }
+
+    /*
     | Gender formatter
     */
     public function formatGender(int $usingCustomTitle, string $title, string $gender){
@@ -440,6 +502,7 @@ class UserController extends Controller{
         return response()->view("errors.e54", [], 418);
     }
 
+
     /**
      * Check if a given ip is in a network
      * @param  string $ip    IP to check in IPV4 format eg. 127.0.0.1
@@ -458,4 +521,5 @@ class UserController extends Controller{
         $netmask_decimal = ~ $wildcard_decimal;
         return ( ( $ip_decimal & $netmask_decimal ) == ( $range_decimal & $netmask_decimal ) );
     }
+
 }
