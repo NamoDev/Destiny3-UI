@@ -18,6 +18,8 @@ use DB;
 use Session;
 use Hash;
 use Response;
+use Storage;
+use RESTResponse;
 
 class UserController extends Controller{
 
@@ -312,6 +314,53 @@ class UserController extends Controller{
             return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
         }
 
+    }
+
+    public function getDocument(Request $request, $citizen_id, $filename = null){
+        /*if(!$this->ipInRange($request->ip(), $range)){
+            return RESTResponse::notAuthorized('IP not in permitted range');
+        }*/
+
+        /*if(!$request->has('ACCESS-KEY')){
+            return RESTResponse::badRequest('Request does not include access key');
+        }*/
+        // Skip validation for now, as we debate about how to handshake
+
+        //if($request->input('type') == 'all'){
+
+        //}else if($request->input('type') == 'pending'){
+            /*$data = DB::collection('applicants')
+                      ->where('citizen_id', $citizen_id)
+                      ->where('')
+                      ->pluck('document')[0];*/
+        /*}else{
+            return RESTResponse::badRequest('Invalid type');
+        }*/
+
+        if(is_null($filename)){
+            // Retrieve all file
+            $data = DB::collection('applicants')
+                      ->where('citizen_id', $citizen_id)
+                      ->pluck('document')[0];
+        }else{
+            $data = DB::collection('applicants')
+                      ->where('citizen_id', $citizen_id)
+                      ->pluck('document')[0][$filename];
+        }
+
+        if(count($data) == 0){
+            return RESTResponse::notFound('No data for citizen_id : ' . $citizen_id);
+        }
+
+        $keys = array_keys($data);
+        $i = 0;
+        foreach($data as $doc){
+            $documents[$keys[$i]] = base64_encode(Storage::disk('document')->get($doc['file_id']));
+            $i++;
+        }
+        unset($i);
+
+        return RESTResponse::makeDataResponse(200, $documents);
     }
 
     /*
