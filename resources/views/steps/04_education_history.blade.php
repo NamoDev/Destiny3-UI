@@ -147,7 +147,7 @@
     <div class="col-md-6">
         <span class="help-block">จังหวัด (โรงเรียน)</span>
         <select id="schoolProvince" name="schoolProvince" class="form-control select select-primary select-block mbl">
-            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? isset($applicantData['school_province']) : NULL) }}
+            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? $applicantData['school_province'] : NULL) }}
         </select>
     </div>
 </div>
