@@ -27,9 +27,10 @@
     23 => 'App\\Providers\\AuthServiceProvider',
     24 => 'App\\Providers\\EventServiceProvider',
     25 => 'App\\Providers\\RouteServiceProvider',
-    26 => 'App\\Providers\\ValidationServiceProvider',
-    27 => 'Jenssegers\\Agent\\AgentServiceProvider',
-    28 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    26 => 'App\\Providers\\RESTResponseServiceProvider',
+    27 => 'App\\Providers\\ValidationServiceProvider',
+    28 => 'Jenssegers\\Agent\\AgentServiceProvider',
+    29 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
   ),
   'eager' => 
   array (
@@ -47,9 +48,10 @@
     11 => 'App\\Providers\\AuthServiceProvider',
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
-    14 => 'App\\Providers\\ValidationServiceProvider',
-    15 => 'Jenssegers\\Agent\\AgentServiceProvider',
-    16 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
+    14 => 'App\\Providers\\RESTResponseServiceProvider',
+    15 => 'App\\Providers\\ValidationServiceProvider',
+    16 => 'Jenssegers\\Agent\\AgentServiceProvider',
+    17 => 'Jenssegers\\Mongodb\\MongodbServiceProvider',
   ),
   'deferred' => 
   array (
