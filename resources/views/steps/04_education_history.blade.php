@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
-        <span class="help-block">จบการศึกษาระดับชั้นมัธยมศึกษาปีที่ 3 จากโรงเรียน</span>
+        <span class="help-block">จบการศึกษาระดับชั้น<b>มัธยมศึกษาปีที่ 3</b> จากโรงเรียน</span>
         <input id="school" name="school" placeholder="ชื่อโรงเรียน" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
     </div>
     <div class="col-md-3 col-xs-12">
@@ -146,8 +146,8 @@
     </div>
     <div class="col-md-6">
         <span class="help-block">จังหวัด (โรงเรียน)</span>
-        <select id="moveinYear" name="moveinYear" class="form-control select select-primary select-block mbl">
-            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? isset($applicantData['school_province']) : NULL) }}
+        <select id="schoolProvince" name="schoolProvince" class="form-control select select-primary select-block mbl">
+            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? $applicantData['school_province'] : NULL) }}
         </select>
     </div>
 </div>
@@ -183,7 +183,94 @@ $("#gpa").change(function(){
     }
 });
 
-var states = new Bloodhound({
+$("#sendTheFormButton").click(function(){
+
+    // Tell the user to wait:
+    $('#plsWaitModal').modal('show');
+
+    // Error status:
+    var hasErrors = 0;
+
+    // Disallow blank fields:
+    hasErrors += isFieldBlank("gpa");
+    hasErrors += isFieldBlank("school");
+
+    // Check GPA. First, see if the user has given us something higher than 4.00:
+    if(!isNaN(parseFloat($("#gpa").val()))){
+        if(parseFloat($("#gpa").val()) > 4.0){
+            $("#gpaGroup").addClass("has-error");
+            hasErrors += 1;
+        }else{
+            $("#gpaGroup").removeClass("has-error");
+        }
+    }
+
+    // Then, see if we can match to a x.xx GPA regex:
+    var gpaPattern = new RegExp("[1-4].[0-9]{2}");
+    if(!gpaPattern.test($("#gpa").val())){
+        // Uh-oh!
+        $("#gpaGroup").addClass("has-error");
+        hasErrors += 1;
+    }else{
+        $("#gpaGroup").removeClass("has-error");
+    }
+
+    @if(Config::get('app.debug') === true)
+        // For debugging. This only comes up if we're in debug mode:
+        console.log("[DBG/LOG] Total errors: " + hasErrors);
+    @endif
+
+    // Ready to send. Are there any errors?
+    if(hasErrors == 0){
+        // We're all good!
+        $.ajax({
+            url: '/api/v1/applicant/education_history',
+            data: {
+                _token: csrfToken,
+                school: $("#school").val(),
+                graduation_year: $("#graduation_year").val(),
+                gpa: $("#gpa").val(),
+                {{-- Additional data for province quota applicants: --}}
+                @if(Config::get("uiconfig.mode") == "province_quota")
+                    school_move_in_day: $("#moveinDay").val(),
+                    school_move_in_month: $("#moveinMonth").val(),
+                    school_move_in_year: $("#moveinYear").val(),
+                    school_province: $("#schoolProvince").val(),
+                @endif
+            },
+            error: function (request, status, error) {
+                $('#plsWaitModal').modal('hide');
+                switch(request.status){
+                    case 422:
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+                    break;
+                    default:
+                        console.log("(" + request.status + ") Exception:" + request.responseText);
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
+                }
+            },
+            dataType: 'json',
+            success: function(data) {
+
+                // Tell the user that everything went well
+                $('#plsWaitModal').modal('hide');
+                notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+
+            },
+            type: 'POST'
+        });
+    }else{
+        // O NOES!
+        $('#plsWaitModal').modal('hide');
+        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+    }
+
+
+
+
+});
+
+var schoolsList = new Bloodhound({
   datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.word); },
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   limit: 4,
@@ -217,13 +304,13 @@ var states = new Bloodhound({
   ]
 });
 
-states.initialize();
+schoolsList.initialize();
 
 $('#school').typeahead(null, {
-  name: 'states',
+  name: 'schoolsList',
   displayKey: 'word',
   highlight: true,
-  source: states.ttAdapter()
+  source: schoolsList.ttAdapter()
 });
 
 </script>
