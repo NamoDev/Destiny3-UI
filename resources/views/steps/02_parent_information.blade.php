@@ -264,6 +264,9 @@ $(function(){
     /* Form submission */
     $("#sendTheFormButton").click(function(){
 
+        // Tell the user to wait:
+        $('#plsWaitModal').modal('show');
+
         // Error checking variable
         var hasErrors = 0;
 
