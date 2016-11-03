@@ -466,10 +466,17 @@ class UserController extends Controller{
 
         // TODO: Any additional logic checks for DQ
 
+        // Only consider quota types if the user has specified that he/she will be applying for a quota:
+        if($applicationType == 1){
+            $quotaType = $request->input("quota_type");
+        }else{
+            $quotaType = 0;
+        }
+
         // Prepare data:
         $modifyThis = [
             "application_type" => $applicationType,
-            "quota_type" => $request->input("quota_type"),
+            "quota_type" => $quotaType,
             "plan" => $request->input("plan")
         ];
 
