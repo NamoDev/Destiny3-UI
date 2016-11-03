@@ -441,6 +441,56 @@ class UserController extends Controller{
     }
 
     /*
+    | Update plan selection
+    */
+    public function updatePlanSelectionInformation(Request $request){
+
+        // Get applicant object & current applicant's Citizen ID:
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
+
+        // Verify inputs:
+        $this->validate($request, [
+            'application_type' => 'required|integer',
+            'quota_type' => 'required|integer',
+            'plan' => 'required|integer|min:1|max:9',
+            'majors' => 'required_if:plan,5'
+        ]);
+
+        // See if we're in District Quota mode. If so, we'll always force the application type to 2:
+        if(Config::get("uiconfig.mode") == "province_quota"){
+            $applicationType = 2;
+        }else{
+            $applicationType = (integer) $request->input("application_type");
+        }
+
+        // TODO: Any additional logic checks for DQ
+
+        // Prepare data:
+        $modifyThis = [
+            "application_type" => $applicationType,
+            "quota_type" => $request->input("quota_type"),
+            "plan" => $request->input("plan")
+        ];
+
+        // If majoring in science, additional sub-major information will be required:
+        if($request->input("plan") == 5){
+            $modifyThis["majors"] = $request->input("majors");
+        }
+
+        // Now that everything's ready, save and return done (hopefully)
+        if($applicant->modify($applicantCitizenID, $modifyThis)){
+            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+        }else{
+            // error!
+            // TODO: return RESTResponse maybe?
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+        }
+
+
+    }
+
+    /*
     | Gender formatter
     */
     public function formatGender(int $usingCustomTitle, string $title, string $gender){
