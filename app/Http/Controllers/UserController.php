@@ -461,7 +461,13 @@ class UserController extends Controller{
         if(Config::get("uiconfig.mode") == "province_quota"){
             $applicationType = 2;
         }else{
-            $applicationType = (integer) $request->input("application_type");
+            if($request->input("application_type") == 0 || $request->input("application_type") == 1){
+                // Only normal application & school quota application modes allowed:
+                $applicationType = (integer) $request->input("application_type");
+            }else{
+                // On error or any attempted injection, set to default (normal application):
+                $applicationType = 0;
+            }
         }
 
         // TODO: Any additional logic checks for DQ
