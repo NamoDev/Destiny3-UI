@@ -7,10 +7,13 @@
 <div class="row">
     <div class="col-md-12" id="applicationTypeCol">
         <span class="help-block">ประเภทการสมัคร</span>
-        <select id="application_type" name="application_type" class="form-control select select-primary select-block mbl">
-            <option value="0">นักเรียนปกติ</option>
-            <option value="1">นักเรียนความสามารถพิเศษ (โควตา)</option>
-            <option value="2">นักเรียนในโครงการโควตาจังหวัด สพม.</option>
+        <select id="application_type" name="application_type" class="form-control select select-primary select-block mbl" {{ Config::get("uiconfig.mode") == "province_quota" ? "disabled" : ""}}>
+            @if(Config::get("uiconfig.mode") == "province_quota")
+                <option value="2">นักเรียนในโครงการโควตาจังหวัด สพม.</option>
+            @else
+                <option value="0">นักเรียนปกติ</option>
+                <option value="1">นักเรียนความสามารถพิเศษ (โควตา)</option>
+            @endif
         </select>
     </div>
     <div class="col-md-7" style="display:none;" id="quotaTypeCol">
