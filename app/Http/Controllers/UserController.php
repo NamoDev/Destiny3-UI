@@ -309,6 +309,10 @@ class UserController extends Controller{
 
         // Modify the applicant
         if($applicant->modify($applicantCitizenID, $modifyThis)){
+
+            // Mark step as done
+            $applicant->markStepAsDone($applicantCitizenID, 2);
+
             return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
         }else{
             // error!
@@ -431,6 +435,10 @@ class UserController extends Controller{
 
         // Modify, save and return done!
         if($applicant->modify($applicantCitizenID, $modifyThis)){
+
+            // Mark step as done
+            $applicant->markStepAsDone($applicantCitizenID, 4);
+
             return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
         }else{
             // error!
@@ -496,6 +504,10 @@ class UserController extends Controller{
 
         // Now that everything's ready, save and return done (hopefully)
         if($applicant->modify($applicantCitizenID, $modifyThis)){
+
+            // Mark step as done
+            $applicant->markStepAsDone($applicantCitizenID, 5);
+
             return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
         }else{
             // error!

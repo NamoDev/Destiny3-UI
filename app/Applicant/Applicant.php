@@ -17,7 +17,7 @@ use Hash;
 use Session;
 
 class Applicant {
-	
+
 	/**
 	 * A method for creating an applicant. Requires a lot of variables.
 	 *
@@ -80,12 +80,12 @@ class Applicant {
 				'password' => Hash::make($password),
 				'steps_completed' => [1],
 			]);
-			
+
 			return (string)$insertID;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Applicant data updater (a.k.a. 'The Modifier')
 	 *
@@ -95,20 +95,52 @@ class Applicant {
 	 */
 	public function modify(string $citizenid, array $things): bool {
 		if ($this->exists($citizenid)) {
-			
+
 			// Yep, our applicant exists. Do update:
 			DB::collection("applicants")->where("citizenid", $citizenid)->update($things);
-			
+
 			// And we're done.
 			return true;
-			
+
 		} else {
 			// NOPE. 404 NOT FOUND.
 			return false;
 		}
 	}
-	
-	
+
+	/**
+	 * Mark a step as done
+	 *
+	 * @param string $citizenid
+	 * @param integer $step
+	 * @return bool
+	 */
+	public function markStepAsDone(string $citizenid, int $step): bool {
+		if ($this->exists($citizenid)) {
+
+			// Get applicant data
+			$applicantData = DB::collection("applicants")->where("citizenid", $citizenid)->first();
+
+			// Yep, our applicant exists. See if the step request has already been marked as done:
+			if(!in_array($step, $applicantData["steps_completed"])){
+				// Nope. Let's add it!
+				$stepsCompleted = $applicantData["steps_completed"];
+				$stepsCompleted[] = $step;
+			}
+			DB::collection("applicants")->where("citizenid", $citizenid)->update([
+				"steps_completed" => $stepsCompleted
+			]);
+
+			// And we're done.
+			return true;
+
+		} else {
+			// NOPE. 404 NOT FOUND.
+			return false;
+		}
+	}
+
+
 	/**
 	 * Applicant login processor. Requires citizenid and password. It's that simple!
 	 *
@@ -121,16 +153,16 @@ class Applicant {
 		if (DB::collection("applicants")->where("citizenid", $citizenid)->count() == 1) {
 			// OK. Password correct?
 			$loginUserData = DB::collection("applicants")->where("citizenid", $citizenid)->first();
-			
+
 			// Double conversion to convert Array to Object (which is easier to work with IMO)
 			$loginUserData = json_decode(json_encode($loginUserData));
-			
+
 			if (Hash::check($password, $loginUserData->password)) {
 				// Login OK
 				Session::put("applicant_logged_in", "1");
 				Session::put("applicant_citizen_id", $loginUserData->citizenid);
 				Session::put("applicant_full_name", $loginUserData->fname . " " . $loginUserData->lname);
-				
+
 				return true;
 			} else {
 				// Login failed
@@ -141,8 +173,8 @@ class Applicant {
 			return false;
 		}
 	}
-	
-	
+
+
 	/**
 	 * The complete opposite of login.
 	 *
@@ -151,26 +183,26 @@ class Applicant {
 	public function logout():bool {
 		Session::flush();
 		Session::regenerate();
-		
+
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Refreshes all session data (except Citizen ID).
 	 *
 	 * @return bool
 	 */
 	public function reloadSessionData():bool {
-		
+
 		// Reload data from DB:
 		$userData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
 		Session::put("applicant_full_name", $userData['fname'] . " " . $userData['lname']);
-		
+
 		return true;
-		
+
 	}
-	
+
 	/**
 	 * Is the user logged in or not?
 	 *
@@ -185,8 +217,8 @@ class Applicant {
 			return false;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Does the applicant exist?
 	 *
@@ -196,6 +228,6 @@ class Applicant {
 	public function exists(string $citizenid): bool {
 		return (DB::collection("applicants")->where("citizenid", $citizenid)->count() != 0);
 	}
-	
-	
+
+
 }
