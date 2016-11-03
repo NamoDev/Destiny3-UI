@@ -1922,7 +1922,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   position: relative;
   -webkit-transition: color .25s linear;
           transition: color .25s linear;
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.5;
 }
 .checkbox .icons,
