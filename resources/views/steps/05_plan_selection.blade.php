@@ -25,8 +25,8 @@
         <span class="help-block">แผนการเรียนที่นักเรียนต้องการสมัคร</span>
         <select id="plan" name="plan" class="form-control select select-primary select-block mbl">
             <?php
-                if(isset($appliantData['plan_id'])){
-                    $currentPlanSelected = $applicantData['plan_id'];
+                if(isset($appliantData['plan'])){
+                    $currentPlanSelected = $applicantData['plan'];
                 }else{
                     $currentPlanSelected = 5; // (The power of) Science by default!
                 }
@@ -206,8 +206,8 @@ $(function(){
     $("#application_type").change();
     $("#quota_type").change();
 
-    @if(isset($applicantData['plan_id']))
-        $("#plan").val("{{ $applicantData['plan_id'] }}").trigger("change");
+    @if(isset($applicantData['plan']))
+        $("#plan").val("{{ $applicantData['plan'] }}").trigger("change");
     @else
         $("#plan").val("5").trigger("change");
     @endif
