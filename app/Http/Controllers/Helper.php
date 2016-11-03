@@ -245,6 +245,27 @@ class Helper extends Controller {
 	}
 
 	/*
+	| Map Science submajor option ID to human-readable name
+	*/
+	public static function whatScienceMajor($id){
+		$options = [
+			"1" => "คอมพิวเตอร์",
+			"2" => "การบริหารจัดการ",
+			"3" => "คุณภาพชีวิต",
+			"4" => "คณิตศาสตร์ประยุกต์",
+			"5" => "ภาษาจีน",
+			"6" => "ภาษาญี่ปุ่น",
+			"7" => "ภาษาเยอรมัน",
+			"8" => "ภาษาฝรั่งเศส"
+		];
+		try{
+			return (string)  $options[$id];
+		}catch(\Throwable $whatever){
+			return null;
+		}
+	}
+
+	/*
 	| Not related in any way to the app's core functions
 	*/
 	public static function voiceLines() {
