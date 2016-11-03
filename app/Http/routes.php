@@ -42,39 +42,36 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth']], funct
 
 });
 
+// Account creation API route. Not in the API group cause we can't use apiauth middleware there
+Route::post('api/v1/account/create', 'UserController@createAccount');
+
 /*
 | API Routes (v1)
 */
-Route::group(['prefix' => 'api/v1', 'middleware' => ['web']], function(){
-
-    /*
-    NOTE: These routes won't work yet - there's no backend handler for it!
-    This is just for planning purposes.
-    */
-
-    // Account creation
-    Route::post('account/create', 'UserController@createAccount');
-
-    // TODO: Add API authentication middlewares for API routes below:
+Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
 
     // Get applicant data. Simple!
-    Route::get('applicant/data', 'UserController@getApplicantData')->middleware('apiauth');
+    Route::get('applicant/data', 'UserController@getApplicantData');
 
     // Applicant's basic data submission
-    Route::post('applicant/data', 'UserController@updateApplicantData')->middleware('apiauth');
+    Route::post('applicant/data', 'UserController@updateApplicantData');
 
     // Parent/guardian information submission
-    Route::post('applicant/parent_info', 'UserController@updateParentInformation')->middleware('apiauth');
+    Route::post('applicant/parent_info', 'UserController@updateParentInformation');
 
 	// Education history (profile) submission
-	Route::post('applicant/education_history', 'UserController@updateEducationInformation')->middleware('apiauth');
+	Route::post('applicant/education_history', 'UserController@updateEducationInformation');
+
+	// Education history (profile) submission
+	Route::post('applicant/plan_selection', 'UserController@updatePlanSelectionInformation');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
-    Route::get('applicant/submit', 'Blah@Blah')->middleware('apiauth');
+    Route::get('applicant/submit', 'Blah@Blah');
 
     // Password change handler
-    Route::post('account/change_password', 'UserController@changePassword')->middleware('apiauth');
+    Route::post('account/change_password', 'UserController@changePassword');
 
+	// Get file for a student (by CID)
 	Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
 
 });
