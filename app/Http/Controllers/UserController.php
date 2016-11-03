@@ -476,6 +476,9 @@ class UserController extends Controller{
         // If majoring in science, additional sub-major information will be required:
         if($request->input("plan") == 5){
             $modifyThis["majors"] = $request->input("majors");
+        }else{
+            // Else there is no need for sub-major information to exist:
+            $modifyThis["majors"] = []; // TODO: Find a way to delete this branch
         }
 
         // Now that everything's ready, save and return done (hopefully)
