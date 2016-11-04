@@ -71,7 +71,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
     // Password change handler
     Route::post('account/change_password', 'UserController@changePassword');
 
-	// Get file for a student (by CID)
+	// Get document for a student (by CID)
 	Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
 
 });
