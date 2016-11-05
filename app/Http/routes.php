@@ -65,6 +65,9 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
 	// Education history (profile) submission
 	Route::post('applicant/plan_selection', 'UserController@updatePlanSelectionInformation');
 
+	// Documents submission
+	Route::post('applicant/documents_upload', 'UserController@handleDocuments');
+
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah');
 
