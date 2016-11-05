@@ -97,7 +97,7 @@ class Applicant {
         if ($this->exists($citizenid)) {
 
             // Yep, our applicant exists. Do update:
-            DB::collection("applicants")->where("citizenid", $citizenid)->update($things);
+            DB::collection("applicants")->where("citizen_id", $citizenid)->update($things);
 
             // And we're done.
             return true;
@@ -119,7 +119,7 @@ class Applicant {
         if ($this->exists($citizenid)) {
 
             // Get applicant data
-            $applicantData = DB::collection("applicants")->where("citizenid", $citizenid)->first();
+            $applicantData = DB::collection("applicants")->where("citizen_id", $citizenid)->first();
 
             // Yep, our applicant exists. See if the step request has already been marked as done:
             if(!in_array($step, $applicantData["steps_completed"])){
@@ -127,7 +127,7 @@ class Applicant {
                 $stepsCompleted = $applicantData["steps_completed"];
                 $stepsCompleted[] = $step;
             }
-            DB::collection("applicants")->where("citizenid", $citizenid)->update([
+            DB::collection("applicants")->where("citizen_id", $citizenid)->update([
                 "steps_completed" => $stepsCompleted
             ]);
 
@@ -150,9 +150,9 @@ class Applicant {
      */
     public function login(string $citizenid, string $password): bool {
         // See if the user exists:
-        if (DB::collection("applicants")->where("citizenid", $citizenid)->count() == 1) {
+        if (DB::collection("applicants")->where("citizen_id", $citizenid)->count() == 1) {
             // OK. Password correct?
-            $loginUserData = DB::collection("applicants")->where("citizenid", $citizenid)->first();
+            $loginUserData = DB::collection("applicants")->where("citizen_id", $citizenid)->first();
 
             // Double conversion to convert Array to Object (which is easier to work with IMO)
             $loginUserData = json_decode(json_encode($loginUserData));
@@ -196,7 +196,7 @@ class Applicant {
     public function reloadSessionData():bool {
 
         // Reload data from DB:
-        $userData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
+        $userData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
         Session::put("applicant_full_name", $userData['fname'] . " " . $userData['lname']);
 
         return true;
@@ -226,7 +226,7 @@ class Applicant {
      * @return bool
      */
     public function exists(string $citizenid): bool {
-        return (DB::collection("applicants")->where("citizenid", $citizenid)->count() != 0);
+        return (DB::collection("applicants")->where("citizen_id", $citizenid)->count() != 0);
     }
 
 

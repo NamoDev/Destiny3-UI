@@ -160,11 +160,11 @@ class UserController extends Controller{
         ]);
 
         // Check the old password
-        $applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
+        $applicantData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
         if(Hash::check($request->input("old_password"), $applicantData['password'])){
 
             // OK
-            DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->update([
+            DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->update([
                 'password' => Hash::make($request->input("password")),
             ]);
 

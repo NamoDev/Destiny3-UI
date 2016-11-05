@@ -24,7 +24,7 @@ class Helper extends Controller {
 	*/
 	public static function checkStepCompletion(int $step) {
 		try {
-			$applicantData = DB::collection("applicants")->where("citizenid", Session::get("applicant_citizen_id"))->first();
+			$applicantData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
 			if (in_array($step, $applicantData['steps_completed'])) {
 				return true;
 			} else {
