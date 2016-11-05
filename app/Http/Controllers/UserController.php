@@ -519,6 +519,84 @@ class UserController extends Controller{
     }
 
     /*
+     * Handle applicant's documents upload
+     *
+     */
+    public function handleDocuments(Request $request){
+        // Get applicant object & current applicant's Citizen ID:
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
+
+        $this->validate($request, [
+            'transcript' => 'mimes:jpeg,png',
+            'student_hr' => 'mimes:jpeg,png',
+            'father_hr' => 'mimes:jpeg,png',
+            'mother_hr' => 'mimes:jpeg,png',
+        ]);
+
+        $documents = array(
+            'transcript' =>
+                $applicantCitizenID.'_transcript_'.uniqid()
+                .'.'.
+                $request->file('transcript')->getClientOriginalExtension(),
+            'student_hr' =>
+                $applicantCitizenID.'_student_hr_'.uniqid()
+                .'.'.
+                $request->file('student_hr')->getClientOriginalExtension(),
+            'father_hr' =>
+                $applicantCitizenID.'_father_hr_'.uniqid()
+                .'.'.
+                $request->file('father_hr')->getClientOriginalExtension(),
+            'mother_hr' =>
+                $applicantCitizenID.'_mother_hr_'.uniqid()
+                .'.'.
+                $request->file('mother_hr')->getClientOriginalExtension(),
+        );
+
+        // Storing documents
+        foreach($documents as $file => $filename){
+            if(!Storage::disk('document')->put($filename, $request->input($file))){
+                throw new Exception('Error saving file');
+            }
+        }
+
+        $insert = DB::collection('applicants')->where('citizen_id', $applicantCitizenID)->pluck('documents')[0];
+
+        $insert[time()] = array(
+            'transcript' => [
+                'file_name' => $documents['transcript'],
+                'check_result' => 0
+            ],
+            'student_hr' => [
+                'file_name' => $documents['student_hr'],
+                'check_result' => 0
+            ],
+            'father_hr' => [
+                'file_name' => $documents['father_hr'],
+                'check_result' => 0
+            ],
+            'mother_hr' => [
+                'file_name' => $documents['mother_hr'],
+                'check_result' => 0
+            ],
+        );
+
+        // Now that everything's ready, save and return done (hopefully)
+        if($applicant->modify($applicantCitizenID, array('documents' => $insert))){
+
+            // Mark step as done
+            $applicant->markStepAsDone($applicantCitizenID, 7);
+
+            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+        }else{
+            // error!
+            // TODO: return RESTResponse maybe?
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+        }
+
+    }
+
+    /*
     | Gender formatter
     */
     public function formatGender(int $usingCustomTitle, string $title, string $gender){
