@@ -536,20 +536,16 @@ class UserController extends Controller{
 
         $documents = array(
             'transcript' =>
-                $applicantCitizenID.'_transcript_'.uniqid()
-                .'.'.
+                $applicantCitizenID.'_transcript_'.uniqid().'.'.
                 $request->file('transcript')->getClientOriginalExtension(),
             'student_hr' =>
-                $applicantCitizenID.'_student_hr_'.uniqid()
-                .'.'.
+                $applicantCitizenID.'_student_hr_'.uniqid().'.'.
                 $request->file('student_hr')->getClientOriginalExtension(),
             'father_hr' =>
-                $applicantCitizenID.'_father_hr_'.uniqid()
-                .'.'.
+                $applicantCitizenID.'_father_hr_'.uniqid().'.'.
                 $request->file('father_hr')->getClientOriginalExtension(),
             'mother_hr' =>
-                $applicantCitizenID.'_mother_hr_'.uniqid()
-                .'.'.
+                $applicantCitizenID.'_mother_hr_'.uniqid().'.'.
                 $request->file('mother_hr')->getClientOriginalExtension(),
         );
 
