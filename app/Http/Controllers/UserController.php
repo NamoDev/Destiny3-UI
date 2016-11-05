@@ -528,10 +528,10 @@ class UserController extends Controller{
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
         $this->validate($request, [
-            'transcript' => 'mimes:jpeg,png',
-            'student_hr' => 'mimes:jpeg,png',
-            'father_hr' => 'mimes:jpeg,png',
-            'mother_hr' => 'mimes:jpeg,png',
+            'transcript' => 'required|mimes:jpeg,png',
+            'student_hr' => 'required|mimes:jpeg,png',
+            'father_hr' => 'required|mimes:jpeg,png',
+            'mother_hr' => 'required|mimes:jpeg,png',
         ]);
 
         $documents = array(
