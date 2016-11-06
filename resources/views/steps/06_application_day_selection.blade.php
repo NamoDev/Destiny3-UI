@@ -35,7 +35,7 @@
                     @else
                         @if($applicationDay["afternoon_count"] < $applicationDay["afternoon_max"])
                             <small class="text-success">ยังมีที่ว่าง</small><br />
-                            <button class="btn btn-block btn-primary" id="adsel_{{base64_encode($applicationDay["date"] . "/morning")}}" style="margin-top:10px;">เลือกสมัครรอบนี้</button>
+                            <button class="btn btn-block btn-primary" id="adsel_{{base64_encode($applicationDay["date"] . "/afternoon")}}" style="margin-top:10px;">เลือกสมัครรอบนี้</button>
                         @else
                             <small class="text-danger">เต็มแล้ว</small><br />
                             <button class="btn btn-block btn-primary disabled" style="margin-top:10px;">เลือกสมัครรอบนี้</button>
