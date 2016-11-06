@@ -65,9 +65,6 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
 	// Education history (profile) submission
 	Route::post('applicant/plan_selection', 'UserController@updatePlanSelectionInformation');
 
-	// Application day selection
-	Route::post('applicant/application_day', 'UserController@updateApplicationDaySelection');
-
 	// Documents submission
 	Route::post('applicant/documents_upload', 'UserController@handleDocuments');
 

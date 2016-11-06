@@ -12700,7 +12700,6 @@ the specific language governing permissions and limitations under the Apache Lic
 
       // Adding 'nohover' class for mobile devices
 
-	  /*
       var mobile = /mobile|tablet|phone|ip(ad|od)|android|silk|webos/i.test(global.navigator.userAgent);
 
       if (mobile === true) {
@@ -12710,22 +12709,6 @@ the specific language governing permissions and limitations under the Apache Lic
           $this.removeClass('nohover');
         });
       }
-
-	  */
-
-	  	if (/iPhone|iPod|iPad/i.test(global.navigator.userAgent)) {
-			$this.addClass('nohover');
-		} else {
-		   	var mobile = /mobile|tablet|phone|ip(ad|od)|android|silk|webos/i.test(global.navigator.userAgent);
-		   	if (mobile === true) {
-		      	$this.parent().hover(function () {
-		         	$this.addClass('nohover');
-		      	}, function () {
-		         	$this.removeClass('nohover');
-		      	});
-		   	}
-		}
-
     });
   }
 
