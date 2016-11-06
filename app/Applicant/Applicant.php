@@ -148,11 +148,11 @@ class Applicant {
      * @param string $password
      * @return bool
      */
-    public function login(string $citizenid, string $password): bool {
+    public function login(string $citizen_id, string $password): bool {
         // See if the user exists:
-        if (DB::collection("applicants")->where("citizen_id", $citizenid)->count() == 1) {
+        if (DB::collection("applicants")->where("citizen_id", $citizen_id)->count() == 1) {
             // OK. Password correct?
-            $loginUserData = DB::collection("applicants")->where("citizen_id", $citizenid)->first();
+            $loginUserData = DB::collection("applicants")->where("citizen_id", $citizen_id)->first();
 
             // Double conversion to convert Array to Object (which is easier to work with IMO)
             $loginUserData = json_decode(json_encode($loginUserData));
@@ -160,7 +160,7 @@ class Applicant {
             if (Hash::check($password, $loginUserData->password)) {
                 // Login OK
                 Session::put("applicant_logged_in", "1");
-                Session::put("applicant_citizen_id", $loginUserData->citizenid);
+                Session::put("applicant_citizen_id", $loginUserData->citizen_id);
                 Session::put("applicant_full_name", $loginUserData->fname . " " . $loginUserData->lname);
 
                 return true;
