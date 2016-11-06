@@ -94,9 +94,8 @@ class UIPages extends Controller {
 	// Step 06: Application day selection
 	public function step6_applicationDaySelection() {
 		$applicantData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
-		$applicationDays = DB::collection("application_days")->get();
 
-		return response()->view('steps.06_application_day_selection', ['applicantData' => $applicantData, 'applicationDays' => $applicationDays]);
+		return response()->view('steps.06_application_day_selection', ['applicantData' => $applicantData]);
 	}
 
 	// Step 07: Document upload & verification

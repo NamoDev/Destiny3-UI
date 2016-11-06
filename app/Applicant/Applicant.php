@@ -126,10 +126,10 @@ class Applicant {
                 // Nope. Let's add it!
                 $stepsCompleted = $applicantData["steps_completed"];
                 $stepsCompleted[] = $step;
-				DB::collection("applicants")->where("citizen_id", $citizenid)->update([
-	                "steps_completed" => $stepsCompleted
-	            ]);
             }
+            DB::collection("applicants")->where("citizen_id", $citizenid)->update([
+                "steps_completed" => $stepsCompleted
+            ]);
 
             // And we're done.
             return true;
@@ -144,7 +144,7 @@ class Applicant {
     /**
      * Applicant login processor. Requires citizenid and password. It's that simple!
      *
-     * @param string $citizen_id
+     * @param string $citizenid
      * @param string $password
      * @return bool
      */

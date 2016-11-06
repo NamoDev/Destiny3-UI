@@ -518,57 +518,6 @@ class UserController extends Controller{
 
     }
 
-
-    /*
-    | Update application day selection
-    */
-    public function updateApplicationDaySelection(Request $request){
-        // Get applicant object & current applicant's Citizen ID:
-        $applicant = new Applicant();
-        $applicantCitizenID = Session::get("applicant_citizen_id");
-
-        // Check that we get our ID
-        $this->validate($request, [
-            'id' => 'required'
-        ]);
-
-        // Try to decode ID, see if it's valid:
-        try{
-
-            // Remove "adsel_":
-            $id_decoded = base64_decode(substr($request->input("id"), 6));
-            $id_data = explode("/", $id_decoded); // should be : YYYY / MM / DD / (morning or afternoon)
-
-            // See if the last part is valid:
-            if($id_data[3] != "morning" && $id_data[3] != "afternoon"){
-                throw new Exception("Invalid Subday Value");
-            }
-
-        }catch(\Throwable $stuff){
-            // Invalid data
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 451);
-        }
-
-        // Everything should be fine, we can now continue:
-        $applicationDayStringToSave = $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2] . "/" . $id_data[3];
-
-        // Save & return done!
-        // Now that everything's ready, save and return done (hopefully)
-        if($applicant->modify($applicantCitizenID, ["application_day" => $applicationDayStringToSave])){
-
-            // Mark step as done
-            $applicant->markStepAsDone($applicantCitizenID, 6);
-
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
-        }else{
-            // error!
-            // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
-        }
-
-
-    }
-
     /*
      * Handle applicant's documents upload
      *
