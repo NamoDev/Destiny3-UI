@@ -13,7 +13,7 @@ class CreateApplicantsCollection extends Migration
     public function up()
     {
         Schema::create('application_days', function ($collection) {
-            $collection->unique('day');
+            $collection->unique('date');
         });
     }
 
