@@ -56,7 +56,8 @@ Dropzone.options.filePicture = {
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
-    }
+    },
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileCID = {
     maxFilesize: 2,
@@ -65,7 +66,8 @@ Dropzone.options.fileCID = {
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
-    }
+    },
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileTranscript = {
     maxFilesize: 2,
@@ -74,7 +76,8 @@ Dropzone.options.fileTranscript = {
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
-    }
+    },
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileHRApplicant = {
     maxFilesize: 2,
@@ -83,7 +86,8 @@ Dropzone.options.fileHRApplicant = {
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
-    }
+    },
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileHRFather = {
     maxFilesize: 2,
@@ -92,7 +96,8 @@ Dropzone.options.fileHRFather = {
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
-    }
+    },
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileHRMother = {
     maxFilesize: 2,
@@ -101,7 +106,8 @@ Dropzone.options.fileHRMother = {
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
-    }
+    },
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 /* Form submission */
 $("#sendTheFormButton").click(function(){
