@@ -7,23 +7,40 @@
 
 <div class="row">
     <div class="col-md-6">
+        <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
         <form action="/file-upload" class="dropzone" id="file_picture"></form>
     </div>
     <div class="col-md-6">
-        <form action="/file-upload" class="dropzone" id="file_form1"></form>
+        <b>บัตรประจำตัวประชาชน</b>
+        <form action="/file-upload" class="dropzone" id="file_citizen_id_card"></form>
     </div>
 </div>
-
+<br />
 <div class="row">
-    <label class="control-label">Select File</label>
-    <input id="transcript" type="file" class="file" data-show-preview="false">
+    <div class="col-md-6">
+        <b>ใบ ปพ.1</b> (5 ภาคเรียน)
+        <form action="/file-upload" class="dropzone" id="file_transcript"></form>
+    </div>
+    <div class="col-md-6">
+        <b>สำเนาทะเบียนบ้าน</b> ของนักเรียน
+        <form action="/file-upload" class="dropzone" id="file_hr_applicant"></form>
+    </div>
 </div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <b>สำเนาทะเบียนบ้าน</b> ของบิดา
+        <form action="/file-upload" class="dropzone" id="file_hr_father"></form>
+    </div>
+    <div class="col-md-6">
+        <b>สำเนาทะเบียนบ้าน</b> ของมารดา
+        <form action="/file-upload" class="dropzone" id="file_hr_mother"></form>
+    </div>
+</div>
+<br />
 <div class="row">
     <div class="col-xs-6 col-md-8">
         <span id="formAlertMessage" style="display:none;"></span>
-    </div>
-    <div class="col-xs-6 col-md-4">
-        <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
     </div>
 </div>
 
