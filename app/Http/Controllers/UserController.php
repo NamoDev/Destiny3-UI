@@ -579,10 +579,10 @@ class UserController extends Controller{
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
         $this->validate($request, [
-            'transcript' => 'required|mimes:jpeg,png',
-            'student_hr' => 'required|mimes:jpeg,png',
-            'father_hr' => 'required|mimes:jpeg,png',
-            'mother_hr' => 'required|mimes:jpeg,png',
+            'transcript' => 'required|mimetypes:image/jpeg,image/png',
+            'student_hr' => 'required|mimetypes:image/jpeg,image/png',
+            'father_hr' => 'required|mimetypes:image/jpeg,image/png',
+            'mother_hr' => 'required|mimetypes:image/jpeg,image/png',
         ]);
 
         $documents = array(
