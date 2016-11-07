@@ -30,7 +30,6 @@
 @endsection
 
 @section('additional_scripts')
-<<<<<<< HEAD
 <script src="/assets/js/dropzone.js"></script>
 <script>
 Dropzone.options.file_picture = {
@@ -38,8 +37,7 @@ Dropzone.options.file_picture = {
   maxFiles: 1,
   addRemoveLinks: true
 };
-=======
-<script>
+
 /* Form submission */
 $("#sendTheFormButton").click(function(){
 
@@ -77,6 +75,5 @@ $("#sendTheFormButton").click(function(){
     });
 
 });
->>>>>>> fba2706e22d61e2312f466482be9b2be5716c414
 </script>
 @endsection
