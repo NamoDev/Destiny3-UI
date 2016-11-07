@@ -544,9 +544,53 @@ class UserController extends Controller{
                 throw new Exception("Invalid Subday Value");
             }
 
+            // See if the date really exist:
+            if(DB::collection("application_days")->where("date", $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2])->count() != 1){
+                // Invalid date
+                throw new Exception("Invalid Date Value");
+            }
+
         }catch(\Throwable $stuff){
             // Invalid data
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 451);
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 422);
+        }
+
+        // See if we still have space:
+        $dateData = DB::collection("application_days")->where("date", $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2])->first();
+        if($id_data[3] == "morning"){
+            // Morning
+            if($dateData["morning_count"] >= $dateData["morning_max"]){
+                // Full already
+                return response(json_encode(["status" => "error", "message" => "full"], JSON_UNESCAPED_UNICODE), 406);
+            }else{
+                DB::collection("application_days")->where("date", $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2])->increment("morning_count");
+            }
+        }else{
+            // Afternoon
+            if($dateData["afternoon_count"] >= $dateData["afternoon_max"]){
+                // Full already
+                return response(json_encode(["status" => "error", "message" => "full"], JSON_UNESCAPED_UNICODE), 406);
+            }else{
+                DB::collection("application_days")->where("date", $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2])->increment("afternoon_count");
+            }
+        }
+
+        // Remove their old reservation to make space for other applicants:
+        // TODO: This seems to have a bug that prevented the block from working. Testing required.
+        try{
+            $applicantData = DB::collection("applicants")->where("citizen_id", $applicant_citizen_id)->first();
+            $old_rsvp_data = explode("/", $applicantData["application_day"]);
+            if(DB::collection("application_days")->where("date", $old_rsvp_data[0] . "/" . $old_rsvp_data[1] . "/" . $old_rsvp_data[2])->count() != 1){
+                // Invalid date
+                throw new Exception("Invalid Date Value");
+            }
+            if($old_rsvp_data[2] == "morning"){
+                DB::collection("application_days")->where("date", $old_rsvp_data[0] . "/" . $old_rsvp_data[1] . "/" . $old_rsvp_data[2])->decrement("morning_count");
+            }else{
+                DB::collection("application_days")->where("date", $old_rsvp_data[0] . "/" . $old_rsvp_data[1] . "/" . $old_rsvp_data[2])->decrement("afternoon_count");
+            }
+        }catch(\Throwable $stuff){
+            // DO NOTHING
         }
 
         // Everything should be fine, we can now continue:
