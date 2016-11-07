@@ -8,33 +8,33 @@
 <div class="row">
     <div class="col-md-6">
         <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
-        <form action="/file-upload" class="dropzone" id="file_picture"></form>
+        <form action="/file-upload" class="dropzone" id="filePicture"></form>
     </div>
     <div class="col-md-6">
         <b>บัตรประจำตัวประชาชน</b>
-        <form action="/file-upload" class="dropzone" id="file_citizen_id_card"></form>
+        <form action="/file-upload" class="dropzone" id="fileCID"></form>
     </div>
 </div>
 <br />
 <div class="row">
     <div class="col-md-6">
         <b>ใบ ปพ.1</b> (5 ภาคเรียน)
-        <form action="/file-upload" class="dropzone" id="file_transcript"></form>
+        <form action="/file-upload" class="dropzone" id="fileTranscript"></form>
     </div>
     <div class="col-md-6">
         <b>สำเนาทะเบียนบ้าน</b> ของนักเรียน
-        <form action="/file-upload" class="dropzone" id="file_hr_applicant"></form>
+        <form action="/file-upload" class="dropzone" id="fileHRApplicant"></form>
     </div>
 </div>
 <br />
 <div class="row">
     <div class="col-md-6">
         <b>สำเนาทะเบียนบ้าน</b> ของบิดา
-        <form action="/file-upload" class="dropzone" id="file_hr_father"></form>
+        <form action="/file-upload" class="dropzone" id="fileHRFather"></form>
     </div>
     <div class="col-md-6">
         <b>สำเนาทะเบียนบ้าน</b> ของมารดา
-        <form action="/file-upload" class="dropzone" id="file_hr_mother"></form>
+        <form action="/file-upload" class="dropzone" id="fileHRMother"></form>
     </div>
 </div>
 <br />
@@ -49,12 +49,60 @@
 @section('additional_scripts')
 <script src="/assets/js/dropzone.js"></script>
 <script>
-Dropzone.options.file_picture = {
-  maxFilesize: 2, // MB
-  maxFiles: 1,
-  addRemoveLinks: true
+Dropzone.options.filePicture = {
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    maxfilesexceeded: function(file) {
+        this.removeAllFiles();
+        this.addFile(file);
+    }
 };
-
+Dropzone.options.fileCID = {
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    maxfilesexceeded: function(file) {
+        this.removeAllFiles();
+        this.addFile(file);
+    }
+};
+Dropzone.options.fileTranscript = {
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    maxfilesexceeded: function(file) {
+        this.removeAllFiles();
+        this.addFile(file);
+    }
+};
+Dropzone.options.fileHRApplicant = {
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    maxfilesexceeded: function(file) {
+        this.removeAllFiles();
+        this.addFile(file);
+    }
+};
+Dropzone.options.fileHRFather = {
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    maxfilesexceeded: function(file) {
+        this.removeAllFiles();
+        this.addFile(file);
+    }
+};
+Dropzone.options.fileHRMother = {
+    maxFilesize: 2,
+    maxFiles: 1,
+    addRemoveLinks: true,
+    maxfilesexceeded: function(file) {
+        this.removeAllFiles();
+        this.addFile(file);
+    }
+};
 /* Form submission */
 $("#sendTheFormButton").click(function(){
 
