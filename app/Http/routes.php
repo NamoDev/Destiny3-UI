@@ -30,15 +30,15 @@ Front-end pages for logged in applicants
 */
 Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth']], function () {
 
-	Route::get('home', 'UIPages@applicantDashboard'); // Dashboard
-	Route::get('info', 'UIPages@step1_basicInfo'); // Step 1 : basic information
-	Route::get('parent', 'UIPages@step2_parentInfo'); // Step 2 : parent information
-	Route::get('address', 'UIPages@step3_address'); // Step 3 : address
-	Route::get('education', 'UIPages@step4_educationHistory'); // Step 4 : education history
-	Route::get('plan', 'UIPages@step5_planSelection'); // Step 5 : basic information
-	Route::get('day', 'UIPages@step6_applicationDaySelection'); // Step 6 : basic information
-	Route::get('documents', 'UIPages@step7_uploadDocuments'); // Step 7 : upload documents
-	Route::get('change_password', 'UIPages@changePasswordPage'); // Change password
+    Route::get('home', 'UIPages@applicantDashboard'); // Dashboard
+    Route::get('info', 'UIPages@step1_basicInfo'); // Step 1 : basic information
+    Route::get('parent', 'UIPages@step2_parentInfo'); // Step 2 : parent information
+    Route::get('address', 'UIPages@step3_address'); // Step 3 : address
+    Route::get('education', 'UIPages@step4_educationHistory'); // Step 4 : education history
+    Route::get('plan', 'UIPages@step5_planSelection'); // Step 5 : basic information
+    Route::get('day', 'UIPages@step6_applicationDaySelection'); // Step 6 : basic information
+    Route::get('documents', 'UIPages@step7_uploadDocuments'); // Step 7 : upload documents
+    Route::get('change_password', 'UIPages@changePasswordPage'); // Change password
 
 });
 
@@ -59,17 +59,17 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
     // Parent/guardian information submission
     Route::post('applicant/parent_info', 'UserController@updateParentInformation');
 
-	// Education history (profile) submission
-	Route::post('applicant/education_history', 'UserController@updateEducationInformation');
+    // Education history (profile) submission
+    Route::post('applicant/education_history', 'UserController@updateEducationInformation');
 
-	// Education history (profile) submission
-	Route::post('applicant/plan_selection', 'UserController@updatePlanSelectionInformation');
+    // Education history (profile) submission
+    Route::post('applicant/plan_selection', 'UserController@updatePlanSelectionInformation');
 
-	// Application day selection
-	Route::post('applicant/application_day', 'UserController@updateApplicationDaySelection');
+    // Application day selection
+    Route::post('applicant/application_day', 'UserController@updateApplicationDaySelection');
 
-	// Documents submission
-	Route::post('applicant/documents_upload', 'UserController@handleDocuments');
+    // Documents submission
+    Route::post('applicant/documents_upload', 'UserController@handleDocuments');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah');
@@ -77,7 +77,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
     // Password change handler
     Route::post('account/change_password', 'UserController@changePassword');
 
-	// Get document for a student (by CID)
-	Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
+    // Get document for a student (by CID)
+    Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
 
 });
