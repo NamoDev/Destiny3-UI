@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา @if(Config::get('app.debug') === true) <sup><span class="badge"><i class="fa fa-crosshairs"></i> Debug Mode</span></sup> @endif</a>
+      <a class="navbar-brand" href="/">ระบบรับสมัครนักเรียน@if(Config::get('uiconfig.mode') == 'province_quota') โควตาจังหวัด @endifโรงเรียนเตรียมอุดมศึกษา @if(Config::get('app.debug') === true) <sup><span class="badge"><i class="fa fa-crosshairs"></i> Debug Mode</span></sup> @endif</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
