@@ -53,61 +53,97 @@ Dropzone.options.filePicture = {
     maxFilesize: 2,
     maxFiles: 1,
     addRemoveLinks: true,
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictRemoveFile: "ลบไฟล์",
+    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 2 MB",
+    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
+    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
+    dictCancelUpload: "ยกเลิกการอัพโหลด",
+    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
     },
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileCID = {
     maxFilesize: 2,
     maxFiles: 1,
     addRemoveLinks: true,
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictRemoveFile: "ลบไฟล์",
+    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 2 MB",
+    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
+    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
+    dictCancelUpload: "ยกเลิกการอัพโหลด",
+    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
     },
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileTranscript = {
     maxFilesize: 2,
     maxFiles: 1,
     addRemoveLinks: true,
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictRemoveFile: "ลบไฟล์",
+    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 2 MB",
+    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
+    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
+    dictCancelUpload: "ยกเลิกการอัพโหลด",
+    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
     },
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileHRApplicant = {
     maxFilesize: 2,
     maxFiles: 1,
     addRemoveLinks: true,
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictRemoveFile: "ลบไฟล์",
+    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 2 MB",
+    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
+    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
+    dictCancelUpload: "ยกเลิกการอัพโหลด",
+    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
     },
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileHRFather = {
     maxFilesize: 2,
     maxFiles: 1,
     addRemoveLinks: true,
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictRemoveFile: "ลบไฟล์",
+    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 2 MB",
+    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
+    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
+    dictCancelUpload: "ยกเลิกการอัพโหลด",
+    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
     },
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 Dropzone.options.fileHRMother = {
     maxFilesize: 2,
     maxFiles: 1,
     addRemoveLinks: true,
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictRemoveFile: "ลบไฟล์",
+    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 2 MB",
+    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
+    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
+    dictCancelUpload: "ยกเลิกการอัพโหลด",
+    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
     maxfilesexceeded: function(file) {
         this.removeAllFiles();
         this.addFile(file);
     },
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>"
 };
 /* Form submission */
 $("#sendTheFormButton").click(function(){
