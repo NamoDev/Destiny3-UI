@@ -102,9 +102,42 @@
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ที่อยู่ปัจจุบัน &nbsp;&nbsp;</p>
         <div class="row">
-            <div class="col-md-3 col-xs-4">
+            <div class="col-md-3 col-xs-12">
                 <span class="help-block">บ้านเลขที่</span>
                 <input name="current_address" type="text" placeholder="บ้านเลขที่" class="form-control">
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">หมู่</span>
+                <input name="current_moo" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">ซอย</span>
+                <input name="current_soi" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">ถนน</span>
+                <input name="current_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">แขวง / ตำบล</span>
+                <input name="current_subdistrict" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <?php // TODO : change home_subdistrict to be select ?>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">เขต / อำเภอ</span>
+                <input name="current_district" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <?php // TODO : change home_district to be select ?>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">จังหวัด</span>
+                <input name="current_province" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <?php // TODO : change home_province to be select ?>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <span class="help-block">รหัสไปรษณีย์</span>
+                <input name="current_postcode" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
         </div>
     </div>
