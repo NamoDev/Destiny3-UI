@@ -271,39 +271,20 @@ $("#sendTheFormButton").click(function(){
 });
 
 var schoolsList = new Bloodhound({
-  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.word); },
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  limit: 4,
-  local: [
-      { word: "เตรียมอุดมศึกษา" },
-      { word: "เตรียมอุดมศึกษา ภาคเหนือ" },
-      { word: "เตรียมอุดมศึกษา ภาคตะวันออกเฉียงเหนือ" },
-      { word: "เตรียมอุดมศึกษา ภาคใต้" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า กบินทร์บุรี" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า นนทบุรี" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า นครราชสีมา" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า ปทุมธานี" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า สมุทรปราการ" },
-      { word: "เตรียมอุดมศึกษาน้อมเกล้า อุตรดิตถ์" },
-      { word: "เตรียมอุดมศึกษาเปร็งวิสุทธาธิบดี" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ ขอนแก่น" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ ฉะเชิงเทรา" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ เชียงราย" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ ดอนคลัง" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ นนทบุรี" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ สระบุรี" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ ปราณบุรี" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ ปทุมธานี" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ สุวรรณภูมิ" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ รัชดา" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ อุดรธานี" },
-      { word: "เตรียมอุดมศึกษาพัฒนาการ อุบลราชธานี" },
-      { word: "เตรียมอุดมศึกษาสุวินทวงศ์" }
-  ]
+    datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.word); },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    limit: 4,
+    prefetch: {
+        url: "https://cdn1.namodev.com/TUEnt/schools.json",
+        filter: function(schoolsArray) {
+            return $.map(schoolsArray, function(school) {
+                return {word: school};
+            });
+        }
+    },
 });
 
+schoolsList.clearPrefetchCache();
 schoolsList.initialize();
 
 $('#school').typeahead(null, {
