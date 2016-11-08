@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApplicantsCollection extends Migration
+class CreateApplicationDaysCollection extends Migration
 {
     /**
      * Run the migrations.
