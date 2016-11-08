@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
         <span class="help-block">จบการศึกษาระดับชั้น<b>มัธยมศึกษาปีที่ 3</b> จากโรงเรียน</span>
-        <input id="school" name="school" placeholder="ชื่อโรงเรียน" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
+        <input id="school" name="school" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
     </div>
     <div class="col-md-3 col-xs-12">
         <span class="help-block">ปีที่จบหรือคาดว่าจะจบการศึกษา</span>
