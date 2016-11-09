@@ -23,8 +23,12 @@ Route::get('about', 'UIPages@aboutPage'); // About application
 Route::get('faq', 'UIPages@faqPage'); // FAQ
 Route::get('bad_browser', 'UIPages@unsupportedBrowser'); // Unsupported browser
 Route::get('application/begin', 'UIPages@newUserRegistrationPage'); // New account creation
+
 Route::get('iforgot', 'UIPages@iForgotLandingPage'); // Password reset landing page
 Route::get('iforgot/done', 'UIPages@iForgotSentPage'); // Password reset "sent" page
+Route::get('iforgot/error', 'UIPages@iForgotErrorPage'); // Password reset error page
+Route::get('iforgot/link/{token}', 'UserController@handleiForgotLink'); // Password reset link handler page
+Route::get('iforgot/success', 'UIPages@iForgotSuccessPage'); // Password reset "sent" page
 
 Route::any('application/sst/VFVEVF84MA==', 'UserController@ganymede'); // Easter egg route. DON'T TOUCH!
 
@@ -47,8 +51,10 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth', 'flow']
 
 // Account creation API route. Not in the API group cause we can't use apiauth middleware there
 Route::post('api/v1/account/create', 'UserController@createAccount');
+
+// iForgot handlers
 Route::post('api/v1/iforgot/submit', 'UserController@handleiForgotRequest');
-Route::post('api/v1/iforgot/link/{id}', 'UserController@handleiForgotLink');
+Route::post('api/v1/iforgot/request', 'UserController@handleiForgotForm');
 
 /*
 | API Routes (v1)
