@@ -60,6 +60,10 @@ class UIPages extends Controller {
         return response()->view('iforgot_landing');
     }
 
+    public function iForgotSentPage(){
+        return response()->view('iforgot_sent');
+    }
+
 	// Step 01: Applicant's basic information
 	public function step1_basicInfo() {
 		$applicantData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
