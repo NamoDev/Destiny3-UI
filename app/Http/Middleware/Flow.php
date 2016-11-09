@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Config;
 
 class Flow
 {
@@ -62,9 +63,9 @@ class Flow
     public function handle($request, Closure $next){
         $path = explode('/', $request->path());
 
-        $previous = $this->rule;
+        $previous = $this->rule[Config::get('uiconfig.mode')];
         for($i=0;$i<count($path);$i++){
-            $current = $previous[$request->segments[$i]];
+            $current = $previous[$path[$i]];
             $previous = $current;
         }
 
