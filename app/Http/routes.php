@@ -46,6 +46,7 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth', 'flow']
 
 // Account creation API route. Not in the API group cause we can't use apiauth middleware there
 Route::post('api/v1/account/create', 'UserController@createAccount');
+Route::post('api/v1/iforgot/submit', 'UserController@handleiForgotRequest');
 
 /*
 | API Routes (v1)
