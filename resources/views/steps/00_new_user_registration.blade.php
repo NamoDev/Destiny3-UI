@@ -305,7 +305,6 @@
         if(checkCitizenID($("#citizenid").val())){
             $("#citizenidGroup").removeClass("has-warning");
             $("#citizenidGroup > .help-block > .fa").remove();
-            $("#citizenidGroup > .help-block").prepend("<i class=\"fa fa-exclamation-circle\"></i> ");
         }else{
             $("#citizenidGroup").addClass("has-warning");
             $("#citizenidGroup > .help-block > .fa").remove();
