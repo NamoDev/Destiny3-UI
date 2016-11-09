@@ -30,9 +30,11 @@ class Flow
             'change_password'
         ),
         'print_only' => array(
+            'home',
             'change_password'
         ),
         'close'=> array(
+            'home',
             'change_password'
         ),
     );
