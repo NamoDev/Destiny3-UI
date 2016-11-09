@@ -764,7 +764,7 @@ class UserController extends Controller{
 
         // Prepare mail data:
         $mailData = [
-            "fullName" => Session::get("applicant_full_name"),
+            "name" => Session::get("applicant_full_name"),
             "token" => $token
         ];
 
