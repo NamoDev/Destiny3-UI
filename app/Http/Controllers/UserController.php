@@ -750,6 +750,18 @@ class UserController extends Controller{
 
         $token = hash("sha512", sha1($partOne) . $partThree . md5($partTwo));
 
+        try{
+            // Save token to DB:
+            DB::collection("iforgot")->insert([
+                "token" => $token,
+                "citizen_id" => Session::get("applicant_citizen_id"),
+                "generated_on" => time(),
+                "expires_on" => time() + 900
+            ]);
+        }catch(\Throwable $what){
+            return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-2)")->with("alert-class", "alert-warning");
+        }
+
         // Prepare mail data:
         $mailData = [
             "fullName" => Session::get("applicant_full_name"),
@@ -764,7 +776,7 @@ class UserController extends Controller{
                 $message->to($applicantData["email"])->subject("ลืมรหัสผ่าน: ขั้นตอนการเปลี่ยนรหัสผ่านใหม่");
             });
         }catch(\Throwable $mailException){
-            return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-2)")->with("alert-class", "alert-warning");
+            return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-3)")->with("alert-class", "alert-warning");
         }
 
         // Yay~!
