@@ -5887,9 +5887,9 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
           transition: all .25s;
 }
 .login-link {
-  color: #bfc9ca;
+  color: #828485;
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 15px;
   text-align: center;
 }
