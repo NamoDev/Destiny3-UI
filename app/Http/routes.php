@@ -21,8 +21,10 @@ Route::post('login', 'UserController@login'); // Login request handler
 Route::get('logout', 'UserController@logout'); // Logout request handler
 Route::get('about', 'UIPages@aboutPage'); // About application
 Route::get('faq', 'UIPages@faqPage'); // FAQ
-Route::get('bad_browser', 'UIPages@unsupportedBrowser');
+Route::get('bad_browser', 'UIPages@unsupportedBrowser'); // Unsupported browser
 Route::get('application/begin', 'UIPages@newUserRegistrationPage'); // New account creation
+Route::get('iforgot', 'UIPages@iForgotLandingPage'); // Password reset landing page
+
 Route::any('application/sst/VFVEVF84MA==', 'UserController@ganymede'); // Easter egg route. DON'T TOUCH!
 
 /*
