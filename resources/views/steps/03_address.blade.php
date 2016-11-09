@@ -8,42 +8,43 @@
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ที่อยู่ตามทะเบียนบ้าน &nbsp;&nbsp;</p>
         <div class="row">
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_addressGroup">
                 <span class="help-block">บ้านเลขที่</span>
-                <input name="home_address" type="text" placeholder="บ้านเลขที่" class="form-control">
+                <input id="home_address" type="text" placeholder="บ้านเลขที่" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_mooGroup">
                 <span class="help-block">หมู่</span>
-                <input name="home_moo" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="home_moo" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_soiGroup">
                 <span class="help-block">ซอย</span>
-                <input name="home_soi" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="home_soi" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_roadGroup">
                 <span class="help-block">ถนน</span>
-                <input name="home_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="home_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_subdistrictGroup">
                 <span class="help-block">แขวง / ตำบล</span>
-                <input name="home_subdistrict" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="home_subdistrict" type="text" placeholder="แขวง / ตำบล" class="form-control">
                 <?php // TODO : change home_subdistrict to be select ?>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_districtGroup">
                 <span class="help-block">เขต / อำเภอ</span>
-                <input name="home_district" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="home_district" type="text" placeholder="เขต / อำเภอ" class="form-control">
                 <?php // TODO : change home_district to be select ?>
             </div>
             <div class="col-md-3 col-xs-12">
                 <span class="help-block">จังหวัด</span>
-                <input name="home_province" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
-                <?php // TODO : change home_province to be select ?>
+                <select id="home_province" name="home_province" class="form-control select select-primary select-block mbl">
+                    {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['address']['home']['province']) ? $applicantData['address']['home']['province'] : NULL) }}
+                </select>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="home_postcodeGroup">
                 <span class="help-block">รหัสไปรษณีย์</span>
-                <input name="home_postcode" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="home_postcode" type="text" class="form-control" placeholder="รหัสไปรษณีย์" maxlength="5">
             </div>
         </div>
         @if(Config::get('uiconfig.mode') == 'province_quota')
@@ -102,48 +103,136 @@
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ที่อยู่ปัจจุบัน &nbsp;&nbsp;</p>
         <div class="row">
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_addressGroup">
                 <span class="help-block">บ้านเลขที่</span>
-                <input name="current_address" type="text" placeholder="บ้านเลขที่" class="form-control">
+                <input id="current_address" type="text" placeholder="บ้านเลขที่" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_mooGroup">
                 <span class="help-block">หมู่</span>
-                <input name="current_moo" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="current_moo" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_soiGroup">
                 <span class="help-block">ซอย</span>
-                <input name="current_soi" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="current_soi" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_roadGroup">
                 <span class="help-block">ถนน</span>
-                <input name="current_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="current_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_subdistrictGroup">
                 <span class="help-block">แขวง / ตำบล</span>
-                <input name="current_subdistrict" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="current_subdistrict" type="text" placeholder="แขวง / ตำบล" class="form-control">
                 <?php // TODO : change home_subdistrict to be select ?>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_districtGroup">
                 <span class="help-block">เขต / อำเภอ</span>
-                <input name="current_district" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="current_district" type="text" placeholder="เขต / อำเภอ" class="form-control">
                 <?php // TODO : change home_district to be select ?>
             </div>
             <div class="col-md-3 col-xs-12">
                 <span class="help-block">จังหวัด</span>
-                <input name="current_province" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
-                <?php // TODO : change home_province to be select ?>
+                <select id="current_province" name="current_province" class="form-control select select-primary select-block mbl">
+                    {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['address']['current']['province']) ? $applicantData['address']['current']['province'] : NULL) }}
+                </select>
             </div>
-            <div class="col-md-3 col-xs-12">
+            <div class="col-md-3 col-xs-12" id="current_postcodeGroup">
                 <span class="help-block">รหัสไปรษณีย์</span>
-                <input name="current_postcode" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control">
+                <input id="current_postcode" type="text" placeholder="รหัสไปรษณีย์" class="form-control" maxlength="5">
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-8">
+        <span id="formAlertMessage" style="display:none;"></span>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
     </div>
 </div>
 @endsection
 
 @section('additional_scripts')
+<script>
+$("#sendTheFormButton").click(function(){
 
+    // Tell the user to wait:
+    $('#plsWaitModal').modal('show');
+
+    // Error checking variable
+    var hasErrors = 0;
+
+    // Check father information inputs
+    hasErrors += isFieldBlank("home_address");
+    hasErrors += isFieldBlank("home_moo");
+    hasErrors += isFieldBlank("home_soi");
+    hasErrors += isFieldBlank("home_road");
+    hasErrors += isFieldBlank("home_subdistrict");
+    hasErrors += isFieldBlank("home_district");
+    hasErrors += isFieldBlank("home_postcode");
+    hasErrors += isFieldBlank("current_address");
+    hasErrors += isFieldBlank("current_moo");
+    hasErrors += isFieldBlank("current_soi");
+    hasErrors += isFieldBlank("current_road");
+    hasErrors += isFieldBlank("current_subdistrict");
+    hasErrors += isFieldBlank("current_district");
+    hasErrors += isFieldBlank("current_postcode");
+
+    @if(Config::get('app.debug') === true)
+        console.log("[DBG/LOG] Total errors: " + hasErrors);
+    @endif
+
+    if(hasErrors == 0){
+        // Green across the board, and ready for action!
+        $.ajax({
+            url: '/api/v1/applicant/address',
+            data: {
+                _token: csrfToken,
+                home_address: $("#home_address").val(),
+                home_moo: $("#home_moo").val(),
+                home_soi: $("#home_soi").val(),
+                home_road: $("#home_road").val(),
+                home_subdistrict: $("#home_subdistrict").val(),
+                home_district: $("#home_district").val(),
+                home_province: $("#home_province").val(),
+                current_address: $("#current_address").val(),
+                current_moo: $("#current_moo").val(),
+                current_soi: $("#current_soi").val(),
+                current_road: $("#current_road").val(),
+                current_subdistrict: $("#current_subdistrict").val(),
+                current_district: $("#current_district").val(),
+                current_province: $("#current_province").val(),
+                current_postcode: $("#current_postcode").val()
+            },
+            error: function (request, status, error) {
+                $('#plsWaitModal').modal('hide');
+                switch(request.status){
+                    case 422:
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+                    break;
+                    default:
+                        console.log("(" + request.status + ") Exception:" + request.responseText);
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
+                }
+            },
+            dataType: 'json',
+            success: function(data) {
+
+                // Tell the user that everything went well
+                $('#plsWaitModal').modal('hide');
+                notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+
+            },
+            type: 'POST'
+        });
+    }else{
+        // NOPE.
+        $('#plsWaitModal').modal('hide');
+        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+    }
+
+});
+</script>
 @endsection
