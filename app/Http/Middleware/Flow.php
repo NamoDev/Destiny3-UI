@@ -60,7 +60,18 @@ class Flow
      * @return mixed
      */
     public function handle($request, Closure $next){
-        $request->path();
-        return $next($request);
+        $path = explode('/', $request->path());
+
+        $previous = $this->rule;
+        for($i=0;$i<count($path);$i++){
+            $current = $previous[$request->segment[$i]];
+            $previous = $current;
+        }
+
+        if($current[strtolower($request->method())] === true){
+            return $next($request);
+        }else{
+            abort(404);
+        }
     }
 }
