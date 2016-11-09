@@ -64,7 +64,7 @@ class Flow
 
         $previous = $this->rule;
         for($i=0;$i<count($path);$i++){
-            $current = $previous[$request->segment[$i]];
+            $current = $previous[$request->segments[$i]];
             $previous = $current;
         }
 
