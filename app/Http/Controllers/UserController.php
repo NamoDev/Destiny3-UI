@@ -22,6 +22,7 @@ use Storage;
 use RESTResponse;
 use Config;
 use Base64Exception;
+use Mail;
 
 class UserController extends Controller{
 
@@ -56,10 +57,8 @@ class UserController extends Controller{
             'phone' => 'required',
             'password' => 'required|same:password_confirm',
             'password_confirm' => 'required|same:password',
+            'g-recaptcha-response' => 'required|captcha',
          ]);
-
-         // TODO: fix CAPTCHA
-         //'g-recaptcha-response' => 'required|captcha',
 
          // TODO: Make Citizen ID verification a part of the validator itself
 
@@ -714,6 +713,64 @@ class UserController extends Controller{
               throw new \Exception("What the gender?");
           }
         }
+    }
+
+    /*
+    | iForgot request handler
+    */
+    public function handleiForgotRequest(Request $request){
+        // Applicant object
+        $applicant = new Applicant();
+
+        // Store errors, we'll send the client these:
+        $errors = [];
+
+        // Validate incoming data:
+        $this->validate($request, [
+            "citizenid" => "required",
+            "g-recaptcha-response" => "required|captcha",
+        ]);
+
+        // Valid applicant?
+        if(!$applicant->exists($request->input("citizenid"))){
+             return redirect("iforgot")->with("message", "รหัสประจำตัวประชาชนไม่ถูกต้อง โปรดตรวจสอบการพิมพ์รหัสประจำตัวประชาชนอีกครั้ง")->with("alert-class", "alert-warning");
+        }
+
+        // Get userinfo:
+        try{
+            $applicantData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
+        }catch(\Throwable $waitWhat){
+            return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-1)")->with("alert-class", "alert-warning");
+        }
+
+        // Generate iForgot token:
+        $partOne = str_random(40);
+        $partTwo = microtime();
+        $partThree = random_int(100, 999); // This function is only available on PHP7.0 and above.
+
+        $token = hash("sha512", sha1($partOne) . $partThree . md5($partTwo));
+
+        // Prepare mail data:
+        $mailData = [
+            "fullName" => Session::get("applicant_full_name"),
+            "token" => $token
+        ];
+
+        try{
+            // Send a mail!
+            // TODO: Add queue support
+            Mail::send('emails.iforgot', $mailData, function ($message) {
+                $message->from('apply@triamudom.ac.th', 'ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา');
+                $message->to($applicantData["email"])->subject("ลืมรหัสผ่าน: ขั้นตอนการเปลี่ยนรหัสผ่านใหม่");
+            });
+        }catch(\Throwable $mailException){
+            return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-2)")->with("alert-class", "alert-warning");
+        }
+
+        // Yay~!
+        return redirect("iforgot/done");
+
+
     }
 
     /*
