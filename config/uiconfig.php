@@ -45,7 +45,7 @@ return [
     | Operation mode for destinyui
     |
     | province_quota => for province quota
-    | noraml => for normal operation
+    | normal => for normal operation
     | print_only => for print only period in normal operation
     | close => close
     |
