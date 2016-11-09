@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'CreateApplicantsCollection' => $baseDir . '/database/migrations/2016_09_17_232216_create_applicants_collection.php',
     'CreateApplicationDaysCollection' => $baseDir . '/database/migrations/2016_11_08_004103_create_application_days_collection.php',
+    'CreateIforgotCollection' => $baseDir . '/database/migrations/2016_11_09_232745_create_iforgot_collection.php',
     'CreateSystemCollection' => $baseDir . '/database/migrations/2016_11_08_004535_create_system_collection.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
