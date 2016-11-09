@@ -782,6 +782,74 @@ class UserController extends Controller{
         // Yay~!
         return redirect("iforgot/done");
 
+    }
+
+    /*
+    | iForgot link handler
+    */
+    public function handleiForgotLink($token){
+        // See if the link exists and is still valid:
+        try{
+            if(DB::collection("iforgot")->where("token", $token)->count() != 1){
+                // UH-OH!
+                return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านไม่ถูกต้อง กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
+            }
+
+            // OK, now we should have the token. See if the token is still valid?
+            $tokenData = DB::collection("iforgot")->where("token", $token)->first();
+            if($tokenData["expires_on"] > time()){
+                // Token already expired:
+                return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านหมดอายุแล้ว กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
+            }
+
+            // All is fine, show the iForgot new password form page:
+            return response()->view("iforgot_reset_form")->with("token", $token);
+
+        }catch(\Throwable $waitWhat){
+            return redirect("iforgot/error")->with("message", "เกิดข้อผิดพลาดระหว่างประมวลผลคำขอ กรุณาลองใหม่อีกครั้ง");
+        }
+    }
+
+    /*
+    | iForgot form handler
+    */
+    public function handleiForgotForm(Request $request){
+
+        // Validate stuff
+        $this->validate($request, [
+            "password" => "required",
+            "password_confirm" => "required|same:password",
+            "token" => "required",
+            "g-recaptcha-response" => "required|captcha",
+        ]);
+
+        $token = $request->input("token");
+
+        // Check token
+        if(DB::collection("iforgot")->where("token", $token)->count() != 1){
+            return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านไม่ถูกต้อง กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
+        }
+
+        // Token valid?
+        $tokenData = DB::collection("iforgot")->where("token", $token)->first();
+        if($tokenData["expires_on"] > time()){
+            // Token already expired:
+            return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านหมดอายุแล้ว กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
+        }
+
+        // A-OK. Process new password and save that:
+        try{
+            $toUpdate = [
+                "password" => Hash::make($request->input("password"))
+            ];
+
+            DB::collection("applicants")->where("citizen_id", $tokenData["citizen_id"])->update($toUpdate);
+
+            return redirect("iforgot/success");
+
+        }catch(\Throwable $AnExplodingGalaxyNoteSeven){ // OK?
+            return redirect("iforgot/error")->with("message", "เกิดข้อผิดพลาดระหว่างประมวลผลคำขอ กรุณาลองใหม่อีกครั้ง");
+        }
 
     }
 
