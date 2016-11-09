@@ -63,10 +63,14 @@ class Flow
     public function handle($request, Closure $next){
         $path = explode('/', $request->path());
 
-        $previous = $this->rule[Config::get('uiconfig.mode')];
-        for($i=0;$i<count($path);$i++){
-            $current = $previous[$path[$i]];
-            $previous = $current;
+        try{
+            $previous = $this->rule[Config::get('uiconfig.mode')];
+            for($i=0;$i<count($path);$i++){
+                $current = $previous[$path[$i]];
+                $previous = $current;
+            }
+        }catch(\ErrorException $e){
+            abort(404);
         }
 
         if($current[strtolower($request->method())] === true){
