@@ -8,15 +8,28 @@ class Flow
 {
     private $rule = array(
         'province_quota' => array(
-            'home',
-            'info',
-            'parent',
-            'address',
-            'education',
-            'plan',
-            'documents',
-            'grade',
-            'change_password'
+            'application' => array(
+                'home' => ['get' => true],
+                'info' => ['get' => true],
+                'parent' => ['get' => true],
+                'address' => ['get' => true],
+                'education' => ['get' => true],
+                'plan' => ['get' => true],
+                'documents' => ['get' => true],
+                'grade' => ['get' => true],
+                'change_password' => ['get' => true],
+            ),
+            'api' => array(
+                'v1' => array(
+                    'applicants' => array(
+                        'data' => ['post' => true],
+                        'parent_info' => ['post' => true],
+                        'education_history' => ['post' => true],
+                        'plan_selection' => ['post' => true],
+                        'documents_upload' => ['post' => true],
+                    ),
+                ),
+            ),
         ),
         'normal' => array(
             'home',
@@ -47,6 +60,7 @@ class Flow
      * @return mixed
      */
     public function handle($request, Closure $next){
+        $request->path();
         return $next($request);
     }
 }
