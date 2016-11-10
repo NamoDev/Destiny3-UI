@@ -33,8 +33,7 @@
             </div>
             <div class="col-md-5 col-xs-12" id="father_deadGroup">
                 <span class="help-block">&nbsp;</span>
-                {{-- TODO: Handling of dead checkbox --}}
-                <label class="checkbox"><input type="checkbox" id="father_dead" name="father_dead"> บิดาเสียชีวิต</label>
+                <label class="checkbox"><input type="checkbox" id="father_dead" name="father_dead" {{ isset($applicantData['father']['dead']) && $applicantData['father']['dead'] == "1" ? "checked" : "" }}> บิดาเสียชีวิต</label>
             </div>
         </div>
     </div>
@@ -68,8 +67,7 @@
             </div>
             <div class="col-md-5 col-xs-12" id="mother_deadGroup">
                 <span class="help-block">&nbsp;</span>
-                {{-- TODO: Handling of dead checkbox --}}
-                <label class="checkbox"><input type="checkbox" id="mother_dead" name="mother_dead"> มารดาเสียชีวิต</label>
+                <label class="checkbox"><input type="checkbox" id="mother_dead" name="mother_dead" {{ isset($applicantData['mother']['dead']) && $applicantData['mother']['dead'] == "1" ? "checked" : "" }}> มารดาเสียชีวิต</label>
             </div>
         </div>
     </div>
