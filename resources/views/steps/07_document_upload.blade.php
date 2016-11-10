@@ -43,7 +43,14 @@
         <span id="formAlertMessage" style="display:none;"></span>
     </div>
 </div>
-
+<div class="row">
+    <div class="col-xs-6 col-md-8">
+        <span id="formAlertMessage" style="display:none;"></span>
+    </div>
+    <div class="col-xs-6 col-md-4">
+        <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
+    </div>
+</div>
 @endsection
 
 @section('additional_scripts')
