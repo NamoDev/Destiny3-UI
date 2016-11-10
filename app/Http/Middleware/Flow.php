@@ -69,13 +69,13 @@ class Flow
                 $current = $previous[$path[$i]];
                 $previous = $current;
             }
-        }catch(\ErrorException $e){
-            abort(404);
-        }
 
-        if($current[strtolower($request->method())] === true){
-            return $next($request);
-        }else{
+            if($current[strtolower($request->method())] === true){
+                return $next($request);
+            }else{
+                abort(404);
+            }
+        }catch(\ErrorException $e){
             abort(404);
         }
     }
