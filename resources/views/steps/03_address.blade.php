@@ -104,7 +104,7 @@
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; ที่อยู่ปัจจุบัน &nbsp;&nbsp;</p>
         <div class="row">
             <div class="col-xs-12">
-                <label class="checkbox"><input type="checkbox" id="copy_address" name="copy_address" {{ isset($applicantData['current_address_same_as_home']) && $applicantData['current_address_same_as_home'] == "1" ? checked : "" }}> ใช้ที่อยู่เดียวกับที่อยู่ตามทะเบียนบ้าน</label>
+                <label class="checkbox"><input type="checkbox" id="copy_address" name="copy_address" {{ isset($applicantData['current_address_same_as_home']) && $applicantData['current_address_same_as_home'] == "1" ? "checked" : "" }}> ใช้ที่อยู่เดียวกับที่อยู่ตามทะเบียนบ้าน</label>
             </div>
         </div>
         <div id="current_address_form">
