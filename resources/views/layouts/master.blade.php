@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>@yield('title') | ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา</title>
         <link rel="stylesheet" href="/assets/css/destinyui3.css" />
+        <meta name="google-site-verification" content="yh4lPd8jGgkRAV5WrvHEE9dXsu17w85Ytw3-fUUv4no" />
         @yield('additional_styles')
     </head>
     <body>
