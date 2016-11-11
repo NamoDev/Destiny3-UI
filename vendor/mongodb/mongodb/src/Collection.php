@@ -2,16 +2,13 @@
 
 namespace MongoDB;
 
-use MongoDB\Driver\Command;
 use MongoDB\Driver\Cursor;
 use MongoDB\Driver\Manager;
 use MongoDB\Driver\ReadConcern;
 use MongoDB\Driver\ReadPreference;
-use MongoDB\Driver\Server;
 use MongoDB\Driver\WriteConcern;
 use MongoDB\Exception\InvalidArgumentException;
 use MongoDB\Model\IndexInfoIterator;
-use MongoDB\Model\IndexInput;
 use MongoDB\Operation\Aggregate;
 use MongoDB\Operation\BulkWrite;
 use MongoDB\Operation\CreateIndexes;
@@ -117,7 +114,7 @@ class Collection
      * Return internal properties for debugging purposes.
      *
      * @see http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo
-     * @param array
+     * @return array
      */
     public function __debugInfo()
     {
@@ -136,7 +133,7 @@ class Collection
      * Return the collection namespace (e.g. "db.collection").
      *
      * @see https://docs.mongodb.org/manual/faq/developers/#faq-dev-namespace
-     * @param string
+     * @return string
      */
     public function __toString()
     {
@@ -577,6 +574,16 @@ class Collection
     public function getDatabaseName()
     {
         return $this->databaseName;
+    }
+
+    /**
+     * Return the Manager.
+     *
+     * @return Manager
+     */
+    public function getManager()
+    {
+        return $this->manager;
     }
 
     /**
