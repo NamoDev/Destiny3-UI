@@ -759,7 +759,7 @@ class UserController extends Controller{
 
         $insert[$request->input('session_id')][$name] = array(
             'file_name' => $filename,
-            'check_result' => 0,
+            'check_result' => -10,
             'timestamp' => time(),
         );
 
