@@ -375,7 +375,7 @@ class UserController extends Controller{
 
         if(config('uiconfig.mode') == 'province_quota'){
             // Additional validation for province_quota
-            $this->validator($request, [
+            $this->validate($request, [
                 'home_move_in_day' => 'required|integer|min:1|max:31',
                 'home_move_in_month' => 'required|integer|min:1|max:12',
                 'home_move_in_year' => 'required|integer|max:'.config('uiconfig.operation_year'),
@@ -385,6 +385,20 @@ class UserController extends Controller{
             $modifyThis['address']['home_move_in_month'] = $request->input('home_move_in_month');
             $modifyThis['address']['home_move_in_year'] = $request->input('home_move_in_year');
         }
+
+        // Modify the applicant
+        if($applicant->modify($applicantCitizenID, $modifyThis)){
+
+            // Mark step as done
+            $applicant->markStepAsDone($applicantCitizenID, 2);
+
+            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+        }else{
+            // error!
+            // TODO: return RESTResponse maybe?
+            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+        }
+
     }
 
     public function getDocument(Request $request, $citizen_id, $filename = null){
