@@ -83,6 +83,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
 
     // Documents submission
     Route::post('applicant/documents_upload/{name}', 'UserController@handleDocuments');
+    Route::post('applicant/documents_confirm', 'UserController@confirmDocument');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah');
