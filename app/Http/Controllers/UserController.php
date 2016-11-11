@@ -712,7 +712,7 @@ class UserController extends Controller{
             'content' => 'required|mimetypes:image/jpeg,image/png',
         ]);
 
-        $filename = $applicantCitizenID.'_'.$name.'.'
+        $filename = $applicantCitizenID.'_'.$name.'.'.
                     $request->file('content')->getClientOriginalExtension();
 
         // Storing documents
