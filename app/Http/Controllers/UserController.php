@@ -809,9 +809,10 @@ class UserController extends Controller{
             }
 
             // All is fine, show the iForgot new password form page:
-            return response()->view("iforgot_reset_form")->with("token", $token);
+            return response()->view("iforgot_reset_form", ["token" => $token]);
 
         }catch(\Throwable $waitWhat){
+            Log::error($waitWhat);
             return redirect("iforgot/error")->with("message", "เกิดข้อผิดพลาดระหว่างประมวลผลคำขอ กรุณาลองใหม่อีกครั้ง");
         }
     }
