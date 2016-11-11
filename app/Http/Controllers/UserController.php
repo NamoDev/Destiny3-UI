@@ -758,7 +758,7 @@ class UserController extends Controller{
             // Save token to DB:
             DB::collection("iforgot")->insert([
                 "token" => $token,
-                "citizen_id" => Session::get("applicant_citizen_id"),
+                "citizen_id" => $request->input("citizenid"),
                 "generated_on" => time(),
                 "expires_on" => time() + 900
             ]);
