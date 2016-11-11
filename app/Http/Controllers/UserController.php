@@ -232,7 +232,6 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
 
@@ -315,7 +314,6 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
 
@@ -395,7 +393,6 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
 
@@ -521,7 +518,6 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
 
@@ -590,7 +586,6 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
 
@@ -684,7 +679,6 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
 
@@ -750,9 +744,15 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            // TODO: return RESTResponse maybe?
             return RESTResponse::serverError();
         }
+
+    }
+
+    /*
+     * Check if all steps are completed
+     */
+    public function allStepComplete(Applicant $applicant){
 
     }
 
