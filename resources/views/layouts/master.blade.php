@@ -27,18 +27,18 @@
                   <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(4)) btn-primary @else btn-default @endif btn-block" href="/application/education">@if(App\Http\Controllers\Helper::checkStepCompletion(4)) <span class="fa fa-check-circle"></span> @endif ประวัติการศึกษา</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
+                  @if(Config::get('uiconfig.mode') == 'province_quota')
+                  {{-- Quota only: grade information --}}
+                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(8)) btn-primary @else btn-default @endif btn-block" href="/application/grade">@if(App\Http\Controllers\Helper::checkStepCompletion(8)) <span class="fa fa-check-circle"></span> @endif ประวัติผลการเรียน</a>
+                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                  @endif
+
                   <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(5)) btn-primary @else btn-default @endif btn-block" href="/application/plan">@if(App\Http\Controllers\Helper::checkStepCompletion(5)) <span class="fa fa-check-circle"></span> @endif เลือกแผนการเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
                   @if(Config::get('uiconfig.mode') != 'province_quota')
                   {{-- Normal only: application day selection. NOTE: This may be removed in the future! --}}
                   <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(6)) btn-primary @else btn-default @endif btn-block" href="/application/day">@if(App\Http\Controllers\Helper::checkStepCompletion(6)) <span class="fa fa-check-circle"></span> @endif เลือกวันสมัครที่โรงเรียน</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  @endif
-
-                  @if(Config::get('uiconfig.mode') == 'province_quota')
-                  {{-- Quota only: grade information --}}
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(8)) btn-primary @else btn-default @endif btn-block" href="/application/grade">@if(App\Http\Controllers\Helper::checkStepCompletion(8)) <span class="fa fa-check-circle"></span> @endif ประวัติผลการเรียน</a>
                   <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
                   @endif
 
