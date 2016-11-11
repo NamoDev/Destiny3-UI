@@ -321,6 +321,10 @@ class UserController extends Controller{
 
     }
 
+    public function updateAddressInfo(Request $request){
+        
+    }
+
     public function getDocument(Request $request, $citizen_id, $filename = null){
         /*if(!$this->ipInRange($request->ip(), $range)){
             return RESTResponse::notAuthorized('IP not in permitted range');
