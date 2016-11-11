@@ -122,5 +122,7 @@ class UIPages extends Controller {
         return response()->view('steps.07_document_upload', ['applicantData' => $applicantData]);
     }
 
-
+    public function step8_gradeInfo(){
+        return response()->view('steps.08_quota_grade');
+    }
 }
