@@ -322,7 +322,7 @@ class UserController extends Controller{
     }
 
     public function updateAddressInfo(Request $request){
-        
+
     }
 
     public function getDocument(Request $request, $citizen_id, $filename = null){
@@ -803,7 +803,7 @@ class UserController extends Controller{
 
             // OK, now we should have the token. See if the token is still valid?
             $tokenData = DB::collection("iforgot")->where("token", $token)->first();
-            if($tokenData["expires_on"] > time()){
+            if($tokenData["expires_on"] < time()){
                 // Token already expired:
                 return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านหมดอายุแล้ว กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
             }
@@ -838,7 +838,7 @@ class UserController extends Controller{
 
         // Token valid?
         $tokenData = DB::collection("iforgot")->where("token", $token)->first();
-        if($tokenData["expires_on"] > time()){
+        if($tokenData["expires_on"] < time()){
             // Token already expired:
             return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านหมดอายุแล้ว กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
         }
