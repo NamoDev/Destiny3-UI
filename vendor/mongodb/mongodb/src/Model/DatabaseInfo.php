@@ -9,7 +9,7 @@ namespace MongoDB\Model;
  * command. It provides methods to access common database properties.
  *
  * @api
- * @see MongoDB\Client::listDatabases()
+ * @see \MongoDB\Client::listDatabases()
  * @see http://docs.mongodb.org/manual/reference/command/listDatabases/
  */
 class DatabaseInfo
@@ -17,10 +17,10 @@ class DatabaseInfo
     private $info;
 
     /**
-    * Constructor.
-    *
-    * @param array $info Database info
-    */
+     * Constructor.
+     *
+     * @param array $info Database info
+     */
     public function __construct(array $info)
     {
         $this->info = $info;

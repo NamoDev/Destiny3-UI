@@ -2,11 +2,8 @@
 
 namespace MongoDB;
 
-use MongoDB\Driver\Command;
-use MongoDB\Driver\Cursor;
 use MongoDB\Driver\Manager;
 use MongoDB\Driver\ReadPreference;
-use MongoDB\Driver\WriteConcern;
 use MongoDB\Exception\InvalidArgumentException;
 use MongoDB\Model\DatabaseInfoIterator;
 use MongoDB\Operation\DropDatabase;
@@ -45,7 +42,7 @@ class Client
      * @param array  $driverOptions Driver-specific options
      * @throws InvalidArgumentException
      */
-    public function __construct($uri = 'mongodb://localhost:27017', array $uriOptions = [], array $driverOptions = [])
+    public function __construct($uri = 'mongodb://127.0.0.1/', array $uriOptions = [], array $driverOptions = [])
     {
         $driverOptions += ['typeMap' => self::$defaultTypeMap];
 
@@ -53,16 +50,19 @@ class Client
             throw InvalidArgumentException::invalidType('"typeMap" driver option', $driverOptions['typeMap'], 'array');
         }
 
-        $this->manager = new Manager($uri, $uriOptions, $driverOptions);
         $this->uri = (string) $uri;
         $this->typeMap = isset($driverOptions['typeMap']) ? $driverOptions['typeMap'] : null;
+
+        unset($driverOptions['typeMap']);
+
+        $this->manager = new Manager($uri, $uriOptions, $driverOptions);
     }
 
     /**
      * Return internal properties for debugging purposes.
      *
      * @see http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo
-     * @param array
+     * @return array
      */
     public function __debugInfo()
     {
@@ -93,7 +93,7 @@ class Client
     /**
      * Return the connection string (i.e. URI).
      *
-     * @param string
+     * @return string
      */
     public function __toString()
     {
@@ -118,6 +118,16 @@ class Client
         $server = $this->manager->selectServer(new ReadPreference(ReadPreference::RP_PRIMARY));
 
         return $operation->execute($server);
+    }
+
+    /**
+     * Return the Manager.
+     *
+     * @return Manager
+     */
+    public function getManager()
+    {
+        return $this->manager;
     }
 
     /**

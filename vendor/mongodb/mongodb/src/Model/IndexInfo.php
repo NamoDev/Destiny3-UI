@@ -16,7 +16,7 @@ use ArrayAccess;
  * db.collection.createIndex() documentation.
  *
  * @api
- * @see MongoDB\Collection::listIndexes()
+ * @see \MongoDB\Collection::listIndexes()
  * @see https://github.com/mongodb/specifications/blob/master/source/enumerate-indexes.rst
  * @see http://docs.mongodb.org/manual/reference/method/db.collection.createIndex/
  */
@@ -25,10 +25,10 @@ class IndexInfo implements ArrayAccess
     private $info;
 
     /**
-    * Constructor.
-    *
-    * @param array $info Index info
-    */
+     * Constructor.
+     *
+     * @param array $info Index info
+     */
     public function __construct(array $info)
     {
         $this->info = $info;

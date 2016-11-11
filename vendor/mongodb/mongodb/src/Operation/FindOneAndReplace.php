@@ -2,7 +2,6 @@
 
 namespace MongoDB\Operation;
 
-use MongoDB\Driver\Command;
 use MongoDB\Driver\Server;
 use MongoDB\Exception\InvalidArgumentException;
 
@@ -10,7 +9,7 @@ use MongoDB\Exception\InvalidArgumentException;
  * Operation for replacing a document with the findAndModify command.
  *
  * @api
- * @see MongoDB\Collection::findOneAndReplace()
+ * @see \MongoDB\Collection::findOneAndReplace()
  * @see http://docs.mongodb.org/manual/reference/command/findAndModify/
  */
 class FindOneAndReplace implements Executable
