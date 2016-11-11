@@ -258,7 +258,9 @@ $("#sendTheFormButton").click(function(){
     @endif
 
     @if(Config::get('uiconfig.mode') == 'province_quota')
-        addressData["home_move_in_date"] = $("#address_move_in_date").val() + "/" + $("#address_move_in_month").val() + "/" + $("#address_move_in_year").val();
+        addressData["home_move_in_date"] = $("#address_move_in_date").val();
+        addressData["home_move_in_month"] = $("#address_move_in_month").val();
+        addressData["home_move_in_year"] = $("#address_move_in_year").val();
     @endif
 
     if(hasErrors == 0){
