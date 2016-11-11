@@ -53,7 +53,7 @@
                     <span class="help-block">วันที่ย้ายเข้า</span>
                     <div class="row">
                         <div class="col-xs-4">
-                            <select id="address_move_in_date" name="address_move_in_date" style="width:100%;" class="form-control select select-primary select-block mbl">
+                            <select id="home_move_in_day" name="home_move_in_day" style="width:100%;" class="form-control select select-primary select-block mbl">
                                 <?php
                                     $date = 1;
                                     while($date <= 31){
@@ -258,7 +258,7 @@ $("#sendTheFormButton").click(function(){
     @endif
 
     @if(Config::get('uiconfig.mode') == 'province_quota')
-        addressData["home_move_in_date"] = $("#address_move_in_date").val();
+        addressData["home_move_in_day"] = $("#home_move_in_day").val();
         addressData["home_move_in_month"] = $("#address_move_in_month").val();
         addressData["home_move_in_year"] = $("#address_move_in_year").val();
     @endif
