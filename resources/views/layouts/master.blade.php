@@ -47,8 +47,7 @@
                   <!-- TODO: Add the real thing. -->
                   <div class="panel panel-default">
                       <div class="panel-body">
-                         <small><i class="fa fa-exclamation-triangle"></i> นักเรียนยังไม่ได้พิมพ์ใบสมัคร</small>
-                         <a class="btn btn-success btn-block btn-lg">พิมพ์ใบสมัคร</a>
+                         <small><i class="fa fa-exclamation-triangle"></i> การสมัครยังไม่สมบูรณ์</small>
                       </div>
                   </div>
 
