@@ -70,6 +70,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function(){
     // Parent/guardian information submission
     Route::post('applicant/parent_info', 'UserController@updateParentInformation');
 
+    Route::post('applicant/address', 'UserController@updateAddressInfo');
+
     // Education history (profile) submission
     Route::post('applicant/education_history', 'UserController@updateEducationInformation');
 
