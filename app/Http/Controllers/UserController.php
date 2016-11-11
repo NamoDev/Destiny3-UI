@@ -597,7 +597,6 @@ class UserController extends Controller{
 
     }
 
-
     /*
     | Update application day selection
     */
