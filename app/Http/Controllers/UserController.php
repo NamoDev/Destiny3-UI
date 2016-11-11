@@ -390,7 +390,7 @@ class UserController extends Controller{
         if($applicant->modify($applicantCitizenID, $modifyThis)){
 
             // Mark step as done
-            $applicant->markStepAsDone($applicantCitizenID, 2);
+            $applicant->markStepAsDone($applicantCitizenID, 3);
 
             return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
         }else{
