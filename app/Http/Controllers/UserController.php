@@ -695,59 +695,50 @@ class UserController extends Controller{
      * Handle applicant's documents upload
      *
      */
-    public function handleDocuments(Request $request){
+    public function handleDocuments(Request $request, $name){
+        $allowed = array(
+            'image',
+            'citizen_card',
+            'transcript',
+            'student_hr',
+            'father_hr',
+            'mother_hr',
+        );
+
+        // Check if document name is in allow list
+        if(!in_array($name, $allowed)){
+            return RESTResponse::badRequest('Document not support');
+        }
+
         // Get applicant object & current applicant's Citizen ID:
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
         $this->validate($request, [
-            'transcript' => 'required|mimetypes:image/jpeg,image/png',
-            'student_hr' => 'required|mimetypes:image/jpeg,image/png',
-            'father_hr' => 'required|mimetypes:image/jpeg,image/png',
-            'mother_hr' => 'required|mimetypes:image/jpeg,image/png',
+            'content' => 'required|mimetypes:image/jpeg,image/png',
         ]);
 
-        $documents = array(
-            'transcript' =>
-                $applicantCitizenID.'_transcript_'.uniqid().'.'.
-                $request->file('transcript')->getClientOriginalExtension(),
-            'student_hr' =>
-                $applicantCitizenID.'_student_hr_'.uniqid().'.'.
-                $request->file('student_hr')->getClientOriginalExtension(),
-            'father_hr' =>
-                $applicantCitizenID.'_father_hr_'.uniqid().'.'.
-                $request->file('father_hr')->getClientOriginalExtension(),
-            'mother_hr' =>
-                $applicantCitizenID.'_mother_hr_'.uniqid().'.'.
-                $request->file('mother_hr')->getClientOriginalExtension(),
-        );
+        $filename = $applicantCitizenID.'_'.$name.'.'
+                    $request->file('content')->getClientOriginalExtension();
 
         // Storing documents
-        foreach($documents as $file => $filename){
+        try{
             if(!Storage::disk('document')->put($filename, $request->input($file))){
-                throw new Exception('Error saving file');
+                throw new \Exception('Error saving file');
             }
+        }catch(\Exception $e){
+            Log::error($e);
+            return RESTResponse::serverError('Error saving file, please try again later');
         }
 
-        $insert = DB::collection('applicants')->where('citizen_id', $applicantCitizenID)->pluck('documents')[0];
+        $insert = DB::collection('applicants')
+                    ->where('citizen_id', $applicantCitizenID)
+                    ->pluck('documents')[0];
 
-        $insert[time()] = array(
-            'transcript' => [
-                'file_name' => $documents['transcript'],
-                'check_result' => 0
-            ],
-            'student_hr' => [
-                'file_name' => $documents['student_hr'],
-                'check_result' => 0
-            ],
-            'father_hr' => [
-                'file_name' => $documents['father_hr'],
-                'check_result' => 0
-            ],
-            'mother_hr' => [
-                'file_name' => $documents['mother_hr'],
-                'check_result' => 0
-            ],
+        $insert[$request->input('session_id')][$name] = array(
+            'file_name' => $filename,
+            'check_result' => 0,
+            'timestamp' => time(),
         );
 
         // Now that everything's ready, save and return done (hopefully)
