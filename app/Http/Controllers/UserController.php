@@ -345,31 +345,59 @@ class UserController extends Controller{
             'current_postcode' => 'required_unless:current_address_same_as_home,1',
         ]);
 
-        $modifyThis = [
-            'address' => [
-                'current_address_same_as_home' => $request->input('current_address_same_as_home'),
-                'home' => [
-                    'home_address' => $request->input('home_address'),
-                    'home_moo' => $request->input('home_moo'),
-                    'home_soi' => $request->input('home_soi'),
-                    'home_road' => $request->input('home_road'),
-                    'home_subdistrict' => $request->input('home_subdistrict'),
-                    'home_district' => $request->input('home_district'),
-                    'home_province' => $request->input('home_province'),
-                    'home_postcode' => $request->input('home_postcode'),
+        if($request->input('current_address_same_as_home') == '1'){
+            $modifyThis = [
+                'address' => [
+                    'current_address_same_as_home' => $request->input('current_address_same_as_home'),
+                    'home' => [
+                        'home_address' => $request->input('home_address'),
+                        'home_moo' => $request->input('home_moo'),
+                        'home_soi' => $request->input('home_soi'),
+                        'home_road' => $request->input('home_road'),
+                        'home_subdistrict' => $request->input('home_subdistrict'),
+                        'home_district' => $request->input('home_district'),
+                        'home_province' => $request->input('home_province'),
+                        'home_postcode' => $request->input('home_postcode'),
+                    ],
+                    'current' => [
+                        'current_address' => $request->input('home_address'),
+                        'current_moo' => $request->input('home_moo'),
+                        'current_soi' => $request->input('home_soi'),
+                        'current_road' => $request->input('home_road'),
+                        'current_subdistrict' => $request->input('home_subdistrict'),
+                        'current_district' => $request->input('home_district'),
+                        'current_province' => $request->input('home_province'),
+                        'current_postcode' => $request->input('home_postcode'),
+                    ],
                 ],
-                'current' => [
-                    'current_address' => $request->input('current_address'),
-                    'current_moo' => $request->input('current_moo'),
-                    'current_soi' => $request->input('current_soi'),
-                    'current_road' => $request->input('current_road'),
-                    'current_subdistrict' => $request->input('current_subdistrict'),
-                    'current_district' => $request->input('current_district'),
-                    'current_province' => $request->input('current_province'),
-                    'current_postcode' => $request->input('current_postcode'),
+            ];
+        }else{
+            $modifyThis = [
+                'address' => [
+                    'current_address_same_as_home' => $request->input('current_address_same_as_home'),
+                    'home' => [
+                        'home_address' => $request->input('home_address'),
+                        'home_moo' => $request->input('home_moo'),
+                        'home_soi' => $request->input('home_soi'),
+                        'home_road' => $request->input('home_road'),
+                        'home_subdistrict' => $request->input('home_subdistrict'),
+                        'home_district' => $request->input('home_district'),
+                        'home_province' => $request->input('home_province'),
+                        'home_postcode' => $request->input('home_postcode'),
+                    ],
+                    'current' => [
+                        'current_address' => $request->input('current_address'),
+                        'current_moo' => $request->input('current_moo'),
+                        'current_soi' => $request->input('current_soi'),
+                        'current_road' => $request->input('current_road'),
+                        'current_subdistrict' => $request->input('current_subdistrict'),
+                        'current_district' => $request->input('current_district'),
+                        'current_province' => $request->input('current_province'),
+                        'current_postcode' => $request->input('current_postcode'),
+                    ],
                 ],
-            ],
-        ];
+            ];
+        }
 
         if(config('uiconfig.mode') == 'province_quota'){
             // Additional validation for province_quota
