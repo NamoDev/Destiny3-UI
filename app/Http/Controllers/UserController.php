@@ -805,6 +805,8 @@ class UserController extends Controller{
             $tokenData = DB::collection("iforgot")->where("token", $token)->first();
             if($tokenData["expires_on"] < time()){
                 // Token already expired:
+                // Delete token:
+                DB::collection("iforgot")->where("token", $token)->delete();
                 return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านหมดอายุแล้ว กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
             }
 
@@ -841,8 +843,13 @@ class UserController extends Controller{
         $tokenData = DB::collection("iforgot")->where("token", $token)->first();
         if($tokenData["expires_on"] < time()){
             // Token already expired:
+            // Delete the token
+            DB::collection("iforgot")->where("token", $token)->delete();
             return redirect("iforgot/error")->with("message", "Token ในการรีเซ็ทรหัสผ่านหมดอายุแล้ว กรุณาส่งคำขอ reset รหัสผ่านใหม่อีกครั้ง");
         }
+
+        // A-OK. Delete the token:
+        DB::collection("iforgot")->where("token", $token)->delete();
 
         // A-OK. Process new password and save that:
         try{
