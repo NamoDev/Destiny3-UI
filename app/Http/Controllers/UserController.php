@@ -73,13 +73,13 @@ class UserController extends Controller{
         if($applicantObject->exists($request->input("citizenid"))){
             // Already registered. Return conflict (409)!
             $errors[] = "already_registered";
-            return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "409");
+            return RESTResponse::makeErrorResponse(409, $errors);
         }
 
         // If there are errors, notify the frontend and stop right there.
         if(count($errors) != 0){
             // O NOES, THERE ARE ERRORS!
-            return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
+            return RESTResponse::makeErrorResponse(417, $errors);
         }else{
 
             // A-OK. We can continue.
@@ -108,7 +108,7 @@ class UserController extends Controller{
             $applicantObject->login($request->citizenid, $request->password);
 
             // return success
-            echo(json_encode(['result' => 'success'], JSON_UNESCAPED_UNICODE));
+            return RESTResponse::ok();
 
         }
 
@@ -167,11 +167,11 @@ class UserController extends Controller{
                 'password' => Hash::make($request->input("password")),
             ]);
 
-            return response(json_encode(["result" => "ok"]));
+            return RESTResponse::ok();
 
         }else{
             // Old password incorrect
-            return response(json_encode(["result" => "old_password_incorrect"]), 401);
+            return RESTResponse::notAuthenticated('old_password_incorrect');
         }
 
     }
@@ -229,11 +229,11 @@ class UserController extends Controller{
             // Modification went well. Let's reload the session data in case the applicant changes his/her name:
             $applicant->reloadSessionData();
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
     }
@@ -312,11 +312,11 @@ class UserController extends Controller{
             // Mark step as done
             $applicant->markStepAsDone($applicantCitizenID, 2);
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
     }
@@ -392,11 +392,11 @@ class UserController extends Controller{
             // Mark step as done
             $applicant->markStepAsDone($applicantCitizenID, 3);
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
     }
@@ -518,11 +518,11 @@ class UserController extends Controller{
             // Mark step as done
             $applicant->markStepAsDone($applicantCitizenID, 4);
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
     }
@@ -587,11 +587,11 @@ class UserController extends Controller{
             // Mark step as done
             $applicant->markStepAsDone($applicantCitizenID, 5);
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
 
@@ -631,7 +631,7 @@ class UserController extends Controller{
 
         }catch(\Throwable $stuff){
             // Invalid data
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 422);
+            return RESTResponse::makeErrorResponse(422);
         }
 
         // See if we still have space:
@@ -640,7 +640,7 @@ class UserController extends Controller{
             // Morning
             if($dateData["morning_count"] >= $dateData["morning_max"]){
                 // Full already
-                return response(json_encode(["status" => "error", "message" => "full"], JSON_UNESCAPED_UNICODE), 406);
+                return RESTResponse::makeErrorResponse(406, 'full');
             }else{
                 DB::collection("application_days")->where("date", $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2])->increment("morning_count");
             }
@@ -648,7 +648,7 @@ class UserController extends Controller{
             // Afternoon
             if($dateData["afternoon_count"] >= $dateData["afternoon_max"]){
                 // Full already
-                return response(json_encode(["status" => "error", "message" => "full"], JSON_UNESCAPED_UNICODE), 406);
+                return RESTResponse::makeErrorResponse(406, 'full');
             }else{
                 DB::collection("application_days")->where("date", $id_data[0] . "/" . $id_data[1] . "/" . $id_data[2])->increment("afternoon_count");
             }
@@ -682,11 +682,11 @@ class UserController extends Controller{
             // Mark step as done
             $applicant->markStepAsDone($applicantCitizenID, 6);
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
 
@@ -757,11 +757,11 @@ class UserController extends Controller{
             // Mark step as done
             $applicant->markStepAsDone($applicantCitizenID, 7);
 
-            return response(json_encode(["status" => "ok"], JSON_UNESCAPED_UNICODE), 200);
+            return RESTResponse::ok();
         }else{
             // error!
             // TODO: return RESTResponse maybe?
-            return response(json_encode(["status" => "error"], JSON_UNESCAPED_UNICODE), 500);
+            return RESTResponse::serverError();
         }
 
     }
