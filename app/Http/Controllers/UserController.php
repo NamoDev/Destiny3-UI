@@ -88,24 +88,24 @@ class UserController extends Controller{
 
             // Create user and login!
             $applicantObject->create(
-                $request->citizenid,
-                $request->title,
-                $request->fname,
-                $request->lname,
-                $request->title_en,
-                $request->fname_en,
-                $request->lname_en,
+                $request->input('citizenid'),
+                $request->input('title'),
+                $request->input('fname'),
+                $request->input('lname'),
+                $request->input('title_en'),
+                $request->input('fname_en'),
+                $request->input('lname_en'),
                 $genderToUse,
-                $request->email,
-                $request->phone,
-                $request->birthdate,
-                $request->birthmonth,
-                $request->birthyear,
-                $request->password
+                $request->input('email'),
+                $request->input('phone'),
+                $request->input('birthdate'),
+                $request->input('birthmonth'),
+                $request->input('birthyear'),
+                $request->input('password')
             );
 
             // Log the user in
-            $applicantObject->login($request->citizenid, $request->password);
+            $applicantObject->login($request->input('citizenid'), $request->input('password'));
 
             // return success
             return RESTResponse::ok();
