@@ -9,8 +9,8 @@ class Andromeda extends Controller {
         $token = (new \Lcobucci\JWT\Builder())->setIssuer(config('app.url'))// Configures the issuer (iss claim)
         ->setAudience(config('uiconfig.andromeda_url'))// Configures the audience (aud claim)
         ->setIssuedAt(time())// Configures the time that the token was issue (iat claim)
-        ->setNotBefore(time() - 3600)// Configures the time that the token can be used (nbf claim)
-        ->setExpiration(time() + 3600); // Configures the expiration time of the token (nbf claim)
+        ->setNotBefore(time() - 10000)// Configures the time that the token can be used (nbf claim)
+        ->setExpiration(time() + 10000); // Configures the expiration time of the token (nbf claim)
         
         $visitingApplicant = new Applicant();
         if ($visitingApplicant->isLoggedIn()) {
