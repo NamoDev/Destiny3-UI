@@ -322,7 +322,69 @@ class UserController extends Controller{
     }
 
     public function updateAddressInfo(Request $request){
+        // Get applicant object & current applicant's Citizen ID:
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
 
+        // Validate incoming data
+        $this->validate($request, [
+            'home_address' => 'required',
+            'home_moo' => 'required',
+            'home_soi' => 'required',
+            'home_road' => 'required',
+            'home_subdistrict' => 'required',
+            'home_district' => 'required',
+            'home_province' => 'required',
+            'home_postcode' => 'required',
+            'current_address_same_as_home' => 'required|boolean',
+            'current_address' => 'required_unless:current_address_same_as_home,1',
+            'current_moo' => 'required_unless:current_address_same_as_home,1',
+            'current_soi' => 'required_unless:current_address_same_as_home,1',
+            'current_road' => 'required_unless:current_address_same_as_home,1',
+            'current_subdistrict' => 'required_unless:current_address_same_as_home,1',
+            'current_district' => 'required_unless:current_address_same_as_home,1',
+            'current_province' => 'required_unless:current_address_same_as_home,1',
+            'current_postcode' => 'required_unless:current_address_same_as_home,1',
+        ]);
+
+        $modifyThis = [
+            'address' => [
+                'current_address_same_as_home' => $request->input('current_address_same_as_home'),
+                'home' => [
+                    'home_address' => $request->input('home_address'),
+                    'home_moo' => $request->input('home_moo'),
+                    'home_soi' => $request->input('home_soi'),
+                    'home_road' => $request->input('home_road'),
+                    'home_subdistrict' => $request->input('home_subdistrict'),
+                    'home_district' => $request->input('home_district'),
+                    'home_province' => $request->input('home_province'),
+                    'home_postcode' => $request->input('home_postcode'),
+                ],
+                'current' => [
+                    'current_address' => $request->input('current_address'),
+                    'current_moo' => $request->input('current_moo'),
+                    'current_soi' => $request->input('current_soi'),
+                    'current_road' => $request->input('current_road'),
+                    'current_subdistrict' => $request->input('current_subdistrict'),
+                    'current_district' => $request->input('current_district'),
+                    'current_province' => $request->input('current_province'),
+                    'current_postcode' => $request->input('current_postcode'),
+                ],
+            ],
+        ];
+
+        if(config('uiconfig.mode') == 'province_quota'){
+            // Additional validation for province_quota
+            $this->validator($request, [
+                'home_move_in_day' => 'required|integer|min:1|max:31',
+                'home_move_in_month' => 'required|integer|min:1|max:12',
+                'home_move_in_year' => 'required|integer|max:'.config('uiconfig.operation_year'),
+            ]);
+
+            $modifyThis['address']['home_move_in_day'] = $request->input('home_move_in_day');
+            $modifyThis['address']['home_move_in_month'] = $request->input('home_move_in_month');
+            $modifyThis['address']['home_move_in_year'] = $request->input('home_move_in_year');
+        }
     }
 
     public function getDocument(Request $request, $citizen_id, $filename = null){
