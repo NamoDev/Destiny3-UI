@@ -58,59 +58,59 @@ class UserController extends Controller{
             'password' => 'required|same:password_confirm',
             'password_confirm' => 'required|same:password',
             'g-recaptcha-response' => 'required|captcha',
-         ]);
+        ]);
 
-         // TODO: Make Citizen ID verification a part of the validator itself
+        // TODO: Make Citizen ID verification a part of the validator itself
 
-         // Validate citizen ID
-         if(!$this->verifyNationalID($request->input("citizenid"))){
-             // Citizen ID error
-             $errors[] = "citizenid";
-         }
+        // Validate citizen ID
+        if(!$this->verifyNationalID($request->input("citizenid"))){
+            // Citizen ID error
+            $errors[] = "citizenid";
+        }
 
 
-      // See if the user has already registered?
-      if($applicantObject->exists($request->input("citizenid"))){
-          // Already registered. Return conflict (409)!
-          $errors[] = "already_registered";
-          return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "409");
-      }
+        // See if the user has already registered?
+        if($applicantObject->exists($request->input("citizenid"))){
+            // Already registered. Return conflict (409)!
+            $errors[] = "already_registered";
+            return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "409");
+        }
 
-      // If there are errors, notify the frontend and stop right there.
-      if(count($errors) != 0){
-          // O NOES, THERE ARE ERRORS!
-          return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
-      }else{
+        // If there are errors, notify the frontend and stop right there.
+        if(count($errors) != 0){
+            // O NOES, THERE ARE ERRORS!
+            return response(json_encode(["errors" => $errors], JSON_UNESCAPED_UNICODE), "417");
+        }else{
 
-          // A-OK. We can continue.
-          // Format gender data
-          $genderToUse = $this->formatGender($request->customtitle, $request->title, $request->gender);
+            // A-OK. We can continue.
+            // Format gender data
+            $genderToUse = $this->formatGender($request->customtitle, $request->title, $request->gender);
 
-          // Create user and login!
-          $applicantObject->create(
-              $request->citizenid,
-              $request->title,
-              $request->fname,
-              $request->lname,
-              $request->title_en,
-              $request->fname_en,
-              $request->lname_en,
-              $genderToUse,
-              $request->email,
-              $request->phone,
-              $request->birthdate,
-              $request->birthmonth,
-              $request->birthyear,
-              $request->password
-          );
+            // Create user and login!
+            $applicantObject->create(
+                $request->citizenid,
+                $request->title,
+                $request->fname,
+                $request->lname,
+                $request->title_en,
+                $request->fname_en,
+                $request->lname_en,
+                $genderToUse,
+                $request->email,
+                $request->phone,
+                $request->birthdate,
+                $request->birthmonth,
+                $request->birthyear,
+                $request->password
+            );
 
-          // Log the user in
-          $applicantObject->login($request->citizenid, $request->password);
+            // Log the user in
+            $applicantObject->login($request->citizenid, $request->password);
 
-          // return success
-          echo(json_encode(['result' => 'success'], JSON_UNESCAPED_UNICODE));
+            // return success
+            echo(json_encode(['result' => 'success'], JSON_UNESCAPED_UNICODE));
 
-      }
+        }
 
     }
 
