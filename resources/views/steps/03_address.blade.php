@@ -226,14 +226,7 @@ $("#sendTheFormButton").click(function(){
             home_subdistrict: $("#home_subdistrict").val(),
             home_district: $("#home_district").val(),
             home_province: $("#home_province").val(),
-            current_address: $("#home_address").val(),
-            current_moo: $("#home_moo").val(),
-            current_soi: $("#home_soi").val(),
-            current_road: $("#home_road").val(),
-            current_subdistrict: $("#home_subdistrict").val(),
-            current_district: $("#home_district").val(),
-            current_province: $("#home_province").val(),
-            current_postcode: $("#home_postcode").val(),
+            home_postcode: $("#home_postcode").val(),
             current_address_same_as_home: "1"
         }
     }else{
@@ -247,6 +240,7 @@ $("#sendTheFormButton").click(function(){
             home_subdistrict: $("#home_subdistrict").val(),
             home_district: $("#home_district").val(),
             home_province: $("#home_province").val(),
+            home_postcode: $("#home_postcode").val(),
             current_address: $("#current_address").val(),
             current_moo: $("#current_moo").val(),
             current_soi: $("#current_soi").val(),
