@@ -257,6 +257,10 @@ $("#sendTheFormButton").click(function(){
         console.log("[DBG/LOG] Total errors: " + hasErrors);
     @endif
 
+    @if(Config::get('uiconfig.mode') == 'province_quota')
+        addressData["home_move_in_date"] = $("#address_move_in_date").val() + "/" + $("#address_move_in_month").val() + "/" + $("#address_move_in_year").val();
+    @endif
+
     if(hasErrors == 0){
         // Green across the board, and ready for action!
         $.ajax({
