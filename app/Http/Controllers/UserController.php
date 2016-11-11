@@ -738,7 +738,7 @@ class UserController extends Controller{
 
         // Get userinfo:
         try{
-            $applicantData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
+            $applicantData = DB::collection("applicants")->where("citizen_id", $request->input("citizenid"))->first();
         }catch(\Throwable $waitWhat){
             return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-1)")->with("alert-class", "alert-warning");
         }
@@ -771,11 +771,13 @@ class UserController extends Controller{
         try{
             // Send a mail!
             // TODO: Add queue support
-            Mail::send('emails.iforgot', $mailData, function ($message) {
+            $applicantMail = (string) $applicantData["email"];
+            Mail::send('emails.iforgot', $mailData, function ($message) use ($applicantMail) {
                 $message->from('apply@triamudom.ac.th', 'ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา');
-                $message->to($applicantData["email"])->subject("ลืมรหัสผ่าน: ขั้นตอนการเปลี่ยนรหัสผ่านใหม่");
+                $message->to($applicantMail)->subject("ลืมรหัสผ่าน: ขั้นตอนการเปลี่ยนรหัสผ่านใหม่");
             });
         }catch(\Throwable $mailException){
+            Log::error($mailException);
             return redirect("iforgot")->with("message", "เกิดข้อผิดพลาดของระบบ กรุณาลองใหม่อีกครั้ง (IF-3)")->with("alert-class", "alert-warning");
         }
 
