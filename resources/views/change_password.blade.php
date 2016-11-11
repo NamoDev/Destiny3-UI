@@ -86,13 +86,9 @@
             var response = JSON.parse(request.responseText);
             switch(request.status){
                 case 401:
-                    if(response.result == "old_password_incorrect"){
-                        $("#old_passwordGroup").addClass("has-error");
-                        $("#old_password_confirmGroup").addClass("has-error");
-                        raiseAlert("รหัสผ่านเก่าไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
-                    }else{
-                        raiseAlert("คุณไม่มีสิทธิ์ในดำเนินการนี้");
-                    }
+                    $("#old_passwordGroup").addClass("has-error");
+                    $("#old_password_confirmGroup").addClass("has-error");
+                    raiseAlert("รหัสผ่านเก่าไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
                 break;
                 case 422:
                     raiseAlert("มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง");
