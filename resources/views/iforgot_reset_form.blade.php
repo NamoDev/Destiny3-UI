@@ -26,17 +26,19 @@ https://tucc.triamudom.ac.th
         @endif
         <div class="flat-well">
             <div class="row">
-                <div class="row">
-                    <div class="col-md-12" id="passwordGroup">
-                        <span class="help-block">รหัสผ่าน</span>
-                        <input id="password" name="password" type="password" placeholder="กำหนดรหัสผ่าน" class="form-control" />
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12" id="passwordGroup">
+                            <span class="help-block">รหัสผ่าน</span>
+                            <input id="password" name="password" type="password" placeholder="กำหนดรหัสผ่าน" class="form-control" />
+                        </div>
                     </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-md-12" id="password_confirmGroup">
-                        <span class="help-block">ยืนยันรหัสผ่าน</span>
-                        <input id="password_confirm" name="password_confirm" type="password" placeholder="กำหนดรหัสผ่านอีกครั้ง" class="form-control" />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12" id="password_confirmGroup">
+                            <span class="help-block">ยืนยันรหัสผ่าน</span>
+                            <input id="password_confirm" name="password_confirm" type="password" placeholder="กำหนดรหัสผ่านอีกครั้ง" class="form-control" />
+                        </div>
                     </div>
                 </div>
             </div>
