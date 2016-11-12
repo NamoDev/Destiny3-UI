@@ -2,7 +2,6 @@
 
 namespace MongoDB\Operation;
 
-use MongoDB\Driver\Command;
 use MongoDB\Driver\Server;
 use MongoDB\Exception\InvalidArgumentException;
 
@@ -10,7 +9,7 @@ use MongoDB\Exception\InvalidArgumentException;
  * Operation for updating a document with the findAndModify command.
  *
  * @api
- * @see MongoDB\Collection::findOneAndUpdate()
+ * @see \MongoDB\Collection::findOneAndUpdate()
  * @see http://docs.mongodb.org/manual/reference/command/findAndModify/
  */
 class FindOneAndUpdate implements Executable

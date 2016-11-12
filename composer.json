@@ -10,7 +10,8 @@
         "jenssegers/agent": "^2.3",
         "jenssegers/mongodb": "^3.0",
         "namodev/larann": "dev-master",
-        "anhskohbo/no-captcha": "^2.1"
+        "anhskohbo/no-captcha": "^2.1",
+        "lcobucci/jwt": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

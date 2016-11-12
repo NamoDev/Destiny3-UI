@@ -5,12 +5,11 @@ namespace MongoDB;
 use MongoDB\Collection;
 use MongoDB\Driver\Cursor;
 use MongoDB\Driver\Manager;
-use MongoDB\Driver\Query;
 use MongoDB\Driver\ReadConcern;
 use MongoDB\Driver\ReadPreference;
-use MongoDB\Driver\Server;
 use MongoDB\Driver\WriteConcern;
 use MongoDB\Exception\InvalidArgumentException;
+use MongoDB\GridFS\Bucket;
 use MongoDB\Model\CollectionInfoIterator;
 use MongoDB\Operation\CreateCollection;
 use MongoDB\Operation\DatabaseCommand;
@@ -94,7 +93,7 @@ class Database
      * Return internal properties for debugging purposes.
      *
      * @see http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo
-     * @param array
+     * @return array
      */
     public function __debugInfo()
     {
@@ -128,7 +127,7 @@ class Database
     /**
      * Return the database name.
      *
-     * @param string
+     * @return string
      */
     public function __toString()
     {
@@ -230,6 +229,16 @@ class Database
     }
 
     /**
+     * Return the Manager.
+     *
+     * @return Manager
+     */
+    public function getManager()
+    {
+        return $this->manager;
+    }
+
+    /**
      * Returns information for all collections in this database.
      *
      * @see ListCollections::__construct() for supported options
@@ -262,6 +271,24 @@ class Database
         ];
 
         return new Collection($this->manager, $this->databaseName, $collectionName, $options);
+    }
+
+    /**
+     * Select a GridFS bucket within this database.
+     *
+     * @see Bucket::__construct() for supported options
+     * @param array $options Bucket constructor options
+     * @return Bucket
+     */
+    public function selectGridFSBucket(array $options = [])
+    {
+        $options += [
+            'readConcern' => $this->readConcern,
+            'readPreference' => $this->readPreference,
+            'writeConcern' => $this->writeConcern,
+        ];
+
+        return new Bucket($this->manager, $this->databaseName, $options);
     }
 
     /**
