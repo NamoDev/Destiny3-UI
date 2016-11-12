@@ -1,4 +1,3 @@
-<b>iFORGOT MAIL DEMO (TODO: CHANGE!)</b><br />
-Applicant {{ $name }}, <br />
-
-To reset your password, please click <a href="https://apply.triamudom.ac.th/iforgot/link/{{ $token }}">here</a>.
+<h3>ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา</h3>
+<h4>เปลี่ยนรหัสผ่านของ{{ $name }}</h4>
+เมื่อสักครู่นี้คุณได้ร้องขอให้เปลี่ยนรหัสผ่านที่ใช้ในการสมัครเข้าศึกษาต่อฯ เพื่อเปลี่ยนรหัสผ่านกรุณา<a href="https://apply.triamudom.ac.th/iforgot/link/{{ $token }}">กดที่นี่</a>
