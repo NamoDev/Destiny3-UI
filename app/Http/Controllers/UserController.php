@@ -828,7 +828,7 @@ class UserController extends Controller {
             // TODO: Add queue support
             $applicantMail = (string)$applicantData["email"];
             Mail::send('emails.iforgot', $mailData, function ($message) use ($applicantMail) {
-                $message->from('apply@triamudom.ac.th', 'ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา');
+                $message->from('forget@apply.triamudom.ac.th', 'ระบบรับสมัครนักเรียน โรงเรียนเตรียมอุดมศึกษา');
                 $message->to($applicantMail)->subject("ลืมรหัสผ่าน: ขั้นตอนการเปลี่ยนรหัสผ่านใหม่");
             });
         } catch (\Throwable $mailException) {
