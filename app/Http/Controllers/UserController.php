@@ -777,6 +777,10 @@ class UserController extends Controller{
 
     }
 
+    public function confirmDocument(Request $request){
+        $request->input('session_id');
+    }
+
     /*
      * Check if all steps are completed
      */
