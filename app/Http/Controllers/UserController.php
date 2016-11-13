@@ -793,7 +793,17 @@ class UserController extends Controller{
             return false;
         }
 
+        $completed_step = DB::collection('applicants')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
+                            ->pluck('steps_completed')[0];
 
+        foreach($completed_step as $completed){
+            if(!in_array($completed, $required_step)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /*
