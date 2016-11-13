@@ -4,7 +4,6 @@
 
 @section('content')
 <legend><i class="fa fa-user-plus"></i> ข้อมูลบิดา มารดา และผู้ปกครอง <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
-
 <div class="row">
     <div class="col-xs-12">
         <p class="badge" style="font-size:.9em;font-weight:normal;">&nbsp;&nbsp; บิดา &nbsp;&nbsp;</p>
@@ -76,7 +75,7 @@
 <div class="row">
     <div class="col-xs-12">
         <span class="help-block">ผู้ปกครองของนักเรียน</span>
-        <select id="stayingWith" name="stayingWith" class="form-control select select-primary select-block mbl">
+        <select id="staying_with" name="staying_with" class="form-control select select-primary select-block mbl">
             <?php
                 $options = [
                     "1" => "บิดา",
@@ -146,215 +145,183 @@
         <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
     </div>
 </div>
-
 @endsection
 
 @section('additional_scripts')
 <script>
-
-/* Checker variables */
-var fatherIsDead = {{ isset($applicantData['father']['dead']) && $applicantData['father']['dead'] == "1" ? "1" : "0" }};
-var motherIsDead = {{ isset($applicantData['mother']['dead']) && $applicantData['mother']['dead'] == "1" ? "1" : "0" }}
-var fatherOptionInGuardianList = 1;
-var motherOptionInGuardianList = 1;
+var fatherOption = 1;
+var motherOption = 1;
 var hasGuardian = 0;
 
 $(function(){
-
-    // On load, toggle checkbox checking & look out for dead parents
     $("#father_dead").change();
     $("#mother_dead").change();
-    $("#stayingWith").change();
+    $("#staying_with").change();
+});
+$("#staying_with").change(function(){
+    if($("#staying_with").val() == 1 || $("#staying_with").val() == 2){
+        $("#guardianInfoGroup").fadeOut(200);
+        hasGuardian = 0;
+    }else{
+        $("#guardianInfoGroup").fadeIn(200);
+        hasGuardian = 1;
+    }
+});
+$("#father_dead").change(function(){
+    if($("#father_dead").is(":checked")){
+        $("#father_occupation").prop("disabled", true);
+        $("#father_phone").prop("disabled", true);
+        $("#father_occupation").val('');
+        $("#father_phone").val('');
+        $("#staying_with option[value='1']").remove();
+        fatherOption = 0;
+    }else{
+        $("#father_occupation").prop("disabled", false);
+        $("#father_phone").prop("disabled", false);
+        if(fatherOption == 0){
+            $("#staying_with").append("<option value=\"1\">บิดา</option>");
+            fatherOption = 1;
+            sortSelect("staying_with");
+        }
+    }
+    $("#staying_with").select2("destroy").select2();
     checkDeadParents();
-
-
-    $('#father_dead').on('change',function(){
-        if($("#father_dead").is(":checked")){
-            $("#father_occupation").prop("disabled", true);
-            $("#father_phone").prop("disabled", true);
-            $("#father_occupation").val('');
-            $("#father_phone").val('');
-            fatherIsDead = 1;
-        }else{
-            $("#father_occupation").prop("disabled", false);
-            $("#father_phone").prop("disabled", false);
-            fatherIsDead = 0;
+});
+$("#mother_dead").change(function(){
+    if($("#mother_dead").is(":checked")){
+        $("#mother_occupation").prop("disabled", true);
+        $("#mother_phone").prop("disabled", true);
+        $("#mother_occupation").val('');
+        $("#mother_phone").val('');
+        $("#staying_with option[value='2']").remove();
+        motherOption = 0;
+    }else{
+        $("#mother_occupation").prop("disabled", false);
+        $("#mother_phone").prop("disabled", false);
+        if(motherOption == 0){
+            $("#staying_with").append("<option value=\"2\">มารดา</option>");
+            motherOption = 1;
+            sortSelect("staying_with");
         }
-        checkDeadParents();
-    });
-    $('#mother_dead').on('change',function(){
-        if($("#mother_dead").is(":checked")){
-            $("#mother_occupation").prop("disabled", true);
-            $("#mother_phone").prop("disabled", true);
-            $("#mother_occupation").val('');
-            $("#mother_phone").val('');
-            motherIsDead = 1;
-        }else{
-            $("#mother_occupation").prop("disabled", false);
-            $("#mother_phone").prop("disabled", false);
-            motherIsDead = 0;
-        }
-        checkDeadParents();
-    });
-    $("#stayingWith").on('change',function(){
-        if($("#stayingWith").val() == 1 || $("#stayingWith").val() == 2){
-            $("#guardianInfoGroup").fadeOut(200);
-            hasGuardian = 0;
-        }else{
-            $("#guardianInfoGroup").fadeIn(200);
-            hasGuardian = 1;
-        }
-    });
+    }
+    $("#staying_with").select2("destroy").select2();
+    checkDeadParents();
+});
+$("#sendTheFormButton").click(function(){
+    /* Form submission */
+    $('#plsWaitModal').modal('show');
+    var hasErrors = 0; // Error checking variable
 
+    // Check for dead status?
+    var fatherIsDead = 0;
+    var motherIsDead = 0;
+    if($("#father_dead").is(":checked")){fatherIsDead = 1;};
+    if($("#mother_dead").is(":checked")){motherIsDead = 1;};
+
+    // Check father information inputs
+    hasErrors += isFieldBlank("father_title");
+    hasErrors += isFieldBlank("father_fname");
+    hasErrors += isFieldBlank("father_lname");
+    if(fatherIsDead != 1){
+        hasErrors += isFieldBlank("father_phone");
+        hasErrors += isFieldBlank("father_occupation");
+    }
+
+    // Check mother information inputs
+    hasErrors += isFieldBlank("mother_title");
+    hasErrors += isFieldBlank("mother_fname");
+    hasErrors += isFieldBlank("mother_lname");
+    if(motherIsDead != 1){
+        hasErrors += isFieldBlank("mother_phone");
+        hasErrors += isFieldBlank("mother_occupation");
+    }
+
+    // Check guardian information inputs if applicable:
+    if(hasGuardian == 1){
+        hasErrors += isFieldBlank("guardian_title");
+        hasErrors += isFieldBlank("guardian_fname");
+        hasErrors += isFieldBlank("guardian_lname");
+        hasErrors += isFieldBlank("guardian_phone");
+        hasErrors += isFieldBlank("guardian_occupation");
+        hasErrors += isFieldBlank("guardian_relation");
+    }
+
+    @if(Config::get('app.debug') === true)
+        console.log("[DBG/LOG] Total errors: " + hasErrors);
+    @endif
+
+    if(parseInt(hasErrors) == 0){
+        // Green across the board, and ready for action!
+        $.ajax({
+            url: '/api/v1/applicant/parent_info',
+            data: {
+                _token: csrfToken,
+                father_title: $("#father_title").val(),
+                father_fname: $("#father_fname").val(),
+                father_lname: $("#father_lname").val(),
+                father_phone: $("#father_phone").val(),
+                father_occupation: $("#father_occupation").val(),
+                father_dead: fatherIsDead,
+                mother_title: $("#mother_title").val(),
+                mother_fname: $("#mother_fname").val(),
+                mother_lname: $("#mother_lname").val(),
+                mother_phone: $("#mother_phone").val(),
+                mother_occupation: $("#mother_occupation").val(),
+                mother_dead: motherIsDead,
+                has_guardian: hasGuardian,
+                staying_with: $("#staying_with").val(),
+                guardian_title: $("#guardian_title").val(),
+                guardian_fname: $("#guardian_fname").val(),
+                guardian_lname: $("#guardian_lname").val(),
+                guardian_phone: $("#guardian_phone").val(),
+                guardian_occupation: $("#guardian_occupation").val(),
+                guardian_relation: $("#guardian_relation").val()
+            },
+            error: function (request, status, error) {
+                $('#plsWaitModal').modal('hide');
+                switch(request.status){
+                    case 422:
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+                    break;
+                    default:
+                        console.log("(" + request.status + ") Exception:" + request.responseText);
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
+                }
+            },
+            dataType: 'json',
+            success: function(data) {
+
+                // Tell the user that everything went well
+                $('#plsWaitModal').modal('hide');
+                notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+
+            },
+            type: 'POST'
+        });
+    }else{
+        // NOPE.
+        $('#plsWaitModal').modal('hide');
+        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+    }
 
 });
-
-
-    function checkDeadParents(){
-
-        // Disable selection of dead parent as a guardian
-        if(fatherIsDead == 1){
-            $("#stayingWith option[value='1']").remove();
-            $("#stayingWith").val(2).trigger("change");
-            fatherOptionInGuardianList = 0;
-        }else{
-            if(fatherOptionInGuardianList != 1){
-                $("#stayingWith").append("<option value=\"1\">บิดา</option>");
-                fatherOptionInGuardianList = 1;
-            }
-        }
-        if(motherIsDead == 1){
-            $("#stayingWith option[value='2']").remove();
-            $("#stayingWith").val(1).trigger("change");
-            motherOptionInGuardianList = 0;
-        }else{
-            if(motherOptionInGuardianList != 1){
-                $("#stayingWith").append("<option value=\"2\">มารดา</option>");
-                motherOptionInGuardianList = 1;
-            }
-        }
-
-        // Force a 3rd guardian if both parents are dead
-        if(motherIsDead == 1 && fatherIsDead == 1){
-            $("#stayingWith").val("3").trigger("change");
-            $("#stayingWith").prop("disabled", true);
-        }else{
-            $("#stayingWith").prop("disabled", false);
-        }
-
-        // Re-sort select box
-        sortSelect('stayingWith');
-
-
+function checkDeadParents(){
+    if($("#father_dead").is(":checked") && $("#mother_dead").is(":checked")){
+        $("#staying_with").val("3").trigger("change");
+        $("#staying_with").prop("disabled", true);
+    }else{
+        $("#staying_with").prop("disabled", false);
     }
-
-    function sortSelect(box){
-        var selectList = $('#' + box + ' option');
-        selectList.sort(function(a,b){
-            a = a.value;
-            b = b.value;
-            return a-b;
-        });
-        $('#' + box).html(selectList);
-        return true;
-    }
-
-    /* Form submission */
-    $("#sendTheFormButton").click(function(){
-
-        // Tell the user to wait:
-        $('#plsWaitModal').modal('show');
-
-        // Error checking variable
-        var hasErrors = 0;
-
-        // Check father information inputs
-        hasErrors += isFieldBlank("father_title");
-        hasErrors += isFieldBlank("father_fname");
-        hasErrors += isFieldBlank("father_lname");
-        if(fatherIsDead != 1){
-            hasErrors += isFieldBlank("father_phone");
-            hasErrors += isFieldBlank("father_occupation");
-        }
-
-        // Check mother information inputs
-        hasErrors += isFieldBlank("mother_title");
-        hasErrors += isFieldBlank("mother_fname");
-        hasErrors += isFieldBlank("mother_lname");
-        if(motherIsDead != 1){
-            hasErrors += isFieldBlank("mother_phone");
-            hasErrors += isFieldBlank("mother_occupation");
-        }
-
-        // Check guardian information inputs if applicable:
-        if(hasGuardian == 1){
-            hasErrors += isFieldBlank("guardian_title");
-            hasErrors += isFieldBlank("guardian_fname");
-            hasErrors += isFieldBlank("guardian_lname");
-            hasErrors += isFieldBlank("guardian_phone");
-            hasErrors += isFieldBlank("guardian_occupation");
-            hasErrors += isFieldBlank("guardian_relation");
-        }
-
-        @if(Config::get('app.debug') === true)
-            console.log("[DBG/LOG] Total errors: " + hasErrors);
-        @endif
-
-        if(hasErrors == 0){
-            // Green across the board, and ready for action!
-            $.ajax({
-                url: '/api/v1/applicant/parent_info',
-                data: {
-                    _token: csrfToken,
-                    father_title: $("#father_title").val(),
-                    father_fname: $("#father_fname").val(),
-                    father_lname: $("#father_lname").val(),
-                    father_phone: $("#father_phone").val(),
-                    father_occupation: $("#father_occupation").val(),
-                    father_dead: fatherIsDead,
-                    mother_title: $("#mother_title").val(),
-                    mother_fname: $("#mother_fname").val(),
-                    mother_lname: $("#mother_lname").val(),
-                    mother_phone: $("#mother_phone").val(),
-                    mother_occupation: $("#mother_occupation").val(),
-                    mother_dead: motherIsDead,
-                    has_guardian: hasGuardian,
-                    staying_with: $("#stayingWith").val(),
-                    guardian_title: $("#guardian_title").val(),
-                    guardian_fname: $("#guardian_fname").val(),
-                    guardian_lname: $("#guardian_lname").val(),
-                    guardian_phone: $("#guardian_phone").val(),
-                    guardian_occupation: $("#guardian_occupation").val(),
-                    guardian_relation: $("#guardian_relation").val()
-                },
-                error: function (request, status, error) {
-                    $('#plsWaitModal').modal('hide');
-                    switch(request.status){
-                        case 422:
-                            notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
-                        break;
-                        default:
-                            console.log("(" + request.status + ") Exception:" + request.responseText);
-                            notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
-                    }
-                },
-                dataType: 'json',
-                success: function(data) {
-
-                    // Tell the user that everything went well
-                    $('#plsWaitModal').modal('hide');
-                    notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
-
-                },
-                type: 'POST'
-            });
-        }else{
-            // NOPE.
-            $('#plsWaitModal').modal('hide');
-            notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
-        }
-
+}
+function sortSelect(box){
+    var selectList = $('#' + box + ' option');
+    selectList.sort(function(a,b){
+        a = a.value;
+        b = b.value;
+        return a-b;
     });
-
+    $('#' + box).html(selectList);
+    return true;
+}
 </script>
 @endsection
