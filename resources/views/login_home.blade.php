@@ -95,7 +95,7 @@ https://tucc.triamudom.ac.th
                     <a class="btn btn-primary btn-lg btn-block" href="/faq">คำถามที่พบบ่อย</a>
                 </div>
                 <div class="col-xs-6">
-                    <a class="btn btn-primary btn-lg btn-block" href="/contact">ติดต่อเจ้าหน้าที่</a>
+                    <a class="btn btn-primary btn-lg btn-block" href="/support" target="_blank">ขอความช่วยเหลือ</a>
                 </div>
             </div>
         </div>

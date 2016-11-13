@@ -1,18 +1,8 @@
-/*!
- * Based on the Flat UI v2.2.2
- * Copyright 2013-2014 Designmodo, Inc.
- */
-/*!
- * jQuery UI Core 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/category/ui-core/
- */
 (function( $, undefined ) {
+
+console.log("<<< TUEnt \"Destiny\" 3.0.1, (C) TUDT >>>");
+console.log("\nThe world could always use more developers. Are you with us?");
+console.log("https://tucc.triamudom.ac.th");
 
 var uuid = 0,
 	runiqueId = /^ui-id-\d+$/;

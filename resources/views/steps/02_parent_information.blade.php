@@ -153,8 +153,8 @@
 <script>
 
 /* Checker variables */
-var fatherIsDead = 0;
-var motherIsDead = 0;
+var fatherIsDead = {{ isset($applicantData['father']['dead']) && $applicantData['father']['dead'] == "1" ? "1" : "0" }};
+var motherIsDead = {{ isset($applicantData['mother']['dead']) && $applicantData['mother']['dead'] == "1" ? "1" : "0" }}
 var fatherOptionInGuardianList = 1;
 var motherOptionInGuardianList = 1;
 var hasGuardian = 0;
