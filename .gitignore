@@ -1,3 +1,4 @@
+.env
 .git/
 .idea
-.env
+/PHPUnit_Coverage
