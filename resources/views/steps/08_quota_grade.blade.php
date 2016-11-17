@@ -48,7 +48,8 @@
 
 var currentSubject = 1;
 
-$("#btnAddSubject").click(function(){
+$("#btnAddSubject").click(function(e){
+    e.preventDefault();
     $("#subjectsContainer").append(" \
     <div class=\"row dgrp\"> \
         <div class=\"col-md-4\"> \
@@ -77,7 +78,8 @@ $("#btnAddSubject").click(function(){
 
 });
 
-$('#subjectsContainer').on('click', '.btnDeleteRow', function(){
+$('#subjectsContainer').on('click', '.btnDeleteRow', function(e){
+    e.preventDefault();
     $(this).closest('.dgrp').remove();
 })
 
