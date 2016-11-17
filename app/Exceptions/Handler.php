@@ -45,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if($e instanceof \Illuminate\Session\TokenMismatchException){
+            $request->session()->flush();
+            $request->session()->regenerate();
+            return redirect('/login')->with('error', 'การเชื่อมต่อหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง');
+        }
+
         return parent::render($request, $e);
     }
 }
