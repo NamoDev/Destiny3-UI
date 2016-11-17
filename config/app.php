@@ -162,10 +162,12 @@ return [
 
         'Jenssegers\Agent\AgentServiceProvider',
 
-	/*
-	* MongoDB
-	*/
-	Jenssegers\Mongodb\MongodbServiceProvider::class,
+    	/*
+    	* MongoDB
+    	*/
+    	Jenssegers\Mongodb\MongodbServiceProvider::class,
+        
+        Jenssegers\Rollbar\RollbarServiceProvider::class,
     ],
 
     /*
