@@ -806,6 +806,27 @@ class UserController extends Controller{
         return true;
     }
 
+    public function sendDataToValkyrie(Request $request, Applicant $applicant){
+        if($this->allStepComplete($applicant)){
+            $db = Applicant::current();
+            $payload = array(
+                'title' => $db['title'],
+                'fname' => $db['fname'],
+                'lname' => $db['lname'],
+                'title_en' => $db['title_en'],
+                'fname_en' => $db['fname_en'],
+                'lname_en' => $db['lname_en'],
+                'gender' => $db['gender'],
+                'email' => $db['email'],
+                'phone' => $db['phone'],
+                'birthdate' => $db['birthdate'],
+
+            );
+        }else{
+            return RESTResponse::unprocessable('Not all steps have been completed');
+        }
+    }
+
     /*
     | Gender formatter
     */
