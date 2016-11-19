@@ -829,6 +829,13 @@ class UserController extends Controller{
     }
 
     /*
+     * Check if registration completed
+     */
+    public function registrationComplete(){
+
+    }
+
+    /*
     | Gender formatter
     */
     public function formatGender(int $usingCustomTitle, string $title, string $gender){
