@@ -737,15 +737,15 @@ class UserController extends Controller{
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
         $this->validate($request, [
-            'file' => 'required|mimetypes:image/jpeg,image/png|file',
+            'file' => 'image|mimetypes:image/jpeg,image/png',
         ]);
 
         $filename = $applicantCitizenID.'_'.$name.'.'.
-                    $request->file('content')->getClientOriginalExtension();
+                    $request->file('file')->getClientOriginalExtension();
 
         // Storing documents
         try{
-            if(!Storage::disk('document')->put($filename, $request->input($file))){
+            if(!Storage::disk('document')->put($filename, $request->file('file'))){
                 throw new \Exception('Error saving file');
             }
         }catch(\Exception $e){
@@ -765,10 +765,6 @@ class UserController extends Controller{
 
         // Now that everything's ready, save and return done (hopefully)
         if($applicant->modify($applicantCitizenID, array('documents' => $insert))){
-
-            // Mark step as done
-            $applicant->markStepAsDone($applicantCitizenID, 7);
-
             return RESTResponse::ok();
         }else{
             // error!
