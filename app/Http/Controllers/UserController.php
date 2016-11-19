@@ -765,10 +765,6 @@ class UserController extends Controller{
 
         // Now that everything's ready, save and return done (hopefully)
         if($applicant->modify($applicantCitizenID, array('documents' => $insert))){
-
-            // Mark step as done
-            $applicant->markStepAsDone($applicantCitizenID, 7);
-
             return RESTResponse::ok();
         }else{
             // error!
