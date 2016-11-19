@@ -8,33 +8,33 @@
 <div class="row">
     <div class="col-md-6">
         <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
-        <form action="/api/v1/applicant/documents_upload/image" class="dropzone" id="filePicture"></form>
+        <form action="/api/v1/applicant/documents_upload/image" class="dropzone" id="filePicture">{{ csrf_field() }}</form>
     </div>
     <div class="col-md-6">
         <b>บัตรประจำตัวประชาชน</b>
-        <form action="/api/v1/applicant/documents_upload/citizen_card" class="dropzone" id="fileCID"></form>
+        <form action="/api/v1/applicant/documents_upload/citizen_card" class="dropzone" id="fileCID">{{ csrf_field() }}</form>
     </div>
 </div>
 <br />
 <div class="row">
     <div class="col-md-6">
         <b>ใบ ปพ.1</b> (5 ภาคเรียน)
-        <form action="/api/v1/applicant/documents_upload/transcript" class="dropzone" id="fileTranscript"></form>
+        <form action="/api/v1/applicant/documents_upload/transcript" class="dropzone" id="fileTranscript">{{ csrf_field() }}</form>
     </div>
     <div class="col-md-6">
         <b>สำเนาทะเบียนบ้าน</b> ของนักเรียน
-        <form action="/api/v1/applicant/documents_upload/student_hr" class="dropzone" id="fileHRApplicant"></form>
+        <form action="/api/v1/applicant/documents_upload/student_hr" class="dropzone" id="fileHRApplicant">{{ csrf_field() }}</form>
     </div>
 </div>
 <br />
 <div class="row">
     <div class="col-md-6">
         <b>สำเนาทะเบียนบ้าน</b> ของบิดา
-        <form action="/api/v1/applicant/documents_upload/father_hr" class="dropzone" id="fileHRFather"></form>
+        <form action="/api/v1/applicant/documents_upload/father_hr" class="dropzone" id="fileHRFather">{{ csrf_field() }}</form>
     </div>
     <div class="col-md-6">
         <b>สำเนาทะเบียนบ้าน</b> ของมารดา
-        <form action="/api/v1/applicant/documents_upload/mother_hr" class="dropzone" id="fileHRMother"></form>
+        <form action="/api/v1/applicant/documents_upload/mother_hr" class="dropzone" id="fileHRMother">{{ csrf_field() }}</form>
     </div>
 </div>
 <br />
@@ -154,10 +154,8 @@ Dropzone.options.fileHRMother = {
 };
 /* Form submission */
 $("#sendTheFormButton").click(function(){
-
     // Tell the user to wait:
     $('#plsWaitModal').modal('show');
-
     $.ajax({
         url: '/api/v1/applicant/documents_upload',
         data: {
@@ -179,15 +177,12 @@ $("#sendTheFormButton").click(function(){
         },
         dataType: 'json',
         success: function(data) {
-
             // Tell the user that everything went well
             $('#plsWaitModal').modal('hide');
             notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
-
         },
         type: 'POST'
     });
-
 });
 </script>
 @endsection
