@@ -120,6 +120,14 @@ class RESTResponse{
         return $this->notFound($messages);
     }
 
+    public function unprocessable($messages = null){
+        if(empty($messages)){
+            return $this->makeErrorResponse(422, 'Unprocessable Entity');
+        }else{
+            return $this->makeErrorResponse(422, $messages);
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------|
     |                           5xx Error Area                                 |
