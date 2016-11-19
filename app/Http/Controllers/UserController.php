@@ -778,6 +778,7 @@ class UserController extends Controller{
     }
 
     public function confirmDocument(Request $request){
+        //TODO Make this work
         $request->input('session_id');
     }
 
