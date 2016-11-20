@@ -56,9 +56,9 @@ $("#btnAddSubject").click(function(e){
             <select id=\"grpsel_" + currentSubject + "\" class=\"form-control select select-primary select-block mbl\"> \
                 <option value=\"sci\">ว (วิทยาศาสตร์)</option> \
                 <option value=\"mat\">ค (คณิตศาสตร์)</option> \
-                <option value=\"soc\">ส (สังคมศึกษา)</option> \
-                <option value=\"tha\">ท (ภาษาไทย)</option> \
                 <option value=\"eng\">อ (ภาษาอังกฤษ)</option> \
+                <option value=\"tha\">ท (ภาษาไทย)</option> \
+                <option value=\"soc\">ส (สังคมศึกษา)</option> \
             </select> \
         </div> \
         <div class=\"col-md-4\"> \
