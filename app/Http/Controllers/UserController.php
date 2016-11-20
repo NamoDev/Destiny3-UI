@@ -814,6 +814,8 @@ class UserController extends Controller{
                 ]);
         }
 
+        (new Applicant)->markStepAsDone(Session::get('applicant_citizen_id'), 7);
+
         return RESTResponse::ok();
 
     }
@@ -834,33 +836,8 @@ class UserController extends Controller{
         }
     }
 
-    /*
-     * Check if all steps are completed
-     */
-    public function allStepComplete(Applicant $applicant){
-        if(config('uiconfig.mode') == 'province_quota'){
-            $required_step = array(1, 2, 3, 4, 5, 7, 8);
-        }else if(config('uiconfig.mode') == 'normal'){
-            $required_step = array(1, 2, 3, 4, 5, 6);
-        }else{
-            return false;
-        }
-
-        $completed_step = DB::collection('applicants')
-                            ->where('citizen_id', Session::get('applicant_citizen_id'))
-                            ->pluck('steps_completed')[0];
-
-        foreach($completed_step as $completed){
-            if(!in_array($completed, $required_step)){
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public function sendDataToValkyrie(Request $request, Applicant $applicant){
-        if($this->allStepComplete($applicant)){
+        if(Applicant::allStepComplete()){
             $db = Applicant::current();
             $payload = array(
                 'title' => $db['title'],

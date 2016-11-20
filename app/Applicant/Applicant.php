@@ -13,6 +13,7 @@ namespace App\Applicant;
 
 use Config;
 use DB;
+use Exception;
 use Hash;
 use Session;
 
@@ -236,5 +237,30 @@ class Applicant {
      */
     public static function current() {
         return DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
+    }
+
+    /*
+     * Check if all steps are completed
+     */
+    public static function allStepComplete(){
+        if(config('uiconfig.mode') == 'province_quota'){
+            $required_step = array(1, 2, 3, 4, 5, 7, 8);
+        }else if(config('uiconfig.mode') == 'normal'){
+            $required_step = array(1, 2, 3, 4, 5, 6);
+        }else{
+            throw new Exception('Operation mode misconfigured');
+        }
+
+        $completed_step = DB::collection('applicants')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
+                            ->pluck('steps_completed')[0];
+
+        foreach($required_step as $required){
+            if(!in_array($required, $completed_step)){
+                return false;
+            }
+        }
+
+        return true;
     }
 }
