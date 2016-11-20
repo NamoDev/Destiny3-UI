@@ -15,47 +15,55 @@
             <div class="row">
                 <div class="col-md-3">
 
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(1)) btn-primary @else btn-default @endif btn-block" href="/application/info">@if(App\Http\Controllers\Helper::checkStepCompletion(1)) <span class="fa fa-check-circle"></span> @endif ข้อมูลพื้นฐาน</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    @if(!Applicant::quotaSubmissionUnderReview())
 
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(2)) btn-primary @else btn-default @endif btn-block" href="/application/parent">@if(App\Http\Controllers\Helper::checkStepCompletion(2)) <span class="fa fa-check-circle"></span> @endif ข้อมูลผู้ปกครอง</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(1)) btn-primary @else btn-default @endif btn-block" href="/application/info">@if(App\Http\Controllers\Helper::checkStepCompletion(1)) <span class="fa fa-check-circle"></span> @endif ข้อมูลพื้นฐาน</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(3)) btn-primary @else btn-default @endif btn-block" href="/application/address">@if(App\Http\Controllers\Helper::checkStepCompletion(3)) <span class="fa fa-check-circle"></span> @endif ที่อยู่ / ภูมิลำเนา</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(2)) btn-primary @else btn-default @endif btn-block" href="/application/parent">@if(App\Http\Controllers\Helper::checkStepCompletion(2)) <span class="fa fa-check-circle"></span> @endif ข้อมูลผู้ปกครอง</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(4)) btn-primary @else btn-default @endif btn-block" href="/application/education">@if(App\Http\Controllers\Helper::checkStepCompletion(4)) <span class="fa fa-check-circle"></span> @endif ประวัติการศึกษา</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(3)) btn-primary @else btn-default @endif btn-block" href="/application/address">@if(App\Http\Controllers\Helper::checkStepCompletion(3)) <span class="fa fa-check-circle"></span> @endif ที่อยู่ / ภูมิลำเนา</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  @if(Config::get('uiconfig.mode') == 'province_quota')
-                  {{-- Quota only: grade information --}}
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(8)) btn-primary @else btn-default @endif btn-block" href="/application/grade">@if(App\Http\Controllers\Helper::checkStepCompletion(8)) <span class="fa fa-check-circle"></span> @endif ประวัติผลการเรียน</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  @endif
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(4)) btn-primary @else btn-default @endif btn-block" href="/application/education">@if(App\Http\Controllers\Helper::checkStepCompletion(4)) <span class="fa fa-check-circle"></span> @endif ประวัติการศึกษา</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(5)) btn-primary @else btn-default @endif btn-block" href="/application/plan">@if(App\Http\Controllers\Helper::checkStepCompletion(5)) <span class="fa fa-check-circle"></span> @endif เลือกแผนการเรียน</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    @if(Config::get('uiconfig.mode') == 'province_quota')
+                    {{-- Quota only: grade information --}}
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(8)) btn-primary @else btn-default @endif btn-block" href="/application/grade">@if(App\Http\Controllers\Helper::checkStepCompletion(8)) <span class="fa fa-check-circle"></span> @endif ประวัติผลการเรียน</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    @endif
 
-                  @if(Config::get('uiconfig.mode') != 'province_quota')
-                  {{-- Normal only: application day selection. NOTE: This may be removed in the future! --}}
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(6)) btn-primary @else btn-default @endif btn-block" href="/application/day">@if(App\Http\Controllers\Helper::checkStepCompletion(6)) <span class="fa fa-check-circle"></span> @endif เลือกวันสมัครที่โรงเรียน</a>
-                  <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
-                  @endif
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(5)) btn-primary @else btn-default @endif btn-block" href="/application/plan">@if(App\Http\Controllers\Helper::checkStepCompletion(5)) <span class="fa fa-check-circle"></span> @endif เลือกแผนการเรียน</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
-                  <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(7)) btn-primary @else btn-default @endif btn-block" href="/application/documents">@if(App\Http\Controllers\Helper::checkStepCompletion(7)) <span class="fa fa-check-circle"></span> @endif อัพโหลดเอกสาร</a>
-                  <br />
+                    @if(Config::get('uiconfig.mode') != 'province_quota')
+                    {{-- Normal only: application day selection. NOTE: This may be removed in the future! --}}
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(6)) btn-primary @else btn-default @endif btn-block" href="/application/day">@if(App\Http\Controllers\Helper::checkStepCompletion(6)) <span class="fa fa-check-circle"></span> @endif เลือกวันสมัครที่โรงเรียน</a>
+                    <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    @endif
 
-                  @if(true)
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(7)) btn-primary @else btn-default @endif btn-block" href="/application/documents">@if(App\Http\Controllers\Helper::checkStepCompletion(7)) <span class="fa fa-check-circle"></span> @endif อัพโหลดเอกสาร</a>
+                    <br />
+
+                    @endif
+
+                  @if(Applicant::allStepComplete())
                   <div class="panel panel-default">
                       <div class="panel-body">
                         <a class="btn btn-block btn-success" href="/application/quota_confirm">ส่งข้อมูล</a>
-                        <small><i class="fa fa-exclamation-triangle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>
+                        <small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>
                       </div>
                   </div>
                   @else
                   <div class="panel panel-default">
                       <div class="panel-body">
-                         <small><i class="fa fa-exclamation-triangle"></i> การสมัครยังไม่สมบูรณ์</small>
+                          @if(Applicant::quotaSubmissionUnderReview())
+                              <small><i class="fa fa-info-circle"></i> ข้อมูลของนักเรียนอยู่ระหว่างการตรวจสอบ</small>
+                          @else
+                              <small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>
+                          @endif
                       </div>
                   </div>
                   @endif
