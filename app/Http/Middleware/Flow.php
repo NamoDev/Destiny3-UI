@@ -23,7 +23,7 @@ class Flow
             ),
             'api' => array(
                 'v1' => array(
-                    'applicants' => array(
+                    'applicant' => array(
                         'data' => ['post' => true],
                         'parent_info' => ['post' => true],
                         'address' => ['post' => true],
