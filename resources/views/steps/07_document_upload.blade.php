@@ -5,7 +5,11 @@
 @section('content')
 <legend><i class="fa fa-upload"></i> อัพโหลดเอกสารประกอบ <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
 @if(!empty($error))
-{{ $error }}
+<div class="row">
+    <div class="col-xs-12">
+        <span class="text-warning"><i class="fa fa-exclamation-circle"></i>เกิดข้อผิดพลาด: <b>{{ $error }}</b></span>
+    </div>
+</div>
 @endif
 <div class="row">
     <div class="col-md-6">
