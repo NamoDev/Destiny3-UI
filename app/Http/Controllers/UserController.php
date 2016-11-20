@@ -18,6 +18,7 @@ use DB;
 use Session;
 use Hash;
 use Response;
+use Redirect;
 use Storage;
 use RESTResponse;
 use Config;
@@ -730,6 +731,10 @@ class UserController extends Controller{
         // Check if document name is in allow list
         if(!in_array($name, $allowed)){
             return RESTResponse::badRequest('Document not support');
+        }
+
+        if($request->input('upload_token') != Session::get('upload_token')){
+            return Redirect::to('/application/documents')->with('error', 'การเชื่อมต่อหมดอายุ กรุณาอัพโหลดเอกสารอีกครั้ง');
         }
 
         // Get applicant object & current applicant's Citizen ID:
