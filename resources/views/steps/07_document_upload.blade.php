@@ -4,7 +4,9 @@
 
 @section('content')
 <legend><i class="fa fa-upload"></i> อัพโหลดเอกสารประกอบ <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
-
+@if(!empty($error))
+{{ $error }}
+@endif
 <div class="row">
     <div class="col-md-6">
         <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
