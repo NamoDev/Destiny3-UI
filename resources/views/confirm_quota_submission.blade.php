@@ -1,5 +1,5 @@
 @extends('layouts.no_navbar')
-@section('title', 'หน้าหลัก')
+@section('title', 'ยืนยันการส่งข้อมูล')
 
 @section('content')
 <!--
