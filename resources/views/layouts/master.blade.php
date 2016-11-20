@@ -45,12 +45,20 @@
                   <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(7)) btn-primary @else btn-default @endif btn-block" href="/application/documents">@if(App\Http\Controllers\Helper::checkStepCompletion(7)) <span class="fa fa-check-circle"></span> @endif อัพโหลดเอกสาร</a>
                   <br />
 
-                  <!-- TODO: Add the real thing. -->
+                  @if(true)
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                        <a class="btn btn-block btn-success" href="/application/quota_confirm">ส่งข้อมูล</a>
+                        <small><i class="fa fa-exclamation-triangle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>
+                      </div>
+                  </div>
+                  @else
                   <div class="panel panel-default">
                       <div class="panel-body">
                          <small><i class="fa fa-exclamation-triangle"></i> การสมัครยังไม่สมบูรณ์</small>
                       </div>
                   </div>
+                  @endif
 
                 </div>
                 <div class="col-md-9">
