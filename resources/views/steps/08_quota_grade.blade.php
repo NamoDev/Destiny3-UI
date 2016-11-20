@@ -33,6 +33,7 @@
     </div>
 </div>
 
+<br />
 <div class="row">
     <div class="col-xs-6 col-md-8">
         <span id="formAlertMessage" style="display:none;"></span>
@@ -47,6 +48,7 @@
 <script>
 
 var currentSubject = 1;
+var gpaPattern = new RegExp("[1-4].[0-9]{2}");
 
 $("#btnAddSubject").click(function(e){
     e.preventDefault();
@@ -97,6 +99,20 @@ $("#sendTheFormButton").click(function(e){
         // Check for input
         hasErrors += isFieldBlank("code_" + looper);
         hasErrors += isFieldBlank("grade_" + looper);
+
+        if(isNaN($("#grade_" + looper).val())){
+            hasErrors++;
+            $("#grade_" + looper + "Group").addClass("has-error");
+        }
+        if(parseFloat($("#grade_" + looper).val()) > 4 || parseFloat($("#grade_" + looper).val()) <= 0){
+            // Error!
+            hasErrors++;
+            $("#grade_" + looper + "Group").addClass("has-error");
+        }
+        if(!gpaPattern.test($("#grade_" + looper).val())){
+            hasErrors++;
+            $("#grade_" + looper + "Group").addClass("has-error");
+        }
 
         dataToSend[looper] = {
             "subject": $("#grpsel_" + looper).val(),
