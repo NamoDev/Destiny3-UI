@@ -118,8 +118,11 @@ class UIPages extends Controller {
     // Step 07: Document upload & verification
     public function step7_uploadDocuments() {
         $applicantData = Applicant::current();
+        $upload_token = hash('sha256', rand().'_'.microtime().'_'.uniqid());
+        Session::put('upload_token', $upload_token);
+        Session::put('upload_time', time());
 
-        return response()->view('steps.07_document_upload', ['applicantData' => $applicantData]);
+        return response()->view('steps.07_document_upload', ['applicantData' => $applicantData, 'upload_token' => $upload_token]);
     }
 
     public function step8_gradeInfo(){
