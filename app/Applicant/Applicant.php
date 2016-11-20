@@ -17,7 +17,7 @@ use Hash;
 use Session;
 
 class Applicant {
-    
+
     /**
      * A method for creating an applicant. Requires a lot of variables.
      *
@@ -80,34 +80,35 @@ class Applicant {
                 'password' => Hash::make($password),
                 'steps_completed' => [1],
             ]);
-            
+
             return (string)$insertID;
         }
     }
-    
-    
+
+
     /**
      * Applicant data updater (a.k.a. 'The Modifier')
      *
-     * @param string $citizenid
+     * @param string $citizen_id
      * @param array  $things Array of 'things' to be modified.
      * @return bool
      */
-    public function modify(string $citizenid, array $things): bool {
-        if ($this->exists($citizenid)) {
-            
+    public function modify(string $citizen_id, array $things): bool {
+        if ($this->exists($citizen_id)) {
+            //var_dump($citizen_id);
+            //dd($things);
             // Yep, our applicant exists. Do update:
-            DB::collection("applicants")->where("citizen_id", $citizenid)->update($things);
-            
+            DB::collection("applicants")->where("citizen_id", $citizen_id)->update($things);
+
             // And we're done.
             return true;
-            
+
         } else {
             // NOPE. 404 NOT FOUND.
             return false;
         }
     }
-    
+
     /**
      * Mark a step as done
      *
@@ -117,10 +118,10 @@ class Applicant {
      */
     public function markStepAsDone(string $citizenid, int $step): bool {
         if ($this->exists($citizenid)) {
-            
+
             // Get applicant data
             $applicantData = DB::collection("applicants")->where("citizen_id", $citizenid)->first();
-            
+
             // Yep, our applicant exists. See if the step request has already been marked as done:
             if (!in_array($step, $applicantData["steps_completed"])) {
                 // Nope. Let's add it!
@@ -130,17 +131,17 @@ class Applicant {
                     "steps_completed" => $stepsCompleted
                 ]);
             }
-            
+
             // And we're done.
             return true;
-            
+
         } else {
             // NOPE. 404 NOT FOUND.
             return false;
         }
     }
-    
-    
+
+
     /**
      * Applicant login processor. Requires citizenid and password. It's that simple!
      *
@@ -153,16 +154,16 @@ class Applicant {
         if (DB::collection("applicants")->where("citizen_id", $citizen_id)->count() == 1) {
             // OK. Password correct?
             $loginUserData = DB::collection("applicants")->where("citizen_id", $citizen_id)->first();
-            
+
             // Double conversion to convert Array to Object (which is easier to work with IMO)
             $loginUserData = json_decode(json_encode($loginUserData));
-            
+
             if (Hash::check($password, $loginUserData->password)) {
                 // Login OK
                 Session::put("applicant_logged_in", "1");
                 Session::put("applicant_citizen_id", $loginUserData->citizen_id);
                 Session::put("applicant_full_name", $loginUserData->fname . " " . $loginUserData->lname);
-                
+
                 return true;
             } else {
                 // Login failed
@@ -173,8 +174,8 @@ class Applicant {
             return false;
         }
     }
-    
-    
+
+
     /**
      * The complete opposite of login.
      *
@@ -183,26 +184,26 @@ class Applicant {
     public function logout():bool {
         Session::flush();
         Session::regenerate();
-        
+
         return true;
     }
-    
-    
+
+
     /**
      * Refreshes all session data (except Citizen ID).
      *
      * @return bool
      */
     public function reloadSessionData():bool {
-        
+
         // Reload data from DB:
         $userData = DB::collection("applicants")->where("citizen_id", Session::get("applicant_citizen_id"))->first();
         Session::put("applicant_full_name", $userData['fname'] . " " . $userData['lname']);
-        
+
         return true;
-        
+
     }
-    
+
     /**
      * Is the user logged in or not?
      *
@@ -217,8 +218,8 @@ class Applicant {
             return false;
         }
     }
-    
-    
+
+
     /**
      * Does the applicant exist?
      *
@@ -228,7 +229,7 @@ class Applicant {
     public function exists(string $citizenid): bool {
         return (DB::collection("applicants")->where("citizen_id", $citizenid)->count() != 0);
     }
-    
+
     /**
      * Get current applicant's data
      *
