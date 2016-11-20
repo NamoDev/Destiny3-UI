@@ -19,6 +19,7 @@ class Flow
                 'documents' => ['get' => true],
                 'grade' => ['get' => true],
                 'change_password' => ['get' => true],
+                'quota_confirm' => ['get' => true],
             ),
             'api' => array(
                 'v1' => array(
