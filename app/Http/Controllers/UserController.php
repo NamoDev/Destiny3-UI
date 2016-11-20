@@ -12,6 +12,7 @@
 namespace App\Http\Controllers;
 
 use Applicant;
+use Exception;
 use Illuminate\Http\Request;
 use Log;
 use DB;
@@ -777,8 +778,44 @@ class UserController extends Controller{
     }
 
     public function confirmDocument(Request $request){
-        //TODO Make this work
-        $request->input('session_id');
+        if($request->input('upload_token') != Session::get('upload_token')){
+            return Redirect::to('/application/documents')->with('error', 'การเชื่อมต่อหมดอายุ กรุณาอัพโหลดเอกสารอีกครั้ง');
+        }
+
+        $data = DB::collection('applicants')
+                  ->where('citizen_id', Session::get('applicant_citizen_id'))
+                  ->pluck('documents.'.Session::get('upload_time'))[0];
+
+        if(count($data) !== 6){
+            throw new Exception('Documents count not equal to 6');
+        }
+
+        $expected = array(
+            'image',
+            'citizen_card',
+            'transcript',
+            'student_hr',
+            'father_hr',
+            'mother_hr',
+        );
+
+        foreach($expected as $key){
+            if(!array_key_exists($key, $data)){
+                throw new Exception('Not every document exist');
+            }
+        }
+
+        // This has to be done twice since MongoDB didn't have transaction
+        foreach($expected as $doc_name){
+            DB::collection('applicants')
+                ->where('citizen_id', Session::get('applicant_citizen_id'))
+                ->update([
+                    'documents.'.Session::get('upload_time').'.'.$doc_name.'.check_result' => 0,
+                ]);
+        }
+
+        return RESTResponse::ok();
+
     }
 
     public function updateGradeInfo(Request $request, Applicant $applicant){
