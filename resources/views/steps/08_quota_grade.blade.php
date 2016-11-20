@@ -6,8 +6,8 @@
 
 <div id="subjectsContainer">
     <div class="row">
-        <div class="col-md-4">
-            <select class="form-control select select-primary select-block mbl">
+        <div class="col-md-4" id="grpsel_0Group">
+            <select id="grpsel_0" class="form-control select select-primary select-block mbl">
                 <option value="sci">ว (วิทยาศาสตร์)</option>
                 <option value="mat">ค (คณิตศาสตร์)</option>
                 <option value="eng">อ (ภาษาอังกฤษ)</option>
@@ -15,11 +15,11 @@
                 <option value="soc">ส (สังคมศึกษา)</option>
             </select>
         </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" placeholder="รหัสวิชา"></text>
+        <div class="col-md-4" id="code_0Group">
+            <input id="code_0" type="text" class="form-control" placeholder="รหัสวิชา"></text>
         </div>
-        <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="คะแนนเฉลี่ยสะสม (เกรด)"></text>
+        <div class="col-md-3" id="grade_0Group">
+            <input id="grade_0" type="text" class="form-control" placeholder="คะแนนเฉลี่ยสะสม (เกรด)"></text>
         </div>
         <div class="col-xs-1">
 
@@ -52,7 +52,7 @@ $("#btnAddSubject").click(function(e){
     e.preventDefault();
     $("#subjectsContainer").append(" \
     <div class=\"row dgrp\"> \
-        <div class=\"col-md-4\"> \
+        <div class=\"col-md-4\" id=\"grpsel_" + currentSubject + "Group\"> \
             <select id=\"grpsel_" + currentSubject + "\" class=\"form-control select select-primary select-block mbl\"> \
                 <option value=\"sci\">ว (วิทยาศาสตร์)</option> \
                 <option value=\"mat\">ค (คณิตศาสตร์)</option> \
@@ -61,11 +61,11 @@ $("#btnAddSubject").click(function(e){
                 <option value=\"soc\">ส (สังคมศึกษา)</option> \
             </select> \
         </div> \
-        <div class=\"col-md-4\"> \
-            <input type=\"text\" class=\"form-control\" placeholder=\"รหัสวิชา\"></text> \
+        <div class=\"col-md-4\" id=\"code_" + currentSubject +  "Group\"> \
+            <input type=\"text\" id=\"code_" + currentSubject +  "\" class=\"form-control\" placeholder=\"รหัสวิชา\"></text> \
         </div> \
-        <div class=\"col-md-3\"> \
-            <input type=\"text\" class=\"form-control\" placeholder=\"คะแนนเฉลี่ยสะสม (เกรด)\"></text> \
+        <div class=\"col-md-3\" id=\"grade_" + currentSubject +  "Group\"> \
+            <input type=\"text\" id=\"grade_" + currentSubject +  "\" class=\"form-control\" placeholder=\"คะแนนเฉลี่ยสะสม (เกรด)\"></text> \
         </div> \
         <div class=\"col-xs-1\"> \
             <a href='#' class='btnDeleteRow'><i class='fa fa-trash fa-2x'></i></a> \
@@ -81,7 +81,68 @@ $("#btnAddSubject").click(function(e){
 $('#subjectsContainer').on('click', '.btnDeleteRow', function(e){
     e.preventDefault();
     $(this).closest('.dgrp').remove();
-})
+});
+
+$("#sendTheFormButton").click(function(e){
+    e.preventDefault();
+    $('#plsWaitModal').modal('show');
+
+    var looper = 0;
+    var hasErrors = 0;
+    var dataToSend = {
+        _token: csrfToken
+    };
+
+    while(looper < currentSubject){
+        // Check for input
+        hasErrors += isFieldBlank("code_" + looper);
+        hasErrors += isFieldBlank("grade_" + looper);
+
+        dataToSend[looper] = {
+            "subject": $("#grpsel_" + looper).val(),
+            "code": $("#code_" + looper).val(),
+            "grade": $("#grade_" + looper).val(),
+        };
+
+        looper++;
+    }
+
+    // Ready. Are there any errors?
+    if(hasErrors == 0){
+        // We're all good!
+        $.ajax({
+            url: '/api/v1/applicant/grade',
+            data: dataToSend,
+            error: function (request, status, error) {
+                $('#plsWaitModal').modal('hide');
+                switch(request.status){
+                    case 422:
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+                    break;
+                    default:
+                        console.log("(" + request.status + ") Exception:" + request.responseText);
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
+                }
+            },
+            dataType: 'json',
+            success: function(data) {
+
+                // Tell the user that everything went well
+                $('#plsWaitModal').modal('hide');
+                notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+
+            },
+            type: 'POST'
+        });
+    }else{
+        // O NOES!
+        $('#plsWaitModal').modal('hide');
+        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+    }
+
+    console.log(dataToSend);
+
+});
 
 </script>
 @endsection
