@@ -710,8 +710,6 @@ class UserController extends Controller{
             // error!
             return RESTResponse::serverError();
         }
-
-
     }
 
     /*
