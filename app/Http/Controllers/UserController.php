@@ -821,12 +821,11 @@ class UserController extends Controller{
     }
 
     public function updateGradeInfo(Request $request, Applicant $applicant){
-        foreach($request->all() as $data){
-            $this->validate($data, [
-                'subject' => 'in:sci,mat,eng,tha,soc',
-                'grade' => 'min:1|max:4',
-            ]);
-        }
+        $this->validate($request, [
+            '*.subject' => 'in:sci,mat,eng,tha,soc',
+            '*.code' => 'required_with:*.subject',
+            '*.grade' => 'required_with:*.subject|min:0|max:4|numeric',
+        ]);
 
         if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $request->all()))){
             return RESTResponse::ok();
