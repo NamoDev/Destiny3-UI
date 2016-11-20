@@ -178,7 +178,7 @@ $("#sendTheFormButton").click(function(){
         url: '/api/v1/applicant/documents_confirm',
         data: {
             _token: csrfToken,
-            upload_token: {{ $upload_token }},
+            upload_token: '{{ $upload_token }}'
         },
         error: function (request, status, error) {
             $('#plsWaitModal').modal('hide');
