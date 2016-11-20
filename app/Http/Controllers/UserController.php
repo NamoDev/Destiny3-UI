@@ -745,7 +745,9 @@ class UserController extends Controller{
             'file' => 'image|mimetypes:image/jpeg,image/png',
         ]);
 
-        $filename = $applicantCitizenID.'_'.$name.'.'.
+        $time = time();
+
+        $filename = $applicantCitizenID.'_'.$name.'_'.$time.'.'.
                     $request->file('file')->getClientOriginalExtension();
 
         // Storing documents
@@ -758,18 +760,16 @@ class UserController extends Controller{
             return RESTResponse::serverError('Error saving file, please try again later');
         }
 
-        $insert = DB::collection('applicants')
-                    ->where('citizen_id', $applicantCitizenID)
-                    ->pluck('documents')[0];
-
-        $insert[$request->input('session_id')][$name] = array(
-            'file_name' => $filename,
-            'check_result' => -10,
-            'timestamp' => time(),
+        $update = array(
+            'documents.'.Session::get('upload_time').'.'.$name => array(
+                'file_name' => $filename,
+                'check_result' => -10,
+                'timestamp' => time(),
+            )
         );
 
         // Now that everything's ready, save and return done (hopefully)
-        if($applicant->modify($applicantCitizenID, array('documents' => $insert))){
+        if($applicant->modify($applicantCitizenID, $update)){
             return RESTResponse::ok();
         }else{
             // error!
