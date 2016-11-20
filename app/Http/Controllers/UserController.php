@@ -851,6 +851,23 @@ class UserController extends Controller{
     }
 
     /*
+     * Submit data for consideration. We'll lock the user account after this:
+     */
+    public function submitQuotaApplicationForConsideration(Request $request){
+        // Data we'll need
+        $applicant = new Applicant();
+        $applicantCitizenID = Session::get("applicant_citizen_id");
+
+        // Lock the account. Return done:
+        if($applicant->modify($applicantCitizenID, ["quota_being_evaluated" => 1])){
+            return RESTResponse::ok();
+        }else{
+            // error!
+            return RESTResponse::serverError();
+        }
+    }
+
+    /*
     | Gender formatter
     */
     public function formatGender(int $usingCustomTitle, string $title, string $gender){

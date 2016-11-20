@@ -97,6 +97,9 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function () {
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
     Route::get('applicant/submit', 'Blah@Blah');
 
+    // Quota submission
+    Route::post('applicant/submit_quota', 'UserController@submitQuotaApplicationForConsideration');
+
     // Password change handler
     Route::post('account/change_password', 'UserController@changePassword');
 
