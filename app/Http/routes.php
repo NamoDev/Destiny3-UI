@@ -66,7 +66,7 @@ Route::post('api/v1/iforgot/request', 'UserController@handleiForgotForm');
 /*
 | API Routes (v1)
 */
-Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth', 'flow']], function () {
 
     // Get applicant data. Simple!
     Route::get('applicant/data', 'UserController@getApplicantData');
@@ -92,6 +92,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function () {
     Route::post('applicant/documents_upload/{name}', 'UserController@handleDocuments');
     Route::post('applicant/documents_confirm', 'UserController@confirmDocument');
 
+    // Grade info submission
     Route::post('applicant/grade', 'UserController@updateGradeInfo');
 
     // Submit complete data & get PDF. Using GET here 'cause the client will directly access this URL.
