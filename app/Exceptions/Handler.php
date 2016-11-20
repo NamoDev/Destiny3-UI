@@ -22,7 +22,7 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
-        NotFoundHttpException::class,
+        Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class,
     ];
 
     /**
@@ -52,6 +52,10 @@ class Handler extends ExceptionHandler
             $request->session()->flush();
             $request->session()->regenerate();
             return redirect('/login')->with('error', 'การเชื่อมต่อหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง');
+        }
+
+        if($e instanceof Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
+            return;
         }
 
         return parent::render($request, $e);
