@@ -66,7 +66,7 @@ Route::post('api/v1/iforgot/request', 'UserController@handleiForgotForm');
 /*
 | API Routes (v1)
 */
-Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth']], function () {
+Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth', 'flow']], function () {
 
     // Get applicant data. Simple!
     Route::get('applicant/data', 'UserController@getApplicantData');
