@@ -240,7 +240,7 @@ class Applicant {
     }
 
     /*
-     * Check if all steps are completed
+     * Check if all steps are completed. NOTE: only work on applicants who are logged in
      */
     public static function allStepComplete(){
         if(config('uiconfig.mode') == 'province_quota'){
@@ -263,4 +263,23 @@ class Applicant {
 
         return true;
     }
+
+    /*
+    * Check if the applicant's quota submission is under review (account should be locked)
+    * NOTE: only works on applicants who are logged in.
+    */
+    public static function quotaSubmissionUnderReview(){
+        if(config('uiconfig.mode') == 'province_quota'){
+            // Check
+            if(DB::collection('applicants')->where('citizen_id', Session::get('applicant_citizen_id'))->pluck('quota_being_evaluated')[0] == 1){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            // Not applicable
+            return false;
+        }
+    }
+
 }
