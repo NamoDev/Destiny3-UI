@@ -19,7 +19,7 @@
             <input id="code_0" type="text" class="form-control" placeholder="รหัสวิชา"></text>
         </div>
         <div class="col-md-3" id="grade_0Group">
-            <input id="grade_0" type="text" class="form-control" placeholder="คะแนนเฉลี่ยสะสม (เกรด)"></text>
+            <input id="grade_0" type="text" class="form-control" placeholder="เกรด (กรอกในรูปแบบ 4.00)"></text>
         </div>
         <div class="col-xs-1">
 
@@ -67,7 +67,7 @@ $("#btnAddSubject").click(function(e){
             <input type=\"text\" id=\"code_" + currentSubject +  "\" class=\"form-control\" placeholder=\"รหัสวิชา\"></text> \
         </div> \
         <div class=\"col-md-3\" id=\"grade_" + currentSubject +  "Group\"> \
-            <input type=\"text\" id=\"grade_" + currentSubject +  "\" class=\"form-control\" placeholder=\"คะแนนเฉลี่ยสะสม (เกรด)\"></text> \
+            <input type=\"text\" id=\"grade_" + currentSubject +  "\" class=\"form-control\" placeholder=\"เกรด (กรอกในรูปแบบ 4.00)\"></text> \
         </div> \
         <div class=\"col-xs-1\"> \
             <a href='#' class='btnDeleteRow'><i class='fa fa-trash fa-2x'></i></a> \
