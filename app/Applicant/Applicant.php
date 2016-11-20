@@ -95,8 +95,7 @@ class Applicant {
      */
     public function modify(string $citizen_id, array $things): bool {
         if ($this->exists($citizen_id)) {
-            //var_dump($citizen_id);
-            //dd($things);
+
             // Yep, our applicant exists. Do update:
             DB::collection("applicants")->where("citizen_id", $citizen_id)->update($things);
 
