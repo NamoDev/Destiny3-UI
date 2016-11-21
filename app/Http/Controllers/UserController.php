@@ -827,7 +827,10 @@ class UserController extends Controller{
             '*.grade' => 'required_with:*.subject|min:0|max:4|numeric',
         ]);
 
-        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $request->all()))){
+        $data = $request->all();
+        unset($data['_token']);
+
+        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
             return RESTResponse::ok();
         }else{
             // error!
