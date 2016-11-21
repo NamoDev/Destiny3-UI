@@ -429,14 +429,36 @@ class UserController extends Controller{
     }
 
     public function getDocument(Request $request, $citizen_id, $filename = null){
+        if(is_null($filename)){
+            // Retrieve all file
+            $data = DB::collection('applicants')
+            ->where('citizen_id', $citizen_id)
+            ->pluck('documents.'.$request->input('timestamp'))[0];
+        }else{
+            $data = DB::collection('applicants')
+            ->where('citizen_id', $citizen_id)
+            ->pluck('documents.'.$request->input('timestamp').'.'.$filename)[0];
+        }
+
+        if(count($data) == 0){
+            return RESTResponse::notFound('No data for citizen_id : ' . $citizen_id);
+        }
+
         /*if(!$this->ipInRange($request->ip(), $range)){
             return RESTResponse::notAuthorized('IP not in permitted range');
         }*/
 
-        /*if(!$request->has('ACCESS-KEY')){
+        if(!$request->has('token')){
             return RESTResponse::badRequest('Request does not include access key');
-        }*/
-        // Skip validation for now, as we debate about how to handshake
+        }
+
+        $token = DB::collection('applicants')
+                    ->where('citizen_id', $citizen_id)
+                    ->pluck('documents.'.$request->input('timestamp').'.access_token')[0];
+
+        if($request->input('token') != $token){
+            return RESTResponse::badRequest('Invalid access token : '.$token);
+        }
 
         //if($request->input('type') == 'all'){
 
@@ -450,25 +472,11 @@ class UserController extends Controller{
         }*/
 
         if(is_null($filename)){
-            // Retrieve all file
-            $data = DB::collection('applicants')
-                      ->where('citizen_id', $citizen_id)
-                      ->pluck('document')[0];
-        }else{
-            $data = DB::collection('applicants')
-                      ->where('citizen_id', $citizen_id)
-                      ->pluck('document')[0][$filename];
-        }
-
-        if(count($data) == 0){
-            return RESTResponse::notFound('No data for citizen_id : ' . $citizen_id);
-        }
-
-        if(is_null($filename)){
             $keys = array_keys($data);
             $i = 0;
+            unset($data['access_token']);
             foreach($data as $doc){
-                $encoded = base64_encode(Storage::disk('document')->get($doc['file_id']));
+                $encoded = base64_encode(Storage::disk('document')->get($doc['file_name']));
                 if($encoded === false){
                     throw new Base64Exception('Cannot encode image file');
                 }else{
@@ -478,7 +486,7 @@ class UserController extends Controller{
             }
             unset($i);
         }else{
-            $encoded = base64_encode(Storage::disk('document')->get($data['file_id']));
+            $encoded = base64_encode(Storage::disk('document')->get($data['file_name']));
             if($encoded === false){
                 throw new Base64Exception('Cannot encode image file');
             }else{
@@ -814,6 +822,15 @@ class UserController extends Controller{
                 ]);
         }
 
+        $raw_token = base64_encode(openssl_random_pseudo_bytes(256)); // Generate secure token
+        $token = strtr($raw_token, '+/=', '-_,'); // Convert generated token to be URL safe
+
+        DB::collection('applicants')
+        ->where('citizen_id', Session::get('applicant_citizen_id'))
+        ->update([
+            'documents.'.Session::get('upload_time').'.access_token' => $token,
+        ]);
+
         (new Applicant)->markStepAsDone(Session::get('applicant_citizen_id'), 7);
 
         return RESTResponse::ok();
@@ -828,9 +845,9 @@ class UserController extends Controller{
         ]);
 
         $data = $request->all();
-        unset($data['_token']);
+        unset($data['']);
 
-        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
+        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $request->all()))){
             return RESTResponse::ok();
         }else{
             // error!
