@@ -104,7 +104,9 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth', 'flow']], functi
     // Password change handler
     Route::post('account/change_password', 'UserController@changePassword');
 
+});
+
+Route::group(['prefix' => 'api/v1'], function () {
     // Get document for a student (by CID)
     Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
-
 });
