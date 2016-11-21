@@ -126,7 +126,9 @@ class UIPages extends Controller {
     }
 
     public function step8_gradeInfo(){
-        return response()->view('steps.08_quota_grade');
+        $applicantData = Applicant::current();
+
+        return response()->view('steps.08_quota_grade', ['applicantData' => $applicantData]);
     }
 
     public function districtQuotaSubmissionConfirmation(){
