@@ -49,26 +49,21 @@
 
                     @endif
 
-                  @if(Applicant::allStepComplete())
-                  <div class="panel panel-default">
-                      <div class="panel-body">
-                        <a class="btn btn-block btn-success disabled">ส่งข้อมูล</a>
-                        <small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>
+                      <div class="panel panel-default">
+                          <div class="panel-body">
+                              @if(Applicant::quotaSubmissionUnderReview())
+                                <small><i class="fa fa-info-circle"></i> ข้อมูลของนักเรียนอยู่ระหว่างการตรวจสอบ</small>
+                              @else
+                                @if(Applicant::allStepComplete())
+                                    <a class="btn btn-block btn-success" href="/application/quota_confirm">ส่งข้อมูล</a>
+                                    <!--<small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>-->
+                                @else
+                                    <a class="btn btn-block btn-success disabled">ส่งข้อมูล</a>
+                                    <!--<small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>-->
+                                @endif
+                              @endif
+                          </div>
                       </div>
-                  </div>
-                  @else
-                  <div class="panel panel-default">
-                      <div class="panel-body">
-                          @if(Applicant::quotaSubmissionUnderReview())
-                              <small><i class="fa fa-info-circle"></i> ข้อมูลของนักเรียนอยู่ระหว่างการตรวจสอบ</small>
-                          @else
-                                <a class="btn btn-block btn-success" href="/application/quota_confirm">ส่งข้อมูล</a>
-                                <small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>
-                          @endif
-                      </div>
-                  </div>
-                  @endif
-
                 </div>
                 <div class="col-md-9">
 
