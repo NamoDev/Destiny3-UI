@@ -858,6 +858,24 @@ class UserController extends Controller{
     public function sendDataToValkyrie(Request $request, Applicant $applicant){
         if(Applicant::allStepComplete()){
             $db = Applicant::current();
+
+            // Get access token to be send to valkyrie
+            $all_docs = DB::collection('applicants')
+                            ->where('citizen_id', '1111111111119')
+                            ->pluck('documents')[0];
+
+            if(!krsort($all_docs)){
+                throw new Exception('Cannot sort documents array');
+            }
+
+            foreach($all_docs as $doc_timestamp => $doc){
+                if(array_key_exists('access_token', $doc) && (!empty($doc['access_token']))){
+                    $access_token = $doc['access_token'];
+                    break;
+                }
+            }
+            // Finally we've got an access token
+
             $payload = array(
                 'title' => $db['title'],
                 'fname' => $db['fname'],
@@ -869,8 +887,46 @@ class UserController extends Controller{
                 'email' => $db['email'],
                 'phone' => $db['phone'],
                 'birthdate' => $db['birthdate'],
-
+                'staying_with_parent' => $db['staying_with_parent'],
+                'father' => $db['father'],
+                'mother' => $db['mother'],
+                'guardian' => $db['guardian'],
+                'school' => $db['school'],
+                'graduation_year' => $db['graduation_year'],
+                'gpa' => $db['gpa'],
+                'school_move_in' => $db['school_move_in'],
+                'school_province' => $db['school_province'],
+                'address' => $db['address'],
+                'application_type' => $db['application_type'],
+                'quota_type' => $db['quota_type'],
+                'plan' => $db['plan'],
+                'majors' => $db['majors'],
+                'quota_grade' => $db['quota_grade'],
+                'documents' => array(
+                    'timestamp' => $doc_timestamp,
+                    'access_token' => $access_token,
+                ),
             );
+
+            $baseURL = Config::get("uiconfig.valkyrie_base_api_url");
+
+            // Init cURL and set stuff:
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "$baseURL/$endpoint");
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+
+            // VERY VERY IMPORTANT: the API key header.
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                "X-Auth-APIKey: $apiKey"
+            ));
+
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $variables); // POST data field(s)
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            // run the cURL query
+            $result = curl_exec($ch);
+            $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
         }else{
             return RESTResponse::unprocessable('Not all steps have been completed');
         }
