@@ -861,7 +861,7 @@ class UserController extends Controller{
 
             // Get access token to be send to valkyrie
             $all_docs = DB::collection('applicants')
-                            ->where('citizen_id', '1111111111119')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
                             ->pluck('documents')[0];
 
             if(!krsort($all_docs)){
@@ -909,24 +909,28 @@ class UserController extends Controller{
             );
 
             $baseURL = Config::get("uiconfig.valkyrie_base_api_url");
+            $apiKey = Config::get("uiconfig.valkyrie_api_key");
+
+            $sendto = "$baseURL/api/v1/applicants/".$db['citizen_id'];
 
             // Init cURL and set stuff:
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "$baseURL/$endpoint");
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+            curl_setopt($ch, CURLOPT_URL, $sendto);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 
             // VERY VERY IMPORTANT: the API key header.
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                "X-Auth-APIKey: $apiKey"
+                "api-key: $apiKey"
             ));
 
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $variables); // POST data field(s)
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload)); // POST data field(s)
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
             // run the cURL query
             $result = curl_exec($ch);
             $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+            var_dump($sendto);
+            dd($returnHttpCode);
         }else{
             return RESTResponse::unprocessable('Not all steps have been completed');
         }
@@ -946,6 +950,8 @@ class UserController extends Controller{
         // Data we'll need
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
+
+        $this->sendDataToValkyrie($request, $applicant);
 
         // Lock the account. Return done:
         if($applicant->modify($applicantCitizenID, ["quota_being_evaluated" => 1])){
