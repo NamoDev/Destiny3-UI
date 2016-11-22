@@ -11,7 +11,7 @@
 
 
 return [
-    
+
     /*
     |--------------------------------------------------------------------------
     | DestinyCore API key
@@ -21,9 +21,9 @@ return [
     | DestinyCore. This is a ##secret-data!##
     |
     */
-    
+
     'core_api_key' => 'debug',
-    
+
     /*
     |--------------------------------------------------------------------------
     | DestinyCore Base API URL
@@ -34,9 +34,9 @@ return [
     | that this URL is accessible from the server itself!
     |
     */
-    
+
     'core_base_api_url' => 'https://core3.destiny.triamudom.ac.th',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Destiny Operation Mode
@@ -50,9 +50,9 @@ return [
     | close => close
     |
     */
-    
+
     'mode' => ENV('DESTINY_OPERATION_MODE'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Operation year
@@ -62,7 +62,7 @@ return [
     |
     */
     'operation_year' => ENV('OPERATION_YEAR'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Public Test Run?
@@ -74,9 +74,9 @@ return [
     | true/false
     |
     */
-    
+
     'isPTR' => ENV('IS_PTR'),
-    
+
     /*
      * Andromeda Token Key
      *
@@ -84,4 +84,10 @@ return [
      */
     'andromeda_key' => 'songkiatthepprasaneza555',
     'andromeda_url' => 'http://help.apply.triamudom.ac.th',
+
+    /*
+
+    */
+    'valkyrie_base_api_url' => ENV('VALKYRIE_BASE_API_URL', 'valkyrie.triamudom.ac.th'),
+    'valkyrie_api_key' => ENV('VALKYRIE_API_KEY'),
 ];
