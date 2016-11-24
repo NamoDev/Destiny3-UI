@@ -460,17 +460,6 @@ class UserController extends Controller{
             return RESTResponse::badRequest('Invalid access token');
         }
 
-        //if($request->input('type') == 'all'){
-
-        //}else if($request->input('type') == 'pending'){
-            /*$data = DB::collection('applicants')
-                      ->where('citizen_id', $citizen_id)
-                      ->where('')
-                      ->pluck('document')[0];*/
-        /*}else{
-            return RESTResponse::badRequest('Invalid type');
-        }*/
-
         if(is_null($filename)){
             $keys = array_keys($data);
             $i = 0;
