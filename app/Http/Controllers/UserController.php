@@ -457,7 +457,7 @@ class UserController extends Controller{
                     ->pluck('documents.'.$request->input('timestamp').'.access_token')[0];
 
         if($request->input('token') != $token){
-            return RESTResponse::badRequest('Invalid access token : '.$token);
+            return RESTResponse::badRequest('Invalid access token');
         }
 
         //if($request->input('type') == 'all'){
@@ -929,8 +929,6 @@ class UserController extends Controller{
             // run the cURL query
             $result = curl_exec($ch);
             $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            var_dump($sendto);
-            dd($returnHttpCode);
         }else{
             return RESTResponse::unprocessable('Not all steps have been completed');
         }
