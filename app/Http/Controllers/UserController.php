@@ -834,9 +834,9 @@ class UserController extends Controller{
         ]);
 
         $data = $request->all();
-        unset($data['']);
+        unset($data['_token']);
 
-        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $request->all()))){
+        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
             return RESTResponse::ok();
         }else{
             // error!
