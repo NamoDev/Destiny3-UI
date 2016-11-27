@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('title', 'ประวัติผลการเรียน')
 
+<?php $subjectCounter = 1; ?>
+
 @section('content')
 <legend><i class="fa fa-list"></i> ประวัติผลการเรียน <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
 
@@ -8,23 +10,88 @@
     <div class="row">
         <div class="col-md-4" id="grpsel_0Group">
             <select id="grpsel_0" class="form-control select select-primary select-block mbl">
-                <option value="sci">ว (วิทยาศาสตร์)</option>
-                <option value="mat">ค (คณิตศาสตร์)</option>
-                <option value="eng">อ (ภาษาอังกฤษ)</option>
-                <option value="tha">ท (ภาษาไทย)</option>
-                <option value="soc">ส (สังคมศึกษา)</option>
+                <?php
+                    $subjects = [
+                        "sci" => "ว (วิทยาศาสตร์)",
+                        "mat" => "ค (คณิตศาสตร์)",
+                        "eng" => "อ (ภาษาอังกฤษ)",
+                        "tha" => "ท (ภาษาไทย)",
+                        "soc" => "ส (สังคมศึกษา)",
+                    ];
+                    if(isset($applicantData['quota_grade'][0])){
+                        foreach($subjects as $key => $subject){
+                            if($key == $applicantData['quota_grade'][0]['subject']){
+                                echo("<option value=\"$key\" selected>$subject</option>");
+                            }else{
+                                echo("<option value=\"$key\">$subject</option>");
+                            }
+                        }
+                    }else{
+                        foreach($subjects as $key => $subject){
+                            echo("<option value=\"$key\">$subject</option>");
+                        }
+                    }
+                 ?>
             </select>
         </div>
         <div class="col-md-4" id="code_0Group">
-            <input id="code_0" type="text" class="form-control" placeholder="รหัสวิชา"></text>
+            <input id="code_0" type="text" class="form-control" placeholder="รหัสวิชา" value="{{isset($applicantData['quota_grade'][0]['code']) ? $applicantData['quota_grade'][0]['code'] : ''}}"></text>
         </div>
         <div class="col-md-3" id="grade_0Group">
-            <input id="grade_0" type="text" class="form-control" placeholder="เกรด (กรอกในรูปแบบ 4.00)"></text>
+            <input id="grade_0" type="text" class="form-control" placeholder="เกรด (กรอกในรูปแบบ 4.00)" value="{{isset($applicantData['quota_grade'][0]['grade']) ? $applicantData['quota_grade'][0]['grade'] : ''}}"></text>
         </div>
         <div class="col-xs-1">
 
         </div>
     </div>
+    @if(isset($applicantData['quota_grade']))
+        @if(count($applicantData['quota_grade']) > 1)
+            <?php
+                $remainingSubjects = $applicantData['quota_grade'];
+                array_shift($remainingSubjects);
+            ?>
+            @foreach($remainingSubjects as $subjectNode)
+                <div class="row dgrp">
+                    <div class="col-md-4" id="grpsel_{{$subjectCounter}}Group">
+                        <select id="grpsel_{{$subjectCounter}}" class="form-control select select-primary select-block mbl">
+                            <?php
+                                $subjects = [
+                                    "sci" => "ว (วิทยาศาสตร์)",
+                                    "mat" => "ค (คณิตศาสตร์)",
+                                    "eng" => "อ (ภาษาอังกฤษ)",
+                                    "tha" => "ท (ภาษาไทย)",
+                                    "soc" => "ส (สังคมศึกษา)",
+                                ];
+                                if(isset($applicantData['quota_grade'][$subjectCounter])){
+                                    foreach($subjects as $key => $subject){
+                                        if($key == $applicantData['quota_grade'][$subjectCounter]['subject']){
+                                            echo("<option value=\"$key\" selected>$subject</option>");
+                                        }else{
+                                            echo("<option value=\"$key\">$subject</option>");
+                                        }
+                                    }
+                                }else{
+                                    foreach($subjects as $key => $subject){
+                                        echo("<option value=\"$key\">$subject</option>");
+                                    }
+                                }
+                             ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4" id="code_{{$subjectCounter}}Group">
+                        <input id="code_{{$subjectCounter}}" type="text" class="form-control" placeholder="รหัสวิชา" value="{{isset($applicantData['quota_grade'][$subjectCounter]['code']) ? $applicantData['quota_grade'][$subjectCounter]['code'] : ''}}"></text>
+                    </div>
+                    <div class="col-md-3" id="grade_{{$subjectCounter}}Group">
+                        <input id="grade_{{$subjectCounter}}" type="text" class="form-control" placeholder="เกรด (กรอกในรูปแบบ 4.00)" value="{{isset($applicantData['quota_grade'][$subjectCounter]['grade']) ? $applicantData['quota_grade'][$subjectCounter]['grade'] : ''}}"></text>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href='#' class='btnDeleteRow'><i class='fa fa-trash fa-2x'></i></a>
+                    </div>
+                </div>
+                <?php $subjectCounter++; ?>
+            @endforeach
+        @endif
+    @endif
 </div>
 
 <div class="row">
@@ -47,8 +114,12 @@
 @section("additional_scripts")
 <script>
 
-var currentSubject = 1;
+var currentSubject = {{ $subjectCounter }};
 var gpaPattern = new RegExp("[1-4].[0-9]{2}");
+
+$(function(){
+    $("#grpsel_0").change();
+});
 
 $("#btnAddSubject").click(function(e){
     e.preventDefault();
