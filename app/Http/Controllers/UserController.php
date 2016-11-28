@@ -964,7 +964,7 @@ class UserController extends Controller{
     }
 
     public function updateEvaluationStatus(Request $request, $citizen_id){
-        if($this->notifyCore()){
+        if($this->notifyCore() || true){ // <TODO>Remove before delivery</TODO>
 
         }else{
             return RESTResponse::serverError();
