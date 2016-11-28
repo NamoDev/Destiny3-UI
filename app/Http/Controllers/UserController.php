@@ -920,7 +920,7 @@ class UserController extends Controller{
             $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             if(200 == $returnHttpCode){
-                return true;
+                return json_decode($result, true);
             }else{
                 return false;
             }
@@ -944,9 +944,15 @@ class UserController extends Controller{
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
-        if($this->sendDataToValkyrie($request, $applicant)){
+        $send = $this->sendDataToValkyrie($request, $applicant);
+
+        if($send !== false){
             // Lock the account. Return done:
-            if($applicant->modify($applicantCitizenID, ["quota_being_evaluated" => 1])){
+            $change = [
+                'quota_being_evaluated' => 1,
+                'evaluation_id' => $send['success']['message'],
+            ];
+            if($applicant->modify($applicantCitizenID, $change)){
                 return RESTResponse::ok();
             }else{
                 // error!
