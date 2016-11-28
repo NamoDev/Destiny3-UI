@@ -99,7 +99,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth', 'flow']], functi
     Route::get('applicant/submit', 'Blah@Blah');
 
     // Quota submission
-    Route::post('applicant/submit_quota', 'UserController@submitQuotaApplicationForConsideration');
+    Route::post('applicant/submit_quota', 'UserController@submitQuotaApplicationForEvaluation');
 
     // Password change handler
     Route::post('account/change_password', 'UserController@changePassword');
@@ -109,4 +109,6 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth', 'flow']], functi
 Route::group(['prefix' => 'api/v1'], function () {
     // Get document for a student (by CID)
     Route::get('documents/{citizen_id}/{filename?}', 'UserController@getDocument');
+
+    Route::post('applicant/{citizen_id}/status', 'UserController@updateEvaluationStatus');
 });

@@ -13582,7 +13582,7 @@ class Logger implements LoggerInterface
         if (!static::$timezone) {
             static::$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'UTC');
         }
-        if ($this->microsecondTimestamps) {
+        if ($this->microsecondTimestamps && PHP_VERSION_ID < 70100) {
             $ts = \DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(true)), static::$timezone);
         } else {
             $ts = new \DateTime(null, static::$timezone);
@@ -13909,10 +13909,14 @@ class StreamHandler extends AbstractProcessingHandler
         if ($this->useLocking) {
             flock($this->stream, LOCK_EX);
         }
-        fwrite($this->stream, (string) $record['formatted']);
+        $this->streamWrite($this->stream, $record);
         if ($this->useLocking) {
             flock($this->stream, LOCK_UN);
         }
+    }
+    protected function streamWrite($stream, array $record)
+    {
+        fwrite($stream, (string) $record['formatted']);
     }
     private function customErrorHandler($code, $msg)
     {
@@ -14106,15 +14110,12 @@ class NormalizerFormatter implements FormatterInterface
             }
             return $data;
         }
-        if (is_array($data) || $data instanceof \Traversable) {
+        if (is_array($data)) {
             $normalized = array();
             $count = 1;
-            if ($data instanceof \Generator && !$data->valid()) {
-                return array('...' => 'Generator is already consumed, aborting');
-            }
             foreach ($data as $key => $value) {
                 if ($count++ >= 1000) {
-                    $normalized['...'] = 'Over 1000 items (' . ($data instanceof \Generator ? 'generator function' : count($data) . ' total') . '), aborting normalization';
+                    $normalized['...'] = 'Over 1000 items (' . count($data) . ' total), aborting normalization';
                     break;
                 }
                 $normalized[$key] = $this->normalize($value);
@@ -14300,6 +14301,9 @@ class LineFormatter extends NormalizerFormatter
             if (false !== strpos($output, '%' . $var . '%')) {
                 $output = str_replace('%' . $var . '%', $this->stringify($val), $output);
             }
+        }
+        if (false !== strpos($output, '%')) {
+            $output = preg_replace('/%(?:extra|context)\\..+?%/', '', $output);
         }
         return $output;
     }
