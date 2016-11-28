@@ -99,7 +99,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => ['apiauth', 'flow']], functi
     Route::get('applicant/submit', 'Blah@Blah');
 
     // Quota submission
-    Route::post('applicant/submit_quota', 'UserController@submitQuotaApplicationForsubmitQuotaApplicationForEvaluation');
+    Route::post('applicant/submit_quota', 'UserController@submitQuotaApplicationForEvaluation');
 
     // Password change handler
     Route::post('account/change_password', 'UserController@changePassword');
