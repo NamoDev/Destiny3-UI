@@ -955,7 +955,44 @@ class UserController extends Controller{
         }else{
             return RESTResponse::serverError();
         }
+    }
 
+    public function updateEvaluationStatus(Request $request, $citizen_id){
+        if($this->notifyCore()){
+
+        }else{
+            return RESTResponse::serverError();
+        }
+    }
+
+    public function notifyCore(){
+        $baseURL = Config::get("uiconfig.core_base_api_url");
+        $apiKey = Config::get("uiconfig.core_api_key");
+
+        $sendto = "$baseURL/api/v1/applicants/".$db['citizen_id'];
+
+        // Init cURL and set stuff:
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $sendto);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+
+        // VERY VERY IMPORTANT: the API key header.
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "api-key: $apiKey"
+        ));
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload)); // POST data field(s)
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // run the cURL query
+        $result = curl_exec($ch);
+        $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if(200 == $returnHttpCode){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /*
