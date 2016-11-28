@@ -918,6 +918,12 @@ class UserController extends Controller{
             // run the cURL query
             $result = curl_exec($ch);
             $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if(200 == $returnHttpCode){
+                return true;
+            }else{
+                return false;
+            }
         }else{
             return RESTResponse::unprocessable('Not all steps have been completed');
         }
@@ -938,15 +944,18 @@ class UserController extends Controller{
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
-        $this->sendDataToValkyrie($request, $applicant);
-
-        // Lock the account. Return done:
-        if($applicant->modify($applicantCitizenID, ["quota_being_evaluated" => 1])){
-            return RESTResponse::ok();
+        if($this->sendDataToValkyrie($request, $applicant)){
+            // Lock the account. Return done:
+            if($applicant->modify($applicantCitizenID, ["quota_being_evaluated" => 1])){
+                return RESTResponse::ok();
+            }else{
+                // error!
+                return RESTResponse::serverError();
+            }
         }else{
-            // error!
             return RESTResponse::serverError();
         }
+
     }
 
     /*
