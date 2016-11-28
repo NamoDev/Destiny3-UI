@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
+class ComposerStaticInitdcfd54e01245a66e34a62d2151c35749
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -12,9 +12,9 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -872,6 +872,7 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
         'GuzzleHttp\\PrepareBodyMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php',
         'GuzzleHttp\\Promise\\AggregateException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/AggregateException.php',
         'GuzzleHttp\\Promise\\CancellationException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/CancellationException.php',
+        'GuzzleHttp\\Promise\\Coroutine' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Coroutine.php',
         'GuzzleHttp\\Promise\\EachPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/EachPromise.php',
         'GuzzleHttp\\Promise\\FulfilledPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/FulfilledPromise.php',
         'GuzzleHttp\\Promise\\Promise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Promise.php',
@@ -880,6 +881,7 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
         'GuzzleHttp\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectedPromise.php',
         'GuzzleHttp\\Promise\\RejectionException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectionException.php',
         'GuzzleHttp\\Promise\\TaskQueue' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueue.php',
+        'GuzzleHttp\\Promise\\TaskQueueInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueueInterface.php',
         'GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
         'GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
         'GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
@@ -1845,6 +1847,9 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
         'Monolog\\Handler\\RotatingFileHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php',
         'Monolog\\Handler\\SamplingHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SamplingHandler.php',
         'Monolog\\Handler\\SlackHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SlackHandler.php',
+        'Monolog\\Handler\\SlackWebhookHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SlackWebhookHandler.php',
+        'Monolog\\Handler\\Slack\\SlackRecord' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/Slack/SlackRecord.php',
+        'Monolog\\Handler\\SlackbotHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SlackbotHandler.php',
         'Monolog\\Handler\\SocketHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SocketHandler.php',
         'Monolog\\Handler\\StreamHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/StreamHandler.php',
         'Monolog\\Handler\\SwiftMailerHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Handler/SwiftMailerHandler.php',
@@ -1867,6 +1872,9 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
         'Monolog\\Processor\\UidProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/UidProcessor.php',
         'Monolog\\Processor\\WebProcessor' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Processor/WebProcessor.php',
         'Monolog\\Registry' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Registry.php',
+        'NamoDev\\LaraNN\\Facades\\LaraNN' => __DIR__ . '/..' . '/namodev/larann/src/Facades/LaraNN.php',
+        'NamoDev\\LaraNN\\LaraNN' => __DIR__ . '/..' . '/namodev/larann/src/LaraNN.php',
+        'NamoDev\\LaraNN\\LaraNNServiceProvider' => __DIR__ . '/..' . '/namodev/larann/src/LaraNNServiceProvider.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -2231,6 +2239,7 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
         'PHP_Token_STRING' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_STRING_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_STRING_VARNAME' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_Token_SUPER' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_SWITCH' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_Stream' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token/Stream.php',
         'PHP_Token_Stream_CachingFactory' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token/Stream/CachingFactory.php',
@@ -3298,10 +3307,10 @@ class ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit6d15cae8e76d6e81a9f14a5ca2b030a3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitdcfd54e01245a66e34a62d2151c35749::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitdcfd54e01245a66e34a62d2151c35749::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitdcfd54e01245a66e34a62d2151c35749::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitdcfd54e01245a66e34a62d2151c35749::$classMap;
 
         }, null, ClassLoader::class);
     }

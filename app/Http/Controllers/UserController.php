@@ -234,7 +234,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -316,7 +316,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -423,7 +423,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -545,7 +545,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -613,7 +613,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
 
@@ -706,7 +706,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
     }
 
@@ -769,7 +769,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -840,7 +840,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
     }
 
@@ -918,6 +918,12 @@ class UserController extends Controller{
             // run the cURL query
             $result = curl_exec($ch);
             $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if(200 == $returnHttpCode){
+                return json_decode($result, true);
+            }else{
+                return false;
+            }
         }else{
             return RESTResponse::unprocessable('Not all steps have been completed');
         }
@@ -933,19 +939,65 @@ class UserController extends Controller{
     /*
      * Submit data for consideration. We'll lock the user account after this:
      */
-    public function submitQuotaApplicationForConsideration(Request $request){
+    public function submitQuotaApplicationForEvaluation(Request $request){
         // Data we'll need
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
-        $this->sendDataToValkyrie($request, $applicant);
+        $send = $this->sendDataToValkyrie($request, $applicant);
 
-        // Lock the account. Return done:
-        if($applicant->modify($applicantCitizenID, ["quota_being_evaluated" => 1])){
-            return RESTResponse::ok();
+        if($send !== false){
+            // Lock the account. Return done:
+            $change = [
+                'quota_being_evaluated' => 1,
+                'evaluation_id' => $send['success']['message'],
+            ];
+            if($applicant->modify($applicantCitizenID, $change)){
+                return RESTResponse::ok();
+            }else{
+                // error!
+                return RESTResponse::serverError('Unable to modify applicant data');
+            }
         }else{
-            // error!
             return RESTResponse::serverError();
+        }
+    }
+
+    public function updateEvaluationStatus(Request $request, $citizen_id){
+        if($this->notifyCore() || true){ // <TODO>Remove before delivery</TODO>
+
+        }else{
+            return RESTResponse::serverError();
+        }
+    }
+
+    public function notifyCore(){
+        $baseURL = Config::get("uiconfig.core_base_api_url");
+        $apiKey = Config::get("uiconfig.core_api_key");
+
+        $sendto = "$baseURL/api/v1/applicants/".$db['citizen_id'];
+
+        // Init cURL and set stuff:
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $sendto);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+
+        // VERY VERY IMPORTANT: the API key header.
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "api-key: $apiKey"
+        ));
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload)); // POST data field(s)
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // run the cURL query
+        $result = curl_exec($ch);
+        $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if(200 == $returnHttpCode){
+            return true;
+        }else{
+            return false;
         }
     }
 

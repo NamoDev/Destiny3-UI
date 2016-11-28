@@ -147,7 +147,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
         /*
@@ -166,7 +165,7 @@ return [
     	* MongoDB
     	*/
     	Jenssegers\Mongodb\MongodbServiceProvider::class,
-        
+
         Jenssegers\Rollbar\RollbarServiceProvider::class,
     ],
 
