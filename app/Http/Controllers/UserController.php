@@ -234,7 +234,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -316,7 +316,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -423,7 +423,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -545,7 +545,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -613,7 +613,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
 
@@ -706,7 +706,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
     }
 
@@ -769,7 +769,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
 
     }
@@ -840,7 +840,7 @@ class UserController extends Controller{
             return RESTResponse::ok();
         }else{
             // error!
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Unable to modify applicant data');
         }
     }
 
@@ -950,7 +950,7 @@ class UserController extends Controller{
                 return RESTResponse::ok();
             }else{
                 // error!
-                return RESTResponse::serverError();
+                return RESTResponse::serverError('Unable to modify applicant data');
             }
         }else{
             return RESTResponse::serverError();
