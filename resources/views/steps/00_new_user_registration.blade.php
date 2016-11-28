@@ -150,7 +150,7 @@
             <div class="col-md-12">
                 <br />
                 <span class="help-block">ทำเครื่องหมายถูกในช่องด้านล่าง</span>
-                {!! app('captcha')->display(); !!}
+                <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY', '') }}"></div>
             </div>
         </div>
         <br />
@@ -176,6 +176,7 @@
 
 @section('additional_scripts')
 <script src="/assets/js/bootbox.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 
     var usingCustomTitle = 0;
@@ -471,6 +472,8 @@
             console.log("[DBG/LOG] Total errors: " + hasErrors);
         @endif
 
+        captchaResponse = grecaptcha.getResponse();
+
         if(hasErrors == 0){
             // Green across the board, and ready for action!
             $.ajax({
@@ -492,7 +495,8 @@
                      email: $("#email").val(),
                      phone: $("#phone").val(),
                      password: $("#password").val(),
-                     password_confirm: $("#password_confirm").val()
+                     password_confirm: $("#password_confirm").val(),
+                     recaptcha: captchaResponse
                 },
                 error: function (request, status, error) {
                     $('#plsWaitModal').modal('hide');
