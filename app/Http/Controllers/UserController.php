@@ -939,7 +939,7 @@ class UserController extends Controller{
     /*
      * Submit data for consideration. We'll lock the user account after this:
      */
-    public function submitQuotaApplicationForConsideration(Request $request){
+    public function submitQuotaApplicationForEvaluation(Request $request){
         // Data we'll need
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
