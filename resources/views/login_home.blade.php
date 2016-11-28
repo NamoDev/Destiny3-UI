@@ -35,9 +35,9 @@ https://tucc.triamudom.ac.th
 <div class="row" style="margin-top:10px;">
     <div class="col-md-12">
         <a href="#">
-        <div class="alert alert-success">
+        <div class="alert alert-danger">
             {{-- TODO: Add the real thing --}}
-            <i class="fa fa-calendar"></i> <b>เหลืออีก 17 วัน</b> เปิดรับสมัครนักเรียนในระบบโควตาจังหวัด
+            ระบบนี้เป็นระบบทดสอบ หากสมัครตอนนี้จะถือว่าเป็น<b>โมฆะ</b>
         </div>
         </a>
     </div>
