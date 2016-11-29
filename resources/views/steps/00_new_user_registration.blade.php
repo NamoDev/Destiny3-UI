@@ -150,7 +150,7 @@
             <div class="col-md-12">
                 <br />
                 <span class="help-block">ทำเครื่องหมายถูกในช่องด้านล่าง</span>
-                <div class="g-recaptcha" data-sitekey="{{ env('NOCAPTCHA_SITEKEY', '') }}"></div>
+                <div class="g-recaptcha" data-sitekey="{{ Config::get('captcha.sitekey') }}"></div>
             </div>
         </div>
         <br />
