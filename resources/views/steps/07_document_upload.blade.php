@@ -11,7 +11,7 @@
     </div>
 </div>
 @endif
-อัพโหลดเอกสารครั้งล่าสุด {{ $latestDocumentSubmission }}
+อัพโหลดเอกสารครั้งล่าสุด : {{ ($latestDocumentSubmission !== false) ? $latestDocumentSubmission : 'ยังไม่เคยอัพโหลดเอกสาร' }}
 <div class="row">
     <div class="col-md-6">
         <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
