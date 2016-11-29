@@ -837,6 +837,10 @@ class UserController extends Controller{
         unset($data['_token']);
 
         if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
+
+            // Mark step as done
+            $applicant->markStepAsDone($applicantCitizenID, 8);
+
             return RESTResponse::ok();
         }else{
             // error!
