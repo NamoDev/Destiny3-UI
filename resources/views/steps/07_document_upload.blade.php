@@ -11,6 +11,7 @@
     </div>
 </div>
 @endif
+อัพโหลดเอกสารครั้งล่าสุด {{ $latestDocumentSubmission }}
 <div class="row">
     <div class="col-md-6">
         <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
@@ -84,7 +85,7 @@ Dropzone.options.filePicture = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
     dictRemoveFile: "ลบไฟล์",
     dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
     dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
@@ -100,7 +101,7 @@ Dropzone.options.fileCID = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
     dictRemoveFile: "ลบไฟล์",
     dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
     dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
@@ -116,7 +117,7 @@ Dropzone.options.fileTranscript = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
     dictRemoveFile: "ลบไฟล์",
     dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
     dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
@@ -132,7 +133,7 @@ Dropzone.options.fileHRApplicant = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
     dictRemoveFile: "ลบไฟล์",
     dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
     dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
@@ -148,7 +149,7 @@ Dropzone.options.fileHRFather = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
     dictRemoveFile: "ลบไฟล์",
     dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
     dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
@@ -164,7 +165,7 @@ Dropzone.options.fileHRMother = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 2 MB</small>",
+    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
     dictRemoveFile: "ลบไฟล์",
     dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
     dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
