@@ -122,7 +122,15 @@ class UIPages extends Controller {
         Session::put('upload_token', $upload_token);
         Session::put('upload_time', time());
 
-        return response()->view('steps.07_document_upload', ['applicantData' => $applicantData, 'upload_token' => $upload_token]);
+        $latest = $this->latestDocumentSubmission();
+
+        $dataToSend = [
+            'applicantData' => $applicantData,
+            'upload_token' => $upload_token,
+            'latestDocumentSubmission' => $latest,
+        ];
+
+        return response()->view('steps.07_document_upload', $dataToSend);
     }
 
     public function step8_gradeInfo(){
@@ -133,5 +141,24 @@ class UIPages extends Controller {
 
     public function districtQuotaSubmissionConfirmation(){
         return response()->view('confirm_quota_submission');
+    }
+
+    public function latestDocumentSubmission(){
+        $all_docs = DB::collection('applicants')
+                        ->where('citizen_id', Session::get('applicant_citizen_id'))
+                        ->pluck('documents')[0];
+
+        if(!krsort($all_docs)){
+            throw new Exception('Cannot sort documents array');
+        }
+
+        foreach($all_docs as $doc_timestamp => $doc){
+            if(array_key_exists('access_token', $doc) && (!empty($doc['access_token']))){
+                $latest = $doc_timestamp;
+                break;
+            }
+        }
+
+        return date('r', $latest);
     }
 }
