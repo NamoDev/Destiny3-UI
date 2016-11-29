@@ -963,7 +963,7 @@ class UserController extends Controller{
                 return RESTResponse::serverError('Unable to modify applicant data');
             }
         }else{
-            return RESTResponse::serverError();
+            return RESTResponse::serverError('Cannot send data to valkyrie');
         }
     }
 
