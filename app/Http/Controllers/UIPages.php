@@ -148,6 +148,10 @@ class UIPages extends Controller {
                         ->where('citizen_id', Session::get('applicant_citizen_id'))
                         ->pluck('documents')[0];
 
+        if(is_null($all_docs)){
+            return false;
+        }
+
         if(!krsort($all_docs)){
             throw new Exception('Cannot sort documents array');
         }
