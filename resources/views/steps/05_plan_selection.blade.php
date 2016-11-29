@@ -33,16 +33,26 @@
                 }else{
                     $currentPlanSelected = 5; // (The power of) Science by default!
                 }
-                $plansAvailable = [
-                    1 => "ภาษา-ฝรั่งเศส",
-                    2 => "ภาษา-เยอรมัน",
-                    3 => "ภาษา-ญี่ปุ่น",
-                    4 => "ภาษา-คณิต",
-                    5 => "วิทย์-คณิต",
-                    7 => "ภาษา-สเปน",
-                    8 => "ภาษา-จีน",
-                    9 => "ภาษา-เกาหลี",
-                ];
+                if(Config::get('uiconfig.mode') == 'province_quota'){
+                    $plansAvailable = [
+                        1 => "ภาษา-ฝรั่งเศส",
+                        2 => "ภาษา-เยอรมัน",
+                        3 => "ภาษา-ญี่ปุ่น",
+                        4 => "ภาษา-คณิต",
+                        5 => "วิทย์-คณิต",
+                    ];
+                }else{
+                    $plansAvailable = [
+                        1 => "ภาษา-ฝรั่งเศส",
+                        2 => "ภาษา-เยอรมัน",
+                        3 => "ภาษา-ญี่ปุ่น",
+                        4 => "ภาษา-คณิต",
+                        5 => "วิทย์-คณิต",
+                        7 => "ภาษา-สเปน",
+                        8 => "ภาษา-จีน",
+                        9 => "ภาษา-เกาหลี",
+                    ];
+                }
                 foreach($plansAvailable as $planID => $planName){
                     if($planID == $currentPlanSelected){
                         echo("<option value=\"$planID\" selected>$planName</option>");
