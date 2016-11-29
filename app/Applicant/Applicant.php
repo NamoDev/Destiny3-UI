@@ -16,6 +16,7 @@ use DB;
 use Exception;
 use Hash;
 use Session;
+use Log;
 
 class Applicant {
 
@@ -255,10 +256,15 @@ class Applicant {
                             ->where('citizen_id', Session::get('applicant_citizen_id'))
                             ->pluck('steps_completed')[0];
 
-        foreach($required_step as $required){
-            if(!in_array($required, $completed_step)){
-                return false;
+        try{
+            foreach($required_step as $required){
+                if(!in_array($required, $completed_step)){
+                    return false;
+                }
             }
+        }catch(Exception $e){
+            Log::error('steps_completed field not found');
+            return false;
         }
 
         return true;
