@@ -17,7 +17,7 @@ https://tucc.triamudom.ac.th
 -->
 <div class="row" style="margin-top:80px;">
     <div class="col-md-12">
-        <h1>ระบบรับสมัครนักเรียน<br />โรงเรียนเตรียมอุดมศึกษา</h1>
+        <h1>ระบบรับสมัครนักเรียน@if(Config::get('uiconfig.mode') == 'province_quota')โควตาจังหวัด @endif<br />โรงเรียนเตรียมอุดมศึกษา</h1>
         <h4>
             @if(Config::get('uiconfig.isPTR') === true)
                 <span class="label label-info" style="font-size:.65em;font-weight:normal;letter-spacing:.05em;text-align:center;">
