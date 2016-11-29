@@ -955,6 +955,7 @@ class UserController extends Controller{
             $change = [
                 'quota_being_evaluated' => 1,
                 'evaluation_id' => $send['success']['message'],
+                'evaluation_status' => 0,
             ];
             if($applicant->modify($applicantCitizenID, $change)){
                 return RESTResponse::ok();
@@ -968,14 +969,51 @@ class UserController extends Controller{
     }
 
     public function updateEvaluationStatus(Request $request, $citizen_id){
-        if($this->notifyCore() || true){ // <TODO>Remove before delivery</TODO>
+        // TODO authenticate api call
 
+        if(!in_array($request->input('status'), [1, -1])){
+            Log::critical('Unknown status code');
+            return RESTResponse::badRequest('Unknown status code');
+        }
+
+        $expected_id = DB::collection('applicants')
+                        ->where('citizen_id', $citizen_id)
+                        ->pluck('evaluation_id')[0];
+        if($request->input('object_id') == $expected_id){
+            if(!$this->notifyCore()){  // <TODO>Remove before delivery</TODO>
+                return RESTResponse::serverError('Cannot notify core');
+            }
+
+            if($request->input('status') == 1){
+                DB::collection('applicants')
+                ->where('citizen_id', $citizen_id)
+                ->update([
+                    'quota_being_evaluated' => 0,
+                    'evaluation_status' => 1
+                ]);
+
+                $this->notifyUser(1);
+            }else{
+                DB::collection('applicants')
+                ->where('citizen_id', $citizen_id)
+                ->update([
+                    'quota_being_evaluated' => 0,
+                    'evaluation_status' => -1
+                ]);
+
+                $this->notifyUser(-1);
+            }
+
+            return RESTResponse::ok();
         }else{
-            return RESTResponse::serverError();
+            Log::critical('ID mismatch');
+            return RESTResponse::badRequest('ID mismatch');
         }
     }
 
     public function notifyCore(){
+        return true; // TODO : Remove this before production
+
         $baseURL = Config::get("uiconfig.core_base_api_url");
         $apiKey = Config::get("uiconfig.core_api_key");
 
@@ -1003,6 +1041,11 @@ class UserController extends Controller{
         }else{
             return false;
         }
+    }
+
+    private function notifyUser($status){
+        // TODO: Mail user
+        return true;
     }
 
     /*
