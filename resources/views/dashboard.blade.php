@@ -20,4 +20,22 @@
         <h4 class="text-muted" style="margin-top:0px;">---</h4>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        สถานะการสมัคร :
+        @if(Applicant::quotaSubmissionUnderReview())
+            อยู่ระหว่างการตรวจเอกสาร
+        @elseif(isset(Applicant::current()['quota_being_evaluated']) &&
+                Applicant::current()['quota_being_evaluated'] == 0 &&
+                isset(Applicant::current()['evaluation_status']) &&
+                Applicant::current()['evaluation_status'] == 0)
+            การสมัครยังไม่สมบูรณ์
+        @elseif(isset(Applicant::current()['quota_being_evaluated']) &&
+                Applicant::current()['quota_being_evaluated'] == 0 &&
+                isset(Applicant::current()['evaluation_status']) &&
+                Applicant::current()['evaluation_status'] == 1)
+            การสมัครเสร็จสมบูรณ์
+        @endif
+    </div>
+</div>
 @endsection
