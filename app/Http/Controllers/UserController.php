@@ -839,7 +839,7 @@ class UserController extends Controller{
         if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
 
             // Mark step as done
-            $applicant->markStepAsDone($applicantCitizenID, 8);
+            (new Applicant)->markStepAsDone(Session::get('applicant_citizen_id'), 8);
 
             return RESTResponse::ok();
         }else{
