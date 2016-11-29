@@ -81,6 +81,10 @@ $("[id^=adsel_]").click(function(t){
             $("#plsWaitModal").modal("hide");
             notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
 
+            setTimeout(function(){
+                 location.reload();
+            }, 1500);
+
         },
         type: 'POST'
     });
