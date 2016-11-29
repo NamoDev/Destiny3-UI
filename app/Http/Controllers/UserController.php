@@ -738,7 +738,7 @@ class UserController extends Controller{
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
         $this->validate($request, [
-            'file' => 'required|image|mimetypes:image/jpeg,image/png|size:5120',
+            'file' => 'required|image|mimetypes:image/jpeg,image/png|max:5120',
         ]);
 
         $time = time();
