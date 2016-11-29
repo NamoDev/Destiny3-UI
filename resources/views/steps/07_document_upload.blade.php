@@ -204,6 +204,11 @@ $("#sendTheFormButton").click(function(){
             // Tell the user that everything went well
             $('#plsWaitModal').modal('hide');
             notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
+
+            setTimeout(function(){
+                 location.reload();
+            }, 1500);
+
         },
         type: 'POST'
     });
