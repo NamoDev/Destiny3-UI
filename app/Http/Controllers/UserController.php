@@ -836,6 +836,8 @@ class UserController extends Controller{
         $data = $request->all();
         unset($data['_token']);
 
+        $data = array_values($data); // Reset array key
+
         if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
 
             // Mark step as done
