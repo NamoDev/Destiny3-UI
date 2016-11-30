@@ -37,7 +37,7 @@ https://tucc.triamudom.ac.th
         <a href="#">
         <div class="alert alert-danger">
             {{-- TODO: Add the real thing --}}
-            ระบบนี้เป็นระบบทดสอบ หากสมัครตอนนี้จะถือว่าเป็น<b>โมฆะ</b>
+            ยังไม่เปิดให้ลงทะเบียน หากสมัครตอนนี้จะถือว่าเป็น<b>โมฆะ</b>
         </div>
         </a>
     </div>
@@ -86,7 +86,8 @@ https://tucc.triamudom.ac.th
     <div class="col-md-6">
         <div class="flat-well">
             <legend>ยังไม่เคยลงทะเบียนใช่หรือไม่?</legend>
-            <a class="btn btn-primary btn-lg btn-block" href="/application/begin">สมัครใหม่</a>
+            <?php //<a class="btn btn-primary btn-lg btn-block" href="/application/begin">สมัครใหม่</a> ?>
+            <a class="btn btn-primary btn-lg btn-block">สมัครใหม่</a>
         </div>
         <div class="flat-well" style="margin-top:10px;">
             <legend>เกิดปัญหาในการสมัคร?</legend>
