@@ -980,7 +980,7 @@ class UserController extends Controller{
                         ->where('citizen_id', $citizen_id)
                         ->pluck('evaluation_id')[0];
         if($request->input('object_id') == $expected_id){
-            if(!$this->notifyCore()){  // <TODO>Remove before delivery</TODO>
+            if(!$this->notifyCore()){
                 return RESTResponse::serverError('Cannot notify core');
             }
 
