@@ -743,7 +743,7 @@ class UserController extends Controller{
         ]);
 
         if($v1->fails()){
-            return 'ไฟล์ต้องเป็นรูปภาพ JPG หรือ PNG เท่านั้น';
+            return response()->json('ไฟล์ต้องเป็นรูปภาพ JPG หรือ PNG เท่านั้น', 400);
         }
 
         $v2 = Validator::make($request->all(), [
@@ -751,7 +751,7 @@ class UserController extends Controller{
         ]);
 
         if($v2->fails()){
-            return 'ขนาดไฟล์ต้องไม่เกิน 5MB';
+            return response()->json('ขนาดไฟล์ต้องไม่เกิน 5MB', 400);
         }
 
         $time = time();
