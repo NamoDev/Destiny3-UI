@@ -25,6 +25,7 @@ use RESTResponse;
 use Config;
 use Base64Exception;
 use Mail;
+use Validator;
 
 class UserController extends Controller{
 
@@ -737,9 +738,21 @@ class UserController extends Controller{
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
-        $this->validate($request, [
-            'file' => 'image|mimetypes:image/jpeg,image/png|max:5120',
+        $v1 = Validator::make($request->all(), [
+            'file' => 'mimetypes:image/jpeg,image/png'
         ]);
+
+        if($v1->fails()){
+            return 'ไฟล์ต้องเป็นรูปภาพ JPG หรือ PNG เท่านั้น';
+        }
+
+        $v2 = Validator::make($request->all(), [
+            'file' => 'max:5120'
+        ]);
+
+        if($v2->fails()){
+            return 'ขนาดไฟล์ต้องไม่เกิน 5MB';
+        }
 
         $time = time();
 
