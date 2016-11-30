@@ -738,7 +738,7 @@ class UserController extends Controller{
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
         $this->validate($request, [
-            'file' => 'required|image|mimetypes:image/jpeg,image/png|max:5120',
+            'file' => 'image|mimetypes:image/jpeg,image/png|max:5120',
         ]);
 
         $time = time();
@@ -835,6 +835,8 @@ class UserController extends Controller{
 
         $data = $request->all();
         unset($data['_token']);
+
+        $data = array_values($data); // Reset array key
 
         if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
 
