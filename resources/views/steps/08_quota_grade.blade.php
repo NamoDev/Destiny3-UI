@@ -7,7 +7,7 @@
 <legend><i class="fa fa-list"></i> ประวัติผลการเรียน <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
 
 <div id="subjectsContainer">
-    <div class="row">
+    <div class="row dgrp" id="dgrp_0">
         <div class="col-md-4" id="grpsel_0Group">
             <select id="grpsel_0" class="form-control select select-primary select-block mbl">
                 <?php
@@ -51,7 +51,7 @@
                 array_shift($remainingSubjects);
             ?>
             @foreach($remainingSubjects as $subjectNode)
-                <div class="row dgrp">
+                <div class="row dgrp" id="dgrp_{{$subjectCounter}}">
                     <div class="col-md-4" id="grpsel_{{$subjectCounter}}Group">
                         <select id="grpsel_{{$subjectCounter}}" class="form-control select select-primary select-block mbl">
                             <?php
@@ -79,10 +79,10 @@
                         </select>
                     </div>
                     <div class="col-md-4" id="code_{{$subjectCounter}}Group">
-                        <input id="code_{{$subjectCounter}}" type="text" class="form-control" placeholder="รหัสวิชา" value="{{isset($applicantData['quota_grade'][$subjectCounter]['code']) ? $applicantData['quota_grade'][$subjectCounter]['code'] : ''}}"></text>
+                        <input id="code_{{$subjectCounter}}" type="text" class="form-control codeInput" placeholder="รหัสวิชา" value="{{isset($applicantData['quota_grade'][$subjectCounter]['code']) ? $applicantData['quota_grade'][$subjectCounter]['code'] : ''}}"></text>
                     </div>
                     <div class="col-md-3" id="grade_{{$subjectCounter}}Group">
-                        <input id="grade_{{$subjectCounter}}" type="text" class="form-control" placeholder="เกรด (กรอกในรูปแบบ 4.00)" value="{{isset($applicantData['quota_grade'][$subjectCounter]['grade']) ? $applicantData['quota_grade'][$subjectCounter]['grade'] : ''}}"></text>
+                        <input id="grade_{{$subjectCounter}}" type="text" class="form-control gradeInput" placeholder="เกรด (กรอกในรูปแบบ 4.00)" value="{{isset($applicantData['quota_grade'][$subjectCounter]['grade']) ? $applicantData['quota_grade'][$subjectCounter]['grade'] : ''}}"></text>
                     </div>
                     <div class="col-xs-1">
                         <a href='#' class='btnDeleteRow'><i class='fa fa-trash fa-2x'></i></a>
@@ -124,9 +124,9 @@ $(function(){
 $("#btnAddSubject").click(function(e){
     e.preventDefault();
     $("#subjectsContainer").append(" \
-    <div class=\"row dgrp\"> \
+    <div class=\"row dgrp\" id=\"dgrp_" + currentSubject + "\"> \
         <div class=\"col-md-4\" id=\"grpsel_" + currentSubject + "Group\"> \
-            <select id=\"grpsel_" + currentSubject + "\" class=\"form-control select select-primary select-block mbl\"> \
+            <select id=\"grpsel_" + currentSubject + "\" class=\"form-control select select-primary select-block mbl grpsel\"> \
                 <option value=\"sci\">ว (วิทยาศาสตร์)</option> \
                 <option value=\"mat\">ค (คณิตศาสตร์)</option> \
                 <option value=\"eng\">อ (ภาษาอังกฤษ)</option> \
@@ -135,10 +135,10 @@ $("#btnAddSubject").click(function(e){
             </select> \
         </div> \
         <div class=\"col-md-4\" id=\"code_" + currentSubject +  "Group\"> \
-            <input type=\"text\" id=\"code_" + currentSubject +  "\" class=\"form-control\" placeholder=\"รหัสวิชา\"></text> \
+            <input type=\"text\" id=\"code_" + currentSubject +  "\" class=\"form-control codeInput\" placeholder=\"รหัสวิชา\"></text> \
         </div> \
         <div class=\"col-md-3\" id=\"grade_" + currentSubject +  "Group\"> \
-            <input type=\"text\" id=\"grade_" + currentSubject +  "\" class=\"form-control\" placeholder=\"เกรด (กรอกในรูปแบบ 4.00)\"></text> \
+            <input type=\"text\" id=\"grade_" + currentSubject +  "\" class=\"form-control gradeInput\" placeholder=\"เกรด (กรอกในรูปแบบ 4.00)\"></text> \
         </div> \
         <div class=\"col-xs-1\"> \
             <a href='#' class='btnDeleteRow'><i class='fa fa-trash fa-2x'></i></a> \
@@ -154,9 +154,6 @@ $("#btnAddSubject").click(function(e){
 $('#subjectsContainer').on('click', '.btnDeleteRow', function(e){
     e.preventDefault();
     $(this).closest('.dgrp').remove();
-    if(currentSubject > 1){
-        currentSubject--;
-    }
 });
 
 $("#sendTheFormButton").click(function(e){
@@ -169,33 +166,43 @@ $("#sendTheFormButton").click(function(e){
         _token: csrfToken
     };
 
-    while(looper < currentSubject){
-        // Check for input
-        hasErrors += isFieldBlank("code_" + looper);
-        hasErrors += isFieldBlank("grade_" + looper);
+    $(".codeInput").each(function() {
+        hasErrors += isFieldBlank("code_" + $(this).parent().prop("id"));
+    });
 
-        if(isNaN($("#grade_" + looper).val())){
+    $(".gradeInput").each(function() {
+        hasErrors += isFieldBlank("grade_" + $(this).parent().prop("id"));
+    });
+
+    $(".dgrp").each(function(){
+        var currentIndex = $(this).prop('id').slice(5);
+
+        if(isNaN($("#grade_" + currentIndex).val())){
             hasErrors++;
-            $("#grade_" + looper + "Group").addClass("has-error");
+            $("#grade_" + currentIndex + "Group").addClass("has-error");
         }
-        if(parseFloat($("#grade_" + looper).val()) > 4 || parseFloat($("#grade_" + looper).val()) <= 0){
+        if(parseFloat($("#grade_" + currentIndex).val()) > 4 || parseFloat($("#grade_" + currentIndex).val()) <= 0){
             // Error!
             hasErrors++;
-            $("#grade_" + looper + "Group").addClass("has-error");
+            $("#grade_" + currentIndex + "Group").addClass("has-error");
         }
-        if(!gpaPattern.test($("#grade_" + looper).val())){
+        if(!gpaPattern.test($("#grade_" + currentIndex).val())){
             hasErrors++;
-            $("#grade_" + looper + "Group").addClass("has-error");
+            $("#grade_" + currentIndex + "Group").addClass("has-error");
         }
 
         dataToSend[looper] = {
-            "subject": $("#grpsel_" + looper).val(),
-            "code": $("#code_" + looper).val(),
-            "grade": $("#grade_" + looper).val(),
+            "subject": $("#grpsel_" + currentIndex).val(),
+            "code": $("#code_" + currentIndex).val(),
+            "grade": $("#grade_" + currentIndex).val(),
         };
 
         looper++;
-    }
+
+    });
+
+    console.log(dataToSend);
+    console.log(hasErrors);
 
     // Ready. Are there any errors?
     if(hasErrors == 0){
@@ -233,8 +240,6 @@ $("#sendTheFormButton").click(function(e){
         $('#plsWaitModal').modal('hide');
         notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
     }
-
-    console.log(dataToSend);
 
 });
 
