@@ -748,9 +748,7 @@ class UserController extends Controller{
 
         // Storing documents
         try{
-            if(!Storage::disk('document')->put($filename, file_get_contents($request->file('file')))){
-                throw new \Exception('Error saving file');
-            }
+            $request->file('file')->move(Config::get('filesystems.disks.document.root'), $filename);
         }catch(\Exception $e){
             Log::error($e);
             return RESTResponse::serverError('Error saving file, please try again later');
