@@ -154,6 +154,9 @@ $("#btnAddSubject").click(function(e){
 $('#subjectsContainer').on('click', '.btnDeleteRow', function(e){
     e.preventDefault();
     $(this).closest('.dgrp').remove();
+    if(currentSubject > 1){
+        currentSubject--;
+    }
 });
 
 $("#sendTheFormButton").click(function(e){
