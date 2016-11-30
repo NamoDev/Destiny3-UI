@@ -163,7 +163,7 @@ class UIPages extends Controller {
             }
         }
 
-        if(is_null($latest)){
+        if(empty($latest)){
             return false;
         }
 
