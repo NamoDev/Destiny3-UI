@@ -935,8 +935,6 @@ class UserController extends Controller{
             // run the cURL query
             $result = curl_exec($ch);
             $returnHttpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            Log::error($sendto);
-            Log::error($result);
             if(200 == $returnHttpCode){
                 return json_decode($result, true);
             }else{
