@@ -163,6 +163,10 @@ class UIPages extends Controller {
             }
         }
 
+        if(is_null($latest)){
+            return false;
+        }
+
         return date('r', $latest);
     }
 }
