@@ -918,7 +918,7 @@ class UserController extends Controller{
             $apiKey = Config::get("uiconfig.valkyrie_api_key");
 
             $sendto = "$baseURL/api/v1/applicants/".$db['citizen_id'];
-
+            Log::error($sendto);
             // Init cURL and set stuff:
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $sendto);
