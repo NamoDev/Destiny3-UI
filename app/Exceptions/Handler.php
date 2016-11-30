@@ -35,6 +35,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        if($e instanceof Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
+            return;
+        }
+
+
         Log::error($e);
         parent::report($e);
     }
@@ -52,10 +57,6 @@ class Handler extends ExceptionHandler
             $request->session()->flush();
             $request->session()->regenerate();
             return redirect('/login')->with('error', 'การเชื่อมต่อหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง');
-        }
-
-        if($e instanceof Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
-            return;
         }
 
         return parent::render($request, $e);
