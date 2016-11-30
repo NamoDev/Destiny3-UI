@@ -35,6 +35,8 @@
                 isset(Applicant::current()['evaluation_status']) &&
                 Applicant::current()['evaluation_status'] == 1)
             การสมัครเสร็จสมบูรณ์
+        @else
+            การสมัครยังไม่สมบูรณ์
         @endif
     </div>
 </div>
