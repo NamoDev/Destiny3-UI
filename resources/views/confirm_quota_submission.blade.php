@@ -87,6 +87,15 @@ https://tucc.triamudom.ac.th
                             console.log(error);
                             $("#errorText").fadeIn(200);
                         break;
+                        case 400:
+                            /* TODO: Populate a div? */
+                            /*
+                              // CANNOT TEST THIS RIGHT NOW, SO COMMENTED OUT UNTIL TESTING CAN BE DONE
+                              $.each(request.responseText, function(value){
+                                // TODO: populate
+                              });
+                            */
+                        break;
                         default:
                             console.log("(" + request.status + ") Exception:" + request.responseText);
                             $("#errorText").fadeIn(200);
