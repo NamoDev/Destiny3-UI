@@ -19,7 +19,7 @@ NOTE: For some weird reason, putting these routes in a group results in session 
 Route::get('/', 'UIPages@homePage'); // DAT HOMEPAGE
 Route::post('login', 'UserController@login'); // Login request handler
 Route::get('logout', 'UserController@logout'); // Logout request handler
-Route::get('about', 'UIPages@aboutPage'); // About application
+//Route::get('about', 'UIPages@aboutPage'); // About application
 Route::get('faq', 'UIPages@faqPage'); // FAQ
 Route::get('bad_browser', 'UIPages@unsupportedBrowser'); // Unsupported browser
 Route::get('application/begin', 'UIPages@newUserRegistrationPage'); // New account creation
