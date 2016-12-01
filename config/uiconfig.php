@@ -90,4 +90,9 @@ return [
     */
     'valkyrie_base_api_url' => ENV('VALKYRIE_BASE_API_URL', 'valkyrie.triamudom.ac.th'),
     'valkyrie_api_key' => ENV('VALKYRIE_API_KEY'),
+
+    /*
+
+    */
+    'move_in_deadline' => '16/05/2558'
 ];
