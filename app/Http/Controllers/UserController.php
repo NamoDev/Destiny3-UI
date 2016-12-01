@@ -26,6 +26,7 @@ use Config;
 use Base64Exception;
 use Mail;
 use Validator;
+use App\Requirement;
 
 class UserController extends Controller{
 
@@ -960,6 +961,13 @@ class UserController extends Controller{
         $applicant = new Applicant();
         $applicantCitizenID = Session::get("applicant_citizen_id");
 
+        // TODO : Test this before pull to ui
+        /*$requirement = $this->verifyApplicantAgainstRequirement($request, $applicant);
+
+        if($requirement !== true){
+            return RESTResponse::badRequest($requirement);
+        }*/
+
         $send = $this->sendDataToValkyrie($request, $applicant);
 
         if($send !== false){
@@ -977,6 +985,39 @@ class UserController extends Controller{
             }
         }else{
             return RESTResponse::serverError('Cannot send data to valkyrie');
+        }
+    }
+
+    private function verifyApplicantAgainstRequirement(Request $request, Applicant $applicant){
+        $data = Applicant::current();
+
+        $errors = [];
+
+        try{
+            if(!Requirement::verifyGrade($data['plan'], $data['quota_grade'], $data['gpa'])){
+                $errors[] = 'คุณสมบัติด้านผลการศึกษาไม่ครบ';
+            }
+
+            if(!Requirement::verifyMoveIn($data['address']['home_move_in_day'], $data['address']['home_move_in_month'], $data['address']['home_move_in_year'])){
+                $errors[] = 'คุณสมบัติด้านทะเบียนบ้านไม่ครบ';
+            }
+
+            if(!Requirement::verifyMoveIn($data['school_move_in']['day'], $data['school_move_in']['month'], $data['school_move_in']['year'])){
+                $errors[] = 'คุณสมบัติด้านสถานศึกษาไม่ครบ';
+            }
+
+            if(!Requirement::verifyHomeAndSchool($data['address']['home']['home_province'], $data['school_province'])){
+                $errors[] = 'จังหวัดในทะเบียนบ้านไม่ตรงกับจังหวัดโรงเรียน';
+            }
+        }catch(Throwable $e){
+            Log::error($e);
+            return ['เกิดข้อผิดพลาดของระบบ'];
+        }
+
+        if(empty($errors)){
+            return true;
+        }else{
+            return $errors;
         }
     }
 
