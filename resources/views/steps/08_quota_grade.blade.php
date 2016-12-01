@@ -35,7 +35,7 @@
             </select>
         </div>
         <div class="col-md-4" id="code_0Group">
-            <input id="code_0" type="text" class="form-control" placeholder="รหัสวิชา" value="{{isset($applicantData['quota_grade'][0]['code']) ? $applicantData['quota_grade'][0]['code'] : ''}}"></text>
+            <input id="code_0" type="text" class="form-control" placeholder="รหัสวิชา (ไม่ต้องใส่ตัวอักษร)" value="{{isset($applicantData['quota_grade'][0]['code']) ? $applicantData['quota_grade'][0]['code'] : ''}}"></text>
         </div>
         <div class="col-md-3" id="grade_0Group">
             <input id="grade_0" type="text" class="form-control" placeholder="เกรด (กรอกในรูปแบบ 4.00)" value="{{isset($applicantData['quota_grade'][0]['grade']) ? $applicantData['quota_grade'][0]['grade'] : ''}}"></text>
@@ -79,7 +79,7 @@
                         </select>
                     </div>
                     <div class="col-md-4" id="code_{{$subjectCounter}}Group">
-                        <input id="code_{{$subjectCounter}}" type="text" class="form-control codeInput" placeholder="รหัสวิชา" value="{{isset($applicantData['quota_grade'][$subjectCounter]['code']) ? $applicantData['quota_grade'][$subjectCounter]['code'] : ''}}"></text>
+                        <input id="code_{{$subjectCounter}}" type="text" class="form-control codeInput" placeholder="รหัสวิชา (ไม่ต้องใส่ตัวอักษร)" value="{{isset($applicantData['quota_grade'][$subjectCounter]['code']) ? $applicantData['quota_grade'][$subjectCounter]['code'] : ''}}"></text>
                     </div>
                     <div class="col-md-3" id="grade_{{$subjectCounter}}Group">
                         <input id="grade_{{$subjectCounter}}" type="text" class="form-control gradeInput" placeholder="เกรด (กรอกในรูปแบบ 4.00)" value="{{isset($applicantData['quota_grade'][$subjectCounter]['grade']) ? $applicantData['quota_grade'][$subjectCounter]['grade'] : ''}}"></text>
@@ -135,7 +135,7 @@ $("#btnAddSubject").click(function(e){
             </select> \
         </div> \
         <div class=\"col-md-4\" id=\"code_" + currentSubject +  "Group\"> \
-            <input type=\"text\" id=\"code_" + currentSubject +  "\" class=\"form-control codeInput\" placeholder=\"รหัสวิชา\"></text> \
+            <input type=\"text\" id=\"code_" + currentSubject +  "\" class=\"form-control codeInput\" placeholder=\"รหัสวิชา (ไม่ต้องใส่ตัวอักษร)\"></text> \
         </div> \
         <div class=\"col-md-3\" id=\"grade_" + currentSubject +  "Group\"> \
             <input type=\"text\" id=\"grade_" + currentSubject +  "\" class=\"form-control gradeInput\" placeholder=\"เกรด (กรอกในรูปแบบ 4.00)\"></text> \
