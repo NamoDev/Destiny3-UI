@@ -840,7 +840,7 @@ class UserController extends Controller{
     public function updateGradeInfo(Request $request, Applicant $applicant){
         $this->validate($request, [
             '*.subject' => 'in:sci,mat,eng,tha,soc',
-            '*.code' => 'required_with:*.subject',
+            '*.code' => 'required_with:*.subject|numeric|digits:5',
             '*.grade' => 'required_with:*.subject|min:0|max:4|numeric',
         ]);
 
