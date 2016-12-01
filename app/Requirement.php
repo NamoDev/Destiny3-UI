@@ -4,6 +4,7 @@ namespace App;
 
 use Exception;
 use Validator;
+use Config;
 
 class Requirement{
 
@@ -212,5 +213,32 @@ class Requirement{
 
     public static function averageGrade(Array $grade){
         return (array_sum($grade)/count($grade));
+    }
+
+    public static function verifyMoveIn($move_in_day, $move_in_month, $move_in_year){
+        $deadline = explode('/', Config::get('uiconfig.move_in_deadline'));
+        if($move_in_year < $deadline[2]){
+            return true;
+        }else if($move_in_year == $deadline[2]){
+            if($move_in_month < $deadline[1]){
+                return true;
+            }else if($move_in_month == $deadline[1]){
+                if($move_in_day < $deadline[0]){
+                    return true;
+                }else if($move_in_day == $deadline[0]){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public static function verifyHomeAndSchool($home_province, $school_province){
+        return ($home_province == $school_province);
     }
 }
