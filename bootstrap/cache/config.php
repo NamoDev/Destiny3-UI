@@ -2,7 +2,7 @@
   'app' => 
   array (
     'env' => 'local',
-    'debug' => false,
+    'debug' => true,
     'url' => 'http://dev.destinyui',
     'timezone' => 'Asia/Bangkok',
     'locale' => 'en',
@@ -191,6 +191,11 @@
       ),
     ),
     'prefix' => 'laravel',
+  ),
+  'captcha' => 
+  array (
+    'secret' => '6LdwBwcUAAAAAADQ_WU96cxAmnlSDoPgtU4_zAQB',
+    'sitekey' => '6LdwBwcUAAAAAEQaI6oRRQePEUZGChiWhnj1fLVr',
   ),
   'compile' => 
   array (
@@ -392,6 +397,7 @@
     'andromeda_url' => 'http://help.apply.triamudom.ac.th',
     'valkyrie_base_api_url' => 'http://dev.valkyrie',
     'valkyrie_api_key' => '',
+    'move_in_deadline' => '16/05/2558',
   ),
   'view' => 
   array (
@@ -400,10 +406,5 @@
       0 => 'D:\\MAMP\\htdocs\\site\\DestinyUIv3\\resources\\views',
     ),
     'compiled' => 'D:\\MAMP\\htdocs\\site\\DestinyUIv3\\storage\\framework\\views',
-  ),
-  'captcha' => 
-  array (
-    'secret' => '6LdwBwcUAAAAAADQ_WU96cxAmnlSDoPgtU4_zAQB',
-    'sitekey' => '6LdwBwcUAAAAAEQaI6oRRQePEUZGChiWhnj1fLVr',
   ),
 );
