@@ -16,7 +16,7 @@
         <select id="graduation_year" name="graduation_year" class="form-control select select-primary select-block mbl">
         <?php
             $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
-            $threshold = 30;
+            $threshold = 0;
 
             // See if we got any data:
             if(isset($applicantData['graduation_year'])){
