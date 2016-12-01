@@ -116,6 +116,7 @@
 
 var currentSubject = {{ $subjectCounter }};
 var gpaPattern = new RegExp("[1-4].[0-9]{2}");
+var subjectCodePattern = new RegExp("[0-9]{5}");
 
 $(function(){
     $("#grpsel_0").change();
@@ -189,6 +190,11 @@ $("#sendTheFormButton").click(function(e){
         if(!gpaPattern.test($("#grade_" + currentIndex).val())){
             hasErrors++;
             $("#grade_" + currentIndex + "Group").addClass("has-error");
+        }
+        
+        if(!subjectCodePattern.test($("#code_" + currentIndex).val())){
+            hasErrors++;
+            $("#code_" + currentIndex + "Group").addClass("has-error");
         }
 
         dataToSend[looper] = {
