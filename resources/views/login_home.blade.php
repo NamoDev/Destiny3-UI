@@ -32,17 +32,6 @@ https://tucc.triamudom.ac.th
     </div>
 </div>
 
-<div class="row" style="margin-top:10px;">
-    <div class="col-md-12">
-        <a href="#">
-        <div class="alert alert-danger">
-            {{-- TODO: Add the real thing --}}
-            ยังไม่เปิดให้ลงทะเบียน หากสมัครตอนนี้จะถือว่าเป็น<b>โมฆะ</b>
-        </div>
-        </a>
-    </div>
-</div>
-
 <div class="row" style="margin-top:15px;">
     <div class="col-md-6">
         <form class="login-form" method="POST" action="/login">
@@ -86,8 +75,7 @@ https://tucc.triamudom.ac.th
     <div class="col-md-6">
         <div class="flat-well">
             <legend>ยังไม่เคยลงทะเบียนใช่หรือไม่?</legend>
-            <?php //<a class="btn btn-primary btn-lg btn-block" href="/application/begin">สมัครใหม่</a> ?>
-            <a class="btn btn-primary btn-lg btn-block">สมัครใหม่</a>
+            <a class="btn btn-primary btn-lg btn-block" href="/application/begin">สมัครใหม่</a>
         </div>
         <div class="flat-well" style="margin-top:10px;">
             <legend>เกิดปัญหาในการสมัคร?</legend>
