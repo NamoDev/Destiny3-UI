@@ -39,7 +39,7 @@
             <div class="col-md-3 col-xs-12">
                 <span class="help-block">จังหวัด</span>
                 <select id="home_province" name="home_province" class="form-control select select-primary select-block mbl">
-                    {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['address']['home']['province']) ? $applicantData['address']['home']['province'] : NULL) }}
+                    {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['address']['home']['home_province']) ? $applicantData['address']['home']['home_province'] : NULL) }}
                 </select>
             </div>
             <div class="col-md-3 col-xs-12" id="home_postcodeGroup">
@@ -170,7 +170,7 @@
                 </div>
                 <div class="col-md-3 col-xs-12" id="current_roadGroup">
                     <span class="help-block">ถนน</span>
-                    <input id="current_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control" value="{{ isset($applicantData['address']['current']['current_road']) ? $applicantData['address']['current']['current_road'] : ''}}"">
+                    <input id="current_road" type="text" placeholder="หากไม่มีให้ใส่ขีด (-)" class="form-control" value="{{ isset($applicantData['address']['current']['current_road']) ? $applicantData['address']['current']['current_road'] : ''}}">
                 </div>
             </div>
             <div class="row">
@@ -187,7 +187,7 @@
                 <div class="col-md-3 col-xs-12">
                     <span class="help-block">จังหวัด</span>
                     <select id="current_province" name="current_province" class="form-control select select-primary select-block mbl">
-                        {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['address']['current']['province']) ? $applicantData['address']['current']['province'] : NULL) }}
+                        {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['address']['current']['current_province']) ? $applicantData['address']['current']['current_province'] : NULL) }}
                     </select>
                 </div>
                 <div class="col-md-3 col-xs-12" id="current_postcodeGroup">
