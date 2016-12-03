@@ -151,6 +151,31 @@ class ValidationServiceProvider extends ServiceProvider {
 
             return true;
         });
+
+        Validator::extend('before_deadline', function($attribute, $value, $parameters, $validator){
+            $input = explode('/', $value);
+            $deadline = explode('/', Config::get('uiconfig.move_in_deadline'));
+
+            if($input[2] < $deadline[2]){
+                return true;
+            }else if($input[2] == $deadline[2]){
+                if($input[1] < $deadline[1]){
+                    return true;
+                }else if($input[1] == $deadline[1]){
+                    if($input[0] < $deadline[0]){
+                        return true;
+                    }else if($input[0] == $deadline[0]){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        });
     }
 
     /**
