@@ -17,7 +17,7 @@ class Andromeda extends Controller {
         $visitingApplicant = new Applicant();
         if ($visitingApplicant->isLoggedIn()) {
             $applicant = Applicant::current();
-            $token->set('userdata', ['name' => $applicant['title'] . $applicant['fname'] . ' ' . $applicant['lname'], 'id' => $applicant['citizen_id'], 'email' => $applicant['email'], 'Url' => url()->previous() ?? 'NULL']);
+            $token->set('userdata', ['name' => $applicant['fname'] . ' ' . $applicant['lname'], 'id' => $applicant['citizen_id'], 'email' => $applicant['email'], 'Url' => url()->previous() ?? 'NULL']);
         }
         
         $token = $token->sign((new Sha256()), config('uiconfig.andromeda_key'))->getToken(); // Retrieves the generated token
