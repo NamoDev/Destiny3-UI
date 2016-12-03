@@ -505,7 +505,7 @@ class UserController extends Controller{
             // TODO: Do we need to specify minimum GPA?
             $this->validate($request, [
                 'school' => 'required',
-                'graduation_year' => 'required|integer',
+                //'graduation_year' => 'required|integer',
                 'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/',
                 'school_move_in_day' => 'required|integer',
                 'school_move_in_month' => 'required|integer',
