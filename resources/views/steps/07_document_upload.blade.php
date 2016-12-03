@@ -48,15 +48,8 @@
 <br />
 <div class="row">
     <div class="col-md-6">
-        <b>สำเนาทะเบียนบ้าน</b> ของบิดา
-        <form action="/api/v1/applicant/documents_upload/father_hr" class="dropzone" id="fileHRFather">
-            {{ csrf_field() }}
-            <input type="hidden" name="upload_token" value="{{ $upload_token }}">
-        </form>
-    </div>
-    <div class="col-md-6">
-        <b>สำเนาทะเบียนบ้าน</b> ของมารดา
-        <form action="/api/v1/applicant/documents_upload/mother_hr" class="dropzone" id="fileHRMother">
+        <b>ใบรับรองผลการเรียน</b>
+        <form action="/api/v1/applicant/documents_upload/gradecert" class="dropzone" id="fileGradeCert">
             {{ csrf_field() }}
             <input type="hidden" name="upload_token" value="{{ $upload_token }}">
         </form>
@@ -145,23 +138,7 @@ Dropzone.options.fileHRApplicant = {
         this.addFile(file);
     },
 };
-Dropzone.options.fileHRFather = {
-    maxFilesize: 5,
-    maxFiles: 1,
-    addRemoveLinks: true,
-    dictDefaultMessage: "<small>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเปิดกล่องเลือกไฟล์</small><small class=\"text-muted\" style=\"margin-top:-5px;display:block;\">PNG / JPG | ขนาดไฟล์สูงสุด 5 MB</small>",
-    dictRemoveFile: "ลบไฟล์",
-    dictFileTooBig: "ไม่สามารถอัพโหลดได้ เนื่องจากไฟล์มีขนาดใหญ่เกิน 5 MB",
-    dictInvalidFileType: "ไฟล์ผิดประเภท ต้องเป็นรูปภาพ PNG หรือ JPG เท่านั้น",
-    dictResponseError: "เกิดข้อผิดพลาดของเซิร์ฟเวอร์",
-    dictCancelUpload: "ยกเลิกการอัพโหลด",
-    dictCancelUploadConfirmation: "ยืนยันยกเลิกการอัพโหลดหรือไม่",
-    maxfilesexceeded: function(file) {
-        this.removeAllFiles();
-        this.addFile(file);
-    },
-};
-Dropzone.options.fileHRMother = {
+Dropzone.options.fileGradeCert = {
     maxFilesize: 5,
     maxFiles: 1,
     addRemoveLinks: true,
