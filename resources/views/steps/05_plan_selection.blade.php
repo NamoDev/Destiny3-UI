@@ -1,9 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'เลือกแผนการเรียน')
+@section('title', 'แผนการเรียนที่สมัคร')
 
 @section('content')
-<legend><i class="fa fa-institution"></i> เลือกแผนการเรียน <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
+<legend><i class="fa fa-institution"></i> แผนการเรียนที่สมัคร <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
+{{--
 <div class="row">
     <div class="col-md-12" id="applicationTypeCol">
         <span class="help-block">ประเภทการสมัคร</span>
@@ -23,6 +24,7 @@
         </select>
     </div>
 </div>
+--}}
 <div class="row">
     <div class="col-xs-12">
         <span class="help-block">แผนการเรียนที่นักเรียนต้องการสมัคร</span>
