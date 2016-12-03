@@ -14,6 +14,7 @@ namespace App\Http\Controllers;
 use Applicant;
 use DB;
 use Session;
+use Config;
 
 class Helper extends Controller {
 
@@ -233,6 +234,13 @@ class Helper extends Controller {
         // If we want to allow international students to apply:
         if($enableInt === 1){
             $provinces[] = "ต่างประเทศ";
+        }
+
+        if(Config::get('uiconfig.mode') == 'province_quota'){
+            $key = array_search('กรุงเทพมหานคร', $provinces);
+            if($key !== false){
+                unset($provinces[$key]);
+            }
         }
 
         foreach($provinces as $province){
