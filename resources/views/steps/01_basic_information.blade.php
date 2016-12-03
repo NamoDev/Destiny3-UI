@@ -148,6 +148,10 @@
                     <?php
                         $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
                         $threshold = 30;
+                        if(config('uiconfig.mode') == 'province_quota'){
+                            $year-=13;
+                            $threshold = 2;
+                        }
                         while($threshold >= 0){
                             if($year == $applicantData['birthdate']['year']){
                                 echo("<option value=\"$year\" selected>$year</option>");
