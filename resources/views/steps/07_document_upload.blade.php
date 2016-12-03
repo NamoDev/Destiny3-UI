@@ -14,7 +14,7 @@
 อัพโหลดเอกสารครั้งล่าสุด : {{ ($latestDocumentSubmission !== false) ? $latestDocumentSubmission : 'ยังไม่เคยอัพโหลดเอกสาร' }}
 <div class="row">
     <div class="col-md-6">
-        <b>รูปถ่าย</b> ขนาด 1.5 นิ้ว
+        <b>รูปถ่าย</b> ขนาด 2 นิ้ว (รูปถ่ายไม่เกิน 6 เดือน)
         <form action="/api/v1/applicant/documents_upload/image" class="dropzone" id="filePicture">
             {{ csrf_field() }}
             <input type="hidden" name="upload_token" value="{{ $upload_token }}">

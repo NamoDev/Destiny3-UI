@@ -35,7 +35,7 @@
                     <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
                     @endif
 
-                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(5)) btn-primary @else btn-default @endif btn-block" href="/application/plan">@if(App\Http\Controllers\Helper::checkStepCompletion(5)) <span class="fa fa-check-circle"></span> @endif เลือกแผนการเรียน</a>
+                    <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(5)) btn-primary @else btn-default @endif btn-block" href="/application/plan">@if(App\Http\Controllers\Helper::checkStepCompletion(5)) <span class="fa fa-check-circle"></span> @endif แผนการเรียนที่สมัคร</a>
                     <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
 
                     @if(Config::get('uiconfig.mode') != 'province_quota')
