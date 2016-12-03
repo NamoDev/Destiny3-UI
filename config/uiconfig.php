@@ -94,5 +94,5 @@ return [
     /*
 
     */
-    'move_in_deadline' => '16/05/2558'
+    'move_in_deadline' => '16/05/2558',
 ];
