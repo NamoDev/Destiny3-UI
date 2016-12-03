@@ -8,147 +8,40 @@
 
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
-        <span class="help-block">จบการศึกษาระดับชั้น<b>มัธยมศึกษาปีที่ 3</b> จากโรงเรียน</span>
+        <span class="help-block">ศึกษา<b>ชั้นมัธยมศึกษาปีที่ 2</b> โรงเรียน</span>
         <input id="school" name="school" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
     </div>
     <div class="col-md-3 col-xs-12">
-        <span class="help-block">ปีที่จบหรือคาดว่าจะจบการศึกษา</span>
-        <select id="graduation_year" name="graduation_year" class="form-control select select-primary select-block mbl">
-        <?php
-            $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
-            $threshold = 0;
-
-            // See if we got any data:
-            if(isset($applicantData['graduation_year'])){
-                // Yeah:
-                while($threshold >= 0){
-                    if($year == $applicantData['graduation_year']){
-                        echo("<option value=\"$year\" selected>$year</option>");
-                    }else{
-                        echo("<option value=\"$year\">$year</option>");
-                    }
-                    $year -= 1;
-                    $threshold -= 1;
-                }
-            }else{
-                // Nope.
-                while($threshold >= 0){
-                    echo("<option value=\"$year\">$year</option>");
-                    $year -= 1;
-                    $threshold -= 1;
-                }
-            }
-        ?>
-        </select>
+        <span class="help-block">ปีการศึกษา</span>
+        2558
     </div>
-    <div class="col-md-3 col-xs-12" id="gpaGroup">
-        <span class="help-block">เกรดเฉลี่ยสะสม</span>
-        <input id="gpa" name="gpa" type="text" placeholder="GPA ในรูปแบบ 0.00" class="form-control" value="{{ isset($applicantData['gpa']) ? $applicantData['gpa'] : ''}}" />
-    </div>
-</div>
-
-{{-- School move in date section, for use with Province Quota Operation Mode only --}}
-@if(Config::get("uiconfig.mode") == "province_quota")
-<div class="row">
-    <div class="col-md-6">
-        <span class="help-block">วันที่เริ่มเข้าศึกษา</span>
-        <div class="row">
-            <div class="col-xs-4">
-                <select id="moveinDay" name="moveinDay" class="form-control select select-primary select-block Wmbl">
-                    <?php
-                        $date = 1;
-                        // See if we already have data:
-                        if(isset($applicantData['school_move_in']['day'])){
-                            // Yep. Continue:
-                            while($date <= 31){
-                                if($date == $applicantData['school_move_in']['day']){
-                                    echo("<option value=\"$date\" selected>$date</option>");
-                                }else{
-                                    echo("<option value=\"$date\">$date</option>");
-                                }
-                                $date++;
-                            }
-                        }else{
-                            // NOPE!
-                            while($date <= 31){
-                                echo("<option value=\"$date\">$date</option>");
-                                $date++;
-                            }
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="col-xs-4">
-                <select id="moveinMonth" name="moveinMonth" class="form-control select select-primary select-block mbl">
-                    <?php
-                        $months = [
-                            1 => "มกราคม",
-                            2 => "กุมภาพันธ์",
-                            3 => "มีนาคม",
-                            4 => "เมษายน",
-                            5 => "พฤษภาคม",
-                            6 => "มิถุนายน",
-                            7 => "กรกฎาคม",
-                            8 => "สิงหาคม",
-                            9 => "กันยายน",
-                            10 => "ตุลาคม",
-                            11 => "พฤศจิกายน",
-                            12 => "ธันวาคม"
-                        ];
-
-                        // See if we already have data:
-                        if(isset($applicantData['school_move_in']['month'])){
-                            foreach($months as $month_id => $month_name){
-                                if($month_id == $applicantData['school_move_in']['month']){
-                                    echo("<option value=\"$month_id\" selected>$month_name</option>");
-                                }else{
-                                    echo("<option value=\"$month_id\">$month_name</option>");
-                                }
-                            }
-                        }else{
-                            // Nope.
-                            foreach($months as $month_id => $month_name){
-                                echo("<option value=\"$month_id\">$month_name</option>");
-                            }
-                        }
-                     ?>
-                </select>
-            </div>
-            <div class="col-xs-4">
-                <select id="moveinYear" name="moveinYear" class="form-control select select-primary select-block mbl">
-                    <?php
-                        $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
-                        $threshold = 30;
-
-                        // See if we already have data:
-                        if(isset($applicantData['school_move_in']['year'])){
-                            while($threshold >= 0){
-                                if($year == $applicantData['school_move_in']['year']){
-                                    echo("<option value=\"$year\" selected>$year</option>");
-                                }else{
-                                    echo("<option value=\"$year\">$year</option>");
-                                }
-                                $year -= 1;
-                                $threshold -= 1;
-                            }
-                        }else{
-                            // Nope:
-                            while($threshold >= 0){
-                                echo("<option value=\"$year\">$year</option>");
-                                $year -= 1;
-                                $threshold -= 1;
-                            }
-                        }
-                    ?>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <span class="help-block">จังหวัด (โรงเรียน)</span>
+    <div class="col-md-3 col-xs-12">
+        <span class="help-block">จังหวัดที่ตั้งโรงเรียน</span>
         <select id="schoolProvince" name="schoolProvince" class="form-control select select-primary select-block mbl">
             {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? $applicantData['school_province'] : NULL) }}
         </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12" id="schoolGroup">
+        <span class="help-block">กำลังศึกษา<b>ชั้นมัธยมศึกษาปีที่ 3</b> โรงเรียน</span>
+        <input id="school" name="school" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
+    </div>
+    <div class="col-md-3 col-xs-12">
+        <span class="help-block">ปีการศึกษา</span>
+        2559
+    </div>
+    <div class="col-md-3 col-xs-12">
+        <span class="help-block">จังหวัดที่ตั้งโรงเรียน</span>
+        <select id="schoolProvince" name="schoolProvince" class="form-control select select-primary select-block mbl">
+            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? $applicantData['school_province'] : NULL) }}
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-xs-12" id="gpaGroup">
+        <span class="help-block">เกรดเฉลี่ยสะสม 5 ภาคเรียน</span>
+        <input id="gpa" name="gpa" type="text" placeholder="GPA ในรูปแบบ 0.00" class="form-control" value="{{ isset($applicantData['gpa']) ? $applicantData['gpa'] : ''}}" />
     </div>
 </div>
 <div class="row">
@@ -159,7 +52,6 @@
         <button id="sendTheFormButton" class="btn btn-block btn-info">บันทึกข้อมูล</button>
     </div>
 </div>
-@endif
 
 @endsection
 
@@ -228,7 +120,7 @@ $("#sendTheFormButton").click(function(){
             data: {
                 _token: csrfToken,
                 school: $("#school").val(),
-                graduation_year: $("#graduation_year").val(),
+                //graduation_year: $("#graduation_year").val(),
                 gpa: $("#gpa").val(),
                 {{-- Additional data for province quota applicants: --}}
                 @if(Config::get("uiconfig.mode") == "province_quota")
