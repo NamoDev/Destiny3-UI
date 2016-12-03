@@ -722,8 +722,7 @@ class UserController extends Controller{
             'citizen_card',
             'transcript',
             'student_hr',
-            'father_hr',
-            'mother_hr',
+            'gradecert'
         );
 
         // Check if document name is in allow list
@@ -804,8 +803,7 @@ class UserController extends Controller{
             'citizen_card',
             'transcript',
             'student_hr',
-            'father_hr',
-            'mother_hr',
+            'gradecert'
         );
 
         foreach($expected as $key){
