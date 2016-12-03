@@ -66,6 +66,7 @@
         </select>
     </div>
 </div>
+<?php /*
 <div class="row" id="scienceMajorSelectionGroup" style="display:none;">
     <div class="col-xs-12">
         <div class="well">
@@ -184,6 +185,38 @@
                             echo("<option value=\"-1\">--- เลือกกลุ่มสาระ ---</option>");
                         ?>
                     </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+*/?>
+<?php //TODO Turn this mockup to a real thing ?>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="well">
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา วิทยาศาสตร์พื้นฐาน 5 ภาคเรียน</span>
+                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา วิทยาศาสตร์เพิ่มเติม 5 ภาคเรียน</span>
+                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา คณิตศาสตร์พื้นฐาน 5 ภาคเรียน</span>
+                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา คณิตศาสตร์เพิ่มเติม 5 ภาคเรียน</span>
+                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
         </div>
