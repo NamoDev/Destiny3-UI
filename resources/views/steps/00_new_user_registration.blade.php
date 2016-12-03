@@ -136,7 +136,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6" id="passwordGroup">
-                    <span class="help-block">รหัสผ่าน</span>
+                    <span class="help-block">กำหนดรหัสผ่านเข้าสู่ระบบ</span>
                     <input id="password" name="password" type="password" placeholder="กำหนดรหัสผ่าน" class="form-control" />
                 </div>
                 <div class="col-md-6" id="password_confirmGroup">
