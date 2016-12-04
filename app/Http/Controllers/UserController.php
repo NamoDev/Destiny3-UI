@@ -513,27 +513,40 @@ class UserController extends Controller{
             $isESAQuotaMode = 1;
 
             $this->validate($request, [
+                'school' => 'required',
+                'school_province' => 'required',
                 'school2' => 'required',
-                'school3' => 'required',
-                'school2_province' => 'required',
-                'school3_province' => 'required|same:school2_province',
+                'school2_province' => 'required|same:school_province',
                 'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/|min:3.80',
-             ]);
+            ]);
+
+            if($request->input('school_province') != $request->input('school2_province')){
+                return response()->json(['requirement' => ['The requirement has not been met']], 422);
+            }
+
+            // Prepare data for modification:
+            $modifyThis = [
+                'school' => $request->input('school'),
+                'school_province' => $request->input('school_province'),
+                'school2' => $request->input('school2'),
+                'school2_province' => $request->input('school2_province'),
+                'gpa' => $request->input('gpa'),
+            ];
         }else{
             // Normal operation mode
             $this->validate($request, [
                 'school' => 'required',
                 'graduation_year' => 'required|integer',
                 'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/',
-             ]);
-        }
+            ]);
 
-        // Prepare data for modification:
-        $modifyThis = [
-            "school" => $request->input("school"),
-            "graduation_year" => $request->input("graduation_year"),
-            "gpa" => $request->input("gpa")
-        ];
+            // Prepare data for modification:
+            $modifyThis = [
+                "school" => $request->input("school"),
+                "graduation_year" => $request->input("graduation_year"),
+                "gpa" => $request->input("gpa")
+            ];
+        }
 
         // Quota mode. Additional information needed:
         if($isESAQuotaMode === 1){
