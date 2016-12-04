@@ -116,6 +116,7 @@
                             <select id="address_move_in_year" name="address_move_in_year" style="width:100%;" class="form-control select select-primary select-block mbl">
                                 <?php
                                     $year = date("Y") + 543; // Assuming that "date" will be in Christian Era.
+                                    $year -= 1;
                                     $threshold = 30;
 
                                     if(isset($applicantData['address']['home_move_in_year'])){
