@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
         <span class="help-block">ศึกษา<b>ชั้นมัธยมศึกษาปีที่ 2</b> โรงเรียน</span>
-        <input id="school" name="school" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
+        <input id="school2" name="school2" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school2']) ? $applicantData['school2'] : ''}}" />
     </div>
     <div class="col-md-3 col-xs-12">
         <span class="help-block">ปีการศึกษา</span>
@@ -17,8 +17,8 @@
     </div>
     <div class="col-md-3 col-xs-12">
         <span class="help-block">จังหวัดที่ตั้งโรงเรียน</span>
-        <select id="schoolProvince" name="schoolProvince" class="form-control select select-primary select-block mbl">
-            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school_province']) ? $applicantData['school_province'] : NULL) }}
+        <select id="school2_province" name="school2_province" class="form-control select select-primary select-block mbl">
+            {{ App\Http\Controllers\Helper::printProvinceOptions(isset($applicantData['school2_province']) ? $applicantData['school2_province'] : NULL) }}
         </select>
     </div>
 </div>
