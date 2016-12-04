@@ -512,12 +512,11 @@ class UserController extends Controller{
             // ESA district quota operation mode
             $isESAQuotaMode = 1;
 
-            // TODO: Do we need to specify minimum GPA?
             $this->validate($request, [
                 'school2' => 'required',
                 'school3' => 'required',
                 'school2_province' => 'required',
-                'school3_province' => 'required',
+                'school3_province' => 'required|same:school2_province',
                 'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/|min:3.80',
              ]);
         }else{
