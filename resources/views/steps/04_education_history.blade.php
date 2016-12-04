@@ -166,6 +166,12 @@ $("#sendTheFormButton").click(function(){
 
 });
 
+
+</script>
+@endsection
+
+<?php
+/*
 var schoolsList = new Bloodhound({
     datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.word); },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -190,5 +196,5 @@ $('#school').typeahead(null, {
   source: schoolsList.ttAdapter()
 });
 
-</script>
-@endsection
+*/
+ ?>
