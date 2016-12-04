@@ -411,6 +411,16 @@ class UserController extends Controller{
                 'home_move_in_year' => 'required|integer|max:'.config('uiconfig.operation_year'),
             ]);
 
+            $v = Validator::make([
+                'home_move_in_date' => $request->input('home_move_in_day') .'/'. $request->input('home_move_in_month') .'/'. $request->input('home_move_in_year'),
+            ],[
+                'home_move_in_date' => 'before_deadline',
+            ]);
+
+            if($v->fails()){
+                return response()->json(['requirement' => ['The requirement has not been met']], 422);
+            }
+
             $modifyThis['address']['home_move_in_day'] = $request->input('home_move_in_day');
             $modifyThis['address']['home_move_in_month'] = $request->input('home_move_in_month');
             $modifyThis['address']['home_move_in_year'] = $request->input('home_move_in_year');
