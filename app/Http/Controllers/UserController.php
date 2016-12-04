@@ -801,8 +801,8 @@ class UserController extends Controller{
                   ->where('citizen_id', Session::get('applicant_citizen_id'))
                   ->pluck('documents.'.Session::get('upload_time'))[0];
 
-        if(count($data) !== 6){
-            throw new Exception('Documents count not equal to 6');
+        if(count($data) !== 5){
+            throw new Exception('Documents count not equal to 5');
         }
 
         $expected = array(
