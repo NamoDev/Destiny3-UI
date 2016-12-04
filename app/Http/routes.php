@@ -50,7 +50,6 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth', 'flow']
     Route::get('day', 'UIPages@step6_applicationDaySelection'); // Step 6 : basic information
     Route::get('documents', 'UIPages@step7_uploadDocuments'); // Step 7 : upload documents
     Route::get('change_password', 'UIPages@changePasswordPage'); // Change password
-    Route::get('grade', 'UIPages@step8_gradeInfo'); // Step 8 : Grade form for province quota
 
     Route::get('quota_confirm', 'UIPages@districtQuotaSubmissionConfirmation'); // District quota confirmation page
 
