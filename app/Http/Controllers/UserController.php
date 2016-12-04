@@ -843,30 +843,6 @@ class UserController extends Controller{
 
     }
 
-    public function updateGradeInfo(Request $request, Applicant $applicant){
-        $this->validate($request, [
-            '*.subject' => 'in:sci,mat,eng,tha,soc',
-            '*.code' => 'required_with:*.subject|numeric|digits:5',
-            '*.grade' => 'required_with:*.subject|min:0|max:4|numeric',
-        ]);
-
-        $data = $request->all();
-        unset($data['_token']);
-
-        $data = array_values($data); // Reset array key
-
-        if($applicant->modify(Session::get('applicant_citizen_id'), array('quota_grade' => $data))){
-
-            // Mark step as done
-            (new Applicant)->markStepAsDone(Session::get('applicant_citizen_id'), 8);
-
-            return RESTResponse::ok();
-        }else{
-            // error!
-            return RESTResponse::serverError('Unable to modify applicant data');
-        }
-    }
-
     public function sendDataToValkyrie(Request $request, Applicant $applicant){
         if(Applicant::allStepComplete()){
             $db = Applicant::current();
