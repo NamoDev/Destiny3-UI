@@ -245,7 +245,7 @@ class Applicant {
      */
     public static function allStepComplete(){
         if(config('uiconfig.mode') == 'province_quota'){
-            $required_step = array(1, 2, 3, 4, 5, 7, 8);
+            $required_step = array(1, 2, 3, 4, 5, 7);
         }else if(config('uiconfig.mode') == 'normal'){
             $required_step = array(1, 2, 3, 4, 5, 6);
         }else{
