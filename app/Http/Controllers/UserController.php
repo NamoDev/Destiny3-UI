@@ -421,6 +421,20 @@ class UserController extends Controller{
                 return response()->json(['requirement' => ['The requirement has not been met']], 424);
             }
 
+            $step_done = DB::collection('applicants')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
+                            ->pluck('steps_completed')[0];
+
+            if(in_array(4, $step_done)){
+                $school_province = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->pluck('school_province')[0];
+
+                if($request->input('home_province') != $school_province){
+                    return response()->json(['requirement' => ['The requirement has not been met']], 424);
+                }
+            }
+
             $modifyThis['address']['home_move_in_day'] = $request->input('home_move_in_day');
             $modifyThis['address']['home_move_in_month'] = $request->input('home_move_in_month');
             $modifyThis['address']['home_move_in_year'] = $request->input('home_move_in_year');
@@ -522,6 +536,20 @@ class UserController extends Controller{
 
             if($request->input('school_province') != $request->input('school2_province')){
                 return response()->json(['requirement' => ['The requirement has not been met']], 424);
+            }
+
+            $step_done = DB::collection('applicants')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
+                            ->pluck('steps_completed')[0];
+
+            if(in_array(3, $step_done)){
+                $home_province = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->pluck('address.home.home_province')[0];
+
+                if($request->input('school_province') != $home_province){
+                    return response()->json(['requirement' => ['The requirement has not been met']], 424);
+                }
             }
 
             // Prepare data for modification:
