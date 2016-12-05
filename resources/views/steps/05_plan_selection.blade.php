@@ -386,14 +386,10 @@ $("#sendTheFormButton").click(function(){
             hasErrors += isFieldBlank("sm_advancedmath");
             hasErrors += isFieldBlank("sm_advancedscience");
             var gradeData = {
-                "math": {
-                    "basic" : $("#sm_basicmath").val(),
-                    "advanced": $("#sm_advancedmath").val()
-                },
-                "science": {
-                    "basic" : $("#sm_basicsci").val(),
-                    "advanced": $("#sm_advancedscience").val()
-                }
+                "math_basic" : $("#sm_basicmath").val(),
+                "math_advanced": $("#sm_advancedmath").val(),
+                "science_basic" : $("#sm_basicsci").val(),
+                "science_advanced": $("#sm_advancedscience").val()
             }
         break;
         case "am":
@@ -403,17 +399,11 @@ $("#sendTheFormButton").click(function(){
             hasErrors += isFieldBlank("am_basiceng");
             hasErrors += isFieldBlank("am_advancedeng");
             var gradeData = {
-                "math": {
-                    "basic" : $("#am_basicmath").val(),
-                    "advanced": $("#am_advancedmath").val()
-                },
-                "english": {
-                    "basic" : $("#am_basiceng").val(),
-                    "advanced": $("#am_advancedeng").val()
-                },
-                "thai" : {
-                    "basic" :  $("#am_thai").val()
-                }
+                "math_basic" : $("#am_basicmath").val(),
+                "math_advanced": $("#am_advancedmath").val(),
+                "english_basic" : $("#am_basiceng").val(),
+                "english_advanced": $("#am_advancedeng").val(),
+                "thai_basic" :  $("#am_thai").val()
             }
         break;
         case "ar":
@@ -422,16 +412,10 @@ $("#sendTheFormButton").click(function(){
             hasErrors += isFieldBlank("ar_advancedeng");
             hasErrors += isFieldBlank("ar_basicsoc");
             var gradeData = {
-                "english": {
-                    "basic" : $("#ar_basiceng").val(),
-                    "advanced": $("#ar_advancedeng").val()
-                },
-                "thai" : {
-                    "basic" :  $("#ar_basicthai").val()
-                },
-                "social" : {
-                    "basic" :  $("#ar_basicsoc").val()
-                }
+                "english_basic" : $("#ar_basiceng").val(),
+                "english_advanced": $("#ar_advancedeng").val(),
+                "thai_basic" :  $("#ar_basicthai").val(),
+                "social_basic" :  $("#ar_basicsoc").val()
             }
         break;
         default:
