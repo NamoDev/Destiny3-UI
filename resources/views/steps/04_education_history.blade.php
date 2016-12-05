@@ -86,6 +86,7 @@ $("#sendTheFormButton").click(function(){
     // Disallow blank fields:
     hasErrors += isFieldBlank("gpa");
     hasErrors += isFieldBlank("school");
+    hasErrors += isFieldBlank("school2");
 
     // Check GPA. First, see if the user has given us something higher than 4.00:
     if(!isNaN(parseFloat($("#gpa").val()))){
