@@ -33,10 +33,10 @@ https://tucc.triamudom.ac.th
             <br />
             <div class="row">
                 <div class="col-xs-6">
-                    <a class="btn btn-block btn-primary" href="/application/home">กลับไปแก้ไขข้อมูล</a>
+                    <a class="btn btn-block btn-info" href="/application/home">กลับไปแก้ไขข้อมูล</a>
                 </div>
                 <div class="col-xs-6">
-                    <a class="btn btn-block btn-inverse disabled" href="#" id="btnSend">ยืนยันการส่งข้อมูล</a>
+                    <a class="btn btn-block btn-primary disabled" href="#" id="btnSend">ยืนยันการส่งข้อมูล</a>
                 </div>
             </div>
         </div>
