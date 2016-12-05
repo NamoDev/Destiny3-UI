@@ -446,6 +446,9 @@ $("#sendTheFormButton").click(function(){
                     case 422:
                         notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
                     break;
+                    case 424:
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> คุณสมบัติไม่ครบถ้วน กรุณาติดต่อ <เบอร์ห้องวิชาการ>", "warning");
+                    break;
                     default:
                         console.log("(" + request.status + ") Exception:" + request.responseText);
                         notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
