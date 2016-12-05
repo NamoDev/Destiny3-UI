@@ -197,28 +197,70 @@
         <div class="well">
             <div class="row">
                 <div class="col-xs-12">
-                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา วิทยาศาสตร์พื้นฐาน 5 ภาคเรียน</span>
-                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+                    กรอกเกรดเฉลี่ย <b>5 ภาคเรียน</b> ของแต่ละรายวิชาลงในช่องด้านล่าง
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา วิทยาศาสตร์เพิ่มเติม 5 ภาคเรียน</span>
-                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+            <div class="row" id="gradegroup_sm">
+                <div class="col-sm-3">
+                    <span class="help-block">คณิตศาสตร์พื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block">วิทยาศาสตร์พื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block">คณิตศาสตร์เพิ่มเติม</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block">วิทยาศาสตร์เพิ่มเติม</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา คณิตศาสตร์พื้นฐาน 5 ภาคเรียน</span>
-                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+
+            <div class="row" id="gradegroup_am" style="display:none;">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <span class="help-block">ภาษาไทย<br />พื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-2">
+                    <span class="help-block">คณิตศาสตร์<br />พื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-2">
+                    <span class="help-block">คณิตศาสตร์<br />เพิ่มเติม</span>
+                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-2">
+                    <span class="help-block">ภาษาอังกฤษ<br />พื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-2">
+                    <span class="help-block">ภาษาอังกฤษ<br />เพิ่มเติม</span>
+                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <span class="help-block">เกรดเฉลี่ยสะสมวิชา คณิตศาสตร์เพิ่มเติม 5 ภาคเรียน</span>
-                    <input id="" name="" type="text" placeholder="กรอกในรูปแบบ 4.00" class="form-control" value=""/>
+
+            <div class="row" id="gradegroup_ar" style="display:none;">
+                <div class="col-sm-3">
+                    <span class="help-block">ภาษาไทยพื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block">ภาษาอังกฤษพื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block">ภาษาอังกฤษเพิ่มเติม</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                </div>
+                <div class="col-sm-3">
+                    <span class="help-block">สังคมศึกษาพื้นฐาน</span>
+                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -304,15 +346,21 @@ $("select[id*=\"sm_\"]").change(function(){
     updateScienceMajorSelectionBoxes();
 });
 $("#plan").change(function(){
-    if($("#plan").val() == 5){
-        // Science. Enable major selection:
-        if($("#scienceMajorSelectionGroup").not(":visible")){
-            $("#scienceMajorSelectionGroup").fadeIn(200);
-        }
-    }else{
-        if($("#scienceMajorSelectionGroup").is(":visible")){
-            $("#scienceMajorSelectionGroup").fadeOut(200);
-        }
+    switch(parseInt($("#plan").val())){
+        case 5:
+            $("#gradegroup_sm").fadeIn(200);
+            $("#gradegroup_am").fadeOut(200);
+            $("#gradegroup_ar").fadeOut(200);
+        break;
+        case 4:
+            $("#gradegroup_sm").fadeOut(200);
+            $("#gradegroup_am").fadeIn(200);
+            $("#gradegroup_ar").fadeOut(200);
+        break;
+        default:
+            $("#gradegroup_sm").fadeOut(200);
+            $("#gradegroup_am").fadeOut(200);
+            $("#gradegroup_ar").fadeIn(200);
     }
 });
 function sortSelectBox(){
