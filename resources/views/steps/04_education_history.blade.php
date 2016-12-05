@@ -120,7 +120,7 @@ $("#sendTheFormButton").click(function(){
             url: '/api/v1/applicant/education_history',
             data: {
                 _token: csrfToken,
-                school2_name : $("#school2").val(),
+                school2 : $("#school2").val(),
                 school2_province : $("#school2_province").val(),
                 school : $("#school3").val(),
                 school_province : $("#schoolProvince").val(),
