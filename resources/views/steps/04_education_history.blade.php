@@ -122,8 +122,8 @@ $("#sendTheFormButton").click(function(){
                 _token: csrfToken,
                 school2_name : $("#school2").val(),
                 school2_province : $("#school2_province").val(),
-                school_name : $("#school3").val(),
-                school_province : $("#school3_province").val(),
+                school : $("#school3").val(),
+                school_province : $("#schoolProvince").val(),
                 grade : $("#gpa").val()
             },
             error: function (request, status, error) {
