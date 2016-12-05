@@ -201,63 +201,63 @@
                 </div>
             </div>
             <div class="row" id="gradegroup_sm">
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="sm_basicmathGroup">
                     <span class="help-block">คณิตศาสตร์พื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_basicmath" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="sm_basicsciGroup">
                     <span class="help-block">วิทยาศาสตร์พื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_basicsci" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="sm_advancedmathGroup">
                     <span class="help-block">คณิตศาสตร์เพิ่มเติม</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_advancedmath" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="sm_advancedscienceGroup">
                     <span class="help-block">วิทยาศาสตร์เพิ่มเติม</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_advancedscience" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
 
             <div class="row" id="gradegroup_am" style="display:none;">
-                <div class="col-sm-2 col-sm-offset-1">
+                <div class="col-sm-2 col-sm-offset-1" id="am_thaiGroup">
                     <span class="help-block">ภาษาไทย<br />พื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_thai" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2" id="am_basicmathGroup">
                     <span class="help-block">คณิตศาสตร์<br />พื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_basicmath" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2" id="am_advancedmathGroup">
                     <span class="help-block">คณิตศาสตร์<br />เพิ่มเติม</span>
-                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_advancedmath" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2" id="am_basicengGroup">
                     <span class="help-block">ภาษาอังกฤษ<br />พื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_basiceng" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2" id="am_advancedengGroup">
                     <span class="help-block">ภาษาอังกฤษ<br />เพิ่มเติม</span>
-                    <input id="" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_advancedeng" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
 
             <div class="row" id="gradegroup_ar" style="display:none;">
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="ar_basicthaiGroup">
                     <span class="help-block">ภาษาไทยพื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_basicthai" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="ar_basicengGroup">
                     <span class="help-block">ภาษาอังกฤษพื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_basiceng" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="ar_advancedengGroup">
                     <span class="help-block">ภาษาอังกฤษเพิ่มเติม</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_advancedeng" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" id="ar_basicsocGroup">
                     <span class="help-block">สังคมศึกษาพื้นฐาน</span>
-                    <input id="" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_basicsoc" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
                 </div>
             </div>
 
@@ -291,6 +291,7 @@ var scienceMajors = {
 var scienceMajorsSelected = [];
 var activeMajorSelectBox = 1;
 var majorSelectionComplete = 0;
+var currentApplicationPath = "sm";
 
 $(function(){
     $("#application_type").change();
@@ -303,16 +304,6 @@ $(function(){
     @endif
 
     $("#plan").change();
-
-    // Update science submajor selection boxes:
-    $("#sm_1").change();
-    $("#sm_2").change();
-    $("#sm_3").change();
-    $("#sm_4").change();
-    $("#sm_5").change();
-    $("#sm_6").change();
-    $("#sm_7").change();
-    $("#sm_8").change();
 
 });
 $("#application_type").change(function(){
@@ -351,16 +342,19 @@ $("#plan").change(function(){
             $("#gradegroup_sm").fadeIn(200);
             $("#gradegroup_am").fadeOut(200);
             $("#gradegroup_ar").fadeOut(200);
+            currentApplicationPath = "sm";
         break;
         case 4:
             $("#gradegroup_sm").fadeOut(200);
             $("#gradegroup_am").fadeIn(200);
             $("#gradegroup_ar").fadeOut(200);
+            currentApplicationPath = "am";
         break;
         default:
             $("#gradegroup_sm").fadeOut(200);
             $("#gradegroup_am").fadeOut(200);
             $("#gradegroup_ar").fadeIn(200);
+            currentApplicationPath = "ar";
     }
 });
 function sortSelectBox(){
@@ -373,43 +367,130 @@ function sortSelectBox(){
     $('#plan').html(selectList);
 }
 
-$("#clearMajorSelection").click(function(){
-    // Are you sure?
-    bootbox.confirm({
-        message: "<b>ยืนยันการเลือกกลุ่มสาระการเรียนรู้ที่เน้นใหม่</b><br />ตัวเลือกปัจจุบันของนักเรียนจะถูกล้างค่าทั้งหมด โปรดยืนยันการดำเนินการต่อ",
-        buttons: {
-            cancel: {
-                label: "<i class=\"fa fa-times\"></i> ยกเลิก"
+$("#sendTheFormButton").click(function(){
+
+    // Tell the user to wait:
+    $("#plsWaitModal").modal("show");
+
+    // Error checking variable
+    var hasErrors = 0;
+
+    // TODO: More front-end checks here?
+    // TODO: Grade input box validation depending on application path
+
+    // Validate & group grade data for each application path:
+    switch(currentApplicationPath){
+        case "sm":
+            hasErrors += isFieldBlank("sm_basicmath");
+            hasErrors += isFieldBlank("sm_basicsci");
+            hasErrors += isFieldBlank("sm_advancedmath");
+            hasErrors += isFieldBlank("sm_advancedscience");
+            var gradeData = {
+                "math": {
+                    "basic" : $("#sm_basicmath").val(),
+                    "advanced": $("#sm_advancedmath").val()
+                },
+                "science": {
+                    "basic" : $("#sm_basicsci").val(),
+                    "advanced": $("#sm_advancedscience").val()
+                }
+            }
+        break;
+        case "am":
+            hasErrors += isFieldBlank("am_thai");
+            hasErrors += isFieldBlank("am_basicmath");
+            hasErrors += isFieldBlank("am_advancedmath");
+            hasErrors += isFieldBlank("am_basiceng");
+            hasErrors += isFieldBlank("am_advancedeng");
+            var gradeData = {
+                "math": {
+                    "basic" : $("#am_basicmath").val(),
+                    "advanced": $("#am_advancedmath").val()
+                },
+                "english": {
+                    "basic" : $("#am_basiceng").val(),
+                    "advanced": $("#am_advancedeng").val()
+                },
+                "thai" : {
+                    "basic" :  $("#am_thai").val()
+                }
+            }
+        break;
+        case "ar":
+            hasErrors += isFieldBlank("ar_basicthai");
+            hasErrors += isFieldBlank("ar_basiceng");
+            hasErrors += isFieldBlank("ar_advancedeng");
+            hasErrors += isFieldBlank("ar_basicsoc");
+            var gradeData = {
+                "english": {
+                    "basic" : $("#ar_basiceng").val(),
+                    "advanced": $("#ar_advancedeng").val()
+                },
+                "thai" : {
+                    "basic" :  $("#ar_basicthai").val()
+                },
+                "social" : {
+                    "basic" :  $("#ar_basicsoc").val()
+                }
+            }
+        break;
+        default:
+            // Shouldn't happen. Maybe throw an error here?
+            hasErrors++;
+    }
+
+    console.log(gradeData);
+
+    // Build the data-to-send array:
+    var dataToSend = {
+        _token: csrfToken,
+        application_type: $("#application_type").val(),
+        quota_type: $("#quota_type").val(),
+        plan: $("#plan").val(),
+        grade: gradeData
+    };
+
+    // Any errors?
+    if(hasErrors == 0){
+        // Nope.
+        $.ajax({
+            url: '/api/v1/applicant/plan_selection',
+            data: dataToSend,
+            error: function (request, status, error) {
+                $("#plsWaitModal").modal("hide");
+                switch(request.status){
+                    case 422:
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
+                    break;
+                    default:
+                        console.log("(" + request.status + ") Exception:" + request.responseText);
+                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
+                }
             },
-            confirm: {
-                label: "<i class=\"fa fa-check\"></i> ยืนยัน"
-            }
-        },
-        callback: function (result) {
-            if(result === true){
-                // Reset selections:
-                $("[id^=sm_]").val("-1").trigger("change.select2");
+            dataType: 'json',
+            success: function(data) {
 
-                // Reset completion status:
-                majorSelectionComplete = 0;
+                // Tell the user that everything went well
+                $("#plsWaitModal").modal("hide");
+                notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
 
-                // Clear the old 'selected' array & reset index
-                scienceMajorsSelected.length = 0;
-                activeMajorSelectBox = 1;
+                setTimeout(function(){
+                     location.reload();
+                }, 1500);
 
-                // Re-enable the first box
-                enableScienceMajorSelectBox(1);
-            }
-        }
-    });
+            },
+            type: 'POST'
+        });
+    }
 
 });
 
-function enableScienceMajorSelectBox(id){
-    $("[id^=sm_]").prop("disabled", true);
-    $("#sm_" + id).prop("disabled", false);
-    return true;
-}
+</script>
+@endsection
+
+<?php
+/*
+
 
 function updateScienceMajorSelectionBoxes(){
 
@@ -474,80 +555,43 @@ function updateScienceMajorSelectionBoxes(){
 
 }
 
-$("#sendTheFormButton").click(function(){
+$("#clearMajorSelection").click(function(){
+    // Are you sure?
+    bootbox.confirm({
+        message: "<b>ยืนยันการเลือกกลุ่มสาระการเรียนรู้ที่เน้นใหม่</b><br />ตัวเลือกปัจจุบันของนักเรียนจะถูกล้างค่าทั้งหมด โปรดยืนยันการดำเนินการต่อ",
+        buttons: {
+            cancel: {
+                label: "<i class=\"fa fa-times\"></i> ยกเลิก"
+            },
+            confirm: {
+                label: "<i class=\"fa fa-check\"></i> ยืนยัน"
+            }
+        },
+        callback: function (result) {
+            if(result === true){
+                // Reset selections:
+                $("[id^=sm_]").val("-1").trigger("change.select2");
 
-    // Tell the user to wait:
-    $("#plsWaitModal").modal("show");
+                // Reset completion status:
+                majorSelectionComplete = 0;
 
-    // Error checking variable
-    var hasErrors = 0;
+                // Clear the old 'selected' array & reset index
+                scienceMajorsSelected.length = 0;
+                activeMajorSelectBox = 1;
 
-    // TODO: More front-end checks here?
-
-    // Build the data-to-send array:
-    var dataToSend = {
-        _token: csrfToken,
-        application_type: $("#application_type").val(),
-        quota_type: $("#quota_type").val(),
-        plan: $("#plan").val()
-    };
-
-    // If the applicant is majoring in science, we need to make sure they've chosen their sub-majors:
-    if(parseInt($("#plan").val()) == 5){
-        if(majorSelectionComplete != 1){
-            // Uh-Oh, incomplete information!
-            hasErrors += 1;
-            $("#plsWaitModal").modal("hide");
-            notify("<i class='fa fa-exclamation-triangle text-warning'></i> กรุณาเลือกกลุ่มสาระการเรียนรู้ที่เน้นให้ครบ 8 ลำดับ", "warning");
-        }else{
-            // Everything's OK, but we also need to add additional information to the data array:
-            dataToSend.majors = [
-                $("#sm_1").val(),
-                $("#sm_2").val(),
-                $("#sm_3").val(),
-                $("#sm_4").val(),
-                $("#sm_5").val(),
-                $("#sm_6").val(),
-                $("#sm_7").val(),
-                $("#sm_8").val()
-            ];
+                // Re-enable the first box
+                enableScienceMajorSelectBox(1);
+            }
         }
-    }
-
-    // Any errors?
-    if(hasErrors == 0){
-        // Nope.
-        $.ajax({
-            url: '/api/v1/applicant/plan_selection',
-            data: dataToSend,
-            error: function (request, status, error) {
-                $("#plsWaitModal").modal("hide");
-                switch(request.status){
-                    case 422:
-                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
-                    break;
-                    default:
-                        console.log("(" + request.status + ") Exception:" + request.responseText);
-                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาลองใหม่อีกครั้ง", "danger");
-                }
-            },
-            dataType: 'json',
-            success: function(data) {
-
-                // Tell the user that everything went well
-                $("#plsWaitModal").modal("hide");
-                notify("<i class='fa fa-check'></i> บันทึกข้อมูลเรียบร้อย", "success");
-
-                setTimeout(function(){
-                     location.reload();
-                }, 1500);
-
-            },
-            type: 'POST'
-        });
-    }
+    });
 
 });
 
-</script>
-@endsection
+function enableScienceMajorSelectBox(id){
+    $("[id^=sm_]").prop("disabled", true);
+    $("#sm_" + id).prop("disabled", false);
+    return true;
+}
+
+*/
+ ?>
