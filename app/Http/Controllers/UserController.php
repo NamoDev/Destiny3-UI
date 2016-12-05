@@ -692,43 +692,43 @@ class UserController extends Controller{
         switch ($request->input('plan')) {
             case 1:
                 $quota_grade = [
-                    'english_basic' => $request->input('english_basic'),
-                    'english_advanced' => $request->input('english_advanced'),
-                    'thai_basic' => $request->input('thai_basic'),
-                    'social_basic' => $request->input('social_basic'),
+                    'english_basic' => $request->input('grade.english_basic'),
+                    'english_advanced' => $request->input('grade.english_advanced'),
+                    'thai_basic' => $request->input('grade.thai_basic'),
+                    'social_basic' => $request->input('grade.social_basic'),
                 ];
             break;
             case 2:
                 $quota_grade = [
-                    'english_basic' => $request->input('english_basic'),
-                    'english_advanced' => $request->input('english_advanced'),
-                    'thai_basic' => $request->input('thai_basic'),
-                    'social_basic' => $request->input('social_basic'),
+                    'english_basic' => $request->input('grade.english_basic'),
+                    'english_advanced' => $request->input('grade.english_advanced'),
+                    'thai_basic' => $request->input('grade.thai_basic'),
+                    'social_basic' => $request->input('grade.social_basic'),
                 ];
             break;
             case 3:
                 $quota_grade = [
-                    'english_basic' => $request->input('english_basic'),
-                    'english_advanced' => $request->input('english_advanced'),
-                    'thai_basic' => $request->input('thai_basic'),
-                    'social_basic' => $request->input('social_basic'),
+                    'english_basic' => $request->input('grade.english_basic'),
+                    'english_advanced' => $request->input('grade.english_advanced'),
+                    'thai_basic' => $request->input('grade.thai_basic'),
+                    'social_basic' => $request->input('grade.social_basic'),
                 ];
             break;
             case 4:
                 $quota_grade = [
-                    'english_basic' => $request->input('english_basic'),
-                    'english_advanced' => $request->input('english_advanced'),
-                    'thai_basic' => $request->input('thai_basic'),
-                    'math_basic' => $request->input('math_basic'),
-                    'math_advanced' => $request->input('math_advanced'),
+                    'english_basic' => $request->input('grade.english_basic'),
+                    'english_advanced' => $request->input('grade.english_advanced'),
+                    'thai_basic' => $request->input('grade.thai_basic'),
+                    'math_basic' => $request->input('grade.math_basic'),
+                    'math_advanced' => $request->input('grade.math_advanced'),
                 ];
             break;
             case 5:
                 $quota_grade = [
-                    'math_basic' => $request->input('math_basic'),
-                    'math_advanced' => $request->input('math_advanced'),
-                    'science_basic' => $request->input('science_basic'),
-                    'science_advanced' => $request->input('science_advanced'),
+                    'math_basic' => $request->input('grade.math_basic'),
+                    'math_advanced' => $request->input('grade.math_advanced'),
+                    'science_basic' => $request->input('grade.science_basic'),
+                    'science_advanced' => $request->input('grade.science_advanced'),
                 ];
             break;
             default:
