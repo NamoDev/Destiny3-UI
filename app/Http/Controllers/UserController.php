@@ -421,6 +421,20 @@ class UserController extends Controller{
                 return response()->json(['requirement' => ['The requirement has not been met']], 424);
             }
 
+            $step_done = DB::collection('applicants')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
+                            ->pluck('steps_completed')[0];
+
+            if(in_array(4, $step_done)){
+                $school_province = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->pluck('school_province')[0];
+
+                if($request->input('home_province') != $school_province){
+                    return response()->json(['requirement' => ['The requirement has not been met']], 424);
+                }
+            }
+
             $modifyThis['address']['home_move_in_day'] = $request->input('home_move_in_day');
             $modifyThis['address']['home_move_in_month'] = $request->input('home_move_in_month');
             $modifyThis['address']['home_move_in_year'] = $request->input('home_move_in_year');
@@ -524,6 +538,20 @@ class UserController extends Controller{
                 return response()->json(['requirement' => ['The requirement has not been met']], 424);
             }
 
+            $step_done = DB::collection('applicants')
+                            ->where('citizen_id', Session::get('applicant_citizen_id'))
+                            ->pluck('steps_completed')[0];
+
+            if(in_array(3, $step_done)){
+                $home_province = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->pluck('address.home.home_province')[0];
+
+                if($request->input('school_province') != $home_province){
+                    return response()->json(['requirement' => ['The requirement has not been met']], 424);
+                }
+            }
+
             // Prepare data for modification:
             $modifyThis = [
                 'school' => $request->input('school'),
@@ -583,11 +611,61 @@ class UserController extends Controller{
 
         // Verify inputs:
         $this->validate($request, [
-            'application_type' => 'required|integer',
-            'quota_type' => 'required|integer',
+            //'application_type' => 'required|integer',
+            //'quota_type' => 'required|integer',
             'plan' => 'required|integer|min:1|max:9',
-            'majors' => 'required_if:plan,5'
         ]);
+
+        switch ($request->input('plan')) {
+            case 1:
+                $v = Validator::make($request->all(), [
+                    'grade.english_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.english_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.thai_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.social_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                ]);
+            break;
+            case 2:
+                $v = Validator::make($request->all(), [
+                    'grade.english_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.english_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.thai_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.social_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                ]);
+            break;
+            case 3:
+                $v = Validator::make($request->all(), [
+                    'grade.english_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.english_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.thai_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.social_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                ]);
+            break;
+            case 4:
+                $v = Validator::make($request->all(), [
+                    'grade.english_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.english_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.thai_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.math_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.math_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                ]);
+            break;
+            case 5:
+                $v = Validator::make($request->all(), [
+                    'grade.math_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.math_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.science_basic' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                    'grade.science_advanced' => 'required|numeric|min:3.9|max:4|regex:/[1-4].[0-9]{2}/',
+                ]);
+            break;
+            default:
+                throw new Exception('Unexpected plan');
+            break;
+        }
+
+        if($v->fails()){
+            return response()->json(['requirement' => ['The requirement has not been met']], 424);
+        }
 
         // See if we're in District Quota mode. If so, we'll always force the application type to 2:
         if(Config::get("uiconfig.mode") == "province_quota"){
