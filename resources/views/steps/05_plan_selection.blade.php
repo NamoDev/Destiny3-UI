@@ -203,61 +203,61 @@
             <div class="row" id="gradegroup_sm">
                 <div class="col-sm-3" id="sm_basicmathGroup">
                     <span class="help-block">คณิตศาสตร์พื้นฐาน</span>
-                    <input id="sm_basicmath" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_basicmath" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['math_basic']) ? $applicantData['quota_grade']['math_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-3" id="sm_basicsciGroup">
                     <span class="help-block">วิทยาศาสตร์พื้นฐาน</span>
-                    <input id="sm_basicsci" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_basicsci" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['science_basic']) ? $applicantData['quota_grade']['science_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-3" id="sm_advancedmathGroup">
                     <span class="help-block">คณิตศาสตร์เพิ่มเติม</span>
-                    <input id="sm_advancedmath" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_advancedmath" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['math_advanced']) ? $applicantData['quota_grade']['math_advanced'] : ''}}"/>
                 </div>
                 <div class="col-sm-3" id="sm_advancedscienceGroup">
                     <span class="help-block">วิทยาศาสตร์เพิ่มเติม</span>
-                    <input id="sm_advancedscience" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="sm_advancedscience" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['science_advanced']) ? $applicantData['quota_grade']['science_advanced'] : ''}}"/>
                 </div>
             </div>
 
             <div class="row" id="gradegroup_am" style="display:none;">
                 <div class="col-sm-2 col-sm-offset-1" id="am_thaiGroup">
                     <span class="help-block">ภาษาไทย<br />พื้นฐาน</span>
-                    <input id="am_thai" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_thai" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['thai_basic']) ? $applicantData['quota_grade']['thai_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-2" id="am_basicmathGroup">
                     <span class="help-block">คณิตศาสตร์<br />พื้นฐาน</span>
-                    <input id="am_basicmath" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_basicmath" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['math_basic']) ? $applicantData['quota_grade']['math_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-2" id="am_advancedmathGroup">
                     <span class="help-block">คณิตศาสตร์<br />เพิ่มเติม</span>
-                    <input id="am_advancedmath" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_advancedmath" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['math_advanced']) ? $applicantData['quota_grade']['math_advanced'] : ''}}"/>
                 </div>
                 <div class="col-sm-2" id="am_basicengGroup">
                     <span class="help-block">ภาษาอังกฤษ<br />พื้นฐาน</span>
-                    <input id="am_basiceng" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_basiceng" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['english_basic']) ? $applicantData['quota_grade']['english_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-2" id="am_advancedengGroup">
                     <span class="help-block">ภาษาอังกฤษ<br />เพิ่มเติม</span>
-                    <input id="am_advancedeng" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="am_advancedeng" name="" type="text" placeholder="รูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['english_advanced']) ? $applicantData['quota_grade']['english_advanced'] : ''}}"/>
                 </div>
             </div>
 
             <div class="row" id="gradegroup_ar" style="display:none;">
                 <div class="col-sm-3" id="ar_basicthaiGroup">
                     <span class="help-block">ภาษาไทยพื้นฐาน</span>
-                    <input id="ar_basicthai" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_basicthai" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['thai_basic']) ? $applicantData['quota_grade']['thai_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-3" id="ar_basicengGroup">
                     <span class="help-block">ภาษาอังกฤษพื้นฐาน</span>
-                    <input id="ar_basiceng" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_basiceng" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['english_basic']) ? $applicantData['quota_grade']['english_basic'] : ''}}"/>
                 </div>
                 <div class="col-sm-3" id="ar_advancedengGroup">
                     <span class="help-block">ภาษาอังกฤษเพิ่มเติม</span>
-                    <input id="ar_advancedeng" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_advancedeng" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['english_advanced']) ? $applicantData['quota_grade']['english_advanced'] : ''}}"/>
                 </div>
                 <div class="col-sm-3" id="ar_basicsocGroup">
                     <span class="help-block">สังคมศึกษาพื้นฐาน</span>
-                    <input id="ar_basicsoc" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value=""/>
+                    <input id="ar_basicsoc" name="" type="text" placeholder="ในรูปแบบ 4.00" class="form-control" value="{{ isset($applicantData['quota_grade']['social_basic']) ? $applicantData['quota_grade']['social_basic'] : ''}}"/>
                 </div>
             </div>
 
