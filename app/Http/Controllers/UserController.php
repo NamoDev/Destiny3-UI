@@ -689,11 +689,59 @@ class UserController extends Controller{
             $quotaType = 0;
         }
 
+        switch ($request->input('plan')) {
+            case 1:
+                $quota_grade = [
+                    'english_basic' => $request->input('english_basic'),
+                    'english_advanced' => $request->input('english_advanced'),
+                    'thai_basic' => $request->input('thai_basic'),
+                    'social_basic' => $request->input('social_basic'),
+                ];
+            break;
+            case 2:
+                $quota_grade = [
+                    'english_basic' => $request->input('english_basic'),
+                    'english_advanced' => $request->input('english_advanced'),
+                    'thai_basic' => $request->input('thai_basic'),
+                    'social_basic' => $request->input('social_basic'),
+                ];
+            break;
+            case 3:
+                $quota_grade = [
+                    'english_basic' => $request->input('english_basic'),
+                    'english_advanced' => $request->input('english_advanced'),
+                    'thai_basic' => $request->input('thai_basic'),
+                    'social_basic' => $request->input('social_basic'),
+                ];
+            break;
+            case 4:
+                $quota_grade = [
+                    'english_basic' => $request->input('english_basic'),
+                    'english_advanced' => $request->input('english_advanced'),
+                    'thai_basic' => $request->input('thai_basic'),
+                    'math_basic' => $request->input('math_basic'),
+                    'math_advanced' => $request->input('math_advanced'),
+                ];
+            break;
+            case 5:
+                $quota_grade = [
+                    'math_basic' => $request->input('math_basic'),
+                    'math_advanced' => $request->input('math_advanced'),
+                    'science_basic' => $request->input('science_basic'),
+                    'science_advanced' => $request->input('science_advanced'),
+                ];
+            break;
+            default:
+                throw new Exception('Unexpected plan');
+            break;
+        }
+
         // Prepare data:
         $modifyThis = [
             "application_type" => $applicationType,
             "quota_type" => $quotaType,
-            "plan" => $request->input("plan")
+            "plan" => $request->input("plan"),
+            "quota_grade" => $quota_grade,
         ];
 
         // If majoring in science, additional sub-major information will be required:
@@ -715,8 +763,6 @@ class UserController extends Controller{
             // error!
             return RESTResponse::serverError('Unable to modify applicant data');
         }
-
-
     }
 
     /*
@@ -971,15 +1017,14 @@ class UserController extends Controller{
                 'mother' => $db['mother'],
                 'guardian' => $db['guardian'],
                 'school' => $db['school'],
-                'graduation_year' => $db['graduation_year'],
-                'gpa' => $db['gpa'],
-                'school_move_in' => $db['school_move_in'],
                 'school_province' => $db['school_province'],
+                'school2' => $db['school2'],
+                'school2_province' => $db['school2_province'],
+                'gpa' => $db['gpa'],
                 'address' => $db['address'],
                 'application_type' => $db['application_type'],
                 'quota_type' => $db['quota_type'],
                 'plan' => $db['plan'],
-                'majors' => $db['majors'],
                 'quota_grade' => $db['quota_grade'],
                 'documents' => array(
                     'timestamp' => $doc_timestamp,
