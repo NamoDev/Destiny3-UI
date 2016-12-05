@@ -7,7 +7,7 @@
 <legend><i class="fa fa-graduation-cap"></i> ประวัติการศึกษา <i class="fa fa-spinner fa-spin text-muted pull-right" style="display:none;" id="loadingSpinner"></i></legend>
 
 <div class="row">
-    <div class="col-md-6 col-xs-12" id="schoolGroup">
+    <div class="col-md-6 col-xs-12" id="school2Group">
         <span class="help-block">ศึกษา<b>ชั้นมัธยมศึกษาปีที่ 2</b> โรงเรียน</span>
         <input id="school2" name="school2" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school2']) ? $applicantData['school2'] : ''}}" />
     </div>
@@ -85,8 +85,8 @@ $("#sendTheFormButton").click(function(){
 
     // Disallow blank fields:
     hasErrors += isFieldBlank("gpa");
-    hasErrors += isFieldBlank("school");
     hasErrors += isFieldBlank("school2");
+    hasErrors += isFieldBlank("school3");
 
     // Check GPA. First, see if the user has given us something higher than 4.00:
     if(!isNaN(parseFloat($("#gpa").val()))){
