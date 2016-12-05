@@ -516,7 +516,7 @@ class UserController extends Controller{
                 'school' => 'required',
                 'school_province' => 'required',
                 'school2' => 'required',
-                'school2_province' => 'required|same:school_province',
+                'school2_province' => 'required',
                 'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/|min:3.80',
             ]);
 
