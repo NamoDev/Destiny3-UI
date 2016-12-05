@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-md-6 col-xs-12" id="schoolGroup">
         <span class="help-block">กำลังศึกษา<b>ชั้นมัธยมศึกษาปีที่ 3</b> โรงเรียน</span>
-        <input id="school" name="school" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
+        <input id="school3" name="school3" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
     </div>
     <div class="col-md-3 col-xs-12">
         <span class="help-block">ปีการศึกษา</span>
@@ -119,16 +119,11 @@ $("#sendTheFormButton").click(function(){
             url: '/api/v1/applicant/education_history',
             data: {
                 _token: csrfToken,
-                school: $("#school").val(),
-                //graduation_year: $("#graduation_year").val(),
-                gpa: $("#gpa").val(),
-                {{-- Additional data for province quota applicants: --}}
-                @if(Config::get("uiconfig.mode") == "province_quota")
-                    school_move_in_day: $("#moveinDay").val(),
-                    school_move_in_month: $("#moveinMonth").val(),
-                    school_move_in_year: $("#moveinYear").val(),
-                    school_province: $("#schoolProvince").val(),
-                @endif
+                school2_name : $("#school2"),
+                school2_province : $("#school2_province"),
+                school_name : $("#school3"),
+                school_province : $("#school3_province"),
+                grade : $("#gpa")
             },
             error: function (request, status, error) {
                 $('#plsWaitModal').modal('hide');
