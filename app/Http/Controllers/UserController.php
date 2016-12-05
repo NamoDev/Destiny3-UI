@@ -418,7 +418,7 @@ class UserController extends Controller{
             ]);
 
             if($v->fails()){
-                return response()->json(['requirement' => ['The requirement has not been met']], 422);
+                return response()->json(['requirement' => ['The requirement has not been met']], 424);
             }
 
             $modifyThis['address']['home_move_in_day'] = $request->input('home_move_in_day');
@@ -521,7 +521,7 @@ class UserController extends Controller{
             ]);
 
             if($request->input('school_province') != $request->input('school2_province')){
-                return response()->json(['requirement' => ['The requirement has not been met']], 422);
+                return response()->json(['requirement' => ['The requirement has not been met']], 424);
             }
 
             // Prepare data for modification:
