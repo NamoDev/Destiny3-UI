@@ -124,7 +124,7 @@ $("#sendTheFormButton").click(function(){
                 school2_province : $("#school2_province").val(),
                 school : $("#school3").val(),
                 school_province : $("#schoolProvince").val(),
-                grade : $("#gpa").val()
+                gpa : $("#gpa").val()
             },
             error: function (request, status, error) {
                 $('#plsWaitModal').modal('hide');
