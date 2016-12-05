@@ -1018,6 +1018,13 @@ class UserController extends Controller{
     public function updateEvaluationStatus(Request $request, $citizen_id){
         // TODO authenticate api call
 
+        // WORKAROUND: Validate client IP to check if the request really comes from Valkyrie:
+        // Kinda like a hotfix, a more permanent solution (maybe with different API keys per IP!) is required.
+        if(!$this->ipInRange($request->ip(), "10.100.101.202/32") || !$this->ipInRange($request->ip(), "127.0.0.1/32")){
+            // NO NO NO, YOU CANNAE HAVE ACCESS!
+            abort(403);
+        }
+
         if(!in_array($request->input('status'), [1, -1])){
             Log::critical('Unknown status code');
             return RESTResponse::badRequest('Unknown status code');
