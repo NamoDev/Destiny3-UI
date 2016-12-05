@@ -23,7 +23,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6 col-xs-12" id="schoolGroup">
+    <div class="col-md-6 col-xs-12" id="school3Group">
         <span class="help-block">กำลังศึกษา<b>ชั้นมัธยมศึกษาปีที่ 3</b> โรงเรียน</span>
         <input id="school3" name="school3" placeholder="ชื่อสถานศึกษา ( ไม่ต้องพิมพ์คำว่า 'โรงเรียน' )" class="form-control twitter-typeahead" value="{{ isset($applicantData['school']) ? $applicantData['school'] : ''}}" />
     </div>
@@ -120,11 +120,11 @@ $("#sendTheFormButton").click(function(){
             url: '/api/v1/applicant/education_history',
             data: {
                 _token: csrfToken,
-                school2_name : $("#school2"),
-                school2_province : $("#school2_province"),
-                school_name : $("#school3"),
-                school_province : $("#school3_province"),
-                grade : $("#gpa")
+                school2_name : $("#school2").val(),
+                school2_province : $("#school2_province").val(),
+                school_name : $("#school3").val(),
+                school_province : $("#school3_province").val(),
+                grade : $("#gpa").val()
             },
             error: function (request, status, error) {
                 $('#plsWaitModal').modal('hide');
