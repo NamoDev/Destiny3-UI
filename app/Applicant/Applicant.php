@@ -142,6 +142,42 @@ class Applicant {
         }
     }
 
+    /**
+     * Unmark a step as done. Boop!
+     *
+     * @param string  $citizenid
+     * @param integer $step
+     * @return bool
+     */
+    public function unmarkStepAsDone(string $citizenid, int $step): bool {
+        if ($this->exists($citizenid)) {
+
+            // Get applicant data
+            $applicantData = DB::collection("applicants")->where("citizen_id", $citizenid)->first();
+
+            // Search & remove step if exists
+            if($index = array_search($applicantData["steps_completed"])){
+
+                $newStepsCompleted = $applicantData["steps_completed"];
+                unset($newStepsCompleted[$index]);
+                DB::collection("applicants")->where("citizen_id", $citizenid)->update([
+                    "steps_completed" => $newStepsCompleted
+                ]);
+
+                // And we're done!
+                return true;
+
+            }else{
+                // Step cannot be removed, as it doesn't exist in the first place:
+                return false;
+            }
+
+        } else {
+            // NOPE. 404 NOT FOUND.
+            return false;
+        }
+    }
+
 
     /**
      * Applicant login processor. Requires citizenid and password. It's that simple!
