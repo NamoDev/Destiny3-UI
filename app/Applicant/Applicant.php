@@ -168,8 +168,8 @@ class Applicant {
                 return true;
 
             }else{
-                // Step cannot be removed, as it doesn't exist in the first place:
-                return false;
+                // Step cannot be removed, as it doesn't exist in the first place (but we'll return true anyway)
+                return true;
             }
 
         } else {
