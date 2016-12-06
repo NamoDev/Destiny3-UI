@@ -531,8 +531,12 @@ class UserController extends Controller{
                 'school_province' => 'required',
                 'school2' => 'required',
                 'school2_province' => 'required',
-                'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/|min:3.80',
+                'gpa' => 'required|numeric|max:4.00|regex:/[1-4].[0-9]{2}/',
             ]);
+
+            if($request->input('gpa') < 3.8){
+                return response()->json(['requirement' => ['The requirement has not been met']], 424);
+            }
 
             if($request->input('school_province') != $request->input('school2_province')){
                 return response()->json(['requirement' => ['The requirement has not been met']], 424);
