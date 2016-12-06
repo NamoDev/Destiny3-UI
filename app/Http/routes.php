@@ -22,6 +22,7 @@ Route::get('logout', 'UserController@logout'); // Logout request handler
 //Route::get('about', 'UIPages@aboutPage'); // About application
 Route::get('faq', 'UIPages@faqPage'); // FAQ
 Route::get('bad_browser', 'UIPages@unsupportedBrowser'); // Unsupported browser
+Route::get('application/tos', 'UIPages@termsAndConditionsIntermissionPage'); // Terms and conditions page
 Route::get('application/begin', 'UIPages@newUserRegistrationPage'); // New account creation
 
 Route::get('iforgot', 'UIPages@iForgotLandingPage'); // Password reset landing page
