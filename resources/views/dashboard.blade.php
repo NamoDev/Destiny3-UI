@@ -33,7 +33,7 @@
                 Applicant::current()['evaluation_status'] == 0)
             การสมัครยังไม่สมบูรณ์
         @elseif(isset(Applicant::current()['quota_being_evaluated']) &&
-                Applicant::current()['quota_being_evaluated'] == 0 &&
+                Applicant::current()['quota_being_evaluated'] == 1 &&
                 isset(Applicant::current()['evaluation_status']) &&
                 Applicant::current()['evaluation_status'] == 1)
             การสมัครเสร็จสมบูรณ์
