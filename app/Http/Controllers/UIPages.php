@@ -143,6 +143,10 @@ class UIPages extends Controller {
         return response()->view('confirm_quota_submission');
     }
 
+    public function termsAndConditionsIntermissionPage(){
+        return response()->view('tos_intermission');
+    }
+
     public function latestDocumentSubmission(){
         $all_docs = DB::collection('applicants')
                         ->where('citizen_id', Session::get('applicant_citizen_id'))
