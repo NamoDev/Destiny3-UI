@@ -127,11 +127,11 @@ class UserController extends Controller{
         if($applicantInterface->login($request->login_name, $request->login_password)){
           return redirect('application/home');
         }else{
-          return redirect('/')->with('message', 'INVALID_USERNAME_OR_PASSWORD')->with('alert-class', 'alert-warning');
+          return redirect('/home')->with('message', 'INVALID_USERNAME_OR_PASSWORD')->with('alert-class', 'alert-warning');
         }
       }catch(\Throwable $whatever){
         Log::error("Login exception\n" . $whatever);
-        return redirect('/')->with('message', 'LOGIN_EXCEPTION_THROWN')->with('alert-class', 'alert-warning');
+        return redirect('/home')->with('message', 'LOGIN_EXCEPTION_THROWN')->with('alert-class', 'alert-warning');
       }
 
     }
