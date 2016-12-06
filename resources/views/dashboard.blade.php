@@ -3,7 +3,7 @@
 
 @section('content')
 {{--
-    โรงเรียนเตรียมอุดมศึกษาจะประกาศเลขประจำตัวสอบและที่นั่งสอบ ภายในวันที่ 
+    โรงเรียนเตรียมอุดมศึกษาจะประกาศเลขประจำตัวสอบและที่นั่งสอบ ภายในวันที่
     <div class="row">
         <div class="col-md-3">
             <span class="help-block" style="font-size:1em;">เลขที่นั่งสอบ</span>
@@ -28,6 +28,7 @@
         สถานะการสมัคร :
         @if(Applicant::quotaSubmissionUnderReview())
             อยู่ระหว่างการตรวจเอกสาร
+            <a href="/logout"><button class="btn btn-danger">ออกจากระบบ</button></a>
         @elseif(isset(Applicant::current()['quota_being_evaluated']) &&
                 Applicant::current()['quota_being_evaluated'] == 0 &&
                 isset(Applicant::current()['evaluation_status']) &&
