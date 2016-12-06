@@ -27,6 +27,10 @@ class UIPages extends Controller {
         }
     }
 
+    public function preHomePage(){
+        return response()->view('prehome');
+    }
+
     // Registration homepage
     public function newUserRegistrationPage() {
         return response()->view('steps.00_new_user_registration');

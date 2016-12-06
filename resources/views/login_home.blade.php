@@ -74,8 +74,8 @@ https://tucc.triamudom.ac.th
     </div>
     <div class="col-md-6">
         <div class="flat-well">
-            <legend>ยังไม่เคยลงทะเบียนใช่หรือไม่?</legend>
-            <a class="btn btn-primary btn-lg btn-block" href="/application/tos">สมัครใหม่</a>
+            <legend>ลงทะเบียนใหม่</legend>
+            <a class="btn btn-primary btn-lg btn-block" href="/application/begin">สมัครใหม่</a>
         </div>
         <div class="flat-well" style="margin-top:10px;">
             <legend>เกิดปัญหาในการสมัคร?</legend>
@@ -92,7 +92,7 @@ https://tucc.triamudom.ac.th
 </div>
 
 <div class="row" style="margin-top:30px;">
-    <div class="col-md-12">
+    <div class="col-md-6">
 
     </div>
 </div>

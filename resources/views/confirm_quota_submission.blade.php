@@ -20,7 +20,7 @@ https://tucc.triamudom.ac.th
     <div class="col-xs-12 col-md-10 col-md-offset-1">
         <div class="well">
             <h3>ยืนยันการส่งข้อมูล <i class="fa fa-question-circle"></i></h3>
-            <b>โปรดทราบ:</b> เมื่อผู้สมัครส่งข้อมูลแล้ว จะเข้ามาแก้ไขข้อมูลไม่ได้<br />
+            <b>โปรดทราบ:</b> เมื่อผู้สมัครยืนยันการส่งข้อมูลแล้ว จะแก้ไขข้อมูลไม่ได้<br />
 
             <br />
             <div class="row">

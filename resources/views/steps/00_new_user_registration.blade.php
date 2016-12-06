@@ -151,9 +151,9 @@
             <br />
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-4">
                 <br />
-                <span class="help-block">ทำเครื่องหมายถูกในช่องด้านล่าง</span>
+                <span class="help-block">โปรดทำเครื่องหมายถูกในช่องด้านล่าง</span>
                 <div class="g-recaptcha" data-sitekey="{{ Config::get('captcha.sitekey') }}"></div>
             </div>
         </div>

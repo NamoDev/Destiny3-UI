@@ -16,7 +16,8 @@
 Publicly accessible routes (a.k.a. Root Routes)
 NOTE: For some weird reason, putting these routes in a group results in session flash not working. Further experimentation required.
 */
-Route::get('/', 'UIPages@homePage'); // DAT HOMEPAGE
+Route::get('/', 'UIPages@preHomePage');
+Route::get('/home', 'UIPages@homePage'); // DAT HOMEPAGE
 Route::post('login', 'UserController@login'); // Login request handler
 Route::get('logout', 'UserController@logout'); // Logout request handler
 //Route::get('about', 'UIPages@aboutPage'); // About application
