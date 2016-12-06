@@ -1169,7 +1169,6 @@ class UserController extends Controller{
                 DB::collection('applicants')
                 ->where('citizen_id', $citizen_id)
                 ->update([
-                    'quota_being_evaluated' => 0,
                     'evaluation_status' => 1
                 ]);
 
