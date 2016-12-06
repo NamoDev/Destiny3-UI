@@ -39,8 +39,11 @@
                     @endif
 
                     <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(7)) btn-primary @else btn-default @endif btn-block" href="/application/documents">@if(App\Http\Controllers\Helper::checkStepCompletion(7)) <span class="fa fa-check-circle"></span> @endif อัพโหลดเอกสาร</a>
-                    <br />
 
+                    @endif
+
+                    @if(Applicant::allStepComplete())
+                        <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
                     @endif
 
                       <div class="panel panel-default">
@@ -50,6 +53,9 @@
                               @else
                                 @if(Applicant::allStepComplete())
                                     <a class="btn btn-block btn-success" href="/application/quota_confirm">ส่งข้อมูล</a>
+                                    @if(DB::collection('applicants')->where('citizen_id', Session::get('applicant_citizen_id'))->value('evaluation_id') !== null)
+                                        <font color="red">นักเรียนยังไม่ได้กดส่งข้อมูล การสมัครของนักเรียนยังไม่สมบูรณ์</font>
+                                    @endif
                                     <!--<small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>-->
                                 @else
                                     <a class="btn btn-block btn-success disabled">ส่งข้อมูล</a>

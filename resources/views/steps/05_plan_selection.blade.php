@@ -447,7 +447,7 @@ $("#sendTheFormButton").click(function(){
                         notify("<i class='fa fa-exclamation-triangle text-warning'></i> มีข้อผิดพลาดของข้อมูล โปรดตรวจสอบรูปแบบข้อมูลอีกครั้ง", "warning");
                     break;
                     case 424:
-                        notify("<i class='fa fa-exclamation-triangle text-warning'></i> คุณสมบัติไม่ครบถ้วน กรุณาติดต่อ 02-252-7001 ต่อ 103 (กลุ่มบริหารวิชาการ)", "warning");
+                        notify("<i class='fa fa-exclamation-triangle text-danger'></i> ขาดคุณสมบัติ กรุณาติดต่อ 02-252-7001 ต่อ 103 (กลุ่มบริหารวิชาการ)", "danger");
                     break;
                     default:
                         console.log("(" + request.status + ") Exception:" + request.responseText);

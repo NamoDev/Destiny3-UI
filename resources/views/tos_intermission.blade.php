@@ -19,10 +19,12 @@ https://tucc.triamudom.ac.th
 
 <div class="row" style="margin-top:30px;">
     {{-- TERMS OF SERVICE INTERMISSION HERE --}}
-    <h2>เงื่อนไขการสมัคร</h2>
+    <h2>ขั้นตอนการสมัคร</h2>
     <br />
     <div class="flat-well">
-
+        1. กรอกข้อมู
+        <br>
+        <b>การตัดสินของโรงเรียนเตรียมอุดมศึกษาถือเป็นที่สิ้นสุด</b>
     </div>
     <br />
     <div class="row">

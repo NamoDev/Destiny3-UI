@@ -56,6 +56,8 @@
     </div>
 </div>
 <br />
+<font color="#e79528">นักเรียนต้องอัพโหลดเอกสารทั้งหมด และรอการอัพโหลดเสร็จสิ้น จึงกดบันทึกข้อมูล</font>
+<br />
 <div class="row">
     <div class="col-xs-6 col-md-8">
         <span id="formAlertMessage" style="display:none;"></span>

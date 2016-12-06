@@ -411,7 +411,7 @@ class UserController extends Controller{
                 'home_move_in_year' => 'required|integer|max:'.config('uiconfig.operation_year'),
             ]);
 
-            $v = Validator::make([
+            /*$v = Validator::make([
                 'home_move_in_date' => $request->input('home_move_in_day') .'/'. $request->input('home_move_in_month') .'/'. $request->input('home_move_in_year'),
             ],[
                 'home_move_in_date' => 'before_deadline',
@@ -419,13 +419,13 @@ class UserController extends Controller{
 
             if($v->fails()){
                 return response()->json(['requirement' => ['The requirement has not been met']], 424);
-            }
+            }*/
 
             $step_done = DB::collection('applicants')
                             ->where('citizen_id', Session::get('applicant_citizen_id'))
                             ->pluck('steps_completed')[0];
 
-            if(in_array(4, $step_done)){
+            /*if(in_array(4, $step_done)){
                 $school_province = DB::collection('applicants')
                                     ->where('citizen_id', Session::get('applicant_citizen_id'))
                                     ->pluck('school_province')[0];
@@ -433,7 +433,7 @@ class UserController extends Controller{
                 if($request->input('home_province') != $school_province){
                     return response()->json(['requirement' => ['The requirement has not been met']], 424);
                 }
-            }
+            }*/
 
             $modifyThis['address']['home_move_in_day'] = $request->input('home_move_in_day');
             $modifyThis['address']['home_move_in_month'] = $request->input('home_move_in_month');
@@ -546,7 +546,7 @@ class UserController extends Controller{
                             ->where('citizen_id', Session::get('applicant_citizen_id'))
                             ->pluck('steps_completed')[0];
 
-            if(in_array(3, $step_done)){
+            /*if(in_array(3, $step_done)){
                 $home_province = DB::collection('applicants')
                                     ->where('citizen_id', Session::get('applicant_citizen_id'))
                                     ->pluck('address.home.home_province')[0];
@@ -554,7 +554,7 @@ class UserController extends Controller{
                 if($request->input('school_province') != $home_province){
                     return response()->json(['requirement' => ['The requirement has not been met']], 424);
                 }
-            }
+            }*/
 
             // Prepare data for modification:
             $modifyThis = [

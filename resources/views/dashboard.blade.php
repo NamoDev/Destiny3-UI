@@ -3,6 +3,7 @@
 
 @section('content')
 {{--
+    โรงเรียนเตรียมอุดมศึกษาจะประกาศเลขประจำตัวสอบและที่นั่งสอบ ภายในวันที่ 
     <div class="row">
         <div class="col-md-3">
             <span class="help-block" style="font-size:1em;">เลขที่นั่งสอบ</span>
