@@ -30,7 +30,7 @@ https://tucc.triamudom.ac.th
             <a class="btn btn-info btn-block" href="/">กลับหน้าหลัก</a>
         </div>
         <div class="col-xs-6">
-            <a class="btn btn-primary btn-block" href="/application/begin">ตกลง</a>
+            <a class="btn btn-primary btn-block" href="/application/begin">ยอมรับเงื่อนไขและดำเนินการต่อ</a>
         </div>
     </div>
 </div>
