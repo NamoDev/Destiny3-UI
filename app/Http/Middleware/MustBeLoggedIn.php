@@ -18,7 +18,7 @@ class MustBeLoggedIn {
 		if ($applicant->isLoggedIn()) {
 			return $next($request);
 		} else {
-			return redirect('/')->with('message', 'NOT_LOGGED_IN')->with('alert-class', 'alert-warning');
+			return redirect('/home')->with('message', 'NOT_LOGGED_IN')->with('alert-class', 'alert-warning');
 		}
 	}
 }

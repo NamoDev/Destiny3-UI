@@ -142,7 +142,7 @@ class UserController extends Controller{
     public function logout(){
       $applicantInterface = new Applicant();
       $applicantInterface->logout();
-      return redirect("/");
+      return redirect("/home");
     }
 
     /*
