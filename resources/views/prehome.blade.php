@@ -35,14 +35,37 @@ https://tucc.triamudom.ac.th
 
         <font color="red">เมื่อโรงเรียนเตรียมอุดมศึกษาตรวจสอบข้อมูลพบว่าเป็นเท็จจะตัดสิทธิ์การสมัครสอบทุกประเภท และจะดำเนินคดีตามกฎหมาย</font>
         <br>
-        <b>การตัดสินของโรงเรียนเตรียมอุดมศึกษาถือเป็นที่สิ้นสุด</b><br />
+        <h5>การตัดสินของโรงเรียนเตรียมอุดมศึกษาถือเป็นที่สิ้นสุด</h5>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <label class="checkbox"><input type="checkbox" id="confirm_send" name="confirm_send"> นักเรียนได้อ่านและเข้าใจคำแนะนำแล้ว</label>
+                <span class="help-block" id="confirmAlertText" style="display:none;"><i class="fa fa-exclamation-circle"></i> กรุณาทำเครื่องหมายถูกในช่องนี้ก่อน</span>
+            </div>
+        </div>
+
     </div>
     <br />
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
-            <a class="btn btn-primary btn-block" href="/home">เข้าสู่ระบบการสมัคร</a>
+            <a class="btn btn-primary btn-block disabled" id="btnSend" href="/home">เข้าสู่ระบบการสมัคร</a>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('additional_scripts')
+<script>
+$(function(){
+    $(':checkbox').radiocheck();
+});
+$('#confirm_send').on('change',function(){
+    if($("#confirm_send").is(":checked")){
+        $("#btnSend").removeClass("disabled");
+    }else{
+        $("#btnSend").addClass("disabled");
+    }
+});
+</script>
 @endsection
