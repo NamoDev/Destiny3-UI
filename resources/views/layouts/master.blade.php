@@ -44,6 +44,8 @@
 
                     @if(Applicant::allStepComplete())
                         <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
+                    @else
+                        <br />
                     @endif
 
                       <div class="panel panel-default">
