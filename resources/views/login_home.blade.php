@@ -80,12 +80,12 @@ https://tucc.triamudom.ac.th
         <div class="flat-well" style="margin-top:10px;">
             <legend>เกิดปัญหาในการสมัคร?</legend>
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-12">
                     <a class="btn btn-primary btn-lg btn-block" href="/faq">คำถามที่พบบ่อย</a>
                 </div>
-                <div class="col-xs-6">
+                <!-- div class="col-xs-6">
                     <a class="btn btn-primary btn-lg btn-block" href="/support" target="_blank">ขอความช่วยเหลือ</a>
-                </div>
+                </div -->
             </div>
         </div>
     </div>
