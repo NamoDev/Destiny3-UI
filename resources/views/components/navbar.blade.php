@@ -20,7 +20,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user text-muted"></i> {{ Session::get('applicant_full_name') }}<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <!-- li><a href="/support" target="_blank">ขอความช่วยเหลือ</a></li -->
+            <li><a href="/support" target="_blank">ขอความช่วยเหลือ</a></li>
             <li><a href="/application/change_password">เปลี่ยนรหัสผ่าน</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="/logout">ออกจากระบบ</a></li>
