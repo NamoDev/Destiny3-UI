@@ -491,13 +491,11 @@ class UserController extends Controller{
             $i = 0;
             unset($data['access_token']);
             foreach($data as $doc){
-                try{
-                    $file = Storage::disk('document')->get($doc['file_name']);
-                }catch(Illuminate\Contracts\Filesystem\FileNotFoundException $e){
+                if(!Storage::disk('document')->exists($doc['file_name'])){
                     return RESTResponse::notFound('File not found (FileNotFoundException)');
                 }
 
-                $encoded = base64_encode($file);
+                $encoded = base64_encode(Storage::disk('document')->get($doc['file_name']));
                 if($encoded === false){
                     throw new Base64Exception('Cannot encode image file');
                 }else{
@@ -507,13 +505,11 @@ class UserController extends Controller{
             }
             unset($i);
         }else{
-            try{
-                $file = Storage::disk('document')->get($data['file_name']);
-            }catch(Illuminate\Contracts\Filesystem\FileNotFoundException $e){
+            if(!Storage::disk('document')->exists($data['file_name'])){
                 return RESTResponse::notFound('File not found (FileNotFoundException)');
             }
 
-            $encoded = base64_encode($file);
+            $encoded = base64_encode(Storage::disk('document')->get($data['file_name']));
             if($encoded === false){
                 throw new Base64Exception('Cannot encode image file');
             }else{
