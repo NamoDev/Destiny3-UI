@@ -494,7 +494,7 @@ class UserController extends Controller{
                 try{
                     $file = Storage::disk('document')->get($doc['file_name']);
                 }catch(\FileNotFoundException $e){
-                    return RESTResponse::badRequest('File not found (FileNotFoundException)');
+                    return RESTResponse::notFound('File not found (FileNotFoundException)');
                 }
 
                 $encoded = base64_encode($file);
