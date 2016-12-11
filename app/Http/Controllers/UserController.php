@@ -910,6 +910,14 @@ class UserController extends Controller{
             return response()->json('ขนาดไฟล์ต้องไม่เกิน 5MB', 400);
         }
 
+        $v3 = Validator::make($request->all(), [
+            'file' => 'file'
+        ]);
+
+        if($v3->fails()){
+            return response()->json('ไฟล์ยังอัพโหลดไม่สำเร็จ', 400);
+        }
+
         $time = time();
 
         $filename = $applicantCitizenID.'_'.$name.'_'.$time.'.'.
