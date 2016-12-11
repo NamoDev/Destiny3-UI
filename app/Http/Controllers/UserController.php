@@ -491,7 +491,13 @@ class UserController extends Controller{
             $i = 0;
             unset($data['access_token']);
             foreach($data as $doc){
-                $encoded = base64_encode(Storage::disk('document')->get($doc['file_name']));
+                try{
+                    $file = Storage::disk('document')->get($doc['file_name']);
+                }catch(\FileNotFoundException $e){
+                    return RESTResponse::badRequest('File not found (FileNotFoundException)');
+                }
+
+                $encoded = base64_encode($file);
                 if($encoded === false){
                     throw new Base64Exception('Cannot encode image file');
                 }else{
