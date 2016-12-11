@@ -507,7 +507,13 @@ class UserController extends Controller{
             }
             unset($i);
         }else{
-            $encoded = base64_encode(Storage::disk('document')->get($data['file_name']));
+            try{
+                $file = Storage::disk('document')->get($data['file_name']);
+            }catch(\FileNotFoundException $e){
+                return RESTResponse::notFound('File not found (FileNotFoundException)');
+            }
+
+            $encoded = base64_encode($file);
             if($encoded === false){
                 throw new Base64Exception('Cannot encode image file');
             }else{
