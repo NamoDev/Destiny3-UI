@@ -493,7 +493,7 @@ class UserController extends Controller{
             foreach($data as $doc){
                 try{
                     $file = Storage::disk('document')->get($doc['file_name']);
-                }catch(\FileNotFoundException $e){
+                }catch(Illuminate\Contracts\Filesystem\FileNotFoundException $e){
                     return RESTResponse::notFound('File not found (FileNotFoundException)');
                 }
 
@@ -509,7 +509,7 @@ class UserController extends Controller{
         }else{
             try{
                 $file = Storage::disk('document')->get($data['file_name']);
-            }catch(\FileNotFoundException $e){
+            }catch(Illuminate\Contracts\Filesystem\FileNotFoundException $e){
                 return RESTResponse::notFound('File not found (FileNotFoundException)');
             }
 
