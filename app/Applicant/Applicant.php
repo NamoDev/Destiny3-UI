@@ -81,6 +81,7 @@ class Applicant {
                 ],
                 'password' => Hash::make($password),
                 'steps_completed' => [1],
+                'registered' => time(),
             ]);
 
             return (string)$insertID;
@@ -313,7 +314,13 @@ class Applicant {
     public static function quotaSubmissionUnderReview(){
         if(config('uiconfig.mode') == 'province_quota'){
             // Check
-            if(DB::collection('applicants')->where('citizen_id', Session::get('applicant_citizen_id'))->pluck('quota_being_evaluated')[0] == 1){
+            $quota_being_evaluated = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->pluck('quota_being_evaluated')[0] == 1;
+            $evaluation_status = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->pluck('evaluation_status')[0] == 0;
+            if($quota_being_evaluated && $evaluation_status){
                 return true;
             }else{
                 return false;
