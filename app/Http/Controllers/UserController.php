@@ -461,9 +461,13 @@ class UserController extends Controller{
             ->where('citizen_id', $citizen_id)
             ->pluck('documents.'.$request->input('timestamp'))[0];
         }else{
-            $data = DB::collection('applicants')
-            ->where('citizen_id', $citizen_id)
-            ->value('documents.'.$request->input('timestamp').'.'.$filename);
+            try{
+                $data = DB::collection('applicants')
+                ->where('citizen_id', $citizen_id)
+                ->pluck('documents.'.$request->input('timestamp').'.'.$filename.'.file_name')[0];
+            }catch(Throwable $e){
+                return RESTResponse::notFound('No data for citizen_id : ' . $citizen_id);
+            }
         }
 
         if(count($data) == 0){
@@ -505,11 +509,12 @@ class UserController extends Controller{
             }
             unset($i);
         }else{
-            if(!Storage::disk('document')->exists($data['file_name'])){
+            if(!Storage::disk('document')->exists($data)){
+                Log::error('File not found', ['filepath' => $data]);
                 return RESTResponse::notFound('File not found (FileNotFoundException)');
             }
 
-            $encoded = base64_encode(Storage::disk('document')->get($data['file_name']));
+            $encoded = base64_encode(Storage::disk('document')->get($data));
             if($encoded === false){
                 throw new Base64Exception('Cannot encode image file');
             }else{
@@ -1076,6 +1081,7 @@ class UserController extends Controller{
             if(200 == $returnHttpCode){
                 return json_decode($result, true);
             }else{
+                Log::info($result);
                 return false;
             }
         }else{
@@ -1194,7 +1200,8 @@ class UserController extends Controller{
                 ->where('citizen_id', $citizen_id)
                 ->update([
                     'quota_being_evaluated' => 0,
-                    'evaluation_status' => -1
+                    'evaluation_status' => 0,
+                    'comments' => $request->input('comments'),
                 ]);
 
                 $this->notifyUser(-1);
