@@ -1204,7 +1204,7 @@ class UserController extends Controller{
                     'comments' => $request->input('comments'),
                 ]);
 
-                $this->notifyUser(-1);
+                $this->notifyUser(-1, $citizen_id);
             }
 
             return RESTResponse::ok();
@@ -1246,8 +1246,26 @@ class UserController extends Controller{
         }
     }
 
-    private function notifyUser($status){
-        // TODO: Mail user
+    private function notifyUser($status, $citizen_id){
+        $applicantData = DB::collection("applicants")->where("citizen_id", $citizen_id)->first();
+
+        $mailData = [
+            'status' => $status,
+        ];
+
+        try{
+            // Send a mail!
+            // TODO: Add queue support
+            $applicantMail = (string) $applicantData["email"];
+            Mail::send('emails.status_update', $mailData, function ($message) use ($applicantMail) {
+                $message->from('no-reply@apply.triamudom.ac.th', 'ระบบรับสมัครนักเรียนโควตาจังหวัด โรงเรียนเตรียมอุดมศึกษา');
+                $message->to($applicantMail)->subject("การเปลี่ยนแปลงสถานะการสมัคร");
+            });
+        }catch(\Throwable $mailException){
+            Log::error($mailException);
+            return false;
+        }
+
         return true;
     }
 
