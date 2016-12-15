@@ -1163,7 +1163,7 @@ class UserController extends Controller{
 
         // WORKAROUND: Validate client IP to check if the request really comes from Valkyrie:
         // Kinda like a hotfix, a more permanent solution (maybe with different API keys per IP!) is required.
-        if(!$this->ipInRange($request->ip(), "10.100.101.202/32") || !$this->ipInRange($request->ip(), "127.0.0.1/32")){
+        if(!$this->ipInRange($request->ip(), "10.100.101.202/32") && !$this->ipInRange($request->ip(), "127.0.0.1/32")){
             // NO NO NO, YOU CANNAE HAVE ACCESS!
             abort(403);
         }
