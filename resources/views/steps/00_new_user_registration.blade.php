@@ -519,7 +519,7 @@
                 dataType: 'json',
                 success: function(data) {
                     console.log("AJAX complete");
-                    window.location.replace("/");
+                    window.location.replace("/application/home");
                 },
                 type: 'POST'
             });
