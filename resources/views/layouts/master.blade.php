@@ -14,8 +14,25 @@
         <div class="container mainContainer">
             <div class="row">
                 <div class="col-md-3">
+                    <?php
+                        $eval_id = DB::collection('applicants')
+                                    ->where('citizen_id', Session::get('applicant_citizen_id'))
+                                    ->value('evaluation_id');
+                        if(isset($eval_id) && $eval_id !== null){
+                            $not_finish = true;
+                        }else{
+                            $not_finish = false;
+                        }
 
-                    @if(!Applicant::quotaSubmissionUnderReview())
+                        if(isset(Applicant::current()['evaluation_status']) &&
+                        Applicant::current()['evaluation_status'] == 1){
+                            $not_pass_yet = false;
+                        }else{
+                            $not_pass_yet = true;
+                        }
+                    ?>
+
+                    @if(!Applicant::quotaSubmissionUnderReview() && $not_finish && $not_pass_yet)
 
                     <a class="btn @if(App\Http\Controllers\Helper::checkStepCompletion(1)) btn-primary @else btn-default @endif btn-block" href="/application/info">@if(App\Http\Controllers\Helper::checkStepCompletion(1)) <span class="fa fa-check-circle"></span> @endif ข้อมูลพื้นฐาน</a>
                     <div class="text-center" style="margin-top:5px;margin-bottom:5px;font-size:.7em;"><i class="fa fa-arrow-down"></i></div>
@@ -52,12 +69,15 @@
                           <div class="panel-body">
                               @if(Applicant::quotaSubmissionUnderReview())
                                 <small><i class="fa fa-info-circle"></i> ข้อมูลของนักเรียนอยู่ระหว่างการตรวจสอบ</small>
+                              @elseif(isset(Applicant::current()['quota_being_evaluated']) &&
+                                      Applicant::current()['quota_being_evaluated'] == 1 &&
+                                      isset(Applicant::current()['evaluation_status']) &&
+                                      Applicant::current()['evaluation_status'] == 1)
+                                <small><i class="fa fa-info-circle"></i> การสมัครเสร็จสมบูรณ์</small>
                               @else
                                 @if(Applicant::allStepComplete())
                                     <a class="btn btn-block btn-success" href="/application/quota_confirm">ส่งข้อมูล</a>
-                                    @if(DB::collection('applicants')->where('citizen_id', Session::get('applicant_citizen_id'))->value('evaluation_id') !== null)
-                                        <font color="red">นักเรียนยังไม่ได้กดส่งข้อมูล การสมัครของนักเรียนยังไม่สมบูรณ์</font>
-                                    @endif
+                                    <font color="red">นักเรียนยังไม่ได้กดส่งข้อมูล การสมัครของนักเรียนยังไม่สมบูรณ์</font>
                                     <!--<small><i class="fa fa-exclamation-circle"></i> นักเรียนยังไม่ได้ส่งข้อมูล</small>-->
                                 @else
                                     <a class="btn btn-block btn-success disabled">ส่งข้อมูล</a>
