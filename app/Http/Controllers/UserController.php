@@ -463,7 +463,7 @@ class UserController extends Controller{
         }else{
             $data = DB::collection('applicants')
             ->where('citizen_id', $citizen_id)
-            ->pluck('documents.'.$request->input('timestamp').'.'.$filename)[0];
+            ->value('documents.'.$request->input('timestamp').'.'.$filename);
         }
 
         if(count($data) == 0){
