@@ -34,6 +34,14 @@
                 isset(Applicant::current()['evaluation_status']) &&
                 Applicant::current()['evaluation_status'] == 0)
             การสมัครยังไม่สมบูรณ์
+            @if(isset(Applicant::current()['comments']))
+                <br>
+                <font color="red">เอกสารที่ไม่ผ่านการตรวจ</font>
+                <br>
+                @foreach(Applicant::current()['comments'] as $filename => $file)
+                    {{ App\UIHelper::formatFileName($filename) }} เหตุผล : {{ $file }}
+                @endforeach
+            @endif
         @elseif(isset(Applicant::current()['quota_being_evaluated']) &&
                 Applicant::current()['quota_being_evaluated'] == 1 &&
                 isset(Applicant::current()['evaluation_status']) &&
