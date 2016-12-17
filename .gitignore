@@ -2,3 +2,4 @@
 .git/
 .idea
 /PHPUnit_Coverage
+storage/DestinyUI.xlsx
