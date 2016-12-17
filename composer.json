@@ -13,7 +13,8 @@
         "lcobucci/jwt": "^3.2",
         "guzzlehttp/guzzle": "^6.2",
         "jenssegers/rollbar": "^1.5",
-        "anhskohbo/no-captcha": "^2.1"
+        "anhskohbo/no-captcha": "^2.1",
+        "phpoffice/phpspreadsheet": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
