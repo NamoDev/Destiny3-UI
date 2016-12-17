@@ -150,7 +150,7 @@
                         $threshold = 30;
                         if(config('uiconfig.mode') == 'province_quota'){
                             $year-=13;
-                            $threshold = 2;
+                            $threshold = 3;
                         }
                         while($threshold >= 0){
                             if($year == $applicantData['birthdate']['year']){
