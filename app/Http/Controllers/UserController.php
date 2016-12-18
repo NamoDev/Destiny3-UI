@@ -1194,7 +1194,7 @@ class UserController extends Controller{
                     'evaluation_status' => 1
                 ]);
 
-                $this->notifyUser(1);
+                $this->notifyUser(1, $citizen_id);
             }else{
                 DB::collection('applicants')
                 ->where('citizen_id', $citizen_id)
