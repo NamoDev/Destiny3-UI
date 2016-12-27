@@ -1204,6 +1204,13 @@ class UserController extends Controller{
                     'comments' => $request->input('comments'),
                 ]);
 
+                /* Update twice for debugging */
+                DB::collection('applicants')
+                ->where('citizen_id', $citizen_id)
+                ->update([
+                    'quota_being_evaluated' => 0,
+                ]);
+
                 $this->notifyUser(-1, $citizen_id);
             }
 
