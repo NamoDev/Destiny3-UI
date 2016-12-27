@@ -14,6 +14,6 @@ Note to team: please open an issue if you found any code that should be consolid
 ### Developers
 Project Destiny developers by generation. Add your name here when you're continuing the legacy!
 * TU75: @SarunInt
-* TU76: @NamoDev, @EgnarRegnar
+* TU76: @NamoDev
 * TU77: @TheMiner3746
 * TU78: @keen1234, @PPSyrius
