@@ -353,6 +353,7 @@ class ComposerStaticInitdcfd54e01245a66e34a62d2151c35749
         'App\\Base64Exception\\Base64Exception' => __DIR__ . '/../..' . '/app/Exceptions/Base64Exception.php',
         'App\\Base64Exception\\RequirementException' => __DIR__ . '/../..' . '/app/Exceptions/RequirementException.php',
         'App\\Console\\Commands\\ClearOldData' => __DIR__ . '/../..' . '/app/Console/Commands/ClearOldData.php',
+        'App\\Console\\Commands\\FixQuotaBeingEval' => __DIR__ . '/../..' . '/app/Console/Commands/FixQuotaBeingEval.php',
         'App\\Console\\Commands\\Inspire' => __DIR__ . '/../..' . '/app/Console/Commands/Inspire.php',
         'App\\Console\\Commands\\ReportApplicant' => __DIR__ . '/../..' . '/app/Console/Commands/ReportApplicant.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',

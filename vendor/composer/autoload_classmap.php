@@ -14,6 +14,7 @@ return array(
     'App\\Base64Exception\\Base64Exception' => $baseDir . '/app/Exceptions/Base64Exception.php',
     'App\\Base64Exception\\RequirementException' => $baseDir . '/app/Exceptions/RequirementException.php',
     'App\\Console\\Commands\\ClearOldData' => $baseDir . '/app/Console/Commands/ClearOldData.php',
+    'App\\Console\\Commands\\FixQuotaBeingEval' => $baseDir . '/app/Console/Commands/FixQuotaBeingEval.php',
     'App\\Console\\Commands\\Inspire' => $baseDir . '/app/Console/Commands/Inspire.php',
     'App\\Console\\Commands\\ReportApplicant' => $baseDir . '/app/Console/Commands/ReportApplicant.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
