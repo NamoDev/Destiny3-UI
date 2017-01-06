@@ -11,6 +11,7 @@
 
 namespace App\Http\Controllers;
 
+use Artisan;
 use Applicant;
 use Exception;
 use Illuminate\Http\Request;
