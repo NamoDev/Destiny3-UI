@@ -356,6 +356,7 @@ class ComposerStaticInitdcfd54e01245a66e34a62d2151c35749
         'App\\Console\\Commands\\FixQuotaBeingEval' => __DIR__ . '/../..' . '/app/Console/Commands/FixQuotaBeingEval.php',
         'App\\Console\\Commands\\Inspire' => __DIR__ . '/../..' . '/app/Console/Commands/Inspire.php',
         'App\\Console\\Commands\\ReportApplicant' => __DIR__ . '/../..' . '/app/Console/Commands/ReportApplicant.php',
+        'App\\Console\\Commands\\RetrieveDocument' => __DIR__ . '/../..' . '/app/Console/Commands/RetrieveDocument.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\CoreConnector' => __DIR__ . '/../..' . '/app/CoreConnector/CoreConnector.php',
         'App\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',

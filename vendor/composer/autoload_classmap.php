@@ -17,6 +17,7 @@ return array(
     'App\\Console\\Commands\\FixQuotaBeingEval' => $baseDir . '/app/Console/Commands/FixQuotaBeingEval.php',
     'App\\Console\\Commands\\Inspire' => $baseDir . '/app/Console/Commands/Inspire.php',
     'App\\Console\\Commands\\ReportApplicant' => $baseDir . '/app/Console/Commands/ReportApplicant.php',
+    'App\\Console\\Commands\\RetrieveDocument' => $baseDir . '/app/Console/Commands/RetrieveDocument.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\CoreConnector' => $baseDir . '/app/CoreConnector/CoreConnector.php',
     'App\\Events\\Event' => $baseDir . '/app/Events/Event.php',
