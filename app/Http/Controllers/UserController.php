@@ -510,7 +510,7 @@ class UserController extends Controller{
             }
             unset($i);
         }else{
-            Artisan::call('retrievedocument '.$data);
+            //Artisan::call('retrievedocument '.$data);
             if(!Storage::disk('document')->exists($data)){
                 Log::error('File not found', ['filepath' => $data]);
                 return RESTResponse::notFound('File not found (FileNotFoundException)');
