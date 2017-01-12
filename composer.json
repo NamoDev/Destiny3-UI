@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "jenssegers/rollbar": "^1.5",
         "anhskohbo/no-captcha": "^2.1",
-        "phpoffice/phpspreadsheet": "dev-master"
+        "phpoffice/phpspreadsheet": "dev-master",
+        "jailtonsc/sftp-laravel": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

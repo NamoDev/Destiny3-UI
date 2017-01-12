@@ -167,6 +167,7 @@ return [
     	Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         Jenssegers\Rollbar\RollbarServiceProvider::class,
+        SFTP\SFTPServiceProvider::class
     ],
 
     /*
