@@ -211,6 +211,22 @@ EOF;
         $tests['Literal block chomping clip with multiple trailing newlines'] = array($expected, $yaml);
 
         $yaml = <<<'EOF'
+foo:
+- bar: |
+    one
+
+    two
+EOF;
+        $expected = array(
+            'foo' => array(
+                array(
+                    'bar' => "one\n\ntwo",
+                ),
+            ),
+        );
+        $tests['Literal block chomping clip with embedded blank line inside unindented collection'] = array($expected, $yaml);
+
+        $yaml = <<<'EOF'
 foo: |
     one
     two
@@ -1448,6 +1464,32 @@ bar: baz
 EOT;
 
         $this->assertSame(array('foo' => 'bar baz foobar foo', 'bar' => 'baz'), $this->parser->parse($yaml));
+    }
+
+    public function testParseMultiLineString()
+    {
+        $this->assertEquals("foo bar\nbaz", $this->parser->parse("foo\nbar\n\nbaz"));
+    }
+
+    public function testParseMultiLineMappingValue()
+    {
+        $yaml = <<<'EOF'
+foo:
+- bar:
+    one
+
+    two
+    three
+EOF;
+        $expected = array(
+            'foo' => array(
+                array(
+                    'bar' => "one\ntwo three",
+                ),
+            ),
+        );
+
+        $this->assertEquals($expected, $this->parser->parse($yaml));
     }
 }
 

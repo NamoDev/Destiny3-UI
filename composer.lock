@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a63e60c166a5b42651d084578378981",
+    "hash": "f008f9f76ca531c64ffa532488813b21",
     "content-hash": "4b5b6a3fe0499c3a8ee74a52e23fc85b",
     "packages": [
         {
@@ -59,12 +59,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ClassPreloader/ClassPreloader.git",
-                "reference": "bc7206aa892b5a33f4680421b69b191efd32b096"
+                "reference": "0b3ab84b47045e733ae411a4c20df2c980e247b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/bc7206aa892b5a33f4680421b69b191efd32b096",
-                "reference": "bc7206aa892b5a33f4680421b69b191efd32b096",
+                "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/0b3ab84b47045e733ae411a4c20df2c980e247b4",
+                "reference": "0b3ab84b47045e733ae411a4c20df2c980e247b4",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +105,7 @@
                 "class",
                 "preload"
             ],
-            "time": "2016-09-16 12:50:15"
+            "time": "2017-01-01 12:52:03"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -213,12 +213,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "dfadff37efcfd42230eef1350009898b7b9af40a"
+                "reference": "14fa40e26857c8f406d7a0c7d577705085fb6950"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/dfadff37efcfd42230eef1350009898b7b9af40a",
-                "reference": "dfadff37efcfd42230eef1350009898b7b9af40a",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/14fa40e26857c8f406d7a0c7d577705085fb6950",
+                "reference": "14fa40e26857c8f406d7a0c7d577705085fb6950",
                 "shasum": ""
             },
             "require": {
@@ -267,32 +267,32 @@
                 "rest",
                 "web service"
             ],
-            "time": "2016-12-15 09:53:31"
+            "time": "2017-01-05 10:54:39"
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "2693c101803ca78b27972d84081d027fca790a1e"
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/2693c101803ca78b27972d84081d027fca790a1e",
-                "reference": "2693c101803ca78b27972d84081d027fca790a1e",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -318,7 +318,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-11-18 17:47:58"
+            "time": "2016-12-20 10:07:11"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -936,12 +936,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "0165294685dc83e521a46e0df2ff6b8bd4df4369"
+                "reference": "30f702679a69af1d9b6bba5695db9407450696c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0165294685dc83e521a46e0df2ff6b8bd4df4369",
-                "reference": "0165294685dc83e521a46e0df2ff6b8bd4df4369",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/30f702679a69af1d9b6bba5695db9407450696c4",
+                "reference": "30f702679a69af1d9b6bba5695db9407450696c4",
                 "shasum": ""
             },
             "require": {
@@ -1011,7 +1011,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-11-23 11:39:43"
+            "time": "2017-01-09 14:16:42"
         },
         {
             "name": "league/flysystem-sftp",
@@ -1183,12 +1183,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "b732364e70a615231f15944e015b31d0d77bf9f5"
+                "reference": "c82afaa30356d20e08cc74fec7ab9b6ecd38288a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/b732364e70a615231f15944e015b31d0d77bf9f5",
-                "reference": "b732364e70a615231f15944e015b31d0d77bf9f5",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c82afaa30356d20e08cc74fec7ab9b6ecd38288a",
+                "reference": "c82afaa30356d20e08cc74fec7ab9b6ecd38288a",
                 "shasum": ""
             },
             "require": {
@@ -1253,7 +1253,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-12-13 14:25:55"
+            "time": "2017-01-11 16:17:39"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1887,19 +1887,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "968cd5302dba8d60ddb64489069953fae2ff1a92"
+                "reference": "e34123081ded3fbb4d8ccdff9ece3a4c8f6046b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/968cd5302dba8d60ddb64489069953fae2ff1a92",
-                "reference": "968cd5302dba8d60ddb64489069953fae2ff1a92",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e34123081ded3fbb4d8ccdff9ece3a4c8f6046b5",
+                "reference": "e34123081ded3fbb4d8ccdff9ece3a4c8f6046b5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1"
+                "mockery/mockery": "~0.9.1",
+                "symfony/phpunit-bridge": "~3.2"
             },
             "type": "library",
             "extra": {
@@ -1932,7 +1933,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-12-06 13:58:36"
+            "time": "2016-12-29 10:10:06"
         },
         {
             "name": "symfony/console",
@@ -2057,21 +2058,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "b0cabf5e9315afda50ce44d17580472d8d55ce0d"
+                "reference": "26e38eefa5b9333fa94e845541f5f025a98fbe2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b0cabf5e9315afda50ce44d17580472d8d55ce0d",
-                "reference": "b0cabf5e9315afda50ce44d17580472d8d55ce0d",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/26e38eefa5b9333fa94e845541f5f025a98fbe2d",
+                "reference": "26e38eefa5b9333fa94e845541f5f025a98fbe2d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.9"
             },
+            "conflict": {
+                "symfony/dependency-injection": "<3.3"
+            },
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/config": "~2.8|~3.0",
-                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/dependency-injection": "~3.3",
                 "symfony/expression-language": "~2.8|~3.0",
                 "symfony/stopwatch": "~2.8|~3.0"
             },
@@ -2109,7 +2113,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-19 20:35:20"
+            "time": "2017-01-07 15:57:09"
         },
         {
             "name": "symfony/finder",
@@ -2825,12 +2829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "9b86341a2e91a3c097b802fba0f8adb7b76aba5e"
+                "reference": "03eb255d66bf1c11fccb4b4d1ed62fee70e3b6f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/9b86341a2e91a3c097b802fba0f8adb7b76aba5e",
-                "reference": "9b86341a2e91a3c097b802fba0f8adb7b76aba5e",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/03eb255d66bf1c11fccb4b4d1ed62fee70e3b6f4",
+                "reference": "03eb255d66bf1c11fccb4b4d1ed62fee70e3b6f4",
                 "shasum": ""
             },
             "require": {
@@ -2867,7 +2871,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2016-12-12 12:24:06"
+            "time": "2017-01-05 16:44:55"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -2926,12 +2930,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "65d4ca18e15cb02eeb1e5336f884e46b9b905be0"
+                "reference": "d89523ade8982c62c8698d9784f31e8726b2f043"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/65d4ca18e15cb02eeb1e5336f884e46b9b905be0",
-                "reference": "65d4ca18e15cb02eeb1e5336f884e46b9b905be0",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/d89523ade8982c62c8698d9784f31e8726b2f043",
+                "reference": "d89523ade8982c62c8698d9784f31e8726b2f043",
                 "shasum": ""
             },
             "require": {
@@ -2983,7 +2987,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2016-09-30 12:09:40"
+            "time": "2017-01-06 11:35:57"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3443,12 +3447,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8ddd0ddeeeb21124d8273c989a75107ae805f3f5"
+                "reference": "4324a4470aad51a0c475ec1d70cd548ce41c043f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8ddd0ddeeeb21124d8273c989a75107ae805f3f5",
-                "reference": "8ddd0ddeeeb21124d8273c989a75107ae805f3f5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4324a4470aad51a0c475ec1d70cd548ce41c043f",
+                "reference": "4324a4470aad51a0c475ec1d70cd548ce41c043f",
                 "shasum": ""
             },
             "require": {
@@ -3507,7 +3511,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-13 21:21:04"
+            "time": "2016-12-31 06:51:33"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4052,12 +4056,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "f8c054eea2921142bed49cc957260652f80958e3"
+                "reference": "a7be1238e556929b5a07aa8188d938078e467fab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/f8c054eea2921142bed49cc957260652f80958e3",
-                "reference": "f8c054eea2921142bed49cc957260652f80958e3",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a7be1238e556929b5a07aa8188d938078e467fab",
+                "reference": "a7be1238e556929b5a07aa8188d938078e467fab",
                 "shasum": ""
             },
             "require": {
@@ -4099,7 +4103,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-12-13 09:39:51"
+            "time": "2017-01-09 14:37:34"
         },
         {
             "name": "webmozart/assert",
