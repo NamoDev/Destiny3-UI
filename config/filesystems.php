@@ -62,9 +62,31 @@ return [
             'bucket' => 'your-bucket',
         ],
 
-        'document' => [
+/*        'document' => [
             'driver' => 'local',
             'root' => storage_path('uploaded_documents'),
+        ],*/
+
+        'document' => [
+            'driver' => 'sftp',
+            'host' => '10.100.101.200',
+            'port' => 22,
+            'username' => 'pullback',
+            'password' => 'xbjosmyp',
+            //'privateKey' => 'path/to/or/contents/of/privatekey',
+            'root' => '/doc_dump',
+            'timeout' => 10,
+        ],
+
+        'ftp' => [
+            'driver' => 'sftp',
+            'host' => '10.100.101.200',
+            'port' => 22,
+            'username' => 'pullback',
+            'password' => 'xbjosmyp',
+            //'privateKey' => 'path/to/or/contents/of/privatekey',
+            'root' => '/doc_dump',
+            'timeout' => 10,
         ],
 
     ],
