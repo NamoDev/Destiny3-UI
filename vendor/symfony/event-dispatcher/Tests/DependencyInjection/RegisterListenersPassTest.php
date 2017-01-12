@@ -11,6 +11,7 @@
 
 namespace Symfony\Component\EventDispatcher\Tests\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Argument\ClosureProxyArgument;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\DependencyInjection\RegisterListenersPass;
 
@@ -29,18 +30,12 @@ class RegisterListenersPassTest extends \PHPUnit_Framework_TestCase
             'my_event_subscriber' => array(0 => array()),
         );
 
-        $definition = $this->getMock('Symfony\Component\DependencyInjection\Definition');
-        $definition->expects($this->atLeastOnce())
-            ->method('isPublic')
-            ->will($this->returnValue(true));
+        $definition = $this->getMockBuilder('Symfony\Component\DependencyInjection\Definition')->getMock();
         $definition->expects($this->atLeastOnce())
             ->method('getClass')
             ->will($this->returnValue('stdClass'));
 
-        $builder = $this->getMock(
-            'Symfony\Component\DependencyInjection\ContainerBuilder',
-            array('hasDefinition', 'findTaggedServiceIds', 'getDefinition')
-        );
+        $builder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('hasDefinition', 'findTaggedServiceIds', 'getDefinition'))->getMock();
         $builder->expects($this->any())
             ->method('hasDefinition')
             ->will($this->returnValue(true));
@@ -64,18 +59,12 @@ class RegisterListenersPassTest extends \PHPUnit_Framework_TestCase
             'my_event_subscriber' => array(0 => array()),
         );
 
-        $definition = $this->getMock('Symfony\Component\DependencyInjection\Definition');
-        $definition->expects($this->atLeastOnce())
-            ->method('isPublic')
-            ->will($this->returnValue(true));
+        $definition = $this->getMockBuilder('Symfony\Component\DependencyInjection\Definition')->getMock();
         $definition->expects($this->atLeastOnce())
             ->method('getClass')
             ->will($this->returnValue('Symfony\Component\EventDispatcher\Tests\DependencyInjection\SubscriberService'));
 
-        $builder = $this->getMock(
-            'Symfony\Component\DependencyInjection\ContainerBuilder',
-            array('hasDefinition', 'findTaggedServiceIds', 'getDefinition', 'findDefinition')
-        );
+        $builder = $this->getMockBuilder('Symfony\Component\DependencyInjection\ContainerBuilder')->setMethods(array('hasDefinition', 'findTaggedServiceIds', 'getDefinition', 'findDefinition'))->getMock();
         $builder->expects($this->any())
             ->method('hasDefinition')
             ->will($this->returnValue(true));
@@ -95,34 +84,6 @@ class RegisterListenersPassTest extends \PHPUnit_Framework_TestCase
 
         $registerListenersPass = new RegisterListenersPass();
         $registerListenersPass->process($builder);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The service "foo" must be public as event listeners are lazy-loaded.
-     */
-    public function testPrivateEventListener()
-    {
-        $container = new ContainerBuilder();
-        $container->register('foo', 'stdClass')->setPublic(false)->addTag('kernel.event_listener', array());
-        $container->register('event_dispatcher', 'stdClass');
-
-        $registerListenersPass = new RegisterListenersPass();
-        $registerListenersPass->process($container);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The service "foo" must be public as event subscribers are lazy-loaded.
-     */
-    public function testPrivateEventSubscriber()
-    {
-        $container = new ContainerBuilder();
-        $container->register('foo', 'stdClass')->setPublic(false)->addTag('kernel.event_subscriber', array());
-        $container->register('event_dispatcher', 'stdClass');
-
-        $registerListenersPass = new RegisterListenersPass();
-        $registerListenersPass->process($container);
     }
 
     /**
@@ -167,14 +128,15 @@ class RegisterListenersPassTest extends \PHPUnit_Framework_TestCase
         $definition = $container->getDefinition('event_dispatcher');
         $expected_calls = array(
             array(
-                'addSubscriberService',
+                'addListener',
                 array(
-                    'foo',
-                    'Symfony\Component\EventDispatcher\Tests\DependencyInjection\SubscriberService',
+                    'event',
+                    new ClosureProxyArgument('foo', 'onEvent'),
+                    0,
                 ),
             ),
         );
-        $this->assertSame($expected_calls, $definition->getMethodCalls());
+        $this->assertEquals($expected_calls, $definition->getMethodCalls());
     }
 
     /**
@@ -196,5 +158,8 @@ class SubscriberService implements \Symfony\Component\EventDispatcher\EventSubsc
 {
     public static function getSubscribedEvents()
     {
+        return array(
+            'event' => 'onEvent',
+        );
     }
 }

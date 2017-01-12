@@ -187,10 +187,10 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     time($format = 'H:i:s', $max = 'now') // '20:49:42'
     dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = date_default_timezone_get()) // DateTime('2003-03-15 02:00:49', 'Africa/Lagos')
     dateTimeInInterval($startDate = '-30 years', $interval = '+ 5 days', $timezone = date_default_timezone_get()) // DateTime('2003-03-15 02:00:49', 'Antartica/Vostok')
-    dateTimeThisCentury($max = 'now')     // DateTime('1915-05-30 19:28:21')
-    dateTimeThisDecade($max = 'now')      // DateTime('2007-05-29 22:30:48')
-    dateTimeThisYear($max = 'now')        // DateTime('2011-02-27 20:52:14')
-    dateTimeThisMonth($max = 'now')       // DateTime('2011-10-23 13:46:23')
+    dateTimeThisCentury($max = 'now', $timezone = date_default_timezone_get())     // DateTime('1915-05-30 19:28:21', 'UTC')
+    dateTimeThisDecade($max = 'now', $timezone = date_default_timezone_get())      // DateTime('2007-05-29 22:30:48', 'Europe/Paris')
+    dateTimeThisYear($max = 'now', $timezone = date_default_timezone_get())        // DateTime('2011-02-27 20:52:14', 'Africa/Lagos')
+    dateTimeThisMonth($max = 'now', $timezone = date_default_timezone_get())       // DateTime('2011-10-23 13:46:23', 'Antarctica/Vostok')
     amPm($max = 'now')                    // 'pm'
     dayOfMonth($max = 'now')              // '04'
     dayOfWeek($max = 'now')               // 'Friday'
@@ -394,7 +394,7 @@ You can check available Faker locales in the source code, [under the `Provider` 
 
 ## Populating Entities Using an ORM or an ODM
 
-Faker provides adapters for Object-Relational and Object-Document Mappers (currently, [Propel](http://www.propelorm.org), [Doctrine2](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/), [CakePHP](http://cakephp.org), [Spot2](https://github.com/vlucas/spot2) and [Mandango](https://github.com/mandango/mandango) are supported). These adapters ease the population of databases through the Entity classes provided by an ORM library (or the population of document stores using Document classes provided by an ODM library).
+Faker provides adapters for Object-Relational and Object-Document Mappers (currently, [Propel](http://www.propelorm.org), [Doctrine2](http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/), [CakePHP](http://cakephp.org), [Spot2](https://github.com/vlucas/spot2), [Mandango](https://github.com/mandango/mandango) and [Eloquent](https://laravel.com/docs/master/eloquent) are supported). These adapters ease the population of databases through the Entity classes provided by an ORM library (or the population of document stores using Document classes provided by an ODM library).
 
 To populate entities, create a new populator class (using a generator instance as parameter), then list the class and number of all the entities that must be generated. To launch the actual data population, call the `execute()` method.
 
@@ -1393,6 +1393,7 @@ echo $faker->bank; // '中国建设银行'
 * [CakePHP 2.x Fake Seeder Plugin](https://github.com/ravage84/cakephp-fake-seeder) A CakePHP 2.x shell to seed your database with fake and/or fixed data.
 * [images-generator](https://github.com/bruceheller/images-generator): An image generator provider using GD for placeholder type pictures
 * [pattern-lab/plugin-php-faker](https://github.com/pattern-lab/plugin-php-faker): Pattern Lab is a Styleguide, Component Library, and Prototyping tool. This creates unique content each time Pattern Lab is generated.
+* [guidocella/eloquent-populator](https://github.com/guidocella/eloquent-populator): Adapter for Laravel's Eloquent ORM.
 
 ## License
 
