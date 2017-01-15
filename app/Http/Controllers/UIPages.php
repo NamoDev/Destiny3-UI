@@ -30,6 +30,10 @@ class UIPages extends Controller {
     public function preHomePage(){
         return response()->view('prehome');
     }
+    
+    public function redirectToHome() {
+        return redirect('/home');
+    }
 
     // Registration homepage
     public function newUserRegistrationPage() {
