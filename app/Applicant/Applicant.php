@@ -286,7 +286,8 @@ class Applicant {
         }else if(config('uiconfig.mode') == 'normal'){
             $required_step = array(1, 2, 3, 4, 5, 6);
         }else{
-            throw new Exception('Operation mode misconfigured');
+            return false;
+            //throw new Exception('Operation mode misconfigured');
         }
 
         $completed_step = DB::collection('applicants')
