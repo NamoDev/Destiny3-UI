@@ -18,6 +18,7 @@ NOTE: For some weird reason, putting these routes in a group results in session 
 */
 Route::get('/', 'UIPages@preHomePage');
 Route::get('/home', 'UIPages@homePage'); // DAT HOMEPAGE
+Route::get('login', 'UIPages@redirectToHome');
 Route::post('login', 'UserController@login'); // Login request handler
 Route::get('logout', 'UserController@logout'); // Logout request handler
 //Route::get('about', 'UIPages@aboutPage'); // About application
