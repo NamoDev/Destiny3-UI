@@ -31,14 +31,14 @@
 <br />
 <div class="row">
     <div class="col-md-6">
-        <b>ใบ ปพ.1</b> (5 ภาคเรียน)
+        <b>ใบ ปพ.1</b> (5 ภาคเรียน ทุกหน้า)
         <form action="/api/v1/applicant/documents_upload/transcript" class="dropzone" id="fileTranscript">
             {{ csrf_field() }}
             <input type="hidden" name="upload_token" value="{{ $upload_token }}">
         </form>
     </div>
     <div class="col-md-6">
-        <b>สำเนาทะเบียนบ้าน</b> ของนักเรียน
+        <b>สำเนาทะเบียนบ้าน</b> ของนักเรียน (2 หน้า)
         <form action="/api/v1/applicant/documents_upload/student_hr" class="dropzone" id="fileHRApplicant">
             {{ csrf_field() }}
             <input type="hidden" name="upload_token" value="{{ $upload_token }}">
@@ -48,7 +48,7 @@
 <br />
 <div class="row">
     <div class="col-md-6">
-        <b>ใบรับรองผลการเรียน</b>
+        <b>ใบรับรองผลการเรียน</b> (<a href="https://apply.triamudom.ac.th/assets/gradecert.pdf">ดาวน์โหลด</a>)
         <form action="/api/v1/applicant/documents_upload/gradecert" class="dropzone" id="fileGradeCert">
             {{ csrf_field() }}
             <input type="hidden" name="upload_token" value="{{ $upload_token }}">
@@ -56,7 +56,7 @@
     </div>
 </div>
 <br />
-<font color="#e79528">นักเรียนต้องอัพโหลดเอกสารทั้งหมด และรอการอัพโหลดเสร็จสิ้น จึงกดบันทึกข้อมูล</font>
+<span style="color:#e79528">นักเรียนต้องอัพโหลดเอกสารทั้งหมด และรอการอัพโหลดเสร็จสิ้น จึงกดบันทึกข้อมูล<br>โดยต้องส่งเอกสารให้ครบถ้วนทุกหน้า และสามารถมองเห็นรายละเอียดได้ชัดเจน</span>
 <br />
 <div class="row">
     <div class="col-xs-6 col-md-8">
