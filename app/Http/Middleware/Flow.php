@@ -61,6 +61,11 @@ class Flow
             'home',
             'change_password'
         ),
+        'view_only' => array(
+            'application' => array(
+                'home' => ['get' => true],
+            ),
+        ),
     );
 
     /**

@@ -57,6 +57,10 @@ Route::group(['prefix' => 'application', 'middleware' => ['web', 'auth', 'flow']
 
 });
 
+Route::group(['middleware' => ['web', 'auth']], function(){
+    Route::get('alternate_dashboard', 'UIPages@AltBoard');
+});
+
 // Account creation API route. Not in the API group cause we can't use apiauth middleware there
 Route::post('api/v1/account/create', 'UserController@createAccount');
 

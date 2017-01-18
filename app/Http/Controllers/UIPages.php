@@ -38,7 +38,11 @@ class UIPages extends Controller {
 
     // Applicant home page (a.k.a. the "Dashboard")
     public function applicantDashboard() {
-        return response()->view('dashboard');
+        if(config('uiconfig.mode') == 'view_only'){
+            return redirect('alternate_dashboard');
+        }else{
+            return response()->view('dashboard');
+        }
     }
 
     // "Change Password" page for logged in users
@@ -176,5 +180,9 @@ class UIPages extends Controller {
         }
 
         return date('r', $latest);
+    }
+
+    public function AltBoard(){
+        return response()->view('altdash');
     }
 }
