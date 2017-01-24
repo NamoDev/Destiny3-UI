@@ -12,7 +12,8 @@ use DB;
 class ReportController extends Controller
 {
     public function generateExcelReport(){
-        $all = DB::collection('applicants')->orderBy('registered', 'asc')->get();
+        //$all = DB::collection('applicants')->orderBy('registered', 'asc')->get();
+        $all = DB::collection('applicants')->whereNotNull('evaluation_id')->orderBy('registered', 'asc')->get();
 
         // Create new Spreadsheet object
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
