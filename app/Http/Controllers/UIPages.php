@@ -28,9 +28,10 @@ class UIPages extends Controller {
     }
 
     public function preHomePage(){
-        return response()->view('prehome');
+        //return response()->view('prehome');
+        return redirect('/home');
     }
-    
+
     public function redirectToHome() {
         return redirect('/home');
     }
