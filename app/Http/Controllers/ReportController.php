@@ -15,6 +15,13 @@ class ReportController extends Controller
         //$all = DB::collection('applicants')->orderBy('registered', 'asc')->get();
         $all = DB::collection('applicants')->whereNotNull('evaluation_id')->orderBy('registered', 'asc')->get();
 
+        $prep = DB::collection('applicants')->orderBy('registered', 'asc')->pluck('citizen_id');
+        foreach($prep as $cid){
+            if(count(DB::colection('applicants')->where('citizen_id', $cid)->pluck('steps_completed')) < 6){
+                $all[] = DB::colection('applicants')->where('citizen_id', $cid)->first();
+            }
+        }
+
         // Create new Spreadsheet object
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
 
