@@ -18,7 +18,7 @@ class ReportController extends Controller
         $prep = DB::collection('applicants')->orderBy('registered', 'asc')->pluck('citizen_id');
         foreach($prep as $cid){
             if(count(DB::colection('applicants')->where('citizen_id', $cid)->pluck('steps_completed')) < 6){
-                $all[] = DB::colection('applicants')->where('citizen_id', $cid)->first();
+                $all[] = DB::collection('applicants')->where('citizen_id', $cid)->first();
             }
         }
 
