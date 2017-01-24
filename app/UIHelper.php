@@ -61,4 +61,34 @@ class UIHelper{
             throw new Exception('Unexpected file name');
         }
     }
+
+    public static function formatPlan($plan_id){
+        $converter = [
+            1 => "ภาษา-ฝรั่งเศส",
+            2 => "ภาษา-เยอรมัน",
+            3 => "ภาษา-ญี่ปุ่น",
+            4 => "ภาษา-คณิต",
+            5 => "วิทย์-คณิต",
+            7 => "ภาษา-สเปน",
+            8 => "ภาษา-จีน",
+        ];
+
+        return $converter[$plan_id];
+    }
+
+    public static function formatSubject($subject){
+        $string = explode('_', $subject);
+
+        $converter = [
+            'science' => 'วิทยาศาสตร์',
+            'math' => 'คณิตศาสตร์',
+            'english' => 'ภาษาอังกฤษ',
+            'thai' => 'ภาษาไทย',
+            'social' => 'สังคม',
+            'basic' => 'พื้นฐาน',
+            'advanced' => 'เพิ่มเติม',
+        ];
+
+        return $converter[$string[0]].' '.$converter[$string[1]];
+    }
 }
