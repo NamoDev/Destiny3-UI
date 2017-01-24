@@ -13,7 +13,7 @@ class ReportController extends Controller
 {
     public function generateExcelReport(){
         //$all = DB::collection('applicants')->orderBy('registered', 'asc')->get();
-        $all = DB::collection('applicants')->whereNotNull('evaluation_id')->orderBy('registered', 'asc')->get();
+        //$all = DB::collection('applicants')->whereNotNull('evaluation_id')->orderBy('registered', 'asc')->get();
 
         $prep = DB::collection('applicants')->orderBy('registered', 'asc')->pluck('citizen_id');
         foreach($prep as $cid){
